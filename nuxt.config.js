@@ -12,7 +12,7 @@ export default {
     host: process.env.HOST || '0.0.0.0' // default: localhost
   },
   router: {
-    middleware: 'nuxti18n'
+    // middleware: 'nuxti18n'
   },
   robots: [
     {
@@ -62,7 +62,7 @@ export default {
       'vrwebdesign-nuxt/assets/style/tools/_responsive.scss'
     ]
   },
-  plugins: ['@/plugins/lazy-load.js'],
+  plugins: ['@/plugins/vue-awesome-swiper.js'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -171,7 +171,6 @@ export default {
    ** https://github.com/nuxt-community/vuetify-module
    */
   vuetify: {
-    rtl: true,
     treeShake: true,
     customVariables: ['~/assets/styles/setting/_variables.scss'],
     defaultAssets: {
@@ -180,7 +179,7 @@ export default {
     },
     lang: {
       locales: { fa: require('vuetify/src/locale/fa').default },
-      current: 'fa'
+      current: 'en'
     },
     theme: {
       dark: false,
@@ -190,8 +189,8 @@ export default {
       themes: {
         light: {
           primary: colors.cyan.base,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
+          accent: '#f9a429',
+          secondary: '#35d6c1',
           info: colors.blue.base,
           warning: colors.orange.darken1,
           error: colors.deepOrange.accent2,
@@ -207,8 +206,9 @@ export default {
       { code: 'fa', iso: 'fa-IR' }
     ],
     baseUrl: 'http://localhsot:3000',
-    defaultLocale: 'fa',
+    defaultLocale: 'en',
     vueI18n: {
+      fallbackLocale: 'en',
       messages: {
         fa,
         en

@@ -1,0 +1,605 @@
+
+{
+  "header": {
+    "reportVersion": 1,
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "trigger": "FatalError",
+    "filename": "report.20200429.194516.42320.0.001.json",
+    "dumpEventTime": "2020-04-29T19:45:16Z",
+    "dumpEventTimeStamp": "1588173316775",
+    "processId": 42320,
+    "cwd": "D:\\Resaa\\resaa-en\\site",
+    "commandLine": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\Resaa\\resaa-en\\site\\node_modules\\.bin\\\\..\\@nuxt\\typescript-runtime\\bin\\nuxt-ts.js"
+    ],
+    "nodejsVersion": "v12.14.1",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "win32",
+    "componentVersions": {
+      "node": "12.14.1",
+      "v8": "7.7.299.13-node.16",
+      "uv": "1.33.1",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.15.0",
+      "modules": "72",
+      "nghttp2": "1.40.0",
+      "napi": "5",
+      "llhttp": "2.0.1",
+      "http_parser": "2.8.0",
+      "openssl": "1.1.1d",
+      "cldr": "35.1",
+      "icu": "64.2",
+      "tz": "2019c",
+      "unicode": "12.1"
+    },
+    "release": {
+      "name": "node",
+      "lts": "Erbium",
+      "headersUrl": "https://nodejs.org/download/release/v12.14.1/node-v12.14.1-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v12.14.1/node-v12.14.1.tar.gz",
+      "libUrl": "https://nodejs.org/download/release/v12.14.1/win-x64/node.lib"
+    },
+    "osName": "Windows_NT",
+    "osRelease": "10.0.18363",
+    "osVersion": "Windows 10 Pro N",
+    "osMachine": "x86_64",
+    "cpus": [
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 1038500,
+        "nice": 0,
+        "sys": 1164953,
+        "idle": 64434593,
+        "irq": 308562
+      },
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 897703,
+        "nice": 0,
+        "sys": 232921,
+        "idle": 65507109,
+        "irq": 9718
+      },
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 5427671,
+        "nice": 0,
+        "sys": 1143718,
+        "idle": 60066343,
+        "irq": 18859
+      },
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 801484,
+        "nice": 0,
+        "sys": 175265,
+        "idle": 65660953,
+        "irq": 4906
+      },
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 2039921,
+        "nice": 0,
+        "sys": 4698968,
+        "idle": 59898843,
+        "irq": 14562
+      },
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 977453,
+        "nice": 0,
+        "sys": 285281,
+        "idle": 65374968,
+        "irq": 8031
+      },
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 1723812,
+        "nice": 0,
+        "sys": 1452031,
+        "idle": 63461890,
+        "irq": 17093
+      },
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 1176046,
+        "nice": 0,
+        "sys": 7536125,
+        "idle": 57925531,
+        "irq": 7406
+      },
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 1651671,
+        "nice": 0,
+        "sys": 1671265,
+        "idle": 63314796,
+        "irq": 13000
+      },
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 1187953,
+        "nice": 0,
+        "sys": 244468,
+        "idle": 65205312,
+        "irq": 9328
+      },
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 1965375,
+        "nice": 0,
+        "sys": 954500,
+        "idle": 63717859,
+        "irq": 15156
+      },
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 391234,
+        "nice": 0,
+        "sys": 326593,
+        "idle": 65919875,
+        "irq": 7859
+      },
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 2647500,
+        "nice": 0,
+        "sys": 788625,
+        "idle": 63201609,
+        "irq": 15968
+      },
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 420109,
+        "nice": 0,
+        "sys": 317906,
+        "idle": 65899703,
+        "irq": 5234
+      },
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 1405015,
+        "nice": 0,
+        "sys": 751734,
+        "idle": 64480968,
+        "irq": 12734
+      },
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 888578,
+        "nice": 0,
+        "sys": 477406,
+        "idle": 65271734,
+        "irq": 5375
+      }
+    ],
+    "networkInterfaces": [
+      {
+        "name": "SpeedVPN",
+        "internal": false,
+        "mac": "00:00:00:00:00:00",
+        "address": "168.158.252.87",
+        "netmask": "255.255.255.255",
+        "family": "IPv4"
+      },
+      {
+        "name": "Loopback Pseudo-Interface 1",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "::1",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Loopback Pseudo-Interface 1",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "Ethernet",
+        "internal": false,
+        "mac": "04:92:26:d8:d1:cc",
+        "address": "192.168.1.23",
+        "netmask": "255.255.255.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "Wi-Fi",
+        "internal": false,
+        "mac": "18:56:80:53:b4:98",
+        "address": "192.168.1.20",
+        "netmask": "255.255.255.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "vEthernet (Default Switch)",
+        "internal": false,
+        "mac": "00:15:5d:35:0e:5e",
+        "address": "fe80::180a:3d2:f187:d75b",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 27
+      },
+      {
+        "name": "vEthernet (Default Switch)",
+        "internal": false,
+        "mac": "00:15:5d:35:0e:5e",
+        "address": "172.17.134.177",
+        "netmask": "255.255.255.240",
+        "family": "IPv4"
+      }
+    ],
+    "host": "DESKTOP-G05IH3P"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": [
+      "Unavailable."
+    ]
+  },
+  "nativeStack": [
+    {
+      "pc": "0x00007ff707cd1759",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+10873"
+    },
+    {
+      "pc": "0x00007ff707cd5b7c",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+28316"
+    },
+    {
+      "pc": "0x00007ff707cd4b38",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+24152"
+    },
+    {
+      "pc": "0x00007ff707dc433b",
+      "symbol": "v8::base::CPU::has_sse+37723"
+    },
+    {
+      "pc": "0x00007ff7085c8c5e",
+      "symbol": "v8::Isolate::ReportExternalAllocationLimitReached+94"
+    },
+    {
+      "pc": "0x00007ff7085b0ca1",
+      "symbol": "v8::SharedArrayBuffer::Externalize+833"
+    },
+    {
+      "pc": "0x00007ff70847e56c",
+      "symbol": "v8::internal::Heap::EphemeronKeyWriteBarrierFromCode+1436"
+    },
+    {
+      "pc": "0x00007ff708489910",
+      "symbol": "v8::internal::Heap::ProtectUnprotectedMemoryChunks+1312"
+    },
+    {
+      "pc": "0x00007ff708486444",
+      "symbol": "v8::internal::Heap::PageFlagsAreConsistent+3204"
+    },
+    {
+      "pc": "0x00007ff70847bcd3",
+      "symbol": "v8::internal::Heap::CollectGarbage+1283"
+    },
+    {
+      "pc": "0x00007ff70847a4a4",
+      "symbol": "v8::internal::Heap::AddRetainedMap+2356"
+    },
+    {
+      "pc": "0x00007ff70849b775",
+      "symbol": "v8::internal::Factory::NewFillerObject+53"
+    },
+    {
+      "pc": "0x00007ff708207a49",
+      "symbol": "v8::internal::interpreter::JumpTableTargetOffsets::iterator::operator=+4057"
+    },
+    {
+      "pc": "0x00007ff7089f463d",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+567949"
+    },
+    {
+      "pc": "0x00007ff70896fc72",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+24770"
+    },
+    {
+      "pc": "0x00007ff70896f70f",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+23391"
+    },
+    {
+      "pc": "0x00007ff708a55460",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+964784"
+    },
+    {
+      "pc": "0x00007ff7089741cc",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42524"
+    },
+    {
+      "pc": "0x00000107bd50429a",
+      "symbol": ""
+    }
+  ],
+  "javascriptHeap": {
+    "totalMemory": 2181992448,
+    "totalCommittedMemory": 2181992448,
+    "usedMemory": 2059696232,
+    "availableMemory": 46881688,
+    "memoryLimit": 2197815296,
+    "heapSpaces": {
+      "read_only_space": {
+        "memorySize": 262144,
+        "committedMemory": 262144,
+        "capacity": 261872,
+        "used": 32296,
+        "available": 229576
+      },
+      "new_space": {
+        "memorySize": 33554432,
+        "committedMemory": 33554432,
+        "capacity": 16759808,
+        "used": 2771192,
+        "available": 13988616
+      },
+      "old_space": {
+        "memorySize": 1627500544,
+        "committedMemory": 1627500544,
+        "capacity": 1565330384,
+        "used": 1565249544,
+        "available": 80840
+      },
+      "code_space": {
+        "memorySize": 9076736,
+        "committedMemory": 9076736,
+        "capacity": 7517728,
+        "used": 7517728,
+        "available": 0
+      },
+      "map_space": {
+        "memorySize": 47452160,
+        "committedMemory": 47452160,
+        "capacity": 21026400,
+        "used": 21026400,
+        "available": 0
+      },
+      "large_object_space": {
+        "memorySize": 462942208,
+        "committedMemory": 462942208,
+        "capacity": 461998656,
+        "used": 461998656,
+        "available": 0
+      },
+      "code_large_object_space": {
+        "memorySize": 1204224,
+        "committedMemory": 1204224,
+        "capacity": 1100416,
+        "used": 1100416,
+        "available": 0
+      },
+      "new_large_object_space": {
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 16759808,
+        "used": 0,
+        "available": 16759808
+      }
+    }
+  },
+  "resourceUsage": {
+    "userCpuSeconds": 452.234,
+    "kernelCpuSeconds": 19.687,
+    "cpuConsumptionPercent": 17.0986,
+    "maxRss": 2376536064,
+    "pageFaults": {
+      "IORequired": 3543375,
+      "IONotRequired": 0
+    },
+    "fsActivity": {
+      "reads": 62653,
+      "writes": 463
+    }
+  },
+  "libuv": [
+  ],
+  "environmentVariables": {
+    "=C:": "C:\\",
+    "=D:": "D:\\Resaa\\resaa-en\\site",
+    "ALLUSERSPROFILE": "C:\\ProgramData",
+    "API_URL": "http://localhost:33380",
+    "APPDATA": "C:\\Users\\Armin\\AppData\\Roaming",
+    "APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL": "true",
+    "BASE_URL": "http://localhost:3000",
+    "ChocolateyInstall": "C:\\ProgramData\\chocolatey",
+    "ChocolateyLastPathUpdate": "132244234068944298",
+    "COLORTERM": "truecolor",
+    "CommonProgramFiles": "C:\\Program Files\\Common Files",
+    "CommonProgramFiles(x86)": "C:\\Program Files (x86)\\Common Files",
+    "CommonProgramW6432": "C:\\Program Files\\Common Files",
+    "COMPUTERNAME": "DESKTOP-G05IH3P",
+    "ComSpec": "C:\\WINDOWS\\system32\\cmd.exe",
+    "DriverData": "C:\\Windows\\System32\\Drivers\\DriverData",
+    "FPS_BROWSER_APP_PROFILE_STRING": "Internet Explorer",
+    "FPS_BROWSER_USER_PROFILE_STRING": "Default",
+    "GOOGLE_ANALITICS": "UA-12301-2",
+    "GTM": "GTM-XXXXXXX",
+    "HOMEDRIVE": "C:",
+    "HOMEPATH": "\\Users\\Armin",
+    "HOST": "localhost",
+    "INIT_CWD": "D:\\Resaa\\resaa-en\\site",
+    "LANG": "en_US.UTF-8",
+    "LOCALAPPDATA": "C:\\Users\\Armin\\AppData\\Local",
+    "LOGONSERVER": "\\\\DESKTOP-G05IH3P",
+    "NODE": "C:\\Program Files\\nodejs\\node.exe",
+    "NODE_ENV": "development",
+    "npm_config_argv": "{\"remain\":[],\"cooked\":[\"run\",\"dev\"],\"original\":[\"dev\"]}",
+    "npm_config_bin_links": "true",
+    "npm_config_email": "arminkheirkhahan@gmail.com",
+    "npm_config_ignore_optional": "",
+    "npm_config_ignore_scripts": "",
+    "npm_config_init_license": "MIT",
+    "npm_config_init_version": "1.0.0",
+    "npm_config_registry": "https://registry.yarnpkg.com",
+    "npm_config_save_prefix": "^",
+    "npm_config_strict_ssl": "true",
+    "npm_config_username": "arminkheirkhahan",
+    "npm_config_user_agent": "yarn/1.19.1 npm/? node/v12.14.1 win32 x64",
+    "npm_config_version_commit_hooks": "true",
+    "npm_config_version_git_message": "v%s",
+    "npm_config_version_git_sign": "",
+    "npm_config_version_git_tag": "true",
+    "npm_config_version_tag_prefix": "v",
+    "npm_execpath": "C:\\Users\\Armin\\AppData\\Roaming\\npm\\node_modules\\yarn\\bin\\yarn.js",
+    "npm_lifecycle_event": "dev",
+    "npm_lifecycle_script": "nuxt-ts",
+    "npm_node_execpath": "C:\\Program Files\\nodejs\\node.exe",
+    "npm_package_author_name": "armin",
+    "npm_package_dependencies_nuxt": "^2.0.0",
+    "npm_package_dependencies_swiper": "^5.3.8",
+    "npm_package_dependencies_vrwebdesign_nuxt": "^2.x",
+    "npm_package_dependencies_vue_awesome_swiper": "^4.1.1",
+    "npm_package_dependencies_vue_lazyload": "^1.3.3",
+    "npm_package_dependencies__nuxtjs_auth": "^4.9.1",
+    "npm_package_dependencies__nuxtjs_device": "^1.2.7",
+    "npm_package_dependencies__nuxtjs_dotenv": "^1.4.0",
+    "npm_package_dependencies__nuxtjs_google_analytics": "^2.2.3",
+    "npm_package_dependencies__nuxtjs_gtm": "^2.2.3",
+    "npm_package_dependencies__nuxtjs_pwa": "^3.0.0-0",
+    "npm_package_dependencies__nuxtjs_recaptcha": "^0.6.2",
+    "npm_package_dependencies__nuxtjs_robots": "^2.4.2",
+    "npm_package_dependencies__nuxtjs_sentry": "^4.0.2",
+    "npm_package_dependencies__nuxtjs_sitemap": "^2.2.1",
+    "npm_package_dependencies__nuxtjs_style_resources": "^1.0.0",
+    "npm_package_dependencies__nuxtjs_svg": "^0.1.11",
+    "npm_package_dependencies__types_moment_jalaali": "^0.7.4",
+    "npm_package_dependencies__types_swiper": "^5.3.0",
+    "npm_package_description": "My super-duper Nuxt.js project",
+    "npm_package_devDependencies_babel_jest": "^24.1.0",
+    "npm_package_devDependencies_eslint_config_prettier": "^6.10.0",
+    "npm_package_devDependencies_eslint_plugin_prettier": "^3.1.2",
+    "npm_package_devDependencies_jest": "^24.1.0",
+    "npm_package_devDependencies_prettier": "^1.19.1",
+    "npm_package_devDependencies_reflect_metadata": "^0.1.13",
+    "npm_package_devDependencies_ts_jest": "^25.0.0",
+    "npm_package_devDependencies_vuex_module_decorators": "^0.16.1",
+    "npm_package_devDependencies_vue_jest": "^4.0.0-0",
+    "npm_package_devDependencies_vue_property_decorator": "^8.4.1",
+    "npm_package_devDependencies__nuxtjs_vuetify": "^1.0.0",
+    "npm_package_devDependencies__nuxt_typescript_build": "^0.6.0",
+    "npm_package_devDependencies__nuxt_typescript_runtime": "^0.4.0",
+    "npm_package_devDependencies__nuxt_vue_app": "^2.12.2",
+    "npm_package_devDependencies__vue_test_utils": "^1.0.0-beta.27",
+    "npm_package_name": "resaa-new",
+    "npm_package_private": "true",
+    "npm_package_readmeFilename": "README.md",
+    "npm_package_scripts_build": "nuxt-ts build",
+    "npm_package_scripts_dev": "nuxt-ts",
+    "npm_package_scripts_generate": "nuxt-ts generate",
+    "npm_package_scripts_release": "git push origin master && git push origin develop",
+    "npm_package_scripts_release_dist": "git push dist master && git push dist develop",
+    "npm_package_scripts_start": "nuxt-ts start",
+    "npm_package_scripts_test": "jest",
+    "npm_package_version": "1.0.0",
+    "NUMBER_OF_PROCESSORS": "16",
+    "OneDrive": "C:\\Users\\Armin\\OneDrive",
+    "OneDriveConsumer": "C:\\Users\\Armin\\OneDrive",
+    "OS": "Windows_NT",
+    "Path": "C:\\Users\\Armin\\AppData\\Local\\Temp\\yarn--1588170556361-0.33443190619405927;D:\\Resaa\\resaa-en\\site\\node_modules\\.bin;C:\\Users\\Armin\\AppData\\Local\\Yarn\\Data\\link\\node_modules\\.bin;C:\\Users\\Armin\\AppData\\Local\\Yarn\\bin;C:\\Program Files\\libexec\\lib\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\lib\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Python27\\;C:\\Python27\\Scripts;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\nodejs\\;C:\\ProgramData\\chocolatey\\bin;;C:\\Program Files\\Docker\\Docker\\resources\\bin;C:\\ProgramData\\DockerDesktop\\version-bin;C:\\Users\\Armin\\AppData\\Local\\Programs\\Python\\Python37\\Scripts\\;C:\\Users\\Armin\\AppData\\Local\\Programs\\Python\\Python37\\;C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\;C:\\Users\\Armin\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Armin\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\Armin\\AppData\\Roaming\\npm",
+    "PATHEXT": ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JSE;.WSF;.WSH;.MSC",
+    "PORT": "30081",
+    "PROCESSOR_ARCHITECTURE": "AMD64",
+    "PROCESSOR_IDENTIFIER": "Intel64 Family 6 Model 158 Stepping 12, GenuineIntel",
+    "PROCESSOR_LEVEL": "6",
+    "PROCESSOR_REVISION": "9e0c",
+    "ProgramData": "C:\\ProgramData",
+    "ProgramFiles": "C:\\Program Files",
+    "ProgramFiles(x86)": "C:\\Program Files (x86)",
+    "ProgramW6432": "C:\\Program Files",
+    "PROMPT": "$P$G",
+    "PSModulePath": "C:\\Program Files\\WindowsPowerShell\\Modules;C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules",
+    "PUBLIC": "C:\\Users\\Public",
+    "RECAPTCHA_SITEKEY": "6LdqT7YUAAAAAGEi0OymnZ7dLJuARiF9q_2Cu",
+    "SENTRY_DSN": "https://aa92634bdbdb4957b80627fd215a10f3@o384758.ingest.sentry.io/5216518",
+    "SESSIONNAME": "Console",
+    "SystemDrive": "C:",
+    "SystemRoot": "C:\\WINDOWS",
+    "TEMP": "C:\\Users\\Armin\\AppData\\Local\\Temp",
+    "TERM_PROGRAM": "vscode",
+    "TERM_PROGRAM_VERSION": "1.44.2",
+    "TMP": "C:\\Users\\Armin\\AppData\\Local\\Temp",
+    "USERDOMAIN": "DESKTOP-G05IH3P",
+    "USERDOMAIN_ROAMINGPROFILE": "DESKTOP-G05IH3P",
+    "USERNAME": "Armin",
+    "USERPROFILE": "C:\\Users\\Armin",
+    "VUE_ENV": "server",
+    "windir": "C:\\WINDOWS",
+    "YARN_WRAP_OUTPUT": "false",
+    "_AXIOS_BASE_URL_": "http://localhost:33380"
+  },
+  "sharedObjects": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "C:\\WINDOWS\\SYSTEM32\\ntdll.dll",
+    "C:\\WINDOWS\\System32\\KERNEL32.DLL",
+    "C:\\WINDOWS\\System32\\KERNELBASE.dll",
+    "C:\\WINDOWS\\System32\\WS2_32.dll",
+    "C:\\WINDOWS\\System32\\RPCRT4.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dbghelp.dll",
+    "C:\\WINDOWS\\System32\\ADVAPI32.dll",
+    "C:\\WINDOWS\\System32\\ucrtbase.dll",
+    "C:\\WINDOWS\\System32\\msvcrt.dll",
+    "C:\\WINDOWS\\System32\\sechost.dll",
+    "C:\\WINDOWS\\System32\\USER32.dll",
+    "C:\\WINDOWS\\System32\\win32u.dll",
+    "C:\\WINDOWS\\System32\\GDI32.dll",
+    "C:\\WINDOWS\\System32\\gdi32full.dll",
+    "C:\\WINDOWS\\System32\\msvcp_win.dll",
+    "C:\\WINDOWS\\System32\\PSAPI.DLL",
+    "C:\\WINDOWS\\System32\\CRYPT32.dll",
+    "C:\\WINDOWS\\System32\\MSASN1.dll",
+    "C:\\WINDOWS\\SYSTEM32\\IPHLPAPI.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\USERENV.dll",
+    "C:\\WINDOWS\\System32\\bcrypt.dll",
+    "C:\\WINDOWS\\System32\\profapi.dll",
+    "C:\\WINDOWS\\SYSTEM32\\WINMM.dll",
+    "C:\\WINDOWS\\SYSTEM32\\winmmbase.dll",
+    "C:\\WINDOWS\\System32\\cfgmgr32.dll",
+    "C:\\WINDOWS\\System32\\bcryptPrimitives.dll",
+    "C:\\WINDOWS\\System32\\IMM32.DLL",
+    "C:\\WINDOWS\\System32\\powrprof.dll",
+    "C:\\WINDOWS\\System32\\UMPDC.dll",
+    "C:\\WINDOWS\\SYSTEM32\\CRYPTBASE.DLL",
+    "C:\\WINDOWS\\system32\\uxtheme.dll",
+    "C:\\WINDOWS\\System32\\combase.dll",
+    "C:\\WINDOWS\\system32\\mswsock.dll",
+    "C:\\WINDOWS\\System32\\kernel.appcore.dll",
+    "C:\\WINDOWS\\System32\\NSI.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc6.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\DNSAPI.dll",
+    "C:\\Windows\\System32\\rasadhlp.dll",
+    "C:\\WINDOWS\\System32\\fwpuclnt.dll",
+    "\\\\?\\D:\\Resaa\\resaa-en\\site\\node_modules\\fibers\\bin\\win32-x64-72\\fibers.node",
+    "C:\\WINDOWS\\system32\\napinsp.dll",
+    "C:\\WINDOWS\\system32\\pnrpnsp.dll",
+    "C:\\WINDOWS\\system32\\wshbth.dll",
+    "C:\\WINDOWS\\system32\\NLAapi.dll",
+    "C:\\WINDOWS\\System32\\winrnr.dll"
+  ]
+}

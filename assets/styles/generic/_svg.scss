@@ -1,0 +1,15 @@
+svg {
+    width: 24px;
+    height: auto;
+}
+svg.moon {
+    path {
+        fill: #0ac7e4;
+    }
+}
+svg.sun {
+    path,
+    circle {
+        fill: #f9a429;
+    }
+}
