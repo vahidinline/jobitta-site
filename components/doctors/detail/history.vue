@@ -46,7 +46,7 @@ ul {
         </span>
         <div>
           <span class="label">{{$t('experience')}}</span>
-          <span class="value">{{doctor.extra_field.work_experience }} {{$t('years')}}</span>
+          <span class="value">{{doctor.work_experience }} {{$t('years')}}</span>
         </div>
       </li>
       <li v-if="doctor.expertise && doctor.expertise != ' '">
@@ -64,7 +64,7 @@ ul {
         </span>
         <div>
           <span class="label">{{$t('speciality')}}</span>
-          <span class="value">{{doctor.specialtyTitle}}</span>
+          <span class="value">{{doctor.speciality.title}}</span>
         </div>
       </li>
       <li>
@@ -73,12 +73,7 @@ ul {
         </span>
         <div>
           <span class="label">{{$t('Scientific Background')}}</span>
-          <span class="value">
-            <span v-for="(item,index) in doctor.aboutDoctor" :key="index">
-              {{item}}
-              <span v-if="index < doctor.aboutDoctor.length-1">،</span>
-            </span>
-          </span>
+          <span class="value">{{doctor.about}}</span>
         </div>
       </li>
     </ul>

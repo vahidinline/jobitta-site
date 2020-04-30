@@ -178,7 +178,7 @@ export default class Finish extends Vue {
     }
     this.doctor = await this.$axios.$get(`doctors/${this.$route.params.id}`)
     loader.hide()
-    // this.$store.commit('reservation/clear_reservation_info')
+    this.$store.commit('reservation/clear_reservation_info')
   }
 }
 </script>

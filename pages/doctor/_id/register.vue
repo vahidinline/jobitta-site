@@ -124,6 +124,7 @@ export default class Register extends Vue {
   reservation = {}
   mounted() {
     this.reservation = { ...this.$store.state.reservation.info }
+    console.log(this.$route)
   }
   async submit() {
     let valid = await this.$validator.validateAll()

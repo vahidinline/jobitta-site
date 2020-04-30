@@ -86,11 +86,11 @@
           <span>تعرفه تماس</span>
           <span
             class="orange--text"
-          >{{doctor.extra_field.price_per_minute * doctor.extra_field.sessionTime | persianDigit}} دلار</span>
+          >{{doctor.price_per_minute * doctor.sessionTime | persianDigit}} دلار</span>
         </li>
         <li>
           <span>مدت مشاوره</span>
-          <span>{{doctor.extra_field.sessionTime | persianDigit}} دقیقه</span>
+          <span>{{doctor.sessionTime | persianDigit}} دقیقه</span>
         </li>
         <li v-for="(workplace,index) in doctor.workplaces" :key="index">
           <span>آدرس مطب</span>
@@ -121,5 +121,5 @@ export default {
     }
   },
   mounted() {}
-};
+}
 </script>

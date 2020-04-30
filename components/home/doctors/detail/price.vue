@@ -51,7 +51,7 @@
       </span>
       <div>
         <span class="label">دسترسی راحت‌تر به پزشک متخصص و فوق تخصص</span>
-        <span class="value">٪{{doctor.extra_field.speciaity_access || 0 | persianDigit}}</span>
+        <span class="value">٪{{doctor.speciaity_access || 0 | persianDigit}}</span>
       </div>
     </div>
     <div class="box">
@@ -60,7 +60,7 @@
       </span>
       <div>
         <span class="label">دسترسی به مشاور با فرهنگ و زبان فارسی</span>
-        <span class="value">٪{{doctor.extra_field.culture_access || 0 | persianDigit}}</span>
+        <span class="value">٪{{doctor.culture_access || 0 | persianDigit}}</span>
       </div>
     </div>
   </div>

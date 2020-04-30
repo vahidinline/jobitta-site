@@ -201,19 +201,22 @@ export default {
   },
   i18n: {
     seo: false,
+    strategy: 'no_prefix',
     locales: [
-      { code: 'en', iso: 'en-US' },
-      { code: 'fa', iso: 'fa-IR' }
+      { code: 'en', iso: 'en-US', file: 'en.js' },
+      { code: 'fa', iso: 'fa-IR', file: 'fa.js' }
     ],
+    lazy: true,
+    langDir: 'locales/',
     baseUrl: 'http://localhsot:3000',
-    defaultLocale: 'en',
-    vueI18n: {
-      fallbackLocale: 'en',
-      messages: {
-        fa,
-        en
-      }
-    }
+    defaultLocale: 'en'
+    // vueI18n: {
+    //   fallbackLocale: 'en',
+    //   messages: {
+    //     fa,
+    //     en
+    //   }
+    // }
   },
   watch: ['services', 'enums'],
   /*

@@ -104,7 +104,7 @@
         </div>
       </div>
       <div class="services">
-        <template v-if="$fetchState.pending">
+        <!-- <template v-if="$fetchState.pending">
           <v-skeleton-loader type="heading"></v-skeleton-loader>
           <v-skeleton-loader class="pt-2" type="paragraph"></v-skeleton-loader>
         </template>
@@ -116,7 +116,7 @@
               <span v-if="index < doctor.categories.length -1">،</span>
             </span>
           </p>
-        </div>
+        </div>-->
         <div class="mt-5">
           <template v-if="$fetchState.pending">
             <v-skeleton-loader type="heading"></v-skeleton-loader>
@@ -132,7 +132,8 @@
         </div>
       </div>
       <div class="timetable">
-        <timeTable :close="false"></timeTable>
+        <v-skeleton-loader v-if="$fetchState.pending"></v-skeleton-loader>
+        <timeTable v-else v-model="doctor.timetable"></timeTable>
       </div>
       <div class="comments">
         <v-skeleton-loader v-if="$fetchState.pending"></v-skeleton-loader>
@@ -161,10 +162,30 @@ Component.registerHooks(['fetch'])
 })
 export default class component_name extends Vue {
   doctor: any = {}
+  // @Watch('$route', {
+  //   deep: true
+  // })
+  // routeChange(from, to) {
+  //   console.log(from, to)
+  // }
+  beforeDestroy() {
+    this.$i18n.setLocale('en')
+    this.$vuetify.rtl = false
+  }
   async fetch() {
     this.doctor = await this.$axios.$get(`doctors/${this.$route.params.id}`)
-    this.$i18n.setLocale('en')
-    // this.$vuetify.rtl = true
+    if (this.doctor.lang == 'fa') {
+      console.log('omad fetch')
+      this.$i18n.setLocale('fa')
+      this.$vuetify.rtl = true
+    }
+  }
+  mounted() {
+    if (this.doctor.lang == 'fa') {
+      console.log('omad mount')
+      this.$i18n.setLocale('fa')
+      this.$vuetify.rtl = true
+    }
   }
 }
 </script>

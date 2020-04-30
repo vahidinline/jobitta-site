@@ -72,7 +72,7 @@ section {
             <span>{{$t('invoice.price')}}</span>
             <span
               class="orange--text"
-            >{{doctor.extra_field.price_per_minute * doctor.extra_field.sessionTime }} {{$t('currency')}}</span>
+            >{{doctor.price_per_minute * doctor.sessionTime }} {{$t('currency')}}</span>
           </li>
           <li>
             <span>{{$t('invoice.sessionDate')}}</span>
@@ -80,11 +80,11 @@ section {
           </li>
           <li>
             <span>{{$t('invoice.sessionTime')}}</span>
-            <span>{{reservation.reserve_time | persianDate('HH:mm','en') }}</span>
+            <span>{{reservation.reserve_time | persianDate('hh:mm A','en') }}</span>
           </li>
           <li>
             <span>{{$t('invoice.sessionDuration')}}</span>
-            <span>{{doctor.extra_field.sessionTime }} {{$t('minute')}}</span>
+            <span>{{doctor.sessionTime }} {{$t('minute')}}</span>
           </li>
           <li>
             <span>{{$t('invoice.name')}}</span>

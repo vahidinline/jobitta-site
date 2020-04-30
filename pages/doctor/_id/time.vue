@@ -19,43 +19,66 @@ section {
   margin: 10px;
   font-size: 13px;
   color: #000;
-  font-weight: 600;
+  font-weight: 500;
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.15);
+  &:first-child {
+    margin-left: 0;
+  }
+  &:last-child {
+    margin-right: 0;
+  }
   div + div {
     margin-top: 8px;
   }
   &.active {
-    font-weight: bold;
+    // font-weight: bold;
     background: #e7f8f6;
   }
 }
 .v-card--link:focus:before {
   opacity: 0;
 }
+.time-wrapper {
+  overflow-x: auto;
+}
 .time {
   width: 80px;
   height: 192px;
   display: flex;
+  flex: 0 0 80px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 15px;
   font-size: 13px;
   color: #000;
-  font-weight: 600;
-
+  font-weight: 500;
+  &:first-child {
+    margin-left: 0;
+  }
+  &:last-child {
+    margin-right: 0;
+  }
   &.active {
-    font-weight: bold;
     background: #e7f8f6;
   }
-  .icon {
-    svg {
-      width: 24px;
-      height: auto;
+  span {
+    color: #000;
+    &.icon {
+      margin-bottom: 20px;
+      svg {
+        width: 24px;
+        height: auto;
+      }
+    }
+    &.to {
+      color: #6c6c6c;
+      margin: 6px 0;
     }
   }
 }
 .invoice {
-  width: 800px;
+  width: 900px;
   max-width: 90%;
 }
 
@@ -86,17 +109,15 @@ section {
       <div class="text-center subheading font-weight-bold mt-4">
         <p>To schedule your session, please Select on of following time slots.</p>
       </div>
-
       <div class="mt-4 body-1">
         <div class="d-flex flex-wrap justify-center">
           <v-card
-            shaped
             :ripple="false"
             :raised="false"
             @click="selected_day = day;selected_time=null"
             :class="{active:selected_day==day}"
             class="days"
-            v-for="(times, day) in days"
+            v-for="day in days"
             :key="day"
           >
             <div>{{day | persianDate('dddd','en')}}</div>
@@ -116,24 +137,26 @@ section {
             </v-btn-toggle>-->
           </v-card>
         </div>
-        <div class="d-flex flex-wrap justify-center">
-          <v-card
-            :disabled="item.reserved"
-            :ripple="false"
-            :raised="false"
-            @click="selected_time = item.start"
-            :class="{active:selected_time==item.start}"
-            class="time"
-            v-for="(item, index) in days[selected_day]"
-            :key="index"
-          >
-            <span class="icon">
-              <component :is="item.start < '16:00'?'Sun':'Moon'"></component>
-            </span>
-            <span>{{item.start}}</span>
-            <span>to</span>
-            <span>{{item.end}}</span>
-          </v-card>
+        <div class="d-flex time-wrapper">
+          <div class="d-flex px-4">
+            <v-card
+              :disabled="item.reserved"
+              :ripple="false"
+              :raised="false"
+              @click="selected_time = item.start"
+              :class="{active:selected_time==item.start}"
+              class="time"
+              v-for="(item, index) in times"
+              :key="index"
+            >
+              <span class="icon">
+                <component :is="item.start < '16:00'?'Sun':'Moon'"></component>
+              </span>
+              <span>{{item.start}}</span>
+              <span class="to">to</span>
+              <span>{{item.end}}</span>
+            </v-card>
+          </div>
         </div>
         <v-btn
           :disabled="!(selected_time && selected_day)"
@@ -165,6 +188,7 @@ import { getModule } from 'vuex-module-decorators'
 import ReservationModule from '@/store/reservation'
 import Sun from '~/assets/svg/sun.svg?inline'
 import Moon from '~/assets/svg/moon.svg?inline'
+import moment from 'moment-jalaali'
 @Component({
   layout: 'insidepage',
   components: {
@@ -172,22 +196,32 @@ import Moon from '~/assets/svg/moon.svg?inline'
     Moon
   }
 })
-export default class component_name extends Vue {
+export default class TimeSelect extends Vue {
   reservation: any = {}
   selected_day: string | null = null
   selected_time: string | null = null
-  days = {}
+  days: any[] = []
+  data: any = {}
+  get times() {
+    return this.selected_day && this.data[this.selected_day]
+  }
   async mounted() {
-    this.days = await this.$axios.$get(
+    this.data = await this.$axios.$get(
       `doctors/${this.$route.params.id}/timeTable`
     )
+    this.days = Object.keys(this.data)
+      .map(item => moment(item))
+      .sort((a: any, b: any) => {
+        return a - b
+      })
+      .map(item => moment(item).format('YYYY-MM-DD'))
     this.reservation = { ...this.$store.state.reservation.info }
     if (this.reservation.reserve_time) {
       let [day, time] = (<string>this.reservation.reserve_time).split(' ')
       this.selected_day = day
       this.selected_time = time
     } else {
-      this.selected_day = Object.keys(this.days)[0]
+      this.selected_day = this.days[0]
     }
   }
   onChange() {

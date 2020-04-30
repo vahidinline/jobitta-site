@@ -26,5 +26,10 @@ import { Vue, Component } from 'vue-property-decorator'
     Footer
   }
 })
-export default class component_name extends Vue {}
+export default class HomePage extends Vue {
+  beforeCreate() {
+    this.$i18n.setLocale('en')
+    this.$vuetify.rtl = false
+  }
+}
 </script>

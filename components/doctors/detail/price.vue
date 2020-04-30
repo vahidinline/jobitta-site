@@ -53,7 +53,7 @@
       </span>
       <div>
         <span class="label">{{$t('expertiseAccessibility')}}</span>
-        <span class="value">%{{doctor.extra_field.speciaity_access || 0 }}</span>
+        <span class="value">%{{doctor.speciaity_access || 0 }}</span>
       </div>
     </div>
     <div class="box">
@@ -62,7 +62,7 @@
       </span>
       <div>
         <span class="label">{{$t('caltureAccessibility')}}</span>
-        <span class="value">%{{doctor.extra_field.culture_access || 0 }}</span>
+        <span class="value">%{{doctor.culture_access || 0 }}</span>
       </div>
     </div>
   </div>

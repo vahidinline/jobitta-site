@@ -142,7 +142,6 @@
             transform: rotate(315deg);
           }
         }
-        .sa,
         .mo,
         .we,
         .fr {
@@ -182,6 +181,7 @@
             }
           }
         }
+        .sa,
         .su,
         .tu,
         .th {
@@ -303,7 +303,7 @@
 </style>
 <template>
   <section id="timeTable" ref="wrapper">
-    <close v-if="close" class="close" @click="$emit('close')" />
+    <!-- <close v-if="close" class="close" @click="$emit('close')" /> -->
     <div class="showhelp">
       <!-- <span class="morning">
         <div class="mobilereverse">
@@ -330,7 +330,7 @@
         <span class="space-betwen">:</span>
         <span class="timesheet">{{this.nighttime.start}} - {{this.nighttime.end}}</span>
       </span>-->
-      <span v-if="daynotaccess.length" class="notaccess">
+      <!-- <span v-if="daynotaccess.length" class="notaccess">
         <div class="mobilereverse">
           <span>عدم پاسخگویی</span>
         </div>
@@ -341,160 +341,24 @@
         <span v-for="item in daynotaccess" :key="item" class="items">
           <span class="item">{{ item | convertDay }}</span>
         </span>
-      </span>
+      </span>-->
     </div>
     <div class="time">
       <div class="days-2">
-        <span>
-          <span class="rotate">{{$t('saturday')}}</span>
-          <div class="sa">
-            <img src="~assets/img/time-table/img-bottom.png" v-if="events.sa[0]" />
-            <img src="~assets/img/time-table/img-notaccess.png" v-else />
-            <div class="items" v-if="events.sa[0]">
-              <div class="item" v-for="(item, index) in events.sa" :key="index">
+        <span v-for="day in ['su','mo','tu','we','th','fr','sa']" :key="day">
+          <span class="rotate">{{$t(day)}}</span>
+          <div :class="day">
+            <img v-if="days[day].times.length" src="~assets/img/time-table/img-bottom.png" />
+            <img v-else src="~assets/img/time-table/img-notaccess.png" />
+            <div class="items">
+              <div class="item" v-for="(item, index) in days[day].times" :key="index">
                 <div>
-                  <div class="sun">
-                    <sun v-if="item.time == 'morning'" />
-                  </div>
-                  <div class="moon">
-                    <moon v-if="item.time == 'night'" />
-                  </div>
+                  <sun v-if="item.start_time < '16:00'" />
+                  <moon v-else />
                 </div>
-                <span>{{ item.start }}</span>
+                <span>{{ item.start_time }}</span>
                 <span class="spacemobile">-</span>
-                <span>{{ item.end }}</span>
-              </div>
-            </div>
-          </div>
-        </span>
-        <span>
-          <span class="rotate">{{$t('sunday')}}</span>
-          <div class="su">
-            <img src="~assets/img/time-table/img-bottom.png" v-if="events.su[0]" />
-            <img src="~assets/img/time-table/img-notaccess.png" class="mobileshowimportant" v-else />
-            <div class="items" v-if="events.su[0]">
-              <div class="item" v-for="(item, index) in events.su" :key="index">
-                <div>
-                  <div class="sun">
-                    <sun v-if="item.time == 'morning'" />
-                  </div>
-                  <div class="moon">
-                    <moon v-if="item.time == 'night'" />
-                  </div>
-                </div>
-                <span>{{ item.start }}</span>
-                <span class="spacemobile">-</span>
-                <span>{{ item.end }}</span>
-              </div>
-            </div>
-          </div>
-        </span>
-        <span>
-          <span class="rotate">{{$t('monday')}}</span>
-          <div class="mo">
-            <img src="~assets/img/time-table/img-bottom.png" v-if="events.mo[0]" />
-            <img src="~assets/img/time-table/img-notaccess.png" v-else />
-            <div class="items" v-if="events.mo[0]">
-              <div class="item" v-for="(item, index) in events.mo" :key="index">
-                <div>
-                  <div class="sun">
-                    <sun v-if="item.time == 'morning'" />
-                  </div>
-                  <div class="moon">
-                    <moon v-if="item.time == 'night'" />
-                  </div>
-                </div>
-                <span>{{ item.start }}</span>
-                <span class="spacemobile">-</span>
-                <span>{{ item.end }}</span>
-              </div>
-            </div>
-          </div>
-        </span>
-        <span>
-          <span class="rotate">{{$t('tuesday')}}</span>
-          <div class="tu">
-            <img src="~assets/img/time-table/img-bottom.png" v-if="events.tu[0]" />
-            <img src="~assets/img/time-table/img-notaccess.png" v-else />
-            <div class="items" v-if="events.tu[0]">
-              <div class="item" v-for="(item, index) in events.tu" :key="index">
-                <div>
-                  <div class="sun">
-                    <sun v-if="item.time == 'morning'" />
-                  </div>
-                  <div class="moon">
-                    <moon v-if="item.time == 'night'" />
-                  </div>
-                </div>
-                <span>{{ item.start }}</span>
-                <span class="spacemobile">-</span>
-                <span>{{ item.end }}</span>
-              </div>
-            </div>
-          </div>
-        </span>
-        <span>
-          <span class="rotate">{{$t('wednesday')}}</span>
-          <div class="we">
-            <img src="~assets/img/time-table/img-bottom.png" v-if="events.we[0]" />
-            <img src="~assets/img/time-table/img-notaccess.png" v-else />
-            <div class="items" v-if="events.we[0]">
-              <div class="item" v-for="(item, index) in events.we" :key="index">
-                <div>
-                  <div class="sun">
-                    <sun v-if="item.time == 'morning'" />
-                  </div>
-                  <div class="moon">
-                    <moon v-if="item.time == 'night'" />
-                  </div>
-                </div>
-                <span>{{ item.start }}</span>
-                <span class="spacemobile">-</span>
-                <span>{{ item.end }}</span>
-              </div>
-            </div>
-          </div>
-        </span>
-        <span>
-          <span class="rotate">{{$t('thursday')}}</span>
-          <div class="th">
-            <img src="~assets/img/time-table/img-bottom.png" v-if="events.th[0]" />
-            <img src="~assets/img/time-table/img-notaccess.png" v-else />
-            <div class="items" v-if="events.th[0]">
-              <div class="item" v-for="(item, index) in events.th" :key="index">
-                <div>
-                  <div class="sun">
-                    <sun v-if="item.time == 'morning'" />
-                  </div>
-                  <div class="moon">
-                    <moon v-if="item.time == 'night'" />
-                  </div>
-                </div>
-                <span>{{ item.start }}</span>
-                <span class="spacemobile">-</span>
-                <span>{{ item.end }}</span>
-              </div>
-            </div>
-          </div>
-        </span>
-        <span>
-          <span class="rotate">{{$t('friday')}}</span>
-          <div class="fr">
-            <img src="~assets/img/time-table/img-bottom.png" v-if="events.fr[0]" />
-            <img src="~assets/img/time-table/img-notaccess.png" v-else />
-            <div class="items" v-if="events.fr[0]">
-              <div class="item" v-for="(item, index) in events.fr" :key="index">
-                <div>
-                  <div class="sun">
-                    <sun v-if="item.time == 'morning'" />
-                  </div>
-                  <div class="moon">
-                    <moon v-if="item.time == 'night'" />
-                  </div>
-                </div>
-                <span>{{ item.start }}</span>
-                <span class="spacemobile">-</span>
-                <span>{{ item.end }}</span>
+                <span>{{ item.end_time }}</span>
               </div>
             </div>
           </div>
@@ -509,8 +373,7 @@ import moon from '~/assets/svg/moon.svg?inline'
 import close from '~/assets/svg/close_circle.svg?inline'
 export default {
   props: {
-    value: {},
-    close: { default: true }
+    value: {}
   },
   components: {
     sun,
@@ -562,6 +425,7 @@ export default {
         start: null,
         end: null
       },
+      days: this.value,
       eveningtime: {
         start: null,
         end: null
@@ -575,38 +439,38 @@ export default {
     }
   },
 
-  async mounted() {
-    let url = `https://resaa.net/api/Doctors/${
-      this.$route.params.id
-    }/TimeTable?clientTimeZoneOffset=${new Date().getTimezoneOffset()}`
-    let loader = this.$loader.show(this.$refs.wrapper)
-    try {
-      let { result } = await this.$axios.$get(url)
-      this.segments = result.timetable.segments
+  // async mounted() {
+  //   let url = `https://resaa.net/api/Doctors/${
+  //     this.$route.params.id
+  //   }/TimeTable?clientTimeZoneOffset=${new Date().getTimezoneOffset()}`
+  //   let loader = this.$loader.show(this.$refs.wrapper)
+  //   try {
+  //     let { result } = await this.$axios.$get(url)
+  //     this.segments = result.timetable.segments
 
-      for (const item of this.segments) {
-        let start_hour = this.get_hour(item.from)
-        let end_hour = this.get_hour(item.to)
-        let start_minute = this.get_minute(item.from)
-        let end_minute = this.get_minute(item.to)
-        const day_of_week = this.get_day(item.from)
-        let time_array = this.convert_time({
-          start_hour,
-          end_hour,
-          start_minute,
-          end_minute
-        })
-        this.push_time(day_of_week, time_array)
-      }
-      for (let day in this.events) {
-        if (this.events[day].length == 0) {
-          this.daynotaccess.push(day)
-        }
-      }
-      this.$emit('input', this.events)
-    } catch (error) {}
-    loader.hide()
-  },
+  //     for (const item of this.segments) {
+  //       let start_hour = this.get_hour(item.from)
+  //       let end_hour = this.get_hour(item.to)
+  //       let start_minute = this.get_minute(item.from)
+  //       let end_minute = this.get_minute(item.to)
+  //       const day_of_week = this.get_day(item.from)
+  //       let time_array = this.convert_time({
+  //         start_hour,
+  //         end_hour,
+  //         start_minute,
+  //         end_minute
+  //       })
+  //       this.push_time(day_of_week, time_array)
+  //     }
+  //     for (let day in this.events) {
+  //       if (this.events[day].length == 0) {
+  //         this.daynotaccess.push(day)
+  //       }
+  //     }
+  //     this.$emit('input', this.events)
+  //   } catch (error) {}
+  //   loader.hide()
+  // },
   methods: {
     get_hour(value) {
       let hour = Math.floor((value / 60) % 24)

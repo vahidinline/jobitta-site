@@ -19,6 +19,14 @@ export default {
   wednesday: 'We',
   thursday: 'Th',
   friday: 'Fr',
+  stepper: {
+    selectSpecialist: 'selects specialist',
+    login: 'login',
+    register: 'register',
+    chooseSessionTime: 'choose session time',
+    payment: 'payment',
+    finish: 'finish'
+  },
   invoice: {
     price: 'price',
     sessionDate: 'session date',

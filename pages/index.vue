@@ -274,18 +274,18 @@
       </template>
       <div v-else class="doctor-item" v-for="doctor in doctors" :key="doctor.subscriberNumber">
         <div class="doctor-image">
-          <v-img :src="`https://resaa.net/api/doctors/${doctor.subscriberNumber}/image`"></v-img>
+          <v-img :src="doctor.image"></v-img>
         </div>
         <div class="doctor-info">
-          <div class="doctor-title">{{doctor.fullNameWithTitle}}</div>
+          <div class="doctor-title">{{doctor.firstname}} {{doctor.lastname}}</div>
           <div class="custom-devider"></div>
-          <div class="doctor-subtitle">{{doctor.specialtyTitle}}</div>
+          <div class="doctor-subtitle">{{doctor.speciality.title}}</div>
           <v-btn
             color="secondary"
-            class="text-none"
+            class="text-none subtitle-1"
             outlined
             block
-            :to="`/doctor/${doctor.subscriberNumber}`"
+            :to="`/doctor/${doctor.id}`"
           >Select and Continue</v-btn>
         </div>
       </div>

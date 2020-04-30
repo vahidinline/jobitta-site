@@ -41,7 +41,7 @@ ul {
         </span>
         <div>
           <span class="label">سابقه طبابت</span>
-          <span class="value">{{doctor.extra_field.work_experience | persianDigit}} سال</span>
+          <span class="value">{{doctor.work_experience | persianDigit}} سال</span>
         </div>
       </li>
       <li v-if="doctor.expertise && doctor.expertise != ' '">

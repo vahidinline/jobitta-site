@@ -58,7 +58,7 @@
 <template>
   <div class="box">
     <div class="image-wrapper">
-      <v-img :src="`https://resaa.net/api/${doctor.imagePath}`" alt />
+      <v-img :src="doctor.image" alt />
     </div>
     <div class="doctor-name">
       <span>{{doctor.title}}</span>
@@ -75,23 +75,21 @@
       <ul>
         <li>
           <span>{{$t('speciality')}}</span>
-          <span>{{doctor.specialtyTitle}}</span>
+          <span>{{doctor.speciality.title}}</span>
         </li>
         <v-divider class="my-2"></v-divider>
-        <li>
+        <li v-if="doctor.medicalCouncilNumber">
           <span>{{$t('medicalCouncilNumber')}}</span>
           <span class="orange--text">{{doctor.medicalCouncilNumber }}</span>
         </li>
-        <v-divider class="my-2"></v-divider>
+        <v-divider v-if="doctor.medicalCouncilNumber" class="my-2"></v-divider>
         <li>
           <span>{{$t('pricing')}}</span>
-          <span
-            class="orange--text"
-          >{{doctor.extra_field.price_per_minute * doctor.extra_field.sessionTime }} {{$t('currency')}}</span>
+          <span class="orange--text">{{doctor.price * doctor.session_duration }} {{$t('currency')}}</span>
         </li>
         <li>
           <span>{{$t('session')}} {{$t('duration')}}</span>
-          <span>{{doctor.extra_field.sessionTime }} {{$t('minute')}}</span>
+          <span>{{doctor.session_duration }} {{$t('minute')}}</span>
         </li>
         <li v-for="(workplace,index) in doctor.workplaces" :key="index">
           <span>{{$t('workplace')}}</span>
