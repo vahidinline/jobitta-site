@@ -324,6 +324,7 @@
       </div>
     </div>
     <Comments />
+    <div v-if="$fetchState.error">{{$fetchState.error}}</div>
   </section>
 </template>
 <script lang="ts">
