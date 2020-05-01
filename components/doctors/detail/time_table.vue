@@ -128,7 +128,7 @@
       @include media(xs-only) {
         flex-direction: column;
         height: 100%;
-        flex: 0;
+        flex: 0 0 50px;
       }
       span {
         color: #212121;
@@ -222,12 +222,20 @@
             }
             .item {
               @include media(xs-only) {
-                flex-direction: row;
+                flex-direction: row-reverse;
+                @include rtl() {
+                  flex-direction: row;
+                }
               }
               > div {
                 @include media(xs-only) {
                   padding-left: 0;
                   padding-right: 10px;
+                  display: flex;
+                  // @include rtl() {
+                  //   padding-left: 0;
+                  //   padding-right: 10px;
+                  // }
                 }
               }
               span {
@@ -241,12 +249,16 @@
         }
         .items {
           .item {
-            width: 70px;
+            min-width: 70px;
             display: flex;
             flex-direction: column;
             align-items: center;
             @include media(xs-only) {
-              flex-direction: row-reverse;
+              flex-direction: row;
+              height: 38px;
+              @include rtl() {
+                flex-direction: row-reverse;
+              }
             }
             span {
               color: #9f9f9f;
@@ -265,12 +277,20 @@
               @include media(xs-only) {
                 padding-top: 0;
                 padding-left: 10px;
+                display: flex;
               }
             }
             + .item {
               border-left: 1px solid #c5c5c5;
+              @include rtl() {
+                border-left: none;
+                border-right: 1px solid #c5c5c5;
+              }
               @include media(xs-only) {
                 border-left: none;
+                @include rtl() {
+                  border-right: none;
+                }
               }
             }
           }
@@ -295,6 +315,9 @@
     }
   }
   .moon {
+    @include media(xs) {
+      margin-bottom: 6px;
+    }
     path {
       fill: #0bc7e4;
     }

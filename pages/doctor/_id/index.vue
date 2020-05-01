@@ -27,6 +27,10 @@
       opacity: 0.2;
       left: 0;
       bottom: 0px;
+      @include rtl() {
+        left: auto;
+        right: 0;
+      }
     }
     &:after {
       content: '';
@@ -36,6 +40,10 @@
       background: #f9a429;
       left: 0;
       bottom: 0px;
+      @include rtl() {
+        left: auto;
+        right: 0;
+      }
     }
   }
 
@@ -43,6 +51,10 @@
     width: 310px;
     flex: 0 0 310px;
     margin-right: 32px;
+    @include rtl() {
+      margin-right: 0;
+      margin-left: 32px;
+    }
     @include media(xs) {
       width: 100%;
       flex: 0 0 100%;
@@ -59,13 +71,22 @@
   .history {
     width: 55%;
     margin-right: 24px;
+    @include rtl() {
+      margin-right: 0;
+      margin-left: 24px;
+    }
     @include media(xs) {
       width: 100%;
+      flex: 0 0 100%;
       margin-right: 0;
     }
   }
   .price {
-    width: calc(55% - 24px);
+    width: calc(45% - 24px);
+    @include media(xs) {
+      width: 100%;
+      margin-top: 16px;
+    }
   }
   .services {
     margin-top: 40px;
@@ -88,7 +109,7 @@
       <doctorInfo v-else :doctor="doctor" />
     </div>
     <div class="right-pane">
-      <div class="d-flex">
+      <div class="d-flex flex-wrap">
         <div class="history">
           <template v-if="$fetchState.pending">
             <v-skeleton-loader type="heading"></v-skeleton-loader>
@@ -178,6 +199,9 @@ export default class component_name extends Vue {
       console.log('omad fetch')
       this.$i18n.setLocale('fa')
       this.$vuetify.rtl = true
+    } else {
+      this.$i18n.setLocale('en')
+      this.$vuetify.rtl = false
     }
   }
   mounted() {
@@ -185,6 +209,9 @@ export default class component_name extends Vue {
       console.log('omad mount')
       this.$i18n.setLocale('fa')
       this.$vuetify.rtl = true
+    } else {
+      this.$i18n.setLocale('en')
+      this.$vuetify.rtl = false
     }
   }
 }

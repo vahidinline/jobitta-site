@@ -12,13 +12,18 @@
     @include media(xs-only) {
       &.step-2 {
         .v-stepper__header {
-          transform: translateX(210px);
+          transform: translateX(-20px);
         }
       }
-      &.step-3,
+      &.step-3 {
+        .v-stepper__header {
+          transform: translateX(-170px);
+        }
+      }
+      &.step-5,
       &.step-4 {
         .v-stepper__header {
-          transform: translateX(370px);
+          transform: translateX(-300px);
         }
       }
     }

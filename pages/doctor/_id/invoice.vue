@@ -72,7 +72,7 @@ section {
             <span>{{$t('invoice.price')}}</span>
             <span
               class="orange--text"
-            >{{doctor.price_per_minute * doctor.sessionTime }} {{$t('currency')}}</span>
+            >{{doctor.price * doctor.session_duration }} {{$t('currency')}}</span>
           </li>
           <li>
             <span>{{$t('invoice.sessionDate')}}</span>
@@ -84,7 +84,7 @@ section {
           </li>
           <li>
             <span>{{$t('invoice.sessionDuration')}}</span>
-            <span>{{doctor.sessionTime }} {{$t('minute')}}</span>
+            <span>{{doctor.session_duration }} {{$t('minute')}}</span>
           </li>
           <li>
             <span>{{$t('invoice.name')}}</span>
@@ -104,13 +104,7 @@ section {
           </li>
         </template>
       </ul>
-      <v-btn
-        class="paypal-btn title"
-        dark
-        block
-        large
-        @click="submit"
-      >Approve and Pay Through PayPal</v-btn>
+      <v-btn class="paypal-btn title" dark block large @click="submit">Pay</v-btn>
     </v-card>
     <div class="notify-text">
       <img src="~assets/img/ic_info.png" alt />

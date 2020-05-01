@@ -61,9 +61,8 @@
       <v-img :src="doctor.image" alt />
     </div>
     <div class="doctor-name">
-      <span>{{doctor.title}}</span>
-      <span>{{doctor.firstName}}</span>
-      <span>{{doctor.lastName}}</span>
+      <span>{{doctor.firstname}}</span>
+      <span>{{doctor.lastname}}</span>
     </div>
     <div class="success-call">
       <img src="~assets/img/ic_call.png" alt />
@@ -88,7 +87,7 @@
           <span class="orange--text">{{doctor.price * doctor.session_duration }} {{$t('currency')}}</span>
         </li>
         <li>
-          <span>{{$t('session')}} {{$t('duration')}}</span>
+          <span>{{$t('sessionDuration')}}</span>
           <span>{{doctor.session_duration }} {{$t('minute')}}</span>
         </li>
         <li v-for="(workplace,index) in doctor.workplaces" :key="index">

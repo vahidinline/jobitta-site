@@ -9,7 +9,7 @@
     position: relative;
     @include media(xs) {
       width: 300%;
-      left: 100%;
+      left: -100%;
     }
     path {
       fill: var(--v-primary-base);

@@ -45,7 +45,7 @@ ul {
           <img src="~assets/img/ic_time.png" alt />
         </span>
         <div>
-          <span class="label">{{$t('experience')}}</span>
+          <span class="label">{{$t('workExperience')}}</span>
           <span class="value">{{doctor.work_experience }} {{$t('years')}}</span>
         </div>
       </li>
@@ -72,7 +72,7 @@ ul {
           <img src="~assets/img/ic_education.png" alt />
         </span>
         <div>
-          <span class="label">{{$t('Scientific Background')}}</span>
+          <span class="label">{{$t('scientificBackground')}}</span>
           <span class="value">{{doctor.about}}</span>
         </div>
       </li>

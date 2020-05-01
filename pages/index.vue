@@ -18,13 +18,15 @@
       line-height: 32px;
       font-weight: bold;
       @include media(xs) {
-        font-size: 16px;
+        font-size: 19px;
         line-height: 38px;
         font-weight: 700;
       }
       span {
         color: var(--v-primary-base);
         position: relative;
+        display: inline-block;
+        font-size: 25px;
         &:before {
           content: '';
           width: 100%;
@@ -54,7 +56,7 @@
     @include media(xs) {
       background-image: url(~assets/img/img_header.png);
       width: 100%;
-      background-position: -60px -9px;
+      background-position: 0px -10px;
       height: 520px;
     }
   }
@@ -122,16 +124,11 @@
       margin-top: -20px;
       flex: 1;
       height: 100%;
-      img {
-        max-width: 100%;
-        @include media(xs) {
-          max-width: 112px;
-        }
-      }
       @include media(xs) {
+        max-width: 112px;
         margin-top: 0px;
-        margin-right: -20px;
-        margin-left: 30px;
+        margin-left: -20px;
+        margin-right: 30px;
       }
     }
     .doctor-title {
@@ -195,7 +192,7 @@
     @include media(xs) {
       flex-direction: column;
       .v-icon {
-        transform: rotate(-90deg);
+        transform: rotate(90deg);
         margin: 20px 0;
       }
     }

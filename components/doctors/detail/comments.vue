@@ -21,6 +21,10 @@
     opacity: 0.2;
     right: 0;
     bottom: 0;
+    @include rtl() {
+      right: auto;
+      left: 0;
+    }
     @include media(xs) {
       display: none;
     }
@@ -33,11 +37,21 @@
     background: #f9a429;
     left: 0;
     bottom: 0px;
+    @include rtl() {
+      left: auto;
+      right: 0;
+    }
     @include media(xs) {
       display: none;
     }
   }
-  div:first-child {
+  > div {
+    display: flex;
+    @include media(xs) {
+      flex-direction: column;
+    }
+  }
+  div.left-side {
     display: flex;
     flex-direction: column;
     width: 200px;
@@ -57,6 +71,10 @@
       opacity: 0.2;
       right: 0;
       top: 0px;
+      @include rtl() {
+        right: auto;
+        left: 0;
+      }
       @include media(xs) {
         display: none;
       }
@@ -69,12 +87,16 @@
       background: var(--v-primary-base);
       right: 0;
       top: 0px;
+      @include rtl() {
+        right: auto;
+        left: 0;
+      }
       @include media(xs) {
         display: none;
       }
     }
   }
-  div:last-of-type {
+  div.right-side {
     padding: 16px 36px;
     font-size: 14px;
     font-weight: 500;
@@ -87,7 +109,7 @@
 }
 .owner {
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   color: #212121;
   width: 150px;
 }
@@ -101,14 +123,23 @@
   <section>
     <h3 class="custom-title1">{{$t('reviews')}}</h3>
     <div class="comments-wrapper">
-      <!-- doctor.reviews -->
-      <div class="comment-item" v-for="item in 4" :key="item">
+      <!--  -->
+      <div class="comment-item" v-for="item in doctor.reviews" :key="item">
         <div>
-          <span class="owner">{{item.owner_name || 'Reza Ahmadi'}}</span>
-          <span class="date">{{new Date() | persianDate('YYYY/MM/DD')}}</span>
-        </div>
-        <div>
-          <p>{{item.text || 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas purus viverra accumsan in nisl nisi. Arcu cursus vitae congue mauris rhoncus aenean vel elit scelerisque. In egestas erat imperdiet sed euismod nisi porta lorem mollis. Morbi tristique senectus et netus. '}}</p>
+          <div class="left-side">
+            <span class="owner">{{item.owner_name || 'Reza Ahmadi'}}</span>
+            <span
+              class="date"
+              v-if="$i18n.locale == 'en'"
+            >{{new Date() | persianDate('YYYY/MM/DD','en')}}</span>
+            <span
+              class="date"
+              v-if="$i18n.locale == 'fa'"
+            >{{new Date() | persianDate('jYYYY/jMM/jDD') | persianDigit}}</span>
+          </div>
+          <div class="right-side">
+            <p>{{item.text || 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas purus viverra accumsan in nisl nisi. Arcu cursus vitae congue mauris rhoncus aenean vel elit scelerisque. In egestas erat imperdiet sed euismod nisi porta lorem mollis. Morbi tristique senectus et netus. '}}</p>
+          </div>
         </div>
         <v-divider class="hide-md-and-up"></v-divider>
       </div>

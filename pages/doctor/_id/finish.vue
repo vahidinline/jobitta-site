@@ -121,6 +121,7 @@ ul {
         href="https://google.com"
         target="_blank"
       >You can install the ZOOM application here</a>
+      <v-btn class="title mt-4 text-none" color="primary" outlined block large to="/">Back To Home</v-btn>
       <!-- <div class="mt-4 body-1">
         <div class="font-weight-medium mb-1">
           <span>لطفا اپلیکیشن ZOOM را ننصل کنید.</span>
@@ -173,9 +174,9 @@ export default class Finish extends Vue {
   async mounted() {
     let loader = this.$loader.show(this.$refs.wrapper)
     this.reservation_info = { ...this.$store.state.reservation.info }
-    if (!this.reservation_info.track_id) {
-      return this.$router.push('/')
-    }
+    // if (!this.reservation_info.track_id) {
+    //   return this.$router.push('/')
+    // }
     this.doctor = await this.$axios.$get(`doctors/${this.$route.params.id}`)
     loader.hide()
     this.$store.commit('reservation/clear_reservation_info')
