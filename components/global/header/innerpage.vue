@@ -29,7 +29,7 @@
           color="secondary darken-3"
           :complete="step > 2"
           step="2"
-        >{{$t('stepper.login')}} / {{$t('stepper.register')}}</v-stepper-step>
+        >{{$t('stepper.login')}}</v-stepper-step>
 
         <v-divider></v-divider>
 
@@ -49,7 +49,7 @@
         >{{$t('stepper.payment')}}</v-stepper-step>
         <v-divider></v-divider>
 
-        <v-stepper-step color="secondary darken-2" step="5">{{$t('stepper.finish')}}</v-stepper-step>
+        <v-stepper-step color="secondary darken-2" step="5">{{$t('stepper.finish.label')}}</v-stepper-step>
       </v-stepper-header>
     </v-stepper>
   </div>

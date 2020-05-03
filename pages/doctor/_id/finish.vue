@@ -16,6 +16,7 @@
 }
 .invoice {
   width: 600px;
+  margin-top: 40px;
   max-width: 90%;
 }
 ul {
@@ -87,41 +88,42 @@ ul {
         </div>
       </div>
       <div class="text-center subheading font-weight-bold mt-4">
-        <h3>Successful Request</h3>
+        <h3>{{$t('stepper.finish.title')}}</h3>
         <p class="mt-3 font-weight-regular">
-          Your request verification was sent to your email at
+          {{$t('stepper.finish.subtitle')}}
           <span
             class="accent--text d-block font-weight-thin mt-3"
           >{{reservation_info.email}}</span>
         </p>
-        <!-- <p class="secondary--text">
-          کد پیگیری:
-          <span>{{reservation_info.track_id}}</span>
-        </p>-->
       </div>
       <ul>
         <li>
-          <span>Specialist Name</span>
-          <span>{{doctor.title}} {{doctor.firstName}} {{doctor.lastName}}</span>
+          <span>{{$t('stepper.finish.specialistName')}}</span>
+          <span>{{doctor.title}} {{doctor.firstname}} {{doctor.lastname}}</span>
         </li>
         <li>
-          <span>Session Time</span>
+          <span>{{$t('stepper.finish.sessionTime')}}</span>
           <span>{{sessionTime}}</span>
         </li>
       </ul>
-      <span class="caption">Please be online 15 minutes before the session</span>
+      <span class="caption">{{$t('stepper.finish.caption')}}</span>
       <p class="mt-5">
-        Your video session will happen through ZOOM application. Please login/signup with
-        <span
-          class="accent--text"
-        >{{reservation_info.email}}</span>
+        {{$t('stepper.finish.zoom')}}
+        <span class="accent--text">{{reservation_info.email}}</span>
       </p>
       <a
         class="secondary--text"
         href="https://google.com"
         target="_blank"
-      >You can install the ZOOM application here</a>
-      <v-btn class="title mt-4 text-none" color="primary" outlined block large to="/">Back To Home</v-btn>
+      >{{$t('stepper.finish.zoomLink')}}</a>
+      <v-btn
+        class="title mt-4 text-none"
+        color="primary"
+        outlined
+        block
+        large
+        to="/"
+      >{{$t('stepper.finish.back')}}</v-btn>
       <!-- <div class="mt-4 body-1">
         <div class="font-weight-medium mb-1">
           <span>لطفا اپلیکیشن ZOOM را ننصل کنید.</span>
@@ -154,7 +156,7 @@ ul {
 </template>
 <script lang="ts">
 import { Vue, Component, Prop, Watch, Emit, Ref } from 'vue-property-decorator'
-import moment from 'moment'
+import moment from 'moment-jalaali'
 @Component({
   layout: 'insidepage'
 })
@@ -162,21 +164,32 @@ export default class Finish extends Vue {
   reservation_info: any = {}
   doctor: any = {}
   get sessionTime() {
-    return `${moment(this.reservation_info.reserve_time)
-      .locale('en')
-      .format('MMMM Do')}, from ${moment(this.reservation_info.reserve_time)
-      .locale('en')
-      .format('hh:mmA')} to ${moment(this.reservation_info.reserve_time)
-      .locale('en')
-      .add(this.reservation_info.sessionTime || 30, 'minute')
-      .format('hh:mmA')}`
+    if (this.$i18n.locale == 'en') {
+      return `${moment(this.reservation_info.reserve_time)
+        .locale('en')
+        .format('MMMM Do')} ${moment(this.reservation_info.reserve_time)
+        .locale('en')
+        .format('hh:mmA')} to ${moment(this.reservation_info.reserve_time)
+        .locale('en')
+        .add(this.reservation_info.sessionTime || 30, 'minute')
+        .format('hh:mmA')}`
+    } else {
+      return `${moment(this.reservation_info.reserve_time)
+        .locale('fa')
+        .format('Do jMMMM')} ${moment(this.reservation_info.reserve_time)
+        .locale('fa')
+        .format('HH:mm')} تا ${moment(this.reservation_info.reserve_time)
+        .locale('fa')
+        .add(this.reservation_info.sessionTime || 30, 'minute')
+        .format('HH:mm')}`
+    }
   }
   async mounted() {
     let loader = this.$loader.show(this.$refs.wrapper)
     this.reservation_info = { ...this.$store.state.reservation.info }
-    // if (!this.reservation_info.track_id) {
-    //   return this.$router.push('/')
-    // }
+    if (!this.reservation_info.track_id) {
+      return this.$router.push('/')
+    }
     this.doctor = await this.$axios.$get(`doctors/${this.$route.params.id}`)
     loader.hide()
     this.$store.commit('reservation/clear_reservation_info')

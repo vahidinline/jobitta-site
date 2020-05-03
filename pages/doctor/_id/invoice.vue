@@ -62,49 +62,79 @@ section {
       </div>
       <div class="text-center subheading font-weight-bold mt-4">
         <p>
-          Invoice for
-          <span class="orange--text">1 Session</span>
+          {{$t('stepper.invoice.title')}}
+          <span
+            class="orange--text"
+          >{{$t('stepper.invoice.subtitle')}}</span>
         </p>
       </div>
       <ul>
         <template v-if="doctor">
           <li>
-            <span>{{$t('invoice.price')}}</span>
+            <span>{{$t('stepper.invoice.price')}}</span>
             <span
               class="orange--text"
+              v-if="$i18n.locale == 'en'"
             >{{doctor.price * doctor.session_duration }} {{$t('currency')}}</span>
+            <span
+              class="orange--text"
+              v-if="$i18n.locale == 'fa'"
+            >{{doctor.price * doctor.session_duration | persianDigit}} {{$t('currency')}}</span>
           </li>
           <li>
-            <span>{{$t('invoice.sessionDate')}}</span>
-            <span>{{reservation.reserve_time | persianDate('dddd, MMMM DD','en') }}</span>
+            <span>{{$t('stepper.invoice.sessionDate')}}</span>
+            <span
+              v-if="$i18n.locale == 'en'"
+            >{{reservation.reserve_time | persianDate('dddd, MMMM DD','en') }}</span>
+            <span
+              v-if="$i18n.locale == 'fa'"
+            >{{reservation.reserve_time | persianDate('dddd Do jMMMM','fa') | persianDigit }}</span>
           </li>
           <li>
-            <span>{{$t('invoice.sessionTime')}}</span>
-            <span>{{reservation.reserve_time | persianDate('hh:mm A','en') }}</span>
+            <span>{{$t('stepper.invoice.sessionTime')}}</span>
+            <span
+              v-if="$i18n.locale == 'en'"
+            >{{reservation.reserve_time | persianDate('hh:mm A','en') }}</span>
+            <span
+              v-if="$i18n.locale == 'fa'"
+            >{{reservation.reserve_time | persianDate('hh:mm A','fa') | persianDigit}}</span>
           </li>
           <li>
-            <span>{{$t('invoice.sessionDuration')}}</span>
-            <span>{{doctor.session_duration }} {{$t('minute')}}</span>
+            <span>{{$t('stepper.invoice.sessionDuration')}}</span>
+            <span v-if="$i18n.locale == 'en'">{{doctor.session_duration }} {{$t('minute')}}</span>
+            <span
+              v-if="$i18n.locale == 'fa'"
+            >{{doctor.session_duration | persianDigit}} {{$t('minute')}}</span>
           </li>
           <li>
-            <span>{{$t('invoice.name')}}</span>
+            <span>{{$t('stepper.invoice.name')}}</span>
             <span>{{reservation.name}}</span>
           </li>
           <li>
-            <span>{{$t('invoice.mobile')}}</span>
+            <span>{{$t('stepper.invoice.mobile')}}</span>
             <span>{{reservation.mobile }}</span>
           </li>
           <li>
-            <span>{{$t('invoice.email')}}</span>
+            <span>{{$t('stepper.invoice.email')}}</span>
             <span>{{reservation.email}}</span>
           </li>
           <li>
-            <span>{{$t('invoice.orderDate')}}</span>
-            <span>{{now | persianDate('YYYY/MM/DD HH:mm') }}</span>
+            <span>{{$t('stepper.invoice.orderDate')}}</span>
+            <span v-if="$i18n.locale == 'en'">{{now | persianDate('YYYY/MM/DD HH:mm') }}</span>
+            <span
+              dir="ltr"
+              v-if="$i18n.locale == 'fa'"
+            >{{now | persianDate('jYYYY/jMM/jDD HH:mm') | persianDigit}}</span>
           </li>
         </template>
       </ul>
-      <v-btn class="paypal-btn title" dark block large @click="submit">Pay</v-btn>
+      <v-btn
+        class="paypal-btn title"
+        dark
+        block
+        large
+        @click="submit"
+      >{{$t('stepper.invoice.continue')}}</v-btn>
     </v-card>
     <div class="notify-text">
       <img src="~assets/img/ic_info.png" alt />

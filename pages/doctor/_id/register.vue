@@ -60,36 +60,36 @@ section {
         </div>
       </div>
       <div class="subtitle text-center">
-        <p>To submit video session, please fill out following information</p>
+        <p>{{$t('stepper.register.title')}}</p>
       </div>
       <div>
         <v-text-field
           v-validate="'required'"
           :error-messages="errors.collect('name')"
-          data-vv-as="Name and Family Name"
+          :data-vv-as="$t('stepper.register.input.name')"
           v-model="reservation.name"
           outlined
           name="name"
-          label="Name and Family Name"
+          :label="$t('stepper.register.input.name')"
         ></v-text-field>
         <v-text-field
           v-validate="'required|email'"
           :error-messages="errors.collect('email')"
-          data-vv-as="Email"
+          :data-vv-as="$t('stepper.register.input.email')"
           v-model="reservation.email"
           outlined
           name="email"
-          label="Email"
+          :label="$t('stepper.register.input.email')"
         ></v-text-field>
         <v-text-field
           v-validate="'required'"
           :error-messages="errors.collect('mobile')"
-          data-vv-as="mobile"
+          :data-vv-as="$t('stepper.register.input.mobile')"
           v-model="reservation.mobile"
           v-fix-digit
           outlined
           name="mobile"
-          label="mobile"
+          :label="$t('stepper.register.input.mobile')"
         ></v-text-field>
         <v-textarea
           outlined
@@ -97,10 +97,16 @@ section {
           v-model="reservation.description"
           rows="10"
           name="description"
-          label="A description of your condition will help us to provide you a better service"
+          :label="$t('stepper.register.input.description')"
         ></v-textarea>
       </div>
-      <v-btn class="paypal-btn text-none title" @click="submit" dark block large>Continue</v-btn>
+      <v-btn
+        class="paypal-btn text-none title"
+        @click="submit"
+        dark
+        block
+        large
+      >{{$t('stepper.register.continue')}}</v-btn>
     </v-card>
     <div class="notify-text">
       <v-icon size="40" color="orange">la-info-circle</v-icon>

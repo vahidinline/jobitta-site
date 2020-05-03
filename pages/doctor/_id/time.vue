@@ -35,6 +35,9 @@ section {
     background: #e7f8f6;
   }
 }
+.v-card--disabled {
+  opacity: 0.5;
+}
 .v-card--link:focus:before {
   opacity: 0;
 }
@@ -53,11 +56,23 @@ section {
   font-size: 13px;
   color: #000;
   font-weight: 500;
-  &:first-child {
-    margin-left: 0;
+  @include ltr() {
+    &:first-child {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
   }
-  &:last-child {
-    margin-right: 0;
+  @include rtl() {
+    &:first-child {
+      margin-right: 0;
+      // margin-left: 15px;
+    }
+    &:last-child {
+      margin-left: 0;
+      // margin-right: 15px;
+    }
   }
   &.active {
     background: #e7f8f6;
@@ -107,7 +122,7 @@ section {
         </div>
       </div>
       <div class="text-center subheading font-weight-bold mt-4">
-        <p>To schedule your session, please Select on of following time slots.</p>
+        <p>{{$t('stepper.time.title')}}</p>
       </div>
       <div class="mt-4 body-1">
         <div class="d-flex flex-wrap justify-center">
@@ -120,8 +135,14 @@ section {
             v-for="day in days"
             :key="day"
           >
-            <div>{{day | persianDate('dddd','en')}}</div>
-            <div>{{day | persianDate('MMMM Do','en')}}</div>
+            <template v-if="$i18n.locale == 'en'">
+              <div>{{day | persianDate('dddd','en')}}</div>
+              <div>{{day | persianDate('MMMM Do','en')}}</div>
+            </template>
+            <template v-else>
+              <div>{{day | persianDate('dddd','fa')}}</div>
+              <div>{{day | persianDate('Do jMMMM ','fa')}}</div>
+            </template>
             <!-- <h3>{{day | date('dd') }} </h3> -->
             <!-- <v-divider class="my-2"></v-divider> -->
             <!-- <v-btn-toggle v-model="reservation.reserve_time" @change="onChange">
@@ -152,9 +173,16 @@ section {
               <span class="icon">
                 <component :is="item.start < '16:00'?'Sun':'Moon'"></component>
               </span>
-              <span>{{item.start}}</span>
-              <span class="to">to</span>
-              <span>{{item.end}}</span>
+              <template v-if="$i18n.locale == 'en'">
+                <span>{{item.start}}</span>
+                <span class="to">to</span>
+                <span>{{item.end}}</span>
+              </template>
+              <template v-else>
+                <span>{{item.start | persianDigit}}</span>
+                <span class="to">تا</span>
+                <span>{{item.end | persianDigit}}</span>
+              </template>
             </v-card>
           </div>
         </div>
@@ -165,11 +193,11 @@ section {
           dark
           block
           large
-        >Continue</v-btn>
+        >{{$t('stepper.time.continue')}}</v-btn>
         <div
           v-if="!(selected_time && selected_day)"
           class="error--text text-center mt-3"
-        >please select one time</div>
+        >{{$t('stepper.time.error')}}</div>
       </div>
     </v-card>
     <div class="notify-text">

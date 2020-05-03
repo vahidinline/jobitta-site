@@ -9,24 +9,25 @@
     -webkit-box-shadow: 0 0 0 30px #fff inset !important;
   }
   .v-stepper {
-    @include media(xs-only) {
-      &.step-2 {
-        .v-stepper__header {
-          transform: translateX(-20px);
-        }
-      }
-      &.step-3 {
-        .v-stepper__header {
-          transform: translateX(-170px);
-        }
-      }
-      &.step-5,
-      &.step-4 {
-        .v-stepper__header {
-          transform: translateX(-300px);
-        }
-      }
-    }
+    overflow: auto;
+    // @include media(xs-only) {
+    //   &.step-2 {
+    //     .v-stepper__header {
+    //       transform: translateX(-20px);
+    //     }
+    //   }
+    //   &.step-3 {
+    //     .v-stepper__header {
+    //       transform: translateX(-170px);
+    //     }
+    //   }
+    //   &.step-5,
+    //   &.step-4 {
+    //     .v-stepper__header {
+    //       transform: translateX(-300px);
+    //     }
+    //   }
+    // }
     &__header {
       box-shadow: none;
       max-width: 920px;
@@ -129,12 +130,57 @@
 <script lang="ts">
 import { Vue, Component, Prop, Watch, Emit, Ref } from 'vue-property-decorator'
 import Header from '@/components/global/header/innerpage.vue'
+import { Route } from 'vue-router'
 @Component({
   components: {
     Header
   }
 })
 export default class InsidePage extends Vue {
+  @Watch('$route', {
+    deep: true
+  })
+  changeRoute(to: Route) {
+    this.fixStepperPosition()
+  }
+  mounted() {
+    if (this.$i18n.locale == 'fa') {
+      this.$vuetify.rtl = true
+    } else {
+      this.$vuetify.rtl = false
+    }
+    this.fixStepperPosition()
+  }
+  fixStepperPosition() {
+    if (this.$vuetify.breakpoint.mdAndDown) {
+      let stepper = this.$el.querySelector('.v-stepper')
+      if (stepper) {
+        let left = 0
+        switch (this.$route.name) {
+          case 'doctor-id':
+            left = 0
+            break
+          case 'doctor-id-register':
+            left = 65
+            break
+          case 'doctor-id-time':
+            left = 180
+            break
+          case 'doctor-id-invoice':
+            left = 320
+            break
+          case 'doctor-id-finish':
+            left = 340
+            break
+        }
+        if (this.$vuetify.rtl) {
+          stepper.scrollLeft = stepper.clientWidth - left
+        } else {
+          stepper.scrollLeft = left
+        }
+      }
+    }
+  }
   beforeCreate() {
     this.$store.commit('reservation/initialize_reservation_info')
   }

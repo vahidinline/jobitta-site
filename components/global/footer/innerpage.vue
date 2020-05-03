@@ -2,7 +2,7 @@
 </style>
 <template>
   <div class="step-wrapper">
-    <v-stepper :value="current" alt-labels :class="'step-'+step">
+    <v-stepper :value="current" alt-labels>
       <v-stepper-header>
         <v-stepper-step
           @click="$router.push('')"

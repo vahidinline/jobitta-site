@@ -138,6 +138,7 @@
             </span>
           </p>
         </div>-->
+        <div class="d-d"></div>
         <div class="mt-5">
           <template v-if="$fetchState.pending">
             <v-skeleton-loader type="heading"></v-skeleton-loader>
@@ -189,14 +190,13 @@ export default class component_name extends Vue {
   // routeChange(from, to) {
   //   console.log(from, to)
   // }
-  beforeDestroy() {
-    this.$i18n.setLocale('en')
-    this.$vuetify.rtl = false
-  }
+  // beforeDestroy() {
+  //   this.$i18n.setLocale('en')
+  //   this.$vuetify.rtl = false
+  // }
   async fetch() {
     this.doctor = await this.$axios.$get(`doctors/${this.$route.params.id}`)
     if (this.doctor.lang == 'fa') {
-      console.log('omad fetch')
       this.$i18n.setLocale('fa')
       this.$vuetify.rtl = true
     } else {
@@ -206,7 +206,6 @@ export default class component_name extends Vue {
   }
   mounted() {
     if (this.doctor.lang == 'fa') {
-      console.log('omad mount')
       this.$i18n.setLocale('fa')
       this.$vuetify.rtl = true
     } else {
