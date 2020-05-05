@@ -4,6 +4,7 @@
   margin: 20px 30px;
   @include media(xs) {
     flex-direction: column;
+    padding-bottom: 68px;
   }
   .box {
     border-radius: 4px;
@@ -101,6 +102,27 @@
     }
   }
 }
+.fixed-bottom {
+  position: fixed;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 99;
+  box-shadow: 0 -2px 6px 0 rgba(0, 0, 0, 0.16);
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  right: 0;
+  padding: 16px 32px;
+  li {
+    list-style-type: none;
+    font-size: 16px;
+    span:first-child {
+      font-weight: bold;
+    }
+  }
+}
 </style>
 <template>
   <div class="main-section">
@@ -161,6 +183,19 @@
         <v-skeleton-loader v-if="$fetchState.pending"></v-skeleton-loader>
         <doctorComments v-else :doctor="doctor" />
       </div>
+    </div>
+    <div class="fixed-bottom d-sm-none">
+      <div>
+        <li>
+          <span>{{$t('pricing')}}:</span>
+          <span class="orange--text">{{doctor.price * doctor.session_duration }} {{$t('currency')}}</span>
+        </li>
+      </div>
+      <v-btn
+        class="subtitle-1"
+        color="secondary"
+        :to="$route.fullPath + '/register'"
+      >رزرو تماس تصویری</v-btn>
     </div>
   </div>
 </template>

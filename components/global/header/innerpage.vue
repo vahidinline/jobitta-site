@@ -1,57 +1,64 @@
-<style lang="scss" >
+<style lang="scss" scoped>
+.step-wrapper {
+  position: relative;
+}
+.logo-wrapper {
+  position: absolute;
+  left: 0;
+  z-index: 99;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  font-size: 3rem;
+  padding-left: 32px;
+}
 </style>
 <template>
-  <!-- <v-toolbar height="96" color="white">
-    <div class="logo-wrapper">
-      <img src="~assets/img/logo.png" alt />
-      <h3>رسا - رسانه سلامت ایرانیان</h3>
+  <div>
+    <div class="step-wrapper">
+      <div class="logo-wrapper">
+        <nuxt-link to="/">Expertgap</nuxt-link>
+      </div>
+      <v-stepper :value="current" alt-labels :class="'step-'+current">
+        <v-stepper-header>
+          <v-stepper-step
+            @click="$router.push('/')"
+            color="secondary darken-2"
+            :complete="step > 1"
+            step="1"
+          >{{$t('stepper.selectSpecialist')}}</v-stepper-step>
+
+          <v-divider></v-divider>
+
+          <v-stepper-step
+            @click="$router.push(`/doctor/${$route.params.id}/register`)"
+            color="secondary darken-3"
+            :complete="step > 2"
+            step="2"
+          >{{$t('stepper.login')}}</v-stepper-step>
+
+          <v-divider></v-divider>
+
+          <v-stepper-step
+            @click="$router.push(`/doctor/${$route.params.id}/time`)"
+            color="secondary darken-2"
+            :complete="step > 3"
+            step="3"
+          >{{$t('stepper.chooseSessionTime')}}</v-stepper-step>
+          <v-divider></v-divider>
+
+          <v-stepper-step
+            @click="$router.push(`/doctor/${$route.params.id}/invoice`)"
+            color="secondary darken-2"
+            :complete="step > 4"
+            step="4"
+          >{{$t('stepper.payment')}}</v-stepper-step>
+          <v-divider></v-divider>
+
+          <v-stepper-step color="secondary darken-2" step="5">{{$t('stepper.finish.label')}}</v-stepper-step>
+        </v-stepper-header>
+      </v-stepper>
     </div>
-    <v-spacer></v-spacer>
-    <v-btn color="secondary" outline round>
-      بازگشت به مرحله قبل
-      <v-icon size="20" class="mr-2">la-arrow-left</v-icon>
-    </v-btn>
-  </v-toolbar>-->
-  <div class="step-wrapper">
-    <v-stepper :value="current" alt-labels :class="'step-'+current">
-      <v-stepper-header>
-        <v-stepper-step
-          @click="$router.push('/')"
-          color="secondary darken-2"
-          :complete="step > 1"
-          step="1"
-        >{{$t('stepper.selectSpecialist')}}</v-stepper-step>
-
-        <v-divider></v-divider>
-
-        <v-stepper-step
-          @click="$router.push(`/doctor/${$route.params.id}/register`)"
-          color="secondary darken-3"
-          :complete="step > 2"
-          step="2"
-        >{{$t('stepper.login')}}</v-stepper-step>
-
-        <v-divider></v-divider>
-
-        <v-stepper-step
-          @click="$router.push(`/doctor/${$route.params.id}/time`)"
-          color="secondary darken-2"
-          :complete="step > 3"
-          step="3"
-        >{{$t('stepper.chooseSessionTime')}}</v-stepper-step>
-        <v-divider></v-divider>
-
-        <v-stepper-step
-          @click="$router.push(`/doctor/${$route.params.id}/invoice`)"
-          color="secondary darken-2"
-          :complete="step > 4"
-          step="4"
-        >{{$t('stepper.payment')}}</v-stepper-step>
-        <v-divider></v-divider>
-
-        <v-stepper-step color="secondary darken-2" step="5">{{$t('stepper.finish.label')}}</v-stepper-step>
-      </v-stepper-header>
-    </v-stepper>
   </div>
 </template>
 

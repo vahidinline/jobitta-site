@@ -3,7 +3,7 @@
   display: flex;
   height: 94px;
   align-items: center;
-  padding: 0 42px;
+  padding: 0 30px;
   position: absolute;
   width: 100%;
   top: 0;
@@ -16,7 +16,13 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  font-size: 4rem;
+  color: var(--v-primary-darken2);
+  font-weight: 600;
+  margin-top: 16px;
   @include media(xs) {
+    margin-top: 0px;
+    font-size: 3rem;
     img {
       max-width: 90%;
     }
@@ -65,11 +71,12 @@
 </style>
 <template>
   <div class="header">
-    <div class="ml-4 nvicon">
+    <!-- <div class="ml-4 nvicon">
       <v-icon color="secondary" size="40">la-bars</v-icon>
-    </div>
+    </div>-->
     <div class="logo-wrapper">
-      <img src="~assets/img/logo.png" alt />
+      <nuxt-link to="/">Expertgap</nuxt-link>
+      <!-- <img src="~assets/img/logo.png" alt /> -->
       <!-- <h3>رسا - رسانه سلامت ایرانیان</h3> -->
     </div>
     <!-- <div class="nav active">

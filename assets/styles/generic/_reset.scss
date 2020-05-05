@@ -4,3 +4,9 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 30px map-get($material-light, 'background') inset !important;
 }
+
+.v-btn {
+    @include rtl() {
+        letter-spacing: normal;
+    }
+}

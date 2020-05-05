@@ -103,7 +103,8 @@ ul {
         </li>
         <li>
           <span>{{$t('stepper.finish.sessionTime')}}</span>
-          <span>{{sessionTime}}</span>
+          <span v-if="$i18n.locale == 'en'">{{sessionTime}}</span>
+          <span v-if="$i18n.locale == 'fa'">{{sessionTime | persianDigit}}</span>
         </li>
       </ul>
       <span class="caption">{{$t('stepper.finish.caption')}}</span>

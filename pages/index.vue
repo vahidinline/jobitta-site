@@ -1,6 +1,7 @@
 <style lang="scss" scoped>
 .top-section {
   display: flex;
+  flex-wrap: wrap;
   background: linear-gradient(-45deg, #adebfb, #fff);
   @include media(xs) {
     flex-direction: column;
@@ -9,9 +10,10 @@
     margin-top: 130px;
     width: 530px;
     margin-left: 30px;
-    @include media(xs) {
+    @include media(sm) {
+      width: 100%;
       margin-top: 90px;
-      max-width: 70%;
+      max-width: 90%;
     }
     h1 {
       font-size: 25px;
@@ -50,10 +52,14 @@
   .right-section {
     background-image: url(~assets/img/img_header@2x.png);
     height: 730px;
-    width: calc(100% - 530px);
-    background-position: -10px 45x;
+    width: calc(100% - 560px);
+    background-position: -10px 45px;
     background-size: 125%;
-    @include media(xs) {
+
+    @include media(md) {
+      background-position: -10px 175px;
+    }
+    @include media(sm) {
       background-image: url(~assets/img/img_header.png);
       width: 100%;
       background-position: 0px -10px;
@@ -141,6 +147,9 @@
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
+      a {
+        color: inherit;
+      }
     }
     .custom-devider {
       position: relative;
@@ -187,7 +196,6 @@
   .wrapper {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     margin: 0 30px;
     @include media(xs) {
       flex-direction: column;
@@ -200,10 +208,20 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      span {
+      width: 25%;
+      flex: 0 0 25%;
+      @include media(xs) {
+        width: 100%;
+        flex: 0 0 100%;
+      }
+      img {
+        max-width: 100%;
+      }
+      h4 {
         font-size: 16px;
         font-weight: 600;
         color: #212121;
+        margin-bottom: 8px;
       }
     }
   }
@@ -228,12 +246,24 @@
     .item {
       display: flex;
       flex-direction: column;
-      font-weight: bold;
-      color: #4b4b4b;
       align-items: center;
-      font-size: 18px;
+      width: 33.333%;
+      flex: 0 0 33.333%;
+      padding: 0 16px;
       @include media(xs) {
-        font-weight: 500;
+        width: 100%;
+        flex: 0 0 100%;
+      }
+      h4 {
+        font-weight: bold;
+        color: #4b4b4b;
+        font-size: 18px;
+        margin-bottom: 8px;
+      }
+      @include media(xs) {
+        h4 {
+          font-weight: 500;
+        }
         + .item {
           margin-top: 40px;
         }
@@ -250,12 +280,16 @@
     <div class="top-section">
       <div class="left-section">
         <h1>
-          Connect to specialists remotely and through video call in
-          <span>your own language</span>
+          Video consultation with experts in your native language
+          <span>Türkçe, فارسی, عربی, हिन्दी, اُردُو</span>
         </h1>
-        <p
-          class="hide-md"
-        >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas purus viverra accumsan in nisl nisi. Arcu cursus vitae congue mauris rhoncus aenean vel elit scelerisque. In egestas erat imperdiet sed euismod nisi porta lorem mollis. Morbi tristique senectus et netus.</p>
+        <p class="hide-md">
+          Psychotherapy counselling: stress, anxiety, family, marriage, divorce…
+          Health and wellbeing consultations
+          Weight loss, diet and nutrition therapists
+          Ancient arts, literature, poetry and traditional music tutoring
+          Personal and professional development coaching
+        </p>
       </div>
       <div class="right-section"></div>
     </div>
@@ -271,10 +305,14 @@
       </template>
       <div v-else class="doctor-item" v-for="doctor in doctors" :key="doctor.subscriberNumber">
         <div class="doctor-image">
-          <v-img :src="doctor.image"></v-img>
+          <nuxt-link :to="`/doctor/${doctor.id}`">
+            <v-img :src="doctor.image"></v-img>
+          </nuxt-link>
         </div>
         <div class="doctor-info">
-          <div class="doctor-title">{{doctor.firstname}} {{doctor.lastname}}</div>
+          <div class="doctor-title">
+            <nuxt-link :to="`/doctor/${doctor.id}`">{{doctor.firstname}} {{doctor.lastname}}</nuxt-link>
+          </div>
           <div class="custom-devider"></div>
           <div class="doctor-subtitle">{{doctor.speciality.title}}</div>
           <v-btn
@@ -288,43 +326,64 @@
       </div>
     </div>
     <div class="how-to-work">
-      <h3>Do It In 3 Easy Steps</h3>
+      <h3>How it works</h3>
       <div class="wrapper">
-        <div>
-          <img src="~assets/img/img_search.png" alt />
-          <span>Select a specialist from the list above</span>
+        <div class="item">
+          <img :src="require('@/assets/img/img_search.png')" alt />
+          <h4>Browse Experts</h4>
+          <p>
+            Search our range of high quality vetted experts. Choose an expert who is right for the issue you have at hand.
+            Make your selection based on expertise, years of experience, background information, native language, price, and duration of video consultation.
+          </p>
         </div>
         <v-icon size="52" color="#006372">la-long-arrow-alt-right</v-icon>
-        <div>
-          <img src="~assets/img/img_buy_credit.png" alt />
-          <span>Pay with your credit card</span>
+        <div class="item">
+          <img :src="require('@/assets/img/img_buy_credit.png')" alt />
+          <h4>Book and Pay</h4>
+          <p>
+            Consultations are available 7 days a week. Select a session at a time and price that suits you.
+            Make payment with your debit/credit card via a secure payment gateway.
+            If you are not satisfied with your first consultation, we will arrange a session with an alternative expert in the same field of your query, free of charge.
+          </p>
         </div>
         <v-icon size="52" color="#006372">la-long-arrow-alt-right</v-icon>
-        <div>
-          <img src="~assets/img/img_direct_call.png" alt />
-          <span>Connect and get your problem solved</span>
+        <div class="item">
+          <img :src="require('@/assets/img/img_direct_call.png')" alt />
+          <h4>Connect with Expert</h4>
+          <p>
+            Once you have made the booking, you will receive an email confirmation with a link to your online video consultation. You will also receive a reminder text message 2 hours before your timetabled consultation.
+            You will have a secure personal dashboard on the Expertgap platform, where you can update your details, complete relevant questionnaires if recommended prior to the consultation, and upload documents for the attention of your expert.
+            Leave feedback after your session.
+          </p>
         </div>
       </div>
     </div>
     <div class="our-experience">
-      <h3>The Reasons To Choose Our Service</h3>
+      <h3>Why choose Expertgap</h3>
       <div class="wrapper">
         <div class="item">
           <img src="~assets/img/ic_support.png" alt />
-          <span>247 Support</span>
+          <h4>Cost effective, high quality Experts</h4>
+          <p>Affordable prices for qualified and experienced Experts, with background and qualifications checked and verified.</p>
         </div>
         <div class="item">
           <img src="~assets/img/ic_support.png" alt />
-          <span>Secure Payment Gateway</span>
+          <h4>Convenience of your own home and native language</h4>
+          <p>
+            Highly accessible online video consultations, with the added benefit of sessions in your native language with experts from your ethnic and cultural background.
+            Experts available or joining soon in a range of expertise, speaking the following languages:
+            <br />Türkçe, فارسی, عربی, हिन्दी, اُردُو
+          </p>
         </div>
         <div class="item">
           <img src="~assets/img/ic_language.png" alt />
-          <span>Experts in Your Language</span>
+          <h4>Easy to use and Reliable</h4>
+          <p>Find an Expert in minutes and book your consultation in three easy steps. Reliable data encryption on private servers and secure payments by trusted and regulated financial services partner.</p>
         </div>
       </div>
     </div>
-    <Comments />
-    <div v-if="$fetchState.error">{{$fetchState.error}}</div>
+    <!-- <Comments /> -->
+    <!-- <div v-if="$fetchState.error">{{$fetchState.error}}</div> -->
   </section>
 </template>
 <script lang="ts">
