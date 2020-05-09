@@ -10,7 +10,7 @@ section {
   }
 }
 .days {
-  width: 90px;
+  width: 110px;
   height: 70px;
   display: flex;
   flex-direction: column;

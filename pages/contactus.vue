@@ -2,11 +2,26 @@
 </style>
 <template>
   <v-container grid-list-xs>
-    <div class="subtitle-1">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam error dolore corrupti. Excepturi mollitia culpa, amet voluptatibus, ullam nihil labore, vitae sed nulla officia aspernatur corrupti quo est! Numquam, quam.</p>
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum non dolores suscipit adipisci debitis praesentium sit ipsum sed architecto nisi ipsam vitae odio tenetur ea corrupti, sequi reprehenderit corporis vel?</p>
-      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id repellendus doloribus ullam, pariatur voluptates facilis maiores earum, porro quod voluptatibus inventore, quas reprehenderit velit cum eligendi itaque! Quibusdam, eius laudantium?</p>
-    </div>
+    <v-layout row wrap>
+      <v-flex pa-4 md7>
+        <v-img :src="require('@/assets/img/contactus.jpg')"></v-img>
+        <div class="subtitle-1 mt-2">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam error dolore corrupti. Excepturi mollitia culpa, amet voluptatibus, ullam nihil labore, vitae sed nulla officia aspernatur corrupti quo est! Numquam, quam.</p>
+        </div>
+      </v-flex>
+      <v-flex pa-4 md5>
+        <div class="title">Contact Us</div>
+        <div class="subtitle-1 mb-2">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam error dolore corrupti. Excepturi mollitia culpa, amet voluptatibus, ullam nihil labore, vitae sed nulla officia aspernatur corrupti quo est! Numquam, quam.</p>
+        </div>
+        <div class="form">
+          <v-text-field outlined name="name" label="Your Name"></v-text-field>
+          <v-text-field outlined name="title" label="Title"></v-text-field>
+          <v-textarea outlined name="text" label="Text"></v-textarea>
+          <v-btn class="text-none" color="primary" outlined large>Send</v-btn>
+        </div>
+      </v-flex>
+    </v-layout>
   </v-container>
 </template>
 <script lang="ts">

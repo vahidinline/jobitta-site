@@ -11,6 +11,7 @@
     @include media(sm) {
       width: 100%;
       height: auto;
+      left: 0;
     }
     path {
       fill: var(--v-primary-base);

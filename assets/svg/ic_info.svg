@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+    <defs>
+        <style>
+            .prefix__cls-1{fill:none}.prefix__cls-4{fill:#f9a429}.prefix__cls-5{stroke:none}
+        </style>
+    </defs>
+    <g id="prefix__ic_info" transform="translate(-.281)">
+        <path id="prefix__Rectangle_816" d="M0 0H32V32H0z" class="prefix__cls-1" data-name="Rectangle 816" transform="translate(.282)"/>
+        <g id="prefix__attention" transform="translate(2.948 2.667)">
+            <g id="prefix__Ellipse_215" data-name="Ellipse 215" style="stroke:#000;fill:#fff">
+                <circle cx="13.333" cy="13.333" r="13.333" class="prefix__cls-5"/>
+                <circle cx="13.333" cy="13.333" r="12.833" class="prefix__cls-1"/>
+            </g>
+            <g id="prefix__Ellipse_216" data-name="Ellipse 216" transform="translate(3 3)" style="stroke:#f9a429;fill:#fff">
+                <circle cx="10.333" cy="10.333" r="10.333" class="prefix__cls-5"/>
+                <circle cx="10.333" cy="10.333" r="9.833" class="prefix__cls-1"/>
+            </g>
+            <g id="prefix__Group_1585" data-name="Group 1585" transform="translate(12.533 8)">
+                <circle id="prefix__Ellipse_46" cx=".97" cy=".97" r=".97" class="prefix__cls-4" data-name="Ellipse 46" transform="translate(0 8.727)"/>
+                <rect id="prefix__Rectangle_815" width="1.939" height="7.758" class="prefix__cls-4" data-name="Rectangle 815" rx=".97"/>
+            </g>
+        </g>
+    </g>
+</svg>

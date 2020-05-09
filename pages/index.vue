@@ -489,7 +489,7 @@ export default class Home extends Vue {
     img: false
   }
   async fetch() {
-    this.doctors = await this.$axios.$get('doctors')
+    this.doctors = await this.$service.doctors.homePageDoctors()
   }
 }
 </script>

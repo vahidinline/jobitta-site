@@ -1,10 +1,8 @@
 <style lang="scss" scoped>
 .box {
-  position: sticky;
-  top: 20px;
-  @include media(xs) {
-    position: relative;
-    top: 0;
+  @include media(md) {
+    position: sticky;
+    top: 20px;
   }
 }
 .image-wrapper {
@@ -58,54 +56,51 @@
 <template>
   <div class="box">
     <div class="image-wrapper">
-      <img :src="`/api/${doctor.imagePath}`" alt />
+      <v-img :src="doctor.image" alt />
     </div>
     <div class="doctor-name">
-      <span>{{doctor.title}}</span>
-      <span>{{doctor.firstName}}</span>
-      <span>{{doctor.lastName}}</span>
+      <span>{{doctor.firstname}}</span>
+      <span>{{doctor.lastname}}</span>
     </div>
     <div class="success-call">
-      <v-icon size="25" color="orange">la-phone</v-icon>
-      <span>{{doctor.satisfiedCalls | persianDigit}}</span>
-      <span>تماس موفق</span>
+      <img src="~assets/img/ic_call.png" alt />
+      <span>{{doctor.satisfiedCalls }}</span>
+      <span>{{$t('successCall')}}</span>
     </div>
     <div class="doctor-info">
       <ul>
         <li>
-          <span>تخصص</span>
-          <span>{{doctor.specialtyTitle}}</span>
+          <span>{{$t('speciality')}}</span>
+          <span>{{doctor.speciality.title}}</span>
         </li>
         <v-divider class="my-2"></v-divider>
-        <li>
-          <span>کد نظام پزشکی</span>
-          <span class="orange--text">{{doctor.medicalCouncilNumber | persianDigit}}</span>
+        <li v-if="doctor.medicalCouncilNumber">
+          <span>{{$t('medicalCouncilNumber')}}</span>
+          <span class="orange--text">{{doctor.medicalCouncilNumber }}</span>
         </li>
-        <v-divider class="my-2"></v-divider>
+        <v-divider v-if="doctor.medicalCouncilNumber" class="my-2"></v-divider>
         <li>
-          <span>تعرفه تماس</span>
-          <span
-            class="orange--text"
-          >{{doctor.price_per_minute * doctor.sessionTime | persianDigit}} دلار</span>
+          <span>{{$t('pricing')}}</span>
+          <span class="orange--text">{{doctor.price * doctor.session_duration }} {{$t('currency')}}</span>
         </li>
         <li>
-          <span>مدت مشاوره</span>
-          <span>{{doctor.sessionTime | persianDigit}} دقیقه</span>
+          <span>{{$t('sessionDuration')}}</span>
+          <span>{{doctor.session_duration }} {{$t('minute')}}</span>
         </li>
         <li v-for="(workplace,index) in doctor.workplaces" :key="index">
-          <span>آدرس مطب</span>
+          <span>{{$t('workplace')}}</span>
           <span>
-            <a href>نمایش آدرس</a>
+            <a href>{{$t('show')}}</a>
           </span>
         </li>
         <li>
-          <v-btn class="custom-btn" :to="$route.fullPath + '/register'" dark block>تماس مستقیم</v-btn>
+          <v-btn class="custom-btn" :to="$route.fullPath + '/register'" dark block>{{$t('reserve')}}</v-btn>
         </li>
         <v-divider class="my-2"></v-divider>
         <li>
           <div>
             <v-icon size="25" color="secondary">la-share-alt</v-icon>
-            <span>به اشتراک گذاری</span>
+            <span>{{$t('share')}}</span>
           </div>
         </li>
       </ul>

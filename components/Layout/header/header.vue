@@ -3,10 +3,19 @@
   display: flex;
   height: 94px;
   align-items: center;
-  padding: 0 10px;
+  padding: 0 30px;
   width: 100%;
   top: 0;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+}
+.homepage .header {
+  position: absolute;
+  top: 0;
+  box-shadow: none;
+  @include media(sm) {
+    justify-content: space-between;
+    padding: 0 30px;
+  }
 }
 .logo-wrapper {
   display: flex;
@@ -14,7 +23,9 @@
   align-items: center;
   font-size: 3rem;
   color: var(--v-primary-darken2);
-  @include media(xs) {
+  font-weight: 600;
+  margin-top: 10px;
+  @include media(sm) {
     font-size: 3rem;
     img {
       max-width: 90%;
@@ -24,16 +35,20 @@
 .nvicon {
   display: inline-flex;
   margin-right: 16px;
-  @include media(sm) {
+  @include media(md) {
     display: none;
   }
 }
 nav {
   display: none;
-  @include media(sm) {
+  @include media(md) {
     display: flex;
   }
-  margin-left: 50px;
+  margin-left: 16px;
+  margin-top: 8px;
+  @include media(lg) {
+    margin-left: 30px;
+  }
   ul {
     display: flex;
     height: 40px;
@@ -43,8 +58,10 @@ nav {
     list-style-type: none;
     li {
       position: relative;
-      margin: 0 32px;
-
+      margin: 0 20px;
+      @include media(lg) {
+        margin: 0 32px;
+      }
       a {
         font-size: 16px;
         font-weight: 600;
@@ -71,7 +88,7 @@ nav {
 }
 .login-btn {
   display: none;
-  @include media(sm) {
+  @include media(md) {
     display: flex;
     border: 1px solid var(--v-primary-base);
     border-radius: 8px;
@@ -93,9 +110,16 @@ nav {
       </ul>
     </nav>
     <v-spacer></v-spacer>
-    <v-btn to="/login" depressed large :raised="false" :ripple="false" class="login-btn">
-      <v-icon class="mr-3">la-user</v-icon>
-      <span>Login / Register</span>
+    <v-btn
+      to="/login"
+      large
+      depressed
+      :raised="false"
+      :ripple="false"
+      class="login-btn text-none title"
+    >
+      <v-icon class="mr-2" size="28">la-user</v-icon>
+      <span>Login</span>
     </v-btn>
   </div>
 </template>
@@ -103,5 +127,7 @@ nav {
 import { Vue, Component, Prop, Watch, Emit, Ref } from 'vue-property-decorator'
 
 @Component
-export default class Header extends Vue {}
+export default class Header extends Vue {
+  drawer = false
+}
 </script>

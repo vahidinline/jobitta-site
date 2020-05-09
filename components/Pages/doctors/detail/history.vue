@@ -1,14 +1,19 @@
 <style lang="scss" scoped>
 .box {
   height: 100%;
+  flex-direction: column;
 }
 ul {
   margin: 0;
   padding: 0;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
   li {
     display: flex;
     align-items: center;
-    height: 60px;
+    min-height: 60px;
     .icon {
       display: flex;
       align-items: center;
@@ -33,15 +38,15 @@ ul {
 </style>
 <template>
   <div class="box">
-    <h3 class="custom-title1">سوابق پزشک</h3>
+    <h3 class="custom-title1">{{$t('professionalInformation')}}</h3>
     <ul>
       <li>
         <span class="icon">
           <img src="~assets/img/ic_time.png" alt />
         </span>
         <div>
-          <span class="label">سابقه طبابت</span>
-          <span class="value">{{doctor.work_experience | persianDigit}} سال</span>
+          <span class="label">{{$t('workExperience')}}</span>
+          <span class="value">{{doctor.work_experience }} {{$t('years')}}</span>
         </div>
       </li>
       <li v-if="doctor.expertise && doctor.expertise != ' '">
@@ -49,7 +54,7 @@ ul {
           <img src="~assets/img/ic_post_specialist.png" alt />
         </span>
         <div>
-          <span class="label">فوق تخصص</span>
+          <span class="label">{{$t('expertise')}}</span>
           <span class="value">{{doctor.expertise}}</span>
         </div>
       </li>
@@ -58,8 +63,8 @@ ul {
           <img src="~assets/img/ic_specialist.png" alt />
         </span>
         <div>
-          <span class="label">تخصص</span>
-          <span class="value">{{doctor.specialtyTitle}}</span>
+          <span class="label">{{$t('speciality')}}</span>
+          <span class="value">{{doctor.speciality.title}}</span>
         </div>
       </li>
       <li>
@@ -67,13 +72,8 @@ ul {
           <img src="~assets/img/ic_education.png" alt />
         </span>
         <div>
-          <span class="label">سابقه علمی</span>
-          <span class="value">
-            <span v-for="(item,index) in doctor.aboutDoctor" :key="index">
-              {{item}}
-              <span v-if="index < doctor.aboutDoctor.length-1">،</span>
-            </span>
-          </span>
+          <span class="label">{{$t('scientificBackground')}}</span>
+          <span class="value">{{doctor.about}}</span>
         </div>
       </li>
     </ul>

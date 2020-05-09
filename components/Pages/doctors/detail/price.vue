@@ -1,13 +1,14 @@
 <style lang="scss" scoped>
 .box {
   display: flex;
+  padding: 20px 16px;
   + .box {
     margin-top: 12px;
   }
   .icon {
     display: flex;
     align-items: center;
-    margin-left: 16px;
+    margin-right: 16px;
   }
   div {
     display: flex;
@@ -21,6 +22,7 @@
       font-size: 14px;
       font-weight: bold;
       color: #212121;
+      margin-top: 6px;
     }
   }
 }
@@ -32,7 +34,7 @@
         <img src="~assets/img/ic_timer.png" alt />
       </span>
       <div>
-        <span class="label">دسترسی غیرحضوری از هر مکان</span>
+        <span class="label">{{$t('accessibility')}}</span>
         <span class="value">اینو نمیدونم چیه</span>
       </div>
     </div>
@@ -41,7 +43,7 @@
         <img src="~assets/img/ic_save_money.png" alt />
       </span>
       <div>
-        <span class="label">هزینه پایین‌تر</span>
+        <span class="label">{{$t('save')}}</span>
         <span class="value">اینو نمیدونم چیه</span>
       </div>
     </div>
@@ -50,8 +52,8 @@
         <img src="~assets/img/ic_traffic.png" alt />
       </span>
       <div>
-        <span class="label">دسترسی راحت‌تر به پزشک متخصص و فوق تخصص</span>
-        <span class="value">٪{{doctor.speciaity_access || 0 | persianDigit}}</span>
+        <span class="label">{{$t('expertiseAccessibility')}}</span>
+        <span class="value">%{{doctor.speciaity_access || 0 }}</span>
       </div>
     </div>
     <div class="box">
@@ -59,8 +61,8 @@
         <img src="~assets/img/Page-1.png" alt />
       </span>
       <div>
-        <span class="label">دسترسی به مشاور با فرهنگ و زبان فارسی</span>
-        <span class="value">٪{{doctor.culture_access || 0 | persianDigit}}</span>
+        <span class="label">{{$t('caltureAccessibility')}}</span>
+        <span class="value">%{{doctor.culture_access || 0 }}</span>
       </div>
     </div>
   </div>

@@ -51,8 +51,8 @@
   </v-app>
 </template>
 <script lang="ts">
-import Header from '@/components/Layout/header/insidepage.vue'
-import Footer from '@/components/Layout/footer/homepage.vue'
+import Header from '@/components/Layout/header/header.vue'
+import Footer from '@/components/Layout/footer/footer.vue'
 import Navigation from '@/components/Layout/header/navigation.vue'
 import { Vue, Component } from 'vue-property-decorator'
 @Component({

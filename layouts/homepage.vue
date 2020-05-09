@@ -1,6 +1,6 @@
 
 <style lang="scss">
-.home-layout {
+.homepage {
   background: #fff;
   nav .logo-wrapper {
     display: flex;
@@ -47,14 +47,14 @@
   </v-app>
 </template>
 <script lang="ts">
-import Header from '@/components/Layout/header/homepage.vue'
-import Footer from '@/components/Layout/footer/homepage.vue'
+import Header from '@/components/Layout/header/header.vue'
+import Footer from '@/components/Layout/footer/footer.vue'
 import Navigation from '@/components/Layout/header/navigation.vue'
 import { Vue, Component } from 'vue-property-decorator'
 @Component({
   head: {
     bodyAttrs: {
-      class: 'home-layout'
+      class: 'homepage'
     }
   },
   components: {
