@@ -124,7 +124,7 @@ import { getModule } from 'vuex-module-decorators'
 import ReservationModule from '@/store/reservation'
 
 @Component({
-  layout: 'insidepage'
+  layout: 'stepper'
 })
 export default class Register extends Vue {
   reservation = {}

@@ -1,69 +1,119 @@
 <style lang="scss" scoped>
+@function calcPading($items) {
+  @return calc((100% - #{300 * $items}px - #{32 * $items}px) / 2);
+}
 .top-section {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   background: linear-gradient(-45deg, #adebfb, #fff);
-  @include media(xs) {
-    flex-direction: column;
+  @include media(sm) {
+    flex-direction: row;
   }
   .left-section {
-    margin-top: 130px;
-    width: 530px;
+    width: 100%;
+    margin-top: 90px;
+    max-width: 90%;
     margin-left: 30px;
-    @include media(sm) {
-      width: 100%;
-      margin-top: 90px;
-      max-width: 90%;
+    @include media(md) {
+      margin-top: 130px;
+      width: 530px;
+    }
+    @include media(xl) {
+      margin-top: 130px;
+      width: 760px;
     }
     h1 {
-      font-size: 25px;
-      line-height: 32px;
-      font-weight: bold;
-      @include media(xs) {
-        font-size: 19px;
-        line-height: 38px;
-        font-weight: 700;
+      font-size: 19px;
+      line-height: 38px;
+      font-weight: 600;
+      @include media(sm) {
+        font-size: 25px;
+        line-height: 32px;
+      }
+      @include media(xl) {
+        font-size: 52px;
+        line-height: 56px;
       }
       span {
         color: var(--v-primary-base);
         position: relative;
         display: inline-block;
         font-size: 25px;
-        &:before {
-          content: '';
-          width: 100%;
-          background-color: var(--v-primary-base);
-          box-shadow: 0 2px 8px 0 rgba(var(--v-primary-base), 0.5);
-          position: absolute;
-          height: 4px;
-          top: 100%;
-          border-radius: 10px;
+        // &:before {
+        //   content: '';
+        //   width: 100%;
+        //   background-color: var(--v-primary-base);
+        //   box-shadow: 0 2px 8px 0 rgba(var(--v-primary-base), 0.5);
+        //   position: absolute;
+        //   height: 4px;
+        //   top: 100%;
+        //   border-radius: 10px;
+        // }
+      }
+    }
+    ul {
+      margin: 0;
+      margin-top: 24px;
+      list-style-type: none;
+      padding: 0;
+      li {
+        color: #000;
+        font-size: 15px;
+        line-height: 24px;
+        text-align: left;
+        display: flex;
+        align-items: flex-start;
+        margin: 8px 0;
+        color: var(--v-primary-darken4);
+        @include media(xl) {
+          margin: 18px 0;
+          font-size: 21px;
+        }
+        .v-icon {
+          margin-right: 8px;
+          color: var(--v-primary-darken4);
         }
       }
     }
-    p {
-      color: #000;
-      margin-top: 24px;
-      font-size: 15px;
-      line-height: 24px;
-      text-align: left;
-    }
   }
+  // .right-section {
+  //   background-image: url(~assets/img/img_header@2x.png);
+  //   height: 730px;
+  //   width: calc(100% - 560px);
+  //   background-position: -10px 45px;
+  //   background-size: 125%;
+
+  //   @include media(md) {
+  //     background-position: -10px 175px;
+  //   }
+  //   @include media(sm) {
+  //     background-image: url(~assets/img/img_header.png);
+  //     width: 100%;
+  //     background-position: 0px -10px;
+  //     height: 520px;
+  //   }
+  // }
   .right-section {
-    background-image: url(~assets/img/img_header@2x.png);
-    height: 730px;
-    width: calc(100% - 560px);
-    background-position: -10px 45px;
+    background-image: url(~assets/img/img_header.png);
+    width: 100%;
+    background-position: 0px -10px;
+    height: 520px;
     background-size: 125%;
 
     @include media(md) {
-      background-position: -10px 175px;
+      background-image: url(~assets/img/img_header@2x.png);
+      height: 730px;
+      width: calc(100% - 560px);
+      background-position: -8px 145px;
     }
-    @include media(sm) {
-      background-image: url(~assets/img/img_header.png);
-      width: 100%;
-      background-position: 0px -10px;
-      height: 520px;
+    @include media(lg) {
+      background-position: -10px -35px;
+    }
+    @include media(xl) {
+      background-position: 190px -35px;
+      width: calc(100% - 790px);
+      background-size: 100%;
     }
   }
 }
@@ -71,70 +121,75 @@
   display: flex;
   flex-wrap: wrap;
   margin: -320px auto 0;
-  margin-top: -320px;
-  max-width: 1660px;
-  @include media(lg) {
-    max-width: 1110px;
+  width: 100%;
+  @include media(sm) {
+    margin: -220px 0 0;
+    padding: 0 calcPading(2);
   }
-  @include media(xs) {
-    width: 100%;
+  @include media(md) {
     margin: -320px 0 0;
+    padding: 0 calcPading(3);
+  }
+  @include media(lg) {
+    padding: 0 calcPading(4);
+  }
+  @include media(xl) {
+    padding: 0 calcPading(5);
+    margin: -200px auto 0;
   }
   .doctor-item {
-    margin: 16px;
     background: #fff;
     border-radius: 8px;
     padding: 8px;
     box-shadow: 0 7px 20px 0 rgba(0, 0, 0, 0.2);
-    width: 300px;
-    flex: 0 0 300px;
-    height: 400px;
     display: flex;
-    flex-direction: column;
-    @include media(lg) {
-      width: 190px;
-      flex: 0 0 190px;
-      height: 295px;
+    width: calc(100% - 32px);
+    flex: 0 0 calc(100% - 32px);
+    flex-direction: row;
+    height: auto;
+    margin: 5px 16px;
+    @include media(sm) {
+      flex-direction: column;
+      width: 300px;
+      flex: 0 0 300px;
+      height: 400px;
+      margin: 16px;
     }
-    @include media(xs) {
-      width: calc(100% - 32px);
-      flex: 0 0 calc(100% - 32px);
-      flex-direction: row;
-      height: auto;
-      margin: 5px 16px;
+    @include media(lg) {
+      // width: 190px;
+      // flex: 0 0 190px;
+      // height: 295px;
     }
     .doctor-info {
       display: flex;
+      font-size: 14px;
       flex-direction: column;
+      width: calc(100% - 120px);
       // flex: 1;
-      font-size: 12px;
-
-      @include media(xs) {
-        display: flex;
-        font-size: 14px;
-        flex-direction: column;
-        width: calc(100% - 140px);
+      @include media(sm) {
+        width: 100%;
       }
       .v-btn {
         margin-bottom: 0;
         margin-top: 20px;
-        @include media(lg) {
+        @include media(md) {
           margin-top: 16px;
-        }
-        @include media(xs) {
-          margin-top: 20px;
         }
       }
     }
     .doctor-image {
-      margin-top: -20px;
-      flex: 1;
-      height: 100%;
-      @include media(xs) {
-        max-width: 112px;
-        margin-top: 0px;
-        margin-left: -20px;
-        margin-right: 30px;
+      max-width: 112px;
+      margin-top: 0px;
+      margin-left: -20px;
+      margin-right: 20px;
+
+      @include media(sm) {
+        flex: 1;
+        height: 100%;
+        max-width: 100%;
+        margin-top: -20px;
+        margin-right: 0px;
+        margin-left: 0px;
       }
     }
     .doctor-title {
@@ -147,6 +202,8 @@
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
+      @include media(xl) {
+      }
       a {
         color: inherit;
       }
@@ -196,32 +253,40 @@
   .wrapper {
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
     margin: 0 30px;
-    @include media(xs) {
-      flex-direction: column;
-      .v-icon {
-        transform: rotate(90deg);
-        margin: 20px 0;
+    @include media(md) {
+      flex-direction: row;
+    }
+    .v-icon {
+      transform: rotate(90deg);
+      margin: 20px 0;
+      @include media(md) {
+        transform: none;
+        margin: 0;
       }
     }
     > div {
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 25%;
-      flex: 0 0 25%;
-      @include media(xs) {
-        width: 100%;
-        flex: 0 0 100%;
+      width: 100%;
+      flex: 0 0 100%;
+      @include media(md) {
+        width: 25%;
+        flex: 0 0 25%;
       }
       img {
         max-width: 100%;
       }
       h4 {
-        font-size: 16px;
+        font-size: 18px;
         font-weight: 600;
         color: #212121;
         margin-bottom: 8px;
+        @include media(xl) {
+          font-size: 23px;
+        }
       }
     }
   }
@@ -239,39 +304,49 @@
   .wrapper {
     margin-top: 52px;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
-    @include media(xs) {
-      flex-direction: column;
+    @include media(md) {
+      flex-direction: row;
     }
     .item {
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 33.333%;
-      flex: 0 0 33.333%;
+      width: 100%;
+      flex: 0 0 100%;
       padding: 0 16px;
-      @include media(xs) {
-        width: 100%;
-        flex: 0 0 100%;
+      + .item {
+        margin-top: 40px;
+        @include media(md) {
+          margin-top: 0;
+        }
+      }
+      @include media(md) {
+        width: 33.333%;
+        flex: 0 0 33.333%;
       }
       h4 {
-        font-weight: bold;
+        font-weight: 500;
         color: #4b4b4b;
         font-size: 18px;
         margin-bottom: 8px;
-      }
-      @include media(xs) {
-        h4 {
-          font-weight: 500;
+        @include media(md) {
+          font-weight: bold;
         }
-        + .item {
-          margin-top: 40px;
+        @include media(xl) {
+          font-size: 23px;
         }
       }
       span {
         margin-top: 8px;
       }
     }
+  }
+}
+p {
+  @include media(xl) {
+    font-size: 1.375rem;
   }
 }
 </style>
@@ -283,13 +358,23 @@
           Video consultation with experts in your native language
           <span>Türkçe, فارسی, عربی, हिन्दी, اُردُو</span>
         </h1>
-        <p class="hide-md">
-          Psychotherapy counselling: stress, anxiety, family, marriage, divorce…
-          Health and wellbeing consultations
-          Weight loss, diet and nutrition therapists
-          Ancient arts, literature, poetry and traditional music tutoring
-          Personal and professional development coaching
-        </p>
+        <ul class="hide-md">
+          <li>
+            <v-icon>la-dot-circle</v-icon>Psychotherapy counselling: stress, anxiety, family, marriage, divorce…
+          </li>
+          <li>
+            <v-icon>la-dot-circle</v-icon>Health and wellbeing consultations
+          </li>
+          <li>
+            <v-icon>la-dot-circle</v-icon>Weight loss, diet and nutrition therapists
+          </li>
+          <li>
+            <v-icon>la-dot-circle</v-icon>Ancient arts, literature, poetry and traditional music tutoring
+          </li>
+          <li>
+            <v-icon>la-dot-circle</v-icon>Personal and professional development coaching
+          </li>
+        </ul>
       </div>
       <div class="right-section"></div>
     </div>
@@ -305,13 +390,13 @@
       </template>
       <div v-else class="doctor-item" v-for="doctor in doctors" :key="doctor.subscriberNumber">
         <div class="doctor-image">
-          <nuxt-link :to="`/doctor/${doctor.id}`">
+          <nuxt-link :to="`/doctors/${doctor.id}`">
             <v-img :src="doctor.image"></v-img>
           </nuxt-link>
         </div>
         <div class="doctor-info">
           <div class="doctor-title">
-            <nuxt-link :to="`/doctor/${doctor.id}`">{{doctor.firstname}} {{doctor.lastname}}</nuxt-link>
+            <nuxt-link :to="`/doctors/${doctor.id}`">{{doctor.firstname}} {{doctor.lastname}}</nuxt-link>
           </div>
           <div class="custom-devider"></div>
           <div class="doctor-subtitle">{{doctor.speciality.title}}</div>
@@ -320,7 +405,7 @@
             class="text-none subtitle-1"
             outlined
             block
-            :to="`/doctor/${doctor.id}`"
+            :to="`/doctors/${doctor.id}`"
           >Select and Continue</v-btn>
         </div>
       </div>
@@ -388,7 +473,7 @@
 </template>
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import Comments from '@/components/home/comments.vue'
+import Comments from '@/components/Pages/home/comments.vue'
 
 Component.registerHooks(['fetch'])
 @Component({

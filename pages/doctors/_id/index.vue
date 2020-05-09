@@ -1,10 +1,12 @@
 <style lang="scss" >
 .main-section {
   display: flex;
+  flex-direction: column;
+  padding-bottom: 68px;
   margin: 20px 30px;
-  @include media(xs) {
-    flex-direction: column;
-    padding-bottom: 68px;
+  @include media(md) {
+    flex-direction: row;
+    padding-bottom: 0;
   }
   .box {
     border-radius: 4px;
@@ -49,44 +51,55 @@
   }
 
   .left-pane {
-    width: 310px;
-    flex: 0 0 310px;
-    margin-right: 32px;
+    width: 100%;
+    flex: 0 0 100%;
+    margin-right: 0;
     @include rtl() {
       margin-right: 0;
       margin-left: 32px;
     }
-    @include media(xs) {
-      width: 100%;
-      flex: 0 0 100%;
-      margin-right: 0;
+    @include media(md) {
+      width: 480px;
+      flex: 0 0 480px;
+      margin-right: 32px;
+    }
+    @include media(xl) {
+      width: 580px;
+      flex: 0 0 580px;
     }
   }
   .right-pane {
-    width: calc(100% - 310px - 32px);
-    @include media(xs) {
-      width: 100%;
-      margin-top: 24px;
+    width: 100%;
+    margin-top: 24px;
+    @include media(md) {
+      width: calc(100% - 480px - 32px);
+      margin-top: 0;
+    }
+    @include media(xl) {
+      width: calc(100% - 580 - 32px);
     }
   }
   .history {
-    width: 55%;
-    margin-right: 24px;
+    width: 100%;
+    flex: 0 0 100%;
+    margin-right: 0;
+
     @include rtl() {
       margin-right: 0;
       margin-left: 24px;
     }
-    @include media(xs) {
-      width: 100%;
-      flex: 0 0 100%;
-      margin-right: 0;
+    @include media(lg) {
+      width: 55%;
+      flex: 0 0 55%;
+      margin-right: 24px;
     }
   }
   .price {
-    width: calc(45% - 24px);
-    @include media(xs) {
-      width: 100%;
-      margin-top: 16px;
+    width: 100%;
+    margin-top: 16px;
+    @include media(lg) {
+      width: calc(45% - 24px);
+      margin-top: 0px;
     }
   }
   .services {
@@ -102,6 +115,9 @@
     }
   }
 }
+.comments {
+  margin-top: 16px;
+}
 .fixed-bottom {
   position: fixed;
   background: #fff;
@@ -111,10 +127,10 @@
   z-index: 99;
   box-shadow: 0 -2px 6px 0 rgba(0, 0, 0, 0.16);
   bottom: 0;
-  width: 100%;
+  width: 100vw;
   left: 0;
   right: 0;
-  padding: 16px 32px;
+  padding: 16px 12px;
   li {
     list-style-type: none;
     font-size: 16px;
@@ -128,7 +144,7 @@
   <div class="main-section">
     <div class="left-pane">
       <v-skeleton-loader v-if="$fetchState.pending" type="image,list-item-two-line, actions"></v-skeleton-loader>
-      <doctorInfo v-else :doctor="doctor" />
+      <doctorInfo @onReserve="reserveDoctor" v-else :doctor="doctor" />
     </div>
     <div class="right-pane">
       <div class="d-flex flex-wrap">
@@ -184,31 +200,29 @@
         <doctorComments v-else :doctor="doctor" />
       </div>
     </div>
-    <div class="fixed-bottom d-sm-none">
+    <div class="fixed-bottom d-md-none">
       <div>
         <li>
           <span>{{$t('pricing')}}:</span>
           <span class="orange--text">{{doctor.price * doctor.session_duration }} {{$t('currency')}}</span>
         </li>
       </div>
-      <v-btn
-        class="subtitle-1"
-        color="secondary"
-        :to="$route.fullPath + '/register'"
-      >رزرو تماس تصویری</v-btn>
+      <v-btn class="subtitle-1" color="secondary" @click="reserveDoctor">{{$t('reserve')}}</v-btn>
     </div>
   </div>
 </template>
 <script lang="ts">
-import doctorInfo from '@/components/doctors/detail/info.vue'
-import doctorHistory from '@/components/doctors/detail/history.vue'
-import doctorPrice from '@/components/doctors/detail/price.vue'
-import doctorComments from '@/components/doctors/detail/comments.vue'
-import timeTable from '@/components/doctors/detail/time_table.vue'
+import doctorInfo from '@/components/Pages/doctors/detail/info.vue'
+import doctorHistory from '@/components/Pages/doctors/detail/history.vue'
+import doctorPrice from '@/components/Pages/doctors/detail/price.vue'
+import doctorComments from '@/components/Pages/doctors/detail/comments.vue'
+import timeTable from '@/components/Pages/doctors/detail/time_table.vue'
 import { Vue, Component, Prop, Watch, Emit, Ref } from 'vue-property-decorator'
+import { getModule } from 'vuex-module-decorators'
+import ReservationStore from '@/store/reservation'
 Component.registerHooks(['fetch'])
 @Component({
-  layout: 'insidepage',
+  layout: 'stepper',
   components: {
     doctorInfo,
     doctorHistory,
@@ -219,6 +233,7 @@ Component.registerHooks(['fetch'])
 })
 export default class component_name extends Vue {
   doctor: any = {}
+  // ReservationStore = getModule(ReservationStore, this.$store)
   // @Watch('$route', {
   //   deep: true
   // })
@@ -247,6 +262,18 @@ export default class component_name extends Vue {
       this.$i18n.setLocale('en')
       this.$vuetify.rtl = false
     }
+  }
+
+  reserveDoctor() {
+    let Reservation = getModule(ReservationStore, this.$store)
+    if (Reservation.info.reserve_time) {
+      return this.$router.push(`/doctors/${this.$route.params.id}/register`)
+    }
+    let messge = this.$t('errors.selectTime')
+    this.$toast.error().showSimple(messge.toString())
+    this.$vuetify.goTo('.timetable', {
+      duration: 800
+    })
   }
 }
 </script>

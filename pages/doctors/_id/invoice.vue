@@ -151,7 +151,7 @@ import { Vue, Component, Prop, Watch, Emit, Ref } from 'vue-property-decorator'
 import { getModule } from 'vuex-module-decorators'
 import reservationModule from '@/store/reservation'
 @Component({
-  layout: 'insidepage'
+  layout: 'stepper'
 })
 export default class Invoice extends Vue {
   doctor = null

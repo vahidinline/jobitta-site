@@ -2,10 +2,10 @@
 </style>
 <template>
   <v-container grid-list-xs>
-    <div>
-      <v-text-field v-model="user.username" name="name" label="label" id="id"></v-text-field>
-      <v-text-field v-model="user.password" name="name" label="label" id="id"></v-text-field>
-      <v-btn color="primary" outlined @click="login">login</v-btn>
+    <div class="subtitle-1">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam error dolore corrupti. Excepturi mollitia culpa, amet voluptatibus, ullam nihil labore, vitae sed nulla officia aspernatur corrupti quo est! Numquam, quam.</p>
+      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum non dolores suscipit adipisci debitis praesentium sit ipsum sed architecto nisi ipsam vitae odio tenetur ea corrupti, sequi reprehenderit corporis vel?</p>
+      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id repellendus doloribus ullam, pariatur voluptates facilis maiores earum, porro quod voluptatibus inventore, quas reprehenderit velit cum eligendi itaque! Quibusdam, eius laudantium?</p>
     </div>
   </v-container>
 </template>

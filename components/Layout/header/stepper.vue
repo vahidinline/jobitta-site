@@ -3,14 +3,17 @@
   position: relative;
 }
 .logo-wrapper {
-  position: absolute;
-  left: 0;
-  z-index: 99;
-  display: flex;
-  height: 100%;
-  align-items: center;
-  font-size: 3rem;
-  padding-left: 32px;
+  display: none;
+  @include media(md) {
+    position: absolute;
+    left: 0;
+    z-index: 99;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    font-size: 3rem;
+    padding-left: 32px;
+  }
 }
 </style>
 <template>
@@ -31,7 +34,7 @@
           <v-divider></v-divider>
 
           <v-stepper-step
-            @click="$router.push(`/doctor/${$route.params.id}/register`)"
+            @click="$router.push(`/doctors/${$route.params.id}/register`)"
             color="secondary darken-3"
             :complete="step > 2"
             step="2"
@@ -40,7 +43,7 @@
           <v-divider></v-divider>
 
           <v-stepper-step
-            @click="$router.push(`/doctor/${$route.params.id}/time`)"
+            @click="$router.push(`/doctors/${$route.params.id}/time`)"
             color="secondary darken-2"
             :complete="step > 3"
             step="3"
@@ -48,7 +51,7 @@
           <v-divider></v-divider>
 
           <v-stepper-step
-            @click="$router.push(`/doctor/${$route.params.id}/invoice`)"
+            @click="$router.push(`/doctors/${$route.params.id}/invoice`)"
             color="secondary darken-2"
             :complete="step > 4"
             step="4"

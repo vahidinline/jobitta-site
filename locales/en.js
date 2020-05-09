@@ -66,5 +66,8 @@ export default {
       sessionTime: 'Session Time',
       back: 'Back To Home'
     }
+  },
+  errors: {
+    selectTime: 'Select a Time then Continue'
   }
 }

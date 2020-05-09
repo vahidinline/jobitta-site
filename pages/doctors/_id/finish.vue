@@ -159,7 +159,7 @@ ul {
 import { Vue, Component, Prop, Watch, Emit, Ref } from 'vue-property-decorator'
 import moment from 'moment-jalaali'
 @Component({
-  layout: 'insidepage'
+  layout: 'stepper'
 })
 export default class Finish extends Vue {
   reservation_info: any = {}

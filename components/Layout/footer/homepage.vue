@@ -1,15 +1,16 @@
 <style lang="scss" scoped>
 .footer {
+  margin-top: 16px;
   .bitmap {
     overflow: hidden;
   }
   svg {
-    width: 100%;
-    height: auto;
+    width: 300%;
+    left: -100%;
     position: relative;
-    @include media(xs) {
-      width: 300%;
-      left: -100%;
+    @include media(sm) {
+      width: 100%;
+      height: auto;
     }
     path {
       fill: var(--v-primary-base);

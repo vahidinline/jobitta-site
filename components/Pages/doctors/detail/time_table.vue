@@ -3,9 +3,9 @@ section {
   padding-top: 40px;
   > .v-card {
     border-radius: 8px;
-    padding: 40px 60px;
-    @include media(xs-only) {
-      padding: 30px 20px;
+    padding: 30px 20px;
+    @include media(sm) {
+      padding: 40px 60px;
     }
   }
 }
@@ -21,6 +21,11 @@ section {
   color: #000;
   font-weight: 500;
   box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.15);
+  @include media(lg) {
+    width: 120px;
+    height: 90px;
+    font-size: 16px;
+  }
   &:first-child {
     margin-left: 0;
   }
@@ -46,9 +51,9 @@ section {
 }
 .time {
   width: 80px;
+  flex: 0 0 80px;
   height: 192px;
   display: flex;
-  flex: 0 0 80px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -56,6 +61,11 @@ section {
   font-size: 13px;
   color: #000;
   font-weight: 500;
+  @include media(lg) {
+    width: 120px;
+    flex: 0 0 120px;
+    font-size: 16px;
+  }
   @include ltr() {
     &:first-child {
       margin-left: 0;
@@ -115,7 +125,7 @@ section {
 </style>
 <template>
   <section>
-    <v-card class="invoice">
+    <v-card>
       <div class="text-center">
         <div class="icon-wrapper">
           <img src="~assets/img/ic_select_date.png" />
@@ -129,7 +139,7 @@ section {
           <v-card
             :ripple="false"
             :raised="false"
-            @click="selected_day = day;selected_time=null"
+            @click="onDateClick(day)"
             :class="{active:selected_day==day}"
             class="days"
             v-for="day in days"
@@ -164,7 +174,7 @@ section {
               :disabled="item.reserved"
               :ripple="false"
               :raised="false"
-              @click="selected_time = item.start"
+              @click="onTimeClick(item)"
               :class="{active:selected_time==item.start}"
               class="time"
               v-for="(item, index) in times"
@@ -186,27 +196,9 @@ section {
             </v-card>
           </div>
         </div>
-        <v-btn
-          :disabled="!(selected_time && selected_day)"
-          class="paypal-btn text-none title"
-          @click="submit"
-          dark
-          block
-          large
-        >{{$t('stepper.time.continue')}}</v-btn>
-        <div
-          v-if="!(selected_time && selected_day)"
-          class="error--text text-center mt-3"
-        >{{$t('stepper.time.error')}}</div>
+        <slot name="bottom"></slot>
       </div>
     </v-card>
-    <div class="notify-text">
-      <img src="~assets/img/ic_info.png" alt />
-      <div>
-        <p>Your information is secured based on GDPR.</p>
-      </div>
-    </div>
-    <div class="bottom-background"></div>
   </section>
 </template>
 
@@ -229,7 +221,8 @@ export default class TimeSelect extends Vue {
   selected_day: string | null = null
   selected_time: string | null = null
   days: any[] = []
-  data: any = {}
+  data: { [key: string]: any } = {}
+  Reservation = getModule(ReservationModule, this.$store)
   get times() {
     return this.selected_day && this.data[this.selected_day]
   }
@@ -237,29 +230,55 @@ export default class TimeSelect extends Vue {
     this.data = await this.$axios.$get(
       `doctors/${this.$route.params.id}/timeTable`
     )
+    for (const key in this.data) {
+      let offset = new Date().getTimezoneOffset()
+      this.data[key].map((item: any) => {
+        item.start = moment(item.start + ' +00:00', 'HH:mm Z')
+          .utcOffset(offset)
+          .format('HH:mm')
+        item.end = moment(item.end + ' +00:00', 'HH:mm Z')
+          .utcOffset(offset)
+          .format('HH:mm')
+        return item
+      })
+    }
     this.days = Object.keys(this.data)
       .map(item => moment(item))
       .sort((a: any, b: any) => {
         return a - b
       })
       .map(item => moment(item).format('YYYY-MM-DD'))
+
     this.reservation = { ...this.$store.state.reservation.info }
-    if (this.reservation.reserve_time) {
+
+    if (
+      this.reservation.doctor_id == this.$route.params.id &&
+      this.reservation.reserve_time
+    ) {
       let [day, time] = (<string>this.reservation.reserve_time).split(' ')
       this.selected_day = day
       this.selected_time = time
     } else {
       this.selected_day = this.days[0]
+      this.Reservation.save_reservation_info({
+        doctor_id: this.$route.params.id,
+        reserve_time: null
+      })
     }
   }
-  onChange() {
-    this.$store.commit('reservation/save_reservation_info')
+  onDateClick(item: any) {
+    this.selected_day = item
+    this.selected_time = null
+    this.Reservation.save_reservation_info({ reserve_time: null })
   }
-  submit() {
+  onTimeClick(item: any) {
+    this.selected_time = item.start
+    let offset = new Date().getTimezoneOffset()
     let reserve_time = this.selected_day + ' ' + this.selected_time
-    let Reservation = getModule(ReservationModule, this.$store)
-    Reservation.save_reservation_info({ reserve_time })
-    this.$router.push(this.$route.fullPath.replace('time', 'invoice'))
+    // moment(this.selected_time + ' +00:00', 'HH:mm Z')
+    //   .utcOffset(offset * -1)
+    //   .format('HH:mm')
+    this.Reservation.save_reservation_info({ reserve_time })
   }
 }
 </script>
