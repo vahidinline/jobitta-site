@@ -1,6 +1,6 @@
 <style lang="scss" scoped>
-.auth-form {
-  width: 360px;
+.v-card {
+  width: 100%;
 
   .desc {
     font-size: 14px;
@@ -105,6 +105,8 @@ export default class LoginForm extends Vue {
       const token = await this.$recaptcha.execute('login')
       this.form.recaptcha = token
       let user = await this.$service.auth.register(this.form)
+      this.$auth.setUserToken(user.token)
+      this.$auth.setUser(this.form)
       loader.hide()
       await this.$toast.success().showSimple('Register Successful')
       this.$emit('onRegister')

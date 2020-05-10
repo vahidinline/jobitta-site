@@ -60,7 +60,7 @@ export default class LoginPage extends Vue {
   }
 
   onRegister() {
-    this.$router.push('/login')
+    this.$router.push('/')
   }
 }
 </script>
