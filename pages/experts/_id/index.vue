@@ -88,11 +88,6 @@
       margin-right: 0;
       margin-left: 24px;
     }
-    @include media(lg) {
-      width: 55%;
-      flex: 0 0 55%;
-      margin-right: 24px;
-    }
   }
   .price {
     width: 100%;
@@ -147,21 +142,21 @@
       <doctorInfo @onReserve="reserveDoctor" v-else :doctor="doctor" />
     </div>
     <div class="right-pane">
-      <div class="d-flex flex-wrap">
-        <div class="history">
-          <template v-if="$fetchState.pending">
-            <v-skeleton-loader type="heading"></v-skeleton-loader>
-            <v-skeleton-loader v-for="index in 4" :key="index" type="list-item-avatar-two-line"></v-skeleton-loader>
-          </template>
-          <doctorHistory v-else :doctor="doctor" />
-        </div>
-        <div class="price hide-md">
+      <div class="history">
+        <template v-if="$fetchState.pending">
+          <v-skeleton-loader type="heading"></v-skeleton-loader>
+          <v-skeleton-loader v-for="index in 4" :key="index" type="list-item-avatar-two-line"></v-skeleton-loader>
+        </template>
+        <doctorHistory v-else :doctor="doctor" />
+      </div>
+      <!-- <div class="d-flex flex-wrap">
+       <div class="price hide-md">
           <template v-if="$fetchState.pending">
             <v-skeleton-loader v-for="index in 4" :key="index" type="list-item-avatar-two-line"></v-skeleton-loader>
           </template>
           <doctorPrice v-else :doctor="doctor" />
-        </div>
-      </div>
+        </div> 
+      </div>-->
       <div class="services">
         <!-- <template v-if="$fetchState.pending">
           <v-skeleton-loader type="heading"></v-skeleton-loader>
@@ -195,7 +190,7 @@
         <v-skeleton-loader v-if="$fetchState.pending"></v-skeleton-loader>
         <timeTable v-else v-model="doctor.timetable"></timeTable>
       </div>
-      <div class="comments">
+      <div class="comments" v-if="doctor.reviews.length">
         <v-skeleton-loader v-if="$fetchState.pending"></v-skeleton-loader>
         <doctorComments v-else :doctor="doctor" />
       </div>
@@ -212,11 +207,11 @@
   </div>
 </template>
 <script lang="ts">
-import doctorInfo from '@/components/Pages/doctors/detail/info.vue'
-import doctorHistory from '@/components/Pages/doctors/detail/history.vue'
-import doctorPrice from '@/components/Pages/doctors/detail/price.vue'
-import doctorComments from '@/components/Pages/doctors/detail/comments.vue'
-import timeTable from '@/components/Pages/doctors/detail/time_table.vue'
+import doctorInfo from '@/components/Pages/Experts/ExpertDetail/Info.vue'
+import doctorHistory from '@/components/Pages/Experts/ExpertDetail/History.vue'
+import doctorPrice from '@/components/Pages/Experts/ExpertDetail/Price.vue'
+import doctorComments from '@/components/Pages/Experts/ExpertDetail/Comments.vue'
+import timeTable from '@/components/Pages/Experts/ExpertDetail/TimeTable.vue'
 import { Vue, Component, Prop, Watch, Emit, Ref } from 'vue-property-decorator'
 import { getModule } from 'vuex-module-decorators'
 import ReservationStore from '@/store/reservation'
@@ -267,7 +262,11 @@ export default class component_name extends Vue {
   reserveDoctor() {
     let Reservation = getModule(ReservationStore, this.$store)
     if (Reservation.info.reserve_time) {
-      return this.$router.push(`/doctors/${this.$route.params.id}/register`)
+      if (this.$auth.loggedIn) {
+        return this.$router.push(`/experts/${this.$route.params.id}/invoice`)
+      } else {
+        return this.$router.push(`/experts/${this.$route.params.id}/register`)
+      }
     }
     let messge = this.$t('errors.selectTime')
     this.$toast.error().showSimple(messge.toString())

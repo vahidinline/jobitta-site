@@ -25,11 +25,12 @@
           outlined
         />
         <v-text-field
-          v-model="form.mobile"
+          v-model="form.password"
           autocomplete="password"
           type="password"
           label="password"
           name="password"
+          placeholder=" "
           v-validate="'required'"
           :error-messages="errors.collect('password')"
           outlined
@@ -37,7 +38,9 @@
         <v-btn block large color="primary" outlined class="text-none title" @click="onSubmit">Login</v-btn>
         <div class="mt-3">
           You haven't registered yet?
-          <nuxt-link to="/register">register now</nuxt-link>
+          <a
+            @click="$router.push($route.path.replace('login','register'))"
+          >register now</a>
         </div>
       </form>
     </v-card>
@@ -49,10 +52,29 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 
 @Component
 export default class LoginForm extends Vue {
-  form = {}
+  form = {
+    username: '',
+    password: '',
+    recaptcha: ''
+  }
   async onSubmit() {
     let valid = await this.$validator.validate()
-    console.log('object')
+    let loader = this.$loader.show(this.$refs.wrapper)
+    try {
+      const token = await this.$recaptcha.execute('login')
+      this.form.recaptcha = token
+      await this.$auth.login({ data: this.form })
+      loader.hide()
+      await this.$toast.success().showSimple('Login Successful')
+      this.$emit('onLogin')
+    } catch (error) {
+      loader.hide()
+      let msg = 'An Error Occured. Please Try Again Later'
+      try {
+        msg = error.response.data.message
+      } catch (error) {}
+      this.$toast.error().showSimple(msg)
+    }
   }
 }
 </script>

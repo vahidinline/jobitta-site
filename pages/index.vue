@@ -355,8 +355,9 @@ p {
     <div class="top-section">
       <div class="left-section">
         <h1>
-          Video consultation with experts in your native language
-          <span>Türkçe, فارسی, عربی, हिन्दी, اُردُو</span>
+          Video Consultation with Experts,
+          <br />in your native language: Türkçe, فارسی, عربی, हिन्दी, اُردُو
+          <span></span>
         </h1>
         <ul class="hide-md">
           <li>
@@ -390,13 +391,13 @@ p {
       </template>
       <div v-else class="doctor-item" v-for="doctor in doctors" :key="doctor.subscriberNumber">
         <div class="doctor-image">
-          <nuxt-link :to="`/doctors/${doctor.id}`">
+          <nuxt-link :to="`/experts/${doctor.id}`">
             <v-img :src="doctor.image"></v-img>
           </nuxt-link>
         </div>
         <div class="doctor-info">
           <div class="doctor-title">
-            <nuxt-link :to="`/doctors/${doctor.id}`">{{doctor.firstname}} {{doctor.lastname}}</nuxt-link>
+            <nuxt-link :to="`/experts/${doctor.id}`">{{doctor.firstname}} {{doctor.lastname}}</nuxt-link>
           </div>
           <div class="custom-devider"></div>
           <div class="doctor-subtitle">{{doctor.speciality.title}}</div>
@@ -405,10 +406,13 @@ p {
             class="text-none subtitle-1"
             outlined
             block
-            :to="`/doctors/${doctor.id}`"
-          >Select and Continue</v-btn>
+            :to="`/experts/${doctor.id}`"
+          >Book Now</v-btn>
         </div>
       </div>
+    </div>
+    <div class="text-center mt-4">
+      <v-btn color="primary" to="/experts" class="px-8" large outlined>See More</v-btn>
     </div>
     <div class="how-to-work">
       <h3>How it works</h3>
@@ -473,13 +477,13 @@ p {
 </template>
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import Comments from '@/components/Pages/home/comments.vue'
+// import Comments from '@/components/Pages/home/comments.vue'
 
 Component.registerHooks(['fetch'])
 @Component({
   layout: 'homepage',
   components: {
-    Comments
+    // Comments
   }
 })
 export default class Home extends Vue {

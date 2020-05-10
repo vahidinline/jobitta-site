@@ -8,8 +8,8 @@ export default class Nav extends VuexModule {
       to: '/'
     },
     {
-      name: 'Doctors',
-      to: '/doctors'
+      name: 'Experts',
+      to: '/experts'
     },
     {
       name: 'FAQs',

@@ -1,44 +1,49 @@
 <style lang="scss" scoped>
-.auth {
+.container {
   @include media(md) {
-    background: url('~assets/img/auth_bg.png') no-repeat;
-    background-position: bottom left;
-    position: relative;
-    z-index: 1;
-    min-height: calc(100vh - 230px);
+    padding: 0;
   }
-  // @media only screen and (max-width: 599px) {
-  //   background-image: none;
-  //   margin-top: 0 !important;
-  // }
-  // @media only screen and (min-width: 1900px) {
-  //   background-position-x: -200px;
-  // }
-  // .container {
-  //   height: calc(100vh - 114px);
-  // }
-  // .login-wrap {
-  //   @media only screen and (min-width: 1900px) {
-  //     margin-right: 150px;
-  //   }
-  // }
+}
+.login-wrap {
+  @include media(md) {
+    flex: 0 0 400px;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+  }
+  @include media(xl) {
+    flex: 0 0 600px;
+    padding: 0 32px;
+    margin-top: 32px;
+    display: flex;
+    align-items: flex-start;
+  }
+}
+.v-image {
+  display: none;
+  @include media(md) {
+    display: flex;
+    flex: 0 0 calc(100% - 400px);
+  }
+  @include media(xl) {
+    flex: 0 0 calc(100% - 900px);
+  }
 }
 </style>
 
 <template>
   <div class="auth mt-5">
-    <v-container class="d-flex align-center">
-      <v-layout reverse wrap>
-        <RegisterForm class="login-wrap" v-model="form" @submit="onSubmit" />
+    <v-container :fluid="!$vuetify.breakpoint.xlOnly">
+      <v-layout justify-center justify-md-space-between>
+        <v-img :src="require('@/assets/img/auth_bg.png')"></v-img>
+        <RegisterForm class="login-wrap" v-model="form" @onRegister="onRegister" />
       </v-layout>
     </v-container>
-    <BottomBackground v-if="$device.isMobile" />
   </div>
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import RegisterForm from '@/components/Pages/Patient/Login/RegisterForm/RegisterForm.vue'
-import BottomBackground from '@/components/Common/BottomBackground/BottomBackground.vue'
+import RegisterForm from '@/components/Pages/Login/RegisterForm/RegisterForm.vue'
 
 @Component({
   layout: 'insidepage',
@@ -46,8 +51,7 @@ import BottomBackground from '@/components/Common/BottomBackground/BottomBackgro
     title: 'Login'
   },
   components: {
-    RegisterForm,
-    BottomBackground
+    RegisterForm
   }
 })
 export default class LoginPage extends Vue {
@@ -55,8 +59,8 @@ export default class LoginPage extends Vue {
     mobile: this.$auth.$storage.getCookie('login_mobile') || null
   }
 
-  onSubmit() {
-    this.$router.push('/patient/login/verify')
+  onRegister() {
+    this.$router.push('/login')
   }
 }
 </script>

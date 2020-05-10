@@ -1,11 +1,15 @@
 import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators'
+interface IReservation {
+  doctor_id?: number | string
+  reserve_time?: String
+}
 
 @Module({
   name: 'reservation',
   namespaced: true
 })
 export default class Reservation extends VuexModule {
-  info: any = {}
+  info: IReservation = {}
   @Mutation
   clear_reservation_info() {
     this.info = {}

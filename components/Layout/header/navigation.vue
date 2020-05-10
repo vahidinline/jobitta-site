@@ -1,10 +1,59 @@
 <style lang="scss" scoped>
+.navigation {
+  &--top {
+    border-bottom: 1px solid var(--v-primary-base);
+    display: flex;
+    height: 60px;
+    align-items: center;
+    padding: 0 16px;
+    .v-btn {
+      margin: 0 !important;
+    }
+  }
+  .logo-wrapper {
+    display: flex;
+    flex-direction: column;
+    font-size: 3rem;
+    position: relative;
+    a {
+      padding-top: 10px;
+      padding-left: 8px;
+    }
+    &:before {
+      content: '';
+      width: 90%;
+      height: 2px;
+      background-color: var(--v-primary-base);
+      left: 0;
+    }
+    @include media(sm) {
+      font-size: 3rem;
+      img {
+        max-width: 90%;
+      }
+    }
+  }
+}
 </style>
 <template>
   <v-navigation-drawer v-model="drawer" app left temporary>
-    <div class="d-flex flex-column fill-height">
-      <div class="logo-wrapper">
-        <nuxt-link to="/">Expertgap</nuxt-link>
+    <div class="d-flex flex-column fill-height navigation">
+      <div class="navigation--top">
+        <v-btn
+          v-if="$auth.loggedIn"
+          class="ma-4 text-none subtitle-1"
+          to="/profile"
+          color="primary"
+          large
+          text
+        >
+          <v-icon size="30" class="mr-2">la-user</v-icon>
+          <span>Welcome {{$auth.user.name}}</span>
+        </v-btn>
+        <v-btn v-else class="ma-4 text-none subtitle-1" to="/login" color="primary" large outlined>
+          <v-icon size="30" class="mr-2">la-user</v-icon>
+          <span>Login / Register</span>
+        </v-btn>
       </div>
       <v-list>
         <v-list-item
@@ -21,10 +70,9 @@
         </v-list-item>
       </v-list>
       <v-spacer></v-spacer>
-      <v-btn class="ma-4 text-none subtitle-1" to="/login" color="primary" large outlined>
-        <v-icon size="30" class="mr-2">la-user</v-icon>
-        <span>Login / Register</span>
-      </v-btn>
+      <div class="logo-wrapper">
+        <nuxt-link to="/">Expertgap</nuxt-link>
+      </div>
     </div>
   </v-navigation-drawer>
 </template>
@@ -42,6 +90,7 @@ export default class Navigation extends Vue {
     return this.value
   }
   set drawer(value) {
+    this.$auth.user
     this.$emit('input', value)
   }
 }

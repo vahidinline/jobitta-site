@@ -9,6 +9,7 @@ export default {
   share: 'share profile',
   currency: '$',
   successCall: 'success call',
+  availabality: 'Availability this week',
   availabalityDesc:
     'You can select your preferred time after submitting your request.',
   sa: 'Sa',
@@ -19,10 +20,10 @@ export default {
   th: 'Th',
   fr: 'Fr',
   stepper: {
-    selectSpecialist: 'selects specialist',
+    selectSpecialist: 'Select Expert',
     login: 'login / register',
-    chooseSessionTime: 'choose session time',
-    payment: 'payment',
+    chooseSessionTime: 'Book a session',
+    payment: 'Payment',
 
     register: {
       title: 'To submit video session, please fill out following information',

@@ -17,7 +17,7 @@ interface Auth {
   loggedIn: boolean
   $storage: Storage
   loginWith(strategy: string, date: any): Promise<any>
-  login(): Promise<any>
+  login(params: { data: any }): Promise<any>
   setUser(user: any): void
   setToken(strategy: string, token: string): void
   setUserToken(token: string): Promise<any>

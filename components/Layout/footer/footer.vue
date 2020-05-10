@@ -14,7 +14,9 @@
       left: 0;
     }
     path {
-      fill: var(--v-primary-base);
+      fill: var(--v-secondary-base);
+      stroke: var(--v-secondary-base);
+      stroke-width: 1;
     }
   }
   .copy-right {

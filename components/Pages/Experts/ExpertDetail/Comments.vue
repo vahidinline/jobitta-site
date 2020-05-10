@@ -124,7 +124,7 @@
     <h3 class="custom-title1">{{$t('reviews')}}</h3>
     <div class="comments-wrapper">
       <!--  -->
-      <div class="comment-item" v-for="item in doctor.reviews" :key="item">
+      <div class="comment-item" v-for="item in doctor.reviews" :key="item.id">
         <div>
           <div class="left-side">
             <span class="owner">{{item.owner_name || 'Reza Ahmadi'}}</span>

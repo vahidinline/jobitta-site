@@ -93,7 +93,7 @@ ul {
           {{$t('stepper.finish.subtitle')}}
           <span
             class="accent--text d-block font-weight-thin mt-3"
-          >{{reservation_info.email}}</span>
+          >{{$auth.user.email}}</span>
         </p>
       </div>
       <ul>
@@ -110,7 +110,7 @@ ul {
       <span class="caption">{{$t('stepper.finish.caption')}}</span>
       <p class="mt-5">
         {{$t('stepper.finish.zoom')}}
-        <span class="accent--text">{{reservation_info.email}}</span>
+        <span class="accent--text">{{$auth.user.email}}</span>
       </p>
       <a
         class="secondary--text"

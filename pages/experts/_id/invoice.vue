@@ -108,15 +108,15 @@ section {
           </li>
           <li>
             <span>{{$t('stepper.invoice.name')}}</span>
-            <span>{{reservation.name}}</span>
+            <span>{{$auth.user.name}}</span>
           </li>
           <li>
             <span>{{$t('stepper.invoice.mobile')}}</span>
-            <span>{{reservation.mobile }}</span>
+            <span>{{$auth.user.mobile }}</span>
           </li>
           <li>
             <span>{{$t('stepper.invoice.email')}}</span>
-            <span>{{reservation.email}}</span>
+            <span>{{$auth.user.email}}</span>
           </li>
           <li>
             <span>{{$t('stepper.invoice.orderDate')}}</span>
@@ -128,6 +128,9 @@ section {
           </li>
         </template>
       </ul>
+      <div class="mt-3">
+        <v-textarea outlined v-model="description" name="descriptino" label="Extra Description"></v-textarea>
+      </div>
       <v-btn
         class="paypal-btn title"
         dark
@@ -155,6 +158,7 @@ import reservationModule from '@/store/reservation'
 })
 export default class Invoice extends Vue {
   doctor = null
+  description = ''
   get reservation() {
     return this.$store.state.reservation.info
   }
@@ -169,15 +173,22 @@ export default class Invoice extends Vue {
   async submit() {
     let loader = this.$loader.show(this.$refs.wrapper)
     let data = { ...this.reservation }
+    let offset = new Date().getTimezoneOffset()
     data.doctor_id = this.$route.params.id
-    data.start = moment()
+    data.description = this.description
+    data.reserve_time = moment(
+      data.reserve_time + ' +00:00',
+      'YYYY-MM-DD HH:mm Z'
+    )
+      .utcOffset(offset * -1)
+      .format('YYYY-MM-DD HH:mm')
     try {
       let result = await this.$axios.$post('reservations', data)
       let Reservation = getModule(reservationModule, this.$store)
       Reservation.save_reservation_info({ track_id: result.track_id })
       this.$router.push(this.$route.fullPath.replace('invoice', 'finish'))
     } catch (error) {
-      this.$toast.error().showSimple('خطایی رخ داده است')
+      this.$toast.error().showSimple('Somthing Went Wrong.')
     }
     loader.hide()
   }

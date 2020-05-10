@@ -2,8 +2,6 @@ import webpack from 'webpack'
 import colors from 'vuetify/es5/util/colors'
 require('dotenv').config({})
 import { version } from './package.json'
-import fa from './locales/fa'
-import en from './locales/en'
 import 'vrwebdesign-nuxt/modules/nuxt-i18n'
 export default {
   mode: 'universal',
@@ -90,7 +88,7 @@ export default {
     // Doc: https://github.com/nuxt-community/svg-module#readme
     // '@nuxtjs/svg',
     // Doc: https://github.com/nuxt-community/recaptcha-module#readme
-    // '@nuxtjs/recaptcha',
+    '@nuxtjs/recaptcha',
     // Doc: https://github.com/nuxt-community/sentry-module
     // '@nuxtjs/sentry',
     // Doc: https://github.com/nuxt-community/sitemap-module
@@ -143,7 +141,7 @@ export default {
   auth: {
     redirect: {
       login: '/login',
-      home: '/'
+      home: false
     },
     strategies: {
       local: {
@@ -154,7 +152,8 @@ export default {
             propertyName: 'token'
           },
           logout: { url: 'auth/logout', method: 'post' },
-          user: false
+          user: { url: 'auth/user', method: 'get', propertyName: 'user' }
+          // user: false
         },
         tokenRequired: true,
         tokenType: 'Bearer'
@@ -199,9 +198,9 @@ export default {
       options: { customProperties: true },
       themes: {
         light: {
-          primary: colors.cyan.base,
+          primary: colors.indigo.base,
           accent: '#f9a429',
-          secondary: '#35d6c1',
+          secondary: colors.pink.base,
           info: colors.blue.base,
           warning: colors.orange.darken1,
           error: colors.deepOrange.accent2,

@@ -28,17 +28,13 @@
       <TimeTable>
         <template #bottom>
           <v-btn
-            :disabled="!(selected_time && selected_day)"
             class="paypal-btn text-none title"
             @click="submit"
             dark
             block
             large
           >{{$t('stepper.time.continue')}}</v-btn>
-          <div
-            v-if="!(selected_time && selected_day)"
-            class="error--text text-center mt-3"
-          >{{$t('stepper.time.error')}}</div>
+          <div v-if="hasError" class="error--text text-center mt-3">{{$t('stepper.time.error')}}</div>
         </template>
       </TimeTable>
     </div>
@@ -54,12 +50,9 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, Watch, Emit, Ref } from 'vue-property-decorator'
-import TimeTable from '@/components/Pages/doctors/detail/time_table.vue'
+import TimeTable from '@/components/Pages/Experts/ExpertDetail/TimeTable.vue'
 import { getModule } from 'vuex-module-decorators'
-import ReservationModule from '@/store/reservation'
-import Sun from '~/assets/svg/sun.svg?inline'
-import Moon from '~/assets/svg/moon.svg?inline'
-import moment from 'moment-jalaali'
+import ReservationStore from '@/store/reservation'
 @Component({
   layout: 'stepper',
   components: {
@@ -67,8 +60,17 @@ import moment from 'moment-jalaali'
   }
 })
 export default class TimeSelect extends Vue {
+  hasError = false
   submit() {
-    this.$router.push(this.$route.fullPath.replace('time', 'invoice'))
+    let Reservation = getModule(ReservationStore, this.$store)
+    if (Reservation.info.reserve_time && Reservation.info.doctor_id) {
+      this.$router.push(this.$route.fullPath.replace('time', 'invoice'))
+    } else {
+      this.hasError = true
+      setTimeout(() => {
+        this.hasError = false
+      }, 1000)
+    }
   }
 }
 </script>

@@ -86,12 +86,12 @@ nav {
     margin-left: 31px;
   }
 }
-.login-btn {
+.header-btn {
   display: none;
   @include media(md) {
     display: flex;
-    border: 1px solid var(--v-primary-base);
     border-radius: 8px;
+    border: 1px solid var(--v-primary-base);
     color: var(--v-primary-base) !important;
   }
 }
@@ -111,12 +111,25 @@ nav {
     </nav>
     <v-spacer></v-spacer>
     <v-btn
+      v-if="$auth.loggedIn"
+      to="/profile"
+      large
+      depressed
+      :raised="false"
+      :ripple="false"
+      class="header-btn text-none title"
+    >
+      <v-icon class="mr-2" size="28">la-user</v-icon>
+      <span>Welcome {{$auth.user.name}}</span>
+    </v-btn>
+    <v-btn
+      v-else
       to="/login"
       large
       depressed
       :raised="false"
       :ripple="false"
-      class="login-btn text-none title"
+      class="header-btn login-btn text-none title"
     >
       <v-icon class="mr-2" size="28">la-user</v-icon>
       <span>Login</span>

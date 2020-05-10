@@ -34,7 +34,7 @@
           <v-divider></v-divider>
 
           <v-stepper-step
-            @click="$router.push(`/doctors/${$route.params.id}/register`)"
+            @click="$router.push(`/experts/${$route.params.id}/register`)"
             color="secondary darken-3"
             :complete="step > 2"
             step="2"
@@ -43,7 +43,7 @@
           <v-divider></v-divider>
 
           <v-stepper-step
-            @click="$router.push(`/doctors/${$route.params.id}/time`)"
+            @click="$router.push(`/experts/${$route.params.id}/time`)"
             color="secondary darken-2"
             :complete="step > 3"
             step="3"
@@ -51,7 +51,7 @@
           <v-divider></v-divider>
 
           <v-stepper-step
-            @click="$router.push(`/doctors/${$route.params.id}/invoice`)"
+            @click="$router.push(`/experts/${$route.params.id}/invoice`)"
             color="secondary darken-2"
             :complete="step > 4"
             step="4"
@@ -77,14 +77,17 @@ export default {
   computed: {
     step() {
       this.current = 1
-      if (this.$route.name.includes('register')) {
+      if (
+        this.$route.name.includes('register') ||
+        this.$route.name.includes('login')
+      ) {
         this.current = 2
       } else if (this.$route.name.includes('time')) {
-        this.current = '3'
+        this.current = 3
       } else if (this.$route.name.includes('invoice')) {
-        this.current = '4'
+        this.current = 4
       } else if (this.$route.name.includes('finish')) {
-        this.current = '5'
+        this.current = 5
       }
       return this.current
     }

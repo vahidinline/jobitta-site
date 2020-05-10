@@ -151,13 +151,13 @@
       </template>
       <div class="doctors--item" v-for="doctor in doctors" :key="doctor.id">
         <div class="doctors--item--image">
-          <nuxt-link :to="`/doctors/${doctor.id}`">
+          <nuxt-link :to="`/experts/${doctor.id}`">
             <v-img :src="doctor.image"></v-img>
           </nuxt-link>
         </div>
         <div class="doctors--item--info">
           <div class="doctors--item--title">
-            <nuxt-link :to="`/doctors/${doctor.id}`">{{doctor.firstname}} {{doctor.lastname}}</nuxt-link>
+            <nuxt-link :to="`/experts/${doctor.id}`">{{doctor.firstname}} {{doctor.lastname}}</nuxt-link>
           </div>
           <div class="custom-devider"></div>
           <div class="doctors--item--speciality">{{doctor.speciality.title}}</div>
@@ -167,7 +167,7 @@
               class="text-none subtitle-1"
               outlined
               block
-              :to="`/doctors/${doctor.id}`"
+              :to="`/experts/${doctor.id}`"
             >Select and Continue</v-btn>
           </div>
         </div>

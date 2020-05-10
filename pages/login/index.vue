@@ -36,14 +36,14 @@
     <v-container :fluid="!$vuetify.breakpoint.xlOnly">
       <v-layout justify-center justify-md-space-between>
         <v-img :src="require('@/assets/img/auth_bg.png')"></v-img>
-        <LoginForm class="login-wrap" v-model="form" @submit="onSubmit" />
+        <LoginForm class="login-wrap" v-model="form" @onLogin="onLogin" />
       </v-layout>
     </v-container>
   </div>
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import LoginForm from '@/components/Pages/Patient/Login/LoginForm/LoginForm.vue'
+import LoginForm from '@/components/Pages/Login/LoginForm/LoginForm.vue'
 
 @Component({
   layout: 'insidepage',
@@ -59,9 +59,8 @@ export default class LoginPage extends Vue {
     mobile: this.$auth.$storage.getCookie('login_mobile') || null
   }
 
-  onSubmit() {
-    this.$vuetify.breakpoint.xlOnly
-    this.$router.push('/patient/login/verify')
+  onLogin() {
+    this.$router.push('/')
   }
 }
 </script>

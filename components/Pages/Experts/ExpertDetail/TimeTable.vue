@@ -223,6 +223,7 @@ export default class TimeSelect extends Vue {
   days: any[] = []
   data: { [key: string]: any } = {}
   Reservation = getModule(ReservationModule, this.$store)
+
   get times() {
     return this.selected_day && this.data[this.selected_day]
   }
@@ -249,7 +250,7 @@ export default class TimeSelect extends Vue {
       })
       .map(item => moment(item).format('YYYY-MM-DD'))
 
-    this.reservation = { ...this.$store.state.reservation.info }
+    this.reservation = { ...this.Reservation.info }
 
     if (
       this.reservation.doctor_id == this.$route.params.id &&
@@ -275,9 +276,6 @@ export default class TimeSelect extends Vue {
     this.selected_time = item.start
     let offset = new Date().getTimezoneOffset()
     let reserve_time = this.selected_day + ' ' + this.selected_time
-    // moment(this.selected_time + ' +00:00', 'HH:mm Z')
-    //   .utcOffset(offset * -1)
-    //   .format('HH:mm')
     this.Reservation.save_reservation_info({ reserve_time })
   }
 }

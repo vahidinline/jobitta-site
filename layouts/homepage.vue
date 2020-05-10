@@ -2,29 +2,6 @@
 <style lang="scss">
 .homepage {
   background: #fff;
-  nav .logo-wrapper {
-    display: flex;
-    flex-direction: column;
-    font-size: 3rem;
-    position: relative;
-    a {
-      padding-top: 10px;
-      padding-left: 8px;
-    }
-    &:after {
-      content: '';
-      width: 90%;
-      height: 2px;
-      background-color: var(--v-primary-base);
-      left: 0;
-    }
-    @include media(sm) {
-      font-size: 3rem;
-      img {
-        max-width: 90%;
-      }
-    }
-  }
 }
 </style>
 
