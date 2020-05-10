@@ -59,6 +59,7 @@ export default class LoginForm extends Vue {
   }
   async onSubmit() {
     let valid = await this.$validator.validate()
+    if (!valid) return
     let loader = this.$loader.show(this.$refs.wrapper)
     try {
       const token = await this.$recaptcha.execute('login')
@@ -68,6 +69,7 @@ export default class LoginForm extends Vue {
       await this.$toast.success().showSimple('Login Successful')
       this.$emit('onLogin')
     } catch (error) {
+      console.error(error)
       loader.hide()
       let msg = 'An Error Occured. Please Try Again Later'
       try {
