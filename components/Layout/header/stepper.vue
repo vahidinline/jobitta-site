@@ -26,7 +26,7 @@
         <v-stepper-header>
           <v-stepper-step
             @click="$router.push('/')"
-            color="secondary darken-2"
+            color="secondary"
             :complete="step > 1"
             step="1"
           >{{$t('stepper.selectSpecialist')}}</v-stepper-step>
@@ -35,7 +35,7 @@
 
           <v-stepper-step
             @click="$router.push(`/experts/${$route.params.id}/register`)"
-            color="secondary darken-3"
+            color="secondary"
             :complete="step > 2"
             step="2"
           >{{$t('stepper.login')}}</v-stepper-step>
@@ -44,7 +44,7 @@
 
           <v-stepper-step
             @click="$router.push(`/experts/${$route.params.id}/time`)"
-            color="secondary darken-2"
+            color="secondary"
             :complete="step > 3"
             step="3"
           >{{$t('stepper.chooseSessionTime')}}</v-stepper-step>
@@ -52,13 +52,13 @@
 
           <v-stepper-step
             @click="$router.push(`/experts/${$route.params.id}/invoice`)"
-            color="secondary darken-2"
+            color="secondary"
             :complete="step > 4"
             step="4"
           >{{$t('stepper.payment')}}</v-stepper-step>
           <v-divider></v-divider>
 
-          <v-stepper-step color="secondary darken-2" step="5">{{$t('stepper.finish.label')}}</v-stepper-step>
+          <v-stepper-step color="secondary" step="5">{{$t('stepper.finish.label')}}</v-stepper-step>
         </v-stepper-header>
       </v-stepper>
     </div>

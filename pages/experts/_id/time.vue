@@ -9,7 +9,7 @@
 .paypal-btn {
   margin-top: 24px;
   border-radius: 8px;
-  background-image: linear-gradient(265deg, #13d1f3, #35d6c1);
+  // background-image: linear-gradient(265deg, #13d1f3, #35d6c1);
 }
 .v-item-group {
   display: flex;
@@ -30,6 +30,7 @@
           <v-btn
             class="paypal-btn text-none title"
             @click="submit"
+            color="primary"
             dark
             block
             large

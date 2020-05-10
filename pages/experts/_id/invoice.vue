@@ -47,7 +47,7 @@ section {
     .paypal-btn {
       margin-top: 24px;
       border-radius: 8px;
-      background-image: linear-gradient(265deg, #13d1f3, #35d6c1);
+      // background-image: linear-gradient(265deg, #13d1f3, #35d6c1);
     }
   }
 }
@@ -133,6 +133,7 @@ section {
       </div>
       <v-btn
         class="paypal-btn title"
+        color="primary"
         dark
         block
         large
