@@ -9862,9 +9862,9 @@ vm-browserify@^1.0.1:
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
 vrwebdesign-nuxt@^2.x:
-  version "2.2.6"
-  resolved "https://registry.yarnpkg.com/vrwebdesign-nuxt/-/vrwebdesign-nuxt-2.2.6.tgz#a6e7b64322b2821308a9896620072bbc9474b9ad"
-  integrity sha512-4zZTCvFwRPoXJeorU/015fWqAiPsVYOKLU7K4n+8Wo50JbxnKDTBkTe/f/uMR+flkyg4ayloZAoGIOHMQZnfeg==
+  version "2.2.7"
+  resolved "https://registry.yarnpkg.com/vrwebdesign-nuxt/-/vrwebdesign-nuxt-2.2.7.tgz#48c64995f4919fcef2fa675b745b9ebd456ae557"
+  integrity sha512-+Zcz/s7BVaJqOTOh6cCPyx9KLHLMfYnk4sZ8e6wJDZj2KFlrIGTYVf0z/rmesn07maI5+5FxhmcZdmx1Ry/NcA==
   dependencies:
     "@babel/parser" "^7.5.5"
     "@babel/traverse" "^7.5.5"

@@ -1,6 +1,6 @@
 <style lang="scss" scoped>
 @function calcPading($items) {
-  @return calc((100% - #{300 * $items}px - #{32 * $items}px) / 2);
+  @return calc((100% - #{220 * $items}px - #{32 * $items}px) / 2);
 }
 .top-section {
   display: flex;
@@ -108,7 +108,7 @@
       background-position: -8px 145px;
     }
     @include media(lg) {
-      background-position: -10px -35px;
+      background-position: -10px 10px;
     }
     @include media(xl) {
       background-position: 190px -35px;
@@ -124,17 +124,17 @@
   width: 100%;
   @include media(sm) {
     margin: -220px 0 0;
-    padding: 0 calcPading(2);
+    padding: 0 calcPading(3);
   }
   @include media(md) {
     margin: -320px 0 0;
-    padding: 0 calcPading(3);
-  }
-  @include media(lg) {
     padding: 0 calcPading(4);
   }
-  @include media(xl) {
+  @include media(lg) {
     padding: 0 calcPading(5);
+  }
+  @include media(xl) {
+    // padding: 0 calcPading(4);
     margin: -200px auto 0;
   }
   .doctor-item {
@@ -150,9 +150,9 @@
     margin: 5px 16px;
     @include media(sm) {
       flex-direction: column;
-      width: 300px;
-      flex: 0 0 300px;
-      height: 400px;
+      width: 220px;
+      flex: 0 0 220px;
+      height: 310px;
       margin: 16px;
     }
     @include media(lg) {
@@ -494,6 +494,9 @@ export default class Home extends Vue {
   }
   async fetch() {
     this.doctors = await this.$service.doctors.homePageDoctors()
+  }
+  test() {
+    this.$dialog.alert()
   }
 }
 </script>
