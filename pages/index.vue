@@ -478,12 +478,12 @@ p {
       <h3>Why choose Expertgap</h3>
       <div class="wrapper">
         <div class="item">
-          <img src="~assets/img/ic_support.png" alt />
+          <img src="~assets/img/ic_cost_effective.png" alt />
           <h4>Cost effective, high quality Experts</h4>
           <p>Affordable prices for qualified and experienced Experts, with background and qualifications checked and verified.</p>
         </div>
         <div class="item">
-          <img src="~assets/img/ic_support.png" alt />
+          <img src="~assets/img/ic_language.png" alt />
           <h4>Convenience of your own home and native language</h4>
           <p>
             Highly accessible online video consultations, with the added benefit of sessions in your native language with experts from your ethnic and cultural background.
@@ -492,7 +492,7 @@ p {
           </p>
         </div>
         <div class="item">
-          <img src="~assets/img/ic_language.png" alt />
+          <img src="~assets/img/ic_reliable.png" alt />
           <h4>Easy to use and Reliable</h4>
           <p>Find an Expert in minutes and book your consultation in three easy steps. Reliable data encryption on private servers and secure payments by trusted and regulated financial services partner.</p>
         </div>
