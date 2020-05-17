@@ -63,7 +63,7 @@
       margin-top: 0px;
       margin-left: -20px;
       margin-right: 20px;
-
+      min-height: 200px;
       @include media(sm) {
         flex: 1;
         height: 100%;
@@ -75,17 +75,21 @@
     }
     &--title {
       margin: 6px 8px 0;
-      font-weight: bold;
-      line-height: 1.33;
-      text-align: left;
-      color: #4b4b4b;
-      position: relative;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
       @include media(xl) {
       }
       a {
+        font-weight: bold;
+        line-height: 1.33;
+        text-align: left;
+        color: #4b4b4b;
+        position: relative;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
         color: inherit;
       }
     }
@@ -158,17 +162,21 @@
         <div class="doctors--item--info">
           <div class="doctors--item--title">
             <nuxt-link :to="`/experts/${doctor.id}`">{{doctor.firstname}} {{doctor.lastname}}</nuxt-link>
+            <v-icon color="primary">la-video</v-icon>
           </div>
           <div class="custom-devider"></div>
           <div class="doctors--item--speciality">{{doctor.speciality.title}}</div>
           <div class="doctors--item--btn">
             <v-btn
               color="secondary"
-              class="text-none subtitle-1"
+              class="text-none subtitle-1 justify-space-around"
               outlined
               block
               :to="`/experts/${doctor.id}`"
-            >Select and Continue</v-btn>
+            >
+              <span>{{doctor.price}}$</span>
+              <span>Book Now</span>
+            </v-btn>
           </div>
         </div>
       </div>

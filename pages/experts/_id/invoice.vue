@@ -2,7 +2,6 @@
 section {
   .invoice {
     width: 600px;
-    max-width: 100%;
     max-width: 90%;
   }
   .v-card {
@@ -75,11 +74,11 @@ section {
             <span
               class="orange--text"
               v-if="$i18n.locale == 'en'"
-            >{{doctor.price * doctor.session_duration }} {{$t('currency')}}</span>
+            >{{doctor.price }} {{$t('currency')}}</span>
             <span
               class="orange--text"
               v-if="$i18n.locale == 'fa'"
-            >{{doctor.price * doctor.session_duration | persianDigit}} {{$t('currency')}}</span>
+            >{{doctor.price | persianDigit}} {{$t('currency')}}</span>
           </li>
           <li>
             <span>{{$t('stepper.invoice.sessionDate')}}</span>

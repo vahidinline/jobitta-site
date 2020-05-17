@@ -5,7 +5,7 @@ export default class DoctorService {
   query(options: any) {
     return this.$axios.$get(`doctors`, { params: options })
   }
-  homePageDoctors() {
-    return this.$axios.$get(`doctors/homePageDoctors`)
+  homePageDoctors(limit = 5) {
+    return this.$axios.$get(`doctors/homePageDoctors?limit=${limit}`)
   }
 }

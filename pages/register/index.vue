@@ -1,45 +1,31 @@
 <style lang="scss" scoped>
-.container {
-  @include media(md) {
-    padding: 0;
+section {
+  position: relative;
+  min-height: calc(100vh - 96px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  padding-bottom: 30px;
+  .form-wrapper {
+    width: 500px;
+    max-width: 90%;
   }
-}
-.login-wrap {
-  @include media(md) {
-    flex: 0 0 400px;
-    padding: 0 32px;
-    display: flex;
-    align-items: center;
-  }
-  @include media(xl) {
-    flex: 0 0 600px;
-    padding: 0 32px;
-    margin-top: 32px;
-    display: flex;
-    align-items: flex-start;
-  }
-}
-.v-image {
-  display: none;
-  @include media(md) {
-    display: flex;
-    flex: 0 0 calc(100% - 400px);
-  }
-  @include media(xl) {
-    flex: 0 0 calc(100% - 900px);
+  .subtitle {
+    color: #212121;
+    margin-bottom: 30px;
+    font-size: 13px;
   }
 }
 </style>
-
 <template>
-  <div class="auth mt-5">
-    <v-container :fluid="!$vuetify.breakpoint.xlOnly">
-      <v-layout justify-center justify-md-space-between>
-        <v-img :src="require('@/assets/img/auth_bg.png')"></v-img>
-        <RegisterForm class="login-wrap" v-model="form" @onRegister="onRegister" />
-      </v-layout>
-    </v-container>
-  </div>
+  <section>
+    <div class="form-wrapper">
+      <RegisterForm @onRegister="onRegister" />
+    </div>
+    <div class="bottom-background"></div>
+  </section>
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
@@ -60,7 +46,7 @@ export default class LoginPage extends Vue {
   }
 
   onRegister() {
-    this.$router.push('/')
+    this.$router.push('/verify')
   }
 }
 </script>

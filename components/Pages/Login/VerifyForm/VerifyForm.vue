@@ -1,25 +1,8 @@
 <style lang="scss" scoped>
-.auth-form {
-  max-width: 396px;
-  .desc,
-  .help-block {
-    font-size: 12px;
-    color: #212121;
-    line-height: 2;
-  }
-  .help-block {
-    @media only screen and (max-width: 599px) {
-      color: #fff;
-    }
-  }
+.v-card {
+  width: 100%;
   .desc {
     font-size: 14px;
-  }
-  ::v-deep {
-    .v-btn {
-      line-height: 48px;
-      height: 48px;
-    }
   }
 }
 </style>
@@ -31,26 +14,29 @@
         <Icon fileName="ic_password.svg" />
       </div>
       <form class="pa-6" @submit.prevent="onSubmit">
-        <p class="desc font-weight-medium">
-          شماره شما قبلا در رسا ثبت شده است. لطفا رمز عبود خود را وارد کنید.
-        </p>
-        <EditMobile />
+        <p class="desc font-weight-medium">token send to your phone number.</p>
+        <div class="d-flex align-center">
+          <nuxt-link to="/patient/login">
+            <v-icon color="primary" class="mr-1">la-edit</v-icon>
+            <span>edit phone number</span>
+            <span>{{ user?user.mobile:'' }}</span>
+          </nuxt-link>
+        </div>
         <v-text-field
-          v-model="form.password"
+          v-model="token"
           class="ltr-input mt-4"
-          placeholder="رمز عبور"
-          name="password"
-          type="password"
-          v-validate="'required'"
-          :error-messages="errors.collect('password')"
-          data-vv-as="رمز عبور"
+          placeholder="token"
+          name="token"
+          type="token"
+          v-validate="{required:true,min:6,max:6,numeric:true}"
+          :error-messages="errors.collect('token')"
           outlined
         />
         <div class="forgot-password font-weight-medium">
-          <span>رمز عبور را فراموش کرده‌اید؟</span>
-          <nuxt-link to="/">بازیابی رمز عبور</nuxt-link>
+          <span>You have not received an SMS؟</span>
+          <a @click="resendSms">Send again</a>
         </div>
-        <v-btn class="mt-8" block @click="onSubmit">تایید و ادامه</v-btn>
+        <v-btn class="mt-8 text-none" color="primary" block outlined @click="onSubmit">Verify</v-btn>
       </form>
     </v-card>
   </div>
@@ -58,40 +44,45 @@
 
 <script lang="ts">
 import Icon from '@/components/Common/Icon/Icon.vue'
-import EditMobile from './EditMobile.vue'
 import { Component, Vue, Prop } from 'vue-property-decorator'
 
 @Component({
   components: {
-    Icon,
-    EditMobile,
-  },
+    Icon
+  }
 })
 export default class LoginForm extends Vue {
-  @Prop({
-    type: Object,
-    required: true,
-  })
-  readonly value!: object
-  fields!: []
-
-  get form() {
-    return this.value
+  token = ''
+  get user() {
+    return this.$auth.user
   }
-  set form(val) {
-    this.$emit('input', val)
+  beforeCreate() {
+    if (!this.$auth.loggedIn) {
+      this.$router.push(this.$route.path.replace('verify', 'register'))
+    }
   }
-
-  onSubmit() {
-    this.$validator.validate().then(valid => {
-      if (valid) {
-        this.$emit('submit', {
-          ...this.form,
-          username: this.$auth.$storage.getCookie('login_mobile'),
-          grant_type: 'password',
-        })
+  resendSms() {
+    this.$service.auth.resendToken()
+  }
+  async onSubmit() {
+    let valid = await this.$validator.validateAll()
+    if (valid) {
+      let loader = this.$loader.show(this.$refs.wrapper)
+      try {
+        let user = await this.$service.auth.verify(this.token)
+        this.$auth.setUser(user)
+        this.$toast.success().showSimple('verify Successfully')
+        this.$emit('onVeriy')
+      } catch (error) {
+        console.error(error)
+        loader.hide()
+        let msg = 'An Error Occured. Please Try Again Later'
+        try {
+          msg = error.response.data.message
+        } catch (error) {}
+        this.$toast.error().showSimple(msg)
       }
-    })
+    }
   }
 }
 </script>

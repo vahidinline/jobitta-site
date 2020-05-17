@@ -34,31 +34,26 @@
           <v-divider></v-divider>
 
           <v-stepper-step
-            @click="$router.push(`/experts/${$route.params.id}/register`)"
+            @click="$router.push(`/experts/${$route.params.id}/time`)"
             color="secondary"
             :complete="step > 2"
             step="2"
-          >{{$t('stepper.login')}}</v-stepper-step>
-
+          >{{$t('stepper.chooseSessionTime')}}</v-stepper-step>
           <v-divider></v-divider>
-
           <v-stepper-step
-            @click="$router.push(`/experts/${$route.params.id}/time`)"
+            @click="$router.push(`/experts/${$route.params.id}/login`)"
             color="secondary"
             :complete="step > 3"
             step="3"
-          >{{$t('stepper.chooseSessionTime')}}</v-stepper-step>
-          <v-divider></v-divider>
+          >{{$t('stepper.login')}}</v-stepper-step>
 
+          <v-divider></v-divider>
           <v-stepper-step
             @click="$router.push(`/experts/${$route.params.id}/invoice`)"
             color="secondary"
             :complete="step > 4"
             step="4"
           >{{$t('stepper.payment')}}</v-stepper-step>
-          <v-divider></v-divider>
-
-          <v-stepper-step color="secondary" step="5">{{$t('stepper.finish.label')}}</v-stepper-step>
         </v-stepper-header>
       </v-stepper>
     </div>
@@ -77,12 +72,12 @@ export default {
   computed: {
     step() {
       this.current = 1
-      if (
+      if (this.$route.name.includes('time')) {
+        this.current = 2
+      } else if (
         this.$route.name.includes('register') ||
         this.$route.name.includes('login')
       ) {
-        this.current = 2
-      } else if (this.$route.name.includes('time')) {
         this.current = 3
       } else if (this.$route.name.includes('invoice')) {
         this.current = 4

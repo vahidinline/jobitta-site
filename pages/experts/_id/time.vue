@@ -65,7 +65,7 @@ export default class TimeSelect extends Vue {
   submit() {
     let Reservation = getModule(ReservationStore, this.$store)
     if (Reservation.info.reserve_time && Reservation.info.doctor_id) {
-      this.$router.push(this.$route.fullPath.replace('time', 'invoice'))
+      this.$router.push(this.$route.fullPath.replace('time', 'login'))
     } else {
       this.hasError = true
       setTimeout(() => {

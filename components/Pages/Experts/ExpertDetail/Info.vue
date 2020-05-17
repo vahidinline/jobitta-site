@@ -52,7 +52,8 @@
   // background-image: linear-gradient(263deg, #13d1f3, #35d6c1);
   border-radius: 8px;
 }
-.share-list {
+.share-list,
+.v-speed-dial {
   .facebook {
     .v-list-item__title,
     .v-icon {
@@ -113,7 +114,7 @@
         <v-divider v-if="doctor.medicalCouncilNumber" class="my-2"></v-divider>
         <li>
           <span>{{$t('pricing')}}</span>
-          <span class="orange--text">{{doctor.price * doctor.session_duration }} {{$t('currency')}}</span>
+          <span class="orange--text">{{doctor.price}} {{$t('currency')}}</span>
         </li>
         <li>
           <span>{{$t('sessionDuration')}}</span>
@@ -136,7 +137,37 @@
         </li>
         <v-divider class="my-2"></v-divider>
         <li>
-          <div>
+          <div v-if="$vuetify.breakpoint.smAndUp">
+            <v-speed-dial
+              bottom
+              top
+              left
+              right
+              direction="right"
+              open-on-hover
+              transition="fade-transition"
+            >
+              <template v-slot:activator>
+                <v-btn text color="primary" v-on="on" class="text-capitalize">
+                  <v-icon size="25" color="secondary" class="mr-2">la-share-alt</v-icon>
+                  <span>{{$t('share')}}</span>
+                </v-btn>
+              </template>
+              <v-btn
+                fab
+                small
+                v-for="tile in tiles"
+                :key="tile.title"
+                :href="tile.url"
+                target="_blank"
+                class="ml-2"
+                :class="tile.title"
+              >
+                <v-icon size="22">{{tile.icon}}</v-icon>
+              </v-btn>
+            </v-speed-dial>
+          </div>
+          <div v-else>
             <v-bottom-sheet v-model="share">
               <template v-slot:activator="{ on }">
                 <v-btn text color="primary" v-on="on" class="text-capitalize">
@@ -180,6 +211,7 @@ export default class component_name extends Vue {
   doctor!: any
   mounted() {
     let location = window.location.href
+    this.$vuetify.breakpoint.smAndUp
     this.tiles = [
       // {
       //   title: 'facebook',

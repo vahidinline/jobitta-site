@@ -1,0 +1,21 @@
+.scrollTop {
+    position: fixed;
+    right: 24px;
+    bottom: 20px;
+    width: 60px;
+    height: 60px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    background: var(--v-secondary-base);
+    color: #fff;
+    border-radius: 100%;
+    font-size: 2.675rem;
+    z-index: 99;
+    transform: scale(0);
+    transition: transform 0.5s;
+    cursor: pointer;
+    &.show {
+        transform: scale(1);
+    }
+}

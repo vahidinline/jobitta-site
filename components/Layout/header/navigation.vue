@@ -57,7 +57,7 @@
       </div>
       <v-list>
         <v-list-item
-          v-for="(item, i) in $store.state.nav.items"
+          v-for="(item, i) in navItems"
           :key="i"
           :to="item.to"
           router
@@ -78,9 +78,12 @@
 </template>
 <script lang="ts">
 import { Vue, Component, Prop, Watch, Emit, Ref } from 'vue-property-decorator'
-
+import { getModule } from 'vuex-module-decorators'
+import NavModule from '@/store/nav'
 @Component
 export default class Navigation extends Vue {
+  NavStore = getModule(NavModule, this.$store)
+
   @Prop({
     required: true
   })
@@ -88,6 +91,22 @@ export default class Navigation extends Vue {
 
   get drawer() {
     return this.value
+  }
+  get navItems() {
+    let items = [...this.NavStore.items]
+    items.unshift({
+      name: 'Home',
+      to: '/'
+    })
+    items.push({
+      name: 'Terms & Conditions',
+      to: '/terms'
+    })
+    items.push({
+      name: 'Privacy Policy',
+      to: '/privacy'
+    })
+    return items
   }
   set drawer(value) {
     this.$auth.user

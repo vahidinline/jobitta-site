@@ -203,7 +203,7 @@ export default {
           secondary: colors.pink.base,
           info: colors.blue.base,
           warning: colors.orange.darken1,
-          error: colors.deepOrange.accent2,
+          error: colors.red.lighten1,
           success: colors.green.base
         }
       }

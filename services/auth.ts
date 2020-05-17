@@ -15,4 +15,10 @@ export default class AuthService {
   getProfile(userId: string): Promise<ResultProfile> {
     return this.$axios.$get(`/Accounts/${userId}/Profile`)
   }
+  verify(token: string): Promise<ResultProfile> {
+    return this.$axios.$post(`auth/verify`, { token })
+  }
+  resendToken(): Promise<string> {
+    return this.$axios.$post(`auth/resendToken`)
+  }
 }

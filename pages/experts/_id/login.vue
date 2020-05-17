@@ -1,6 +1,10 @@
 <style lang="scss" scoped>
 section {
   margin-top: 40px;
+  .form-wrapper {
+    width: 500px;
+    max-width: 90%;
+  }
   .subtitle {
     color: #212121;
     margin-bottom: 30px;
@@ -10,7 +14,9 @@ section {
 </style>
 <template>
   <section>
-    <LoginForm @onLogin="onLogin" />
+    <div class="form-wrapper">
+      <LoginForm @onLogin="onLogin" />
+    </div>
     <div class="notify-text">
       <v-icon size="40" color="orange">la-info-circle</v-icon>
       <div>
@@ -37,7 +43,7 @@ export default class Register extends Vue {
   reservation = {}
   created() {
     if (this.$auth.loggedIn) {
-      this.$router.push(this.$route.fullPath.replace('login', 'time'))
+      this.$router.push(this.$route.fullPath.replace('login', 'invoice'))
     }
   }
   mounted() {
@@ -45,7 +51,7 @@ export default class Register extends Vue {
     console.log(this.$route)
   }
   async onLogin() {
-    this.$router.push(this.$route.fullPath.replace('login', 'time'))
+    this.$router.push(this.$route.fullPath.replace('login', 'invoice'))
   }
 }
 </script>

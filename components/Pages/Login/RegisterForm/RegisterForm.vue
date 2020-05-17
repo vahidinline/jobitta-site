@@ -24,15 +24,33 @@
           :error-messages="errors.collect('username')"
           outlined
         />
+        <div cla>
+          <v-text-field
+            autocomplete="password"
+            v-model="form.password"
+            type="password"
+            label="password"
+            name="password"
+            placeholder=" "
+            v-validate="{required:true,regex:/^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{6,}$/}"
+            ref="password"
+            :error-messages="errors.collect('password')"
+            outlined
+          />
+          <span
+            v-if="errors.collect('password')"
+            class="caption mb-3 d-flex"
+          >password must include [!@#$&*] [a-z] [0-9] [A-Z] and at least 6 charachter</span>
+        </div>
         <v-text-field
           autocomplete="password"
-          v-model="form.password"
+          v-model="form.confirmpassword"
           type="password"
-          label="password"
-          name="password"
+          label="confirm password"
+          name="confirm password"
           placeholder=" "
-          v-validate="'required'"
-          :error-messages="errors.collect('password')"
+          v-validate="'required|confirmed:password'"
+          :error-messages="errors.collect('confirm password')"
           outlined
         />
         <v-text-field
@@ -46,17 +64,35 @@
           :error-messages="errors.collect('name')"
           outlined
         />
-        <v-text-field
-          autocomplete="mobile"
-          v-model="form.mobile"
-          type="mobile"
-          label="mobile"
-          name="mobile"
-          placeholder=" "
-          v-validate="'required'"
-          :error-messages="errors.collect('mobile')"
-          outlined
-        />
+
+        <v-layout row wrap>
+          <v-flex xs3 px-3>
+            <v-text-field
+              autocomplete="code"
+              v-model="form.code"
+              type="code"
+              label="code"
+              name="code"
+              placeholder="+44"
+              v-validate="{required:true,regex:/^\+\d{0,3}$/}"
+              :error-messages="errors.collect('code')"
+              outlined
+            />
+          </v-flex>
+          <v-flex xs9 px-3>
+            <v-text-field
+              autocomplete="mobile"
+              v-model="form.mobile"
+              type="mobile"
+              label="mobile"
+              name="mobile"
+              placeholder=" "
+              v-validate="{required:true,regex:/^\d{10}$/}"
+              :error-messages="errors.collect('mobile')"
+              outlined
+            />
+          </v-flex>
+        </v-layout>
         <v-text-field
           autocomplete="email"
           v-model="form.email"
@@ -92,7 +128,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 
 @Component
 export default class LoginForm extends Vue {
-  form = {
+  form: any = {
     username: '',
     password: '',
     recaptcha: ''
@@ -101,12 +137,14 @@ export default class LoginForm extends Vue {
     let valid = await this.$validator.validate()
     if (!valid) return
     let loader = this.$loader.show(this.$refs.wrapper)
+    let data = { ...this.form }
     try {
       const token = await this.$recaptcha.execute('login')
       this.form.recaptcha = token
-      let user = await this.$service.auth.register(this.form)
+      data.mobile = data.code + data.mobile
+      let user = await this.$service.auth.register(data)
       this.$auth.setUserToken(user.token)
-      this.$auth.setUser(this.form)
+      this.$auth.setUser(data)
       loader.hide()
       await this.$toast.success().showSimple('Register Successful')
       this.$emit('onRegister')

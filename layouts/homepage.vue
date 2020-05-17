@@ -6,7 +6,7 @@
 </style>
 
 <template>
-  <v-app>
+  <v-app v-scroll:#scroll-target="onScroll">
     <main>
       <section>
         <Navigation v-model="drawer"></Navigation>
@@ -21,6 +21,9 @@
         <Footer />
       </section>
     </main>
+    <div class="scrollTop" :class="{show:toTopButton}" @click="scrollToTop">
+      <v-icon color="white" size="32">la-arrow-up</v-icon>
+    </div>
   </v-app>
 </template>
 <script lang="ts">
@@ -42,9 +45,28 @@ import { Vue, Component } from 'vue-property-decorator'
 })
 export default class HomePage extends Vue {
   drawer = false
+  toTopButton = false
   beforeCreate() {
     this.$i18n.setLocale('en')
     this.$vuetify.rtl = false
+  }
+  mounted() {
+    window.addEventListener('scroll', this.onScroll)
+  }
+  destroyed() {
+    window.removeEventListener('scroll', this.onScroll)
+  }
+  onScroll(e: any) {
+    if (window.pageYOffset > 200) {
+      this.toTopButton = true
+    } else {
+      this.toTopButton = false
+    }
+  }
+  scrollToTop() {
+    this.$vuetify.goTo(0, {
+      duration: 1000
+    })
   }
 }
 </script>

@@ -24,7 +24,7 @@ export default {
   fr: 'Fr',
   stepper: {
     selectSpecialist: 'Select Expert',
-    login: 'login / register',
+    login: 'Login / Register',
     chooseSessionTime: 'Book a session',
     payment: 'Payment',
 

@@ -1,12 +1,15 @@
 import { Module, VuexModule, Action } from 'vuex-module-decorators'
 
-@Module
+@Module({
+  name: 'nav',
+  namespaced: true
+})
 export default class Nav extends VuexModule {
   items = [
-    {
-      name: 'Home',
-      to: '/'
-    },
+    // {
+    //   name: 'Home',
+    //   to: '/'
+    // },
     {
       name: 'Experts',
       to: '/experts'

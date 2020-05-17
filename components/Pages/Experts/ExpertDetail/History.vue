@@ -12,7 +12,7 @@ ul {
   justify-content: space-between;
   li {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     min-height: 60px;
     .icon {
       display: flex;
@@ -31,6 +31,7 @@ ul {
         font-size: 14px;
         font-weight: bold;
         color: #212121;
+        white-space: pre-wrap;
       }
     }
   }
@@ -38,15 +39,15 @@ ul {
 </style>
 <template>
   <div class="box">
-    <h3 class="custom-title1">{{$t('professionalInformation')}}</h3>
+    <h3 class="custom-title1">Expert</h3>
     <ul>
-      <li v-if="doctor.expertise && doctor.expertise != ' '">
+      <li>
         <span class="icon">
-          <img src="~assets/img/ic_post_specialist.png" alt />
+          <img src="~assets/img/ic_specialist.png" alt />
         </span>
         <div>
-          <span class="label">{{$t('expertise')}}</span>
-          <span class="value">{{doctor.expertise}}</span>
+          <span class="label">{{$t('speciality')}}</span>
+          <span class="value">{{doctor.speciality.title}}</span>
         </div>
       </li>
       <li>
@@ -55,16 +56,16 @@ ul {
         </span>
         <div>
           <span class="label">{{$t('workExperience')}}</span>
-          <span class="value">{{doctor.work_experience }} {{$t('years')}}</span>
+          <span class="value">{{doctor.work_experience }}</span>
         </div>
       </li>
-      <li>
+      <li v-if="doctor.expertise && doctor.expertise != ' '">
         <span class="icon">
-          <img src="~assets/img/ic_specialist.png" alt />
+          <img src="~assets/img/ic_post_specialist.png" alt />
         </span>
         <div>
-          <span class="label">{{$t('speciality')}}</span>
-          <span class="value">{{doctor.speciality.title}}</span>
+          <span class="label">Credentials</span>
+          <span class="value">{{doctor.expertise}}</span>
         </div>
       </li>
       <li>

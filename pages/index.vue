@@ -21,7 +21,7 @@
     }
     @include media(xl) {
       margin-top: 130px;
-      width: 760px;
+      width: 820px;
     }
     h1 {
       font-size: 19px;
@@ -38,8 +38,16 @@
       span {
         color: var(--v-primary-base);
         position: relative;
-        display: inline-block;
-        font-size: 25px;
+        display: block;
+        font-size: 16px;
+        @include media(sm) {
+          font-size: 21px;
+          line-height: 32px;
+        }
+        @include media(xl) {
+          font-size: 42px;
+          line-height: 86px;
+        }
         // &:before {
         //   content: '';
         //   width: 100%;
@@ -59,7 +67,7 @@
       padding: 0;
       li {
         color: #000;
-        font-size: 15px;
+        font-size: 13.5px;
         line-height: 24px;
         text-align: left;
         display: flex;
@@ -112,7 +120,7 @@
     }
     @include media(xl) {
       background-position: 190px -35px;
-      width: calc(100% - 790px);
+      width: calc(100% - 850px);
       background-size: 100%;
     }
   }
@@ -135,7 +143,7 @@
   }
   @include media(xl) {
     // padding: 0 calcPading(4);
-    margin: -200px auto 0;
+    margin: -170px auto 0;
   }
   .doctor-item {
     background: #fff;
@@ -152,7 +160,6 @@
       flex-direction: column;
       width: 220px;
       flex: 0 0 220px;
-      height: 310px;
       margin: 16px;
     }
     @include media(lg) {
@@ -182,7 +189,7 @@
       margin-top: 0px;
       margin-left: -20px;
       margin-right: 20px;
-
+      min-height: 200px;
       @include media(sm) {
         flex: 1;
         height: 100%;
@@ -194,17 +201,20 @@
     }
     .doctor-title {
       margin: 6px 8px 0;
-      font-weight: bold;
-      line-height: 1.33;
-      text-align: left;
-      color: #4b4b4b;
-      position: relative;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       @include media(xl) {
       }
       a {
+        font-weight: bold;
+        line-height: 1.33;
+        text-align: left;
+        color: #4b4b4b;
+        position: relative;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
         color: inherit;
       }
     }
@@ -284,6 +294,7 @@
         font-weight: 600;
         color: #212121;
         margin-bottom: 8px;
+
         @include media(xl) {
           font-size: 23px;
         }
@@ -331,6 +342,7 @@
         color: #4b4b4b;
         font-size: 18px;
         margin-bottom: 8px;
+        height: 54px;
         @include media(md) {
           font-weight: bold;
         }
@@ -342,6 +354,17 @@
         margin-top: 8px;
       }
     }
+  }
+}
+.get-start {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px 0;
+  h3 {
+  }
+  .v-btn {
+    margin-top: 16px;
   }
 }
 p {
@@ -356,12 +379,12 @@ p {
       <div class="left-section">
         <h1>
           Video Consultation with Experts,
-          <br />in your native language: Türkçe, فارسی, عربی, हिन्दी, اُردُو
-          <span></span>
+          <br />in your native language:
+          <span>Türkçe, فارسی, عربی, हिन्दी, اُردُو</span>
         </h1>
         <ul class="hide-md">
           <li>
-            <v-icon>la-dot-circle</v-icon>Psychotherapy counselling: stress, anxiety, family, marriage, divorce…
+            <v-icon>la-dot-circle</v-icon>Psychotherapy counselling: stress, anxiety, family, parenting, marriage, divorce
           </li>
           <li>
             <v-icon>la-dot-circle</v-icon>Health and wellbeing consultations
@@ -398,21 +421,25 @@ p {
         <div class="doctor-info">
           <div class="doctor-title">
             <nuxt-link :to="`/experts/${doctor.id}`">{{doctor.firstname}} {{doctor.lastname}}</nuxt-link>
+            <v-icon color="primary">la-video</v-icon>
           </div>
           <div class="custom-devider"></div>
           <div class="doctor-subtitle">{{doctor.speciality.title}}</div>
           <v-btn
             color="secondary"
-            class="text-none subtitle-1"
+            class="text-none subtitle-1 justify-space-around"
             outlined
             block
             :to="`/experts/${doctor.id}`"
-          >Book Now</v-btn>
+          >
+            <span>{{doctor.price}}$</span>
+            <span>Book Now</span>
+          </v-btn>
         </div>
       </div>
     </div>
     <div class="text-center mt-4">
-      <v-btn color="primary" to="/experts" class="px-8" large outlined>See More</v-btn>
+      <v-btn color="primary" to="/experts" class="px-8 text-none" large outlined>See other Experts</v-btn>
     </div>
     <div class="how-to-work">
       <h3>How it works</h3>
@@ -471,32 +498,31 @@ p {
         </div>
       </div>
     </div>
-    <!-- <Comments /> -->
-    <!-- <div v-if="$fetchState.error">{{$fetchState.error}}</div> -->
+    <Comments />
+    <div class="get-start">
+      <h3>Ready to Get Started?</h3>
+      <span class="subtitle-2">Find your right expert</span>
+      <div>
+        <v-btn class="text-none" color="primary" to="/experts" outlined>See our Experts</v-btn>
+      </div>
+    </div>
   </section>
 </template>
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-// import Comments from '@/components/Pages/home/comments.vue'
+import Comments from '@/components/Pages/home/comments.vue'
 
 Component.registerHooks(['fetch'])
 @Component({
   layout: 'homepage',
   components: {
-    // Comments
+    Comments
   }
 })
 export default class Home extends Vue {
   doctors = []
-  vlazy = {
-    experience: false,
-    img: false
-  }
   async fetch() {
     this.doctors = await this.$service.doctors.homePageDoctors()
-  }
-  test() {
-    this.$dialog.alert()
   }
 }
 </script>

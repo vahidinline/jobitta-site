@@ -107,10 +107,10 @@ section#comments {
               <div class="profile">
                 <div class="image-wrapper">
                   <v-avatar>
-                    <v-img :src="require('@/assets/img/user.jpg')" alt />
+                    <v-img :src="require('@/assets/img/doctor.jpg')" alt />
                   </v-avatar>
                 </div>
-                <span>David Jones</span>
+                <span>Expert: David Jones</span>
               </div>
             </div>
           </div>

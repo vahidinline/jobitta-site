@@ -21,30 +21,26 @@ section {
 <template>
   <section>
     <div class="form-wrapper">
-      <LoginForm @onLogin="onLogin" />
+      <VerifyForm @onVerify="onVerify" />
     </div>
     <div class="bottom-background"></div>
   </section>
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import LoginForm from '@/components/Pages/Login/LoginForm/LoginForm.vue'
+import VerifyForm from '@/components/Pages/Login/VerifyForm/VerifyForm.vue'
 
 @Component({
   layout: 'insidepage',
   head: {
-    title: 'Login'
+    title: 'Verify'
   },
   components: {
-    LoginForm
+    VerifyForm
   }
 })
 export default class LoginPage extends Vue {
-  form = {
-    mobile: this.$auth.$storage.getCookie('login_mobile') || null
-  }
-
-  onLogin() {
+  onVerify() {
     this.$router.push('/')
   }
 }
