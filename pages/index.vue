@@ -156,6 +156,7 @@
     flex-direction: row;
     height: auto;
     margin: 5px 16px;
+    align-items: center;
     @include media(sm) {
       flex-direction: column;
       width: 220px;
@@ -189,7 +190,6 @@
       margin-top: 0px;
       margin-left: -20px;
       margin-right: 20px;
-      min-height: 200px;
       @include media(sm) {
         flex: 1;
         height: 100%;
@@ -197,6 +197,7 @@
         margin-top: -20px;
         margin-right: 0px;
         margin-left: 0px;
+        min-height: 200px;
       }
     }
     .doctor-title {
