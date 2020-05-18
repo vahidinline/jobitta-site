@@ -1,5 +1,6 @@
 import DoctorService from '~/services/doctors'
 import AuthService from '~/services/auth'
+import { User } from '~/models/User'
 interface IEnum {
   toSelect: { text: string; value: number }[]
 }
@@ -13,7 +14,7 @@ interface Storage {
   getLocalStorage(key: string): any
 }
 interface Auth {
-  user?: Object
+  user?: User
   loggedIn: boolean
   $storage: Storage
   loginWith(strategy: string, date: any): Promise<any>

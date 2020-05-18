@@ -76,7 +76,8 @@ export default {
         this.current = 2
       } else if (
         this.$route.name.includes('register') ||
-        this.$route.name.includes('login')
+        this.$route.name.includes('login') ||
+        this.$route.name.includes('verify')
       ) {
         this.current = 3
       } else if (this.$route.name.includes('invoice')) {

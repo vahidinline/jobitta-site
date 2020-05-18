@@ -17,7 +17,7 @@
       <form class="pa-6" @submit.prevent="onSubmit">
         <p class="title">Register</p>
         <v-text-field
-          v-model="form.username"
+          v-model="user.username"
           label="username"
           name="username"
           v-validate="'required'"
@@ -27,7 +27,7 @@
         <div cla>
           <v-text-field
             autocomplete="password"
-            v-model="form.password"
+            v-model="user.password"
             type="password"
             label="password"
             name="password"
@@ -44,7 +44,7 @@
         </div>
         <v-text-field
           autocomplete="password"
-          v-model="form.confirmpassword"
+          v-model="user.confirmpassword"
           type="password"
           label="confirm password"
           name="confirm password"
@@ -55,7 +55,7 @@
         />
         <v-text-field
           autocomplete="name"
-          v-model="form.name"
+          v-model="user.name"
           type="name"
           label="name"
           name="name"
@@ -69,7 +69,7 @@
           <v-flex xs3 px-3>
             <v-text-field
               autocomplete="code"
-              v-model="form.code"
+              v-model="user.code"
               type="code"
               label="code"
               name="code"
@@ -82,7 +82,7 @@
           <v-flex xs9 px-3>
             <v-text-field
               autocomplete="mobile"
-              v-model="form.mobile"
+              v-model="user.mobile"
               type="mobile"
               label="mobile"
               name="mobile"
@@ -95,7 +95,7 @@
         </v-layout>
         <v-text-field
           autocomplete="email"
-          v-model="form.email"
+          v-model="user.email"
           type="email"
           label="email"
           name="email"
@@ -128,25 +128,34 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 
 @Component
 export default class LoginForm extends Vue {
-  form: any = {
-    username: '',
-    password: '',
-    recaptcha: ''
+  get user(): any {
+    let user: any = { ...this.$auth.user }
+    if (user && user.mobile) {
+      let code, mobile
+      mobile = user.mobile.slice(user.mobile.length - 10, user.mobile.length)
+      code = user.mobile.slice(0, user.mobile.length - 10)
+      user.mobile = mobile
+      user.code = code
+    }
+    return user || {}
   }
   async onSubmit() {
     let valid = await this.$validator.validate()
     if (!valid) return
     let loader = this.$loader.show(this.$refs.wrapper)
-    let data = { ...this.form }
+    let data = { ...this.user }
     try {
       const token = await this.$recaptcha.execute('login')
-      this.form.recaptcha = token
+      this.user.recaptcha = token
       data.mobile = data.code + data.mobile
       let user = await this.$service.auth.register(data)
       this.$auth.setUserToken(user.token)
       this.$auth.setUser(data)
       loader.hide()
-      await this.$toast.success().showSimple('Register Successful')
+      await this.$toast
+        .success()
+        .timeout(1000)
+        .showSimple('Register Successful')
       this.$emit('onRegister')
     } catch (error) {
       console.error(error)

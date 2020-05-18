@@ -2,7 +2,7 @@
 section {
   margin-top: 40px;
   .form-wrapper {
-    width: 600px;
+    width: 500px;
     max-width: 90%;
   }
   .subtitle {
@@ -15,7 +15,7 @@ section {
 <template>
   <section>
     <div class="form-wrapper">
-      <RegisterForm @onRegister="onRegister" />
+      <VerifyForm @onVerify="onVerify" />
     </div>
     <div class="notify-text">
       <v-icon size="40" color="orange">la-info-circle</v-icon>
@@ -29,29 +29,29 @@ section {
 </template>
 <script lang="ts">
 import { Vue, Component, Prop, Watch, Emit, Ref } from 'vue-property-decorator'
-import RegisterForm from '@/components/Pages/Login/RegisterForm/RegisterForm.vue'
+import VerifyForm from '@/components/Pages/Login/VerifyForm/VerifyForm.vue'
 import { getModule } from 'vuex-module-decorators'
 import ReservationModule from '@/store/reservation'
 
 @Component({
   layout: 'stepper',
   components: {
-    RegisterForm
+    VerifyForm
   }
 })
 export default class Register extends Vue {
   reservation = {}
   created() {
     if (this.$auth.loggedIn && this.$auth.user && this.$auth.user.is_verified) {
-      this.$router.push(this.$route.fullPath.replace('register', 'invoice'))
+      this.$router.push(this.$route.fullPath.replace('verify', 'invoice'))
     }
   }
   mounted() {
     this.reservation = { ...this.$store.state.reservation.info }
     console.log(this.$route)
   }
-  async onRegister() {
-    this.$router.push(this.$route.fullPath.replace('register', 'verify'))
+  async onVerify() {
+    this.$router.push(this.$route.fullPath.replace('verify', 'invoice'))
   }
 }
 </script>

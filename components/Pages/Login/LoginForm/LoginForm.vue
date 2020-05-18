@@ -66,7 +66,10 @@ export default class LoginForm extends Vue {
       this.form.recaptcha = token
       await this.$auth.login({ data: this.form })
       loader.hide()
-      await this.$toast.success().showSimple('Login Successful')
+      await this.$toast
+        .success()
+        .timeout(1000)
+        .showSimple('Login Successful')
       this.$emit('onLogin')
     } catch (error) {
       console.error(error)

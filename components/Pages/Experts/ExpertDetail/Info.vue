@@ -148,7 +148,7 @@
               transition="fade-transition"
             >
               <template v-slot:activator>
-                <v-btn text color="primary" v-on="on" class="text-capitalize">
+                <v-btn text color="primary" class="text-capitalize">
                   <v-icon size="25" color="secondary" class="mr-2">la-share-alt</v-icon>
                   <span>{{$t('share')}}</span>
                 </v-btn>

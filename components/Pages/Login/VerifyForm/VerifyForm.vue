@@ -16,11 +16,11 @@
       <form class="pa-6" @submit.prevent="onSubmit">
         <p class="desc font-weight-medium">token send to your phone number.</p>
         <div class="d-flex align-center">
-          <nuxt-link to="/patient/login">
+          <a @click="editPhone">
             <v-icon color="primary" class="mr-1">la-edit</v-icon>
             <span>edit phone number</span>
             <span>{{ user?user.mobile:'' }}</span>
-          </nuxt-link>
+          </a>
         </div>
         <v-text-field
           v-model="token"
@@ -61,6 +61,9 @@ export default class LoginForm extends Vue {
       this.$router.push(this.$route.path.replace('verify', 'register'))
     }
   }
+  editPhone() {
+    this.$router.push(this.$route.path.replace('verify', 'register'))
+  }
   resendSms() {
     this.$service.auth.resendToken()
   }
@@ -69,10 +72,14 @@ export default class LoginForm extends Vue {
     if (valid) {
       let loader = this.$loader.show(this.$refs.wrapper)
       try {
+        loader.hide()
         let user = await this.$service.auth.verify(this.token)
         this.$auth.setUser(user)
-        this.$toast.success().showSimple('verify Successfully')
-        this.$emit('onVeriy')
+        this.$toast
+          .success()
+          .timeout(1000)
+          .showSimple('verify Successfully')
+        this.$emit('onVerify')
       } catch (error) {
         console.error(error)
         loader.hide()

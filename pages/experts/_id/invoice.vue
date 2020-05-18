@@ -165,6 +165,20 @@ export default class Invoice extends Vue {
   get now() {
     return moment()
   }
+  beforeCreate() {
+    let Reservation = getModule(reservationModule, this.$store)
+    if (!Reservation.info.reserve_time) {
+      return this.$router.push(this.$route.fullPath.replace('invoice', 'time'))
+    }
+    if (!this.$auth.loggedIn) {
+      return this.$router.push(this.$route.fullPath.replace('invoice', 'login'))
+    }
+    if (this.$auth.user && this.$auth.user.is_verified == 0) {
+      return this.$router.push(
+        this.$route.fullPath.replace('invoice', 'verify')
+      )
+    }
+  }
   async mounted() {
     let loader = this.$loader.show(this.$refs.wrapper)
     this.doctor = await this.$axios.$get(`doctors/${this.$route.params.id}`)

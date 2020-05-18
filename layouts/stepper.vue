@@ -158,6 +158,9 @@ export default class StepperLayout extends Vue {
           case 'doctor-id-login':
             left = 65
             break
+          case 'doctor-id-verify':
+            left = 65
+            break
           case 'doctor-id-time':
             left = 180
             break
