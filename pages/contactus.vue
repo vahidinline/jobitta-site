@@ -6,19 +6,33 @@
       <v-flex pa-4 md7>
         <v-img :src="require('@/assets/img/contactus.jpg')"></v-img>
         <div class="subtitle-1 mt-2">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam error dolore corrupti. Excepturi mollitia culpa, amet voluptatibus, ullam nihil labore, vitae sed nulla officia aspernatur corrupti quo est! Numquam, quam.</p>
+          <p>We look forward to hearing from you. You may like to check out our Frequently Asked Questions (hyperlink this and make different colour) for some quick answers.</p>
         </div>
       </v-flex>
       <v-flex pa-4 md5>
         <div class="title">Contact Us</div>
         <div class="subtitle-1 mb-2">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam error dolore corrupti. Excepturi mollitia culpa, amet voluptatibus, ullam nihil labore, vitae sed nulla officia aspernatur corrupti quo est! Numquam, quam.</p>
+          <p>Please complete the form below to get in touch with any queries, concerns or feedback. We will get back to you promptly.</p>
         </div>
         <div class="form">
-          <v-text-field outlined name="name" label="Your Name"></v-text-field>
-          <v-text-field outlined name="title" label="Title"></v-text-field>
-          <v-textarea outlined name="text" label="Text"></v-textarea>
-          <v-btn class="text-none" color="primary" outlined large>Send</v-btn>
+          <v-text-field v-model="contactus.fullname" outlined name="name" label="Full name"></v-text-field>
+          <v-text-field v-model="contactus.email" outlined name="name" label="Your email address"></v-text-field>
+          <v-textarea v-model="contactus.feedback" outlined name="title" label="Query/Feedback"></v-textarea>
+          <v-file-input
+            outlined
+            :show-size="1000"
+            :prepend-icon="null"
+            prepend-inner-icon="$file"
+            name="title"
+            label="Attachments"
+            placeholder="You can add attachment later if it takes time"
+            v-model="contactus.attachment"
+          >
+            <template v-slot:selection="{ index, text }">
+              <v-chip color="deep-purple accent-4" dark label small>{{ text }}</v-chip>
+            </template>
+          </v-file-input>
+          <v-btn class="text-none" color="primary" outlined large>Submit</v-btn>
         </div>
       </v-flex>
     </v-layout>
@@ -31,41 +45,10 @@ interface User {
   lastName: string
 }
 @Component({
-  layout: 'insidepage',
-  async asyncData() {
-    let msg = 'hello class component'
-    return {
-      msg
-    }
-  },
-  data: () => ({})
+  layout: 'insidepage'
 })
 export default class YourComponent extends Vue {
-  name = ''
-  email = ''
-  select = null
-  picker = null
-  items = ['Item 1', 'Item 2', 'Item 3', 'Item 4']
-  checkbox = null
-  isActive = false
-  user = {
-    username: 'admin',
-    password: 'admin',
-    firstName: 'آرمین',
-    lastName: 'خیرخواهان'
-  }
-
-  async login() {
-    try {
-      let response = await this.$auth
-        .loginWith('local', { data: this.user })
-        .then(() => {
-          this.$toast.success().showSimple('با موفقیت وارد شدید')
-        })
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  contactus = {}
 }
 </script>
 

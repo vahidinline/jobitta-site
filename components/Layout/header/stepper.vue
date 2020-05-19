@@ -41,7 +41,7 @@
           >{{$t('stepper.chooseSessionTime')}}</v-stepper-step>
           <v-divider></v-divider>
           <v-stepper-step
-            @click="$router.push(`/experts/${$route.params.id}/login`)"
+            @click="$router.push(`/experts/${$route.params.id}/register`)"
             color="secondary"
             :complete="step > 3"
             step="3"

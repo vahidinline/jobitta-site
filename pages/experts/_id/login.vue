@@ -17,13 +17,13 @@ section {
     <div class="form-wrapper">
       <LoginForm @onLogin="onLogin" />
     </div>
-    <div class="notify-text">
+    <!-- <div class="notify-text">
       <v-icon size="40" color="orange">la-info-circle</v-icon>
       <div>
         <p>Your information is secured based on GDPR.</p>
         <p>Your information is secured based on GDPR.</p>
       </div>
-    </div>
+    </div>-->
     <div class="bottom-background"></div>
   </section>
 </template>

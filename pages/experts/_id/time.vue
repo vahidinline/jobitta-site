@@ -39,12 +39,12 @@
         </template>
       </TimeTable>
     </div>
-    <div class="notify-text">
+    <!-- <div class="notify-text">
       <img src="~assets/img/ic_info.png" alt />
       <div>
         <p>Your information is secured based on GDPR.</p>
       </div>
-    </div>
+    </div>-->
     <div class="bottom-background"></div>
   </section>
 </template>
@@ -65,7 +65,7 @@ export default class TimeSelect extends Vue {
   submit() {
     let Reservation = getModule(ReservationStore, this.$store)
     if (Reservation.info.reserve_time && Reservation.info.doctor_id) {
-      this.$router.push(this.$route.fullPath.replace('time', 'login'))
+      this.$router.push(this.$route.fullPath.replace('time', 'register'))
     } else {
       this.hasError = true
       setTimeout(() => {

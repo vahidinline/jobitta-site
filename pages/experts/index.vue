@@ -136,7 +136,7 @@
         hide-details
         append-icon="la-search"
         name="search"
-        label="Search Doctor"
+        label="Search Expert"
         clearable
         @input="onSearch"
         v-model="search"

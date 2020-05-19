@@ -190,10 +190,10 @@
         <v-skeleton-loader v-if="$fetchState.pending"></v-skeleton-loader>
         <timeTable v-else v-model="doctor.timetable"></timeTable>
       </div>
-      <div class="comments" v-if="doctor.reviews && doctor.reviews.length">
+      <!-- <div class="comments" v-if="doctor.reviews && doctor.reviews.length">
         <v-skeleton-loader v-if="$fetchState.pending"></v-skeleton-loader>
         <doctorComments v-else :doctor="doctor" />
-      </div>
+      </div>-->
     </div>
     <div class="fixed-bottom d-md-none">
       <div>
@@ -265,7 +265,7 @@ export default class component_name extends Vue {
       if (this.$auth.loggedIn) {
         return this.$router.push(`/experts/${this.$route.params.id}/invoice`)
       } else {
-        return this.$router.push(`/experts/${this.$route.params.id}/login`)
+        return this.$router.push(`/experts/${this.$route.params.id}/register`)
       }
     }
     let messge = this.$t('errors.selectTime')

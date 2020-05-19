@@ -146,12 +146,12 @@ ul {
         </p>
       </div>-->
     </v-card>
-    <div class="notify-text">
+    <!-- <div class="notify-text">
       <img src="~assets/img/ic_info.png" alt />
       <div>
         <p>Your information is secured based on GDPR.</p>
       </div>
-    </div>
+    </div>-->
     <div class="bottom-background"></div>
   </section>
 </template>
