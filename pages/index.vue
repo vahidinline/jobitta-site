@@ -139,10 +139,10 @@
     padding: 0 calcPading(4);
   }
   @include media(lg) {
-    padding: 0 calcPading(5);
+    padding: 0 calcPading(4);
   }
   @include media(xl) {
-    // padding: 0 calcPading(4);
+    padding: 0 calcPading(4);
     margin: -170px auto 0;
   }
   .doctor-item {
@@ -433,7 +433,7 @@ p {
             block
             :to="`/experts/${doctor.id}`"
           >
-            <span>{{doctor.price}}$</span>
+            <span>€ {{doctor.price}}</span>
             <span>Book Now</span>
           </v-btn>
         </div>
@@ -511,7 +511,7 @@ p {
 </template>
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import Comments from '@/components/Pages/home/comments.vue'
+import Comments from '@/components/Pages/Home/Comments.vue'
 
 Component.registerHooks(['fetch'])
 @Component({
@@ -523,7 +523,7 @@ Component.registerHooks(['fetch'])
 export default class Home extends Vue {
   doctors = []
   async fetch() {
-    this.doctors = await this.$service.doctors.homePageDoctors()
+    this.doctors = await this.$service.home.doctors({ limit: 4 })
   }
 }
 </script>

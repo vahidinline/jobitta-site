@@ -100,7 +100,9 @@ nav {
   <div class="header">
     <slot name="navicon"></slot>
     <div class="logo-wrapper">
-      <nuxt-link to="/">Expertgap</nuxt-link>
+      <nuxt-link to="/">
+        <img src="~assets/img/logo.png" alt />
+      </nuxt-link>
     </div>
     <nav>
       <ul>

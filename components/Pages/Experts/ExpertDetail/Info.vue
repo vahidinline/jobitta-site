@@ -114,7 +114,7 @@
         <v-divider v-if="doctor.medicalCouncilNumber" class="my-2"></v-divider>
         <li>
           <span>{{$t('pricing')}}</span>
-          <span class="orange--text">{{doctor.price}} {{$t('currency')}}</span>
+          <span class="orange--text">€ {{doctor.price}}</span>
         </li>
         <li>
           <span>{{$t('sessionDuration')}}</span>

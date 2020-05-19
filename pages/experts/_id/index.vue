@@ -199,7 +199,7 @@
       <div>
         <li>
           <span>{{$t('pricing')}}:</span>
-          <span class="orange--text">{{doctor.price}} {{$t('currency')}}</span>
+          <span class="orange--text">€ {{doctor.price}}</span>
         </li>
       </div>
       <v-btn class="subtitle-1" color="secondary" @click="reserveDoctor">{{$t('reserve')}}</v-btn>

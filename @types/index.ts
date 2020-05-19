@@ -1,6 +1,7 @@
 import DoctorService from '~/services/doctors'
 import AuthService from '~/services/auth'
 import { User } from '~/models/User'
+import HomeService from '~/services/home'
 interface IEnum {
   toSelect: { text: string; value: number }[]
 }
@@ -45,6 +46,7 @@ declare module 'vue/types/vue' {
   interface NuxtServiceInstance {
     doctors: DoctorService
     auth: AuthService
+    home: HomeService
   }
   interface NuxtEnumInstance {
     role: IEnum
