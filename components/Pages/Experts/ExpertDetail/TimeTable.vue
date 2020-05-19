@@ -235,10 +235,10 @@ export default class TimeSelect extends Vue {
       let offset = new Date().getTimezoneOffset()
       this.data[key].map((item: any) => {
         item.start = moment(item.start + ' +00:00', 'HH:mm Z')
-          .utcOffset(offset)
+          .utcOffset(offset * -1)
           .format('HH:mm')
         item.end = moment(item.end + ' +00:00', 'HH:mm Z')
-          .utcOffset(offset)
+          .utcOffset(offset * -1)
           .format('HH:mm')
         return item
       })

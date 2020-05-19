@@ -502,16 +502,15 @@ p {
     <Comments />
     <div class="get-start">
       <h3>Ready to Get Started?</h3>
-      <span class="subtitle-2">Find your right expert</span>
       <div>
-        <v-btn class="text-none" color="primary" to="/experts" outlined>See our Experts</v-btn>
+        <v-btn class="text-none" color="primary" to="/experts" outlined>Find an Expert</v-btn>
       </div>
     </div>
   </section>
 </template>
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import Comments from '@/components/Pages/Home/Comments.vue'
+import Comments from '@/components/Pages/home/comments.vue'
 
 Component.registerHooks(['fetch'])
 @Component({

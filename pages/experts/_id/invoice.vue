@@ -194,7 +194,7 @@ export default class Invoice extends Vue {
       data.reserve_time + ' +00:00',
       'YYYY-MM-DD HH:mm Z'
     )
-      .utcOffset(offset * -1)
+      .utcOffset(offset)
       .format('YYYY-MM-DD HH:mm')
     try {
       let result = await this.$axios.$post('reservations', data)
