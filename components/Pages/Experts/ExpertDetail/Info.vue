@@ -137,7 +137,8 @@
         </li>
         <v-divider class="my-2"></v-divider>
         <li>
-          <div v-if="$vuetify.breakpoint.smAndUp">
+          <!-- v-if="$vuetify.breakpoint.smAndUp"  -->
+          <div>
             <v-speed-dial
               bottom
               top
@@ -167,7 +168,7 @@
               </v-btn>
             </v-speed-dial>
           </div>
-          <div v-else>
+          <!-- <div v-else>
             <v-bottom-sheet v-model="share">
               <template v-slot:activator="{ on }">
                 <v-btn text color="primary" v-on="on" class="text-capitalize">
@@ -195,7 +196,7 @@
                 </v-list>
               </v-sheet>
             </v-bottom-sheet>
-          </div>
+          </div>-->
         </li>
       </ul>
     </div>
