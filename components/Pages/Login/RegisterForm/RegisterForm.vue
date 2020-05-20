@@ -19,9 +19,9 @@
         <v-text-field
           v-model="user.username"
           label="username"
-          name="username"
+          name="new-username"
           v-validate="'required'"
-          :error-messages="errors.collect('username')"
+          :error-messages="errors.collect('new-username')"
           outlined
         />
         <div cla>
@@ -30,11 +30,11 @@
             v-model="user.password"
             type="password"
             label="password"
-            name="password"
+            name="new-password"
             placeholder=" "
             v-validate="{required:true,regex:/^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{6,}$/}"
             ref="password"
-            :error-messages="errors.collect('password')"
+            :error-messages="errors.collect('new-password')"
             outlined
           />
           <span
