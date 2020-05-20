@@ -6,7 +6,10 @@
       <v-flex pa-4 md7>
         <v-img :src="require('@/assets/img/contactus.jpg')"></v-img>
         <div class="subtitle-1 mt-2">
-          <p>We look forward to hearing from you. You may like to check out our Frequently Asked Questions (hyperlink this and make different colour) for some quick answers.</p>
+          <p>
+            We look forward to hearing from you. You may like to check out our
+            <nuxt-link to="/faq">Frequently Asked Questions</nuxt-link>for some quick answers.
+          </p>
         </div>
       </v-flex>
       <v-flex pa-4 md5>

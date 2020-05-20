@@ -41,6 +41,10 @@ export default class YourComponent extends Vue {
       answer: `You will receive a full refund if you login to your dashboard and cancel within 48 hours of your scheduled consultation time.`
     },
     {
+      question: 'What is your refund policy?',
+      answer: `You will receive a full refund if you login to your dashboard and cancel within 48 hours of your scheduled consultation time.`
+    },
+    {
       question: 'What if I am not happy with your service?',
       answer:
         'If you are not satisfied with your first consultation, please fill out the queries form on the Contact page or email us: info@expertgap.co.uk. We will promptly liaise with you to arrange a session with an alternative expert in the same field of your query, free of charge. If you were still not satisfied, we will investigate the matter and process a refund. '
