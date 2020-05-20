@@ -40,10 +40,6 @@ import LoginForm from '@/components/Pages/Login/LoginForm/LoginForm.vue'
   }
 })
 export default class LoginPage extends Vue {
-  form = {
-    mobile: this.$auth.$storage.getCookie('login_mobile') || null
-  }
-
   onLogin() {
     this.$router.push('/')
   }

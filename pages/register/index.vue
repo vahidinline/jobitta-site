@@ -41,10 +41,6 @@ import RegisterForm from '@/components/Pages/Login/RegisterForm/RegisterForm.vue
   }
 })
 export default class LoginPage extends Vue {
-  form = {
-    mobile: this.$auth.$storage.getCookie('login_mobile') || null
-  }
-
   onRegister() {
     this.$router.push('/verify')
   }

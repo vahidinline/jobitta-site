@@ -215,7 +215,9 @@
             </p>
             <p class="title font-weight-medium">
               Based on the laws of some countries, you may have the right to request access to the personal information we collect from you, change that information, or delete it in some circumstances. To request to review, update, or delete your personal information, please visit:
-              <a href="mailto:connect@synergenventures.co.uk">connect@synergenventures.co.uk</a>. We will respond to your request within 30 days.
+              <a
+                href="mailto:connect@synergenventures.co.uk"
+              >connect@synergenventures.co.uk</a>. We will respond to your request within 30 days.
             </p>
           </div>
         </div>
@@ -225,46 +227,9 @@
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-interface User {
-  firstName: string
-  lastName: string
-}
 @Component({
-  layout: 'insidepage',
-  async asyncData() {
-    let msg = 'hello class component'
-    return {
-      msg
-    }
-  },
-  data: () => ({})
+  layout: 'insidepage'
 })
-export default class YourComponent extends Vue {
-  name = ''
-  email = ''
-  select = null
-  picker = null
-  items = ['Item 1', 'Item 2', 'Item 3', 'Item 4']
-  checkbox = null
-  isActive = false
-  user = {
-    username: 'admin',
-    password: 'admin',
-    firstName: 'آرمین',
-    lastName: 'خیرخواهان'
-  }
-
-  async login() {
-    try {
-      let response = await this.$auth
-        .loginWith('local', { data: this.user })
-        .then(() => {
-          this.$toast.success().showSimple('با موفقیت وارد شدید')
-        })
-    } catch (err) {
-      console.log(err)
-    }
-  }
-}
+export default class YourComponent extends Vue {}
 </script>
 

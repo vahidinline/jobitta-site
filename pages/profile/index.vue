@@ -15,8 +15,8 @@ import { Vue, Component, Prop, Watch, Emit, Ref } from 'vue-property-decorator'
   layout: 'insidepage'
 })
 export default class ProfilePage extends Vue {
-  logout() {
-    this.$auth.logout()
+  async logout() {
+    await this.$auth.logout()
   }
 }
 </script>

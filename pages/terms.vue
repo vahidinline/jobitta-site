@@ -153,46 +153,9 @@ p {
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-interface User {
-  firstName: string
-  lastName: string
-}
 @Component({
-  layout: 'insidepage',
-  async asyncData() {
-    let msg = 'hello class component'
-    return {
-      msg
-    }
-  },
-  data: () => ({})
+  layout: 'insidepage'
 })
-export default class YourComponent extends Vue {
-  name = ''
-  email = ''
-  select = null
-  picker = null
-  items = ['Item 1', 'Item 2', 'Item 3', 'Item 4']
-  checkbox = null
-  isActive = false
-  user = {
-    username: 'admin',
-    password: 'admin',
-    firstName: 'آرمین',
-    lastName: 'خیرخواهان'
-  }
-
-  async login() {
-    try {
-      let response = await this.$auth
-        .loginWith('local', { data: this.user })
-        .then(() => {
-          this.$toast.success().showSimple('با موفقیت وارد شدید')
-        })
-    } catch (err) {
-      console.log(err)
-    }
-  }
-}
+export default class YourComponent extends Vue {}
 </script>
 
