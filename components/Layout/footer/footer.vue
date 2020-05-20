@@ -83,7 +83,7 @@
       </ul>
     </div>
     <div class="copy-right">
-      <p>All rights reserved &copy; {{year}}</p>
+      <p>&copy;ExpertGap {{year}}- All rights reserved</p>
     </div>
   </div>
 </template>

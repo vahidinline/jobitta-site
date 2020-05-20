@@ -12,11 +12,7 @@
 <template>
   <v-container grid-list-xs>
     <v-img :src="require('@/assets/img/faq.jpg')"></v-img>
-    <div class="subtitle-1 mt-3">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam error dolore corrupti. Excepturi mollitia culpa, amet voluptatibus, ullam nihil labore, vitae sed nulla officia aspernatur corrupti quo est! Numquam, quam.</p>
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum non dolores suscipit adipisci debitis praesentium sit ipsum sed architecto nisi ipsam vitae odio tenetur ea corrupti, sequi reprehenderit corporis vel?</p>
-      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id repellendus doloribus ullam, pariatur voluptates facilis maiores earum, porro quod voluptatibus inventore, quas reprehenderit velit cum eligendi itaque! Quibusdam, eius laudantium?</p>
-    </div>
+    <div class="subtitle-1 mt-3"></div>
     <v-expansion-panels>
       <v-expansion-panel v-for="(faq,i) in faqs" :key="i">
         <v-expansion-panel-header>{{faq.question}}</v-expansion-panel-header>
@@ -37,39 +33,17 @@ interface User {
 export default class YourComponent extends Vue {
   faqs = [
     {
-      question: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
-      answer:
-        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus ullam reprehenderit iusto neque sint ipsam, sed fuga doloribus voluptatum. Voluptate, unde voluptatum. Iusto, tempora! Atque ex debitis perferendis dolore repudiandae.'
+      question: 'How secure is your payment system?',
+      answer: `All our payments are handled by our payment gateway partner company which is regulated by the Financial Conduct Authority (FCA) in the UK. The payment provider is PCI compliant which means they meet the highest security for protecting your details, as demanded by the Payment Card Industry Data Security Standard (PCI DSS). Your card data (card number, CVV code etc) is never disclosed to ExpertGap. The payment provider sends us an authorisation allowing us to charge your card. You can revoke this authorisation at any time.`
     },
     {
-      question: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
-      answer:
-        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus ullam reprehenderit iusto neque sint ipsam, sed fuga doloribus voluptatum. Voluptate, unde voluptatum. Iusto, tempora! Atque ex debitis perferendis dolore repudiandae.'
+      question: 'Where is my data stored?',
+      answer: `You will receive a full refund if you login to your dashboard and cancel within 48 hours of your scheduled consultation time.`
     },
     {
-      question: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
+      question: 'What if I am not happy with your service?',
       answer:
-        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus ullam reprehenderit iusto neque sint ipsam, sed fuga doloribus voluptatum. Voluptate, unde voluptatum. Iusto, tempora! Atque ex debitis perferendis dolore repudiandae.'
-    },
-    {
-      question: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
-      answer:
-        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus ullam reprehenderit iusto neque sint ipsam, sed fuga doloribus voluptatum. Voluptate, unde voluptatum. Iusto, tempora! Atque ex debitis perferendis dolore repudiandae.'
-    },
-    {
-      question: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
-      answer:
-        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus ullam reprehenderit iusto neque sint ipsam, sed fuga doloribus voluptatum. Voluptate, unde voluptatum. Iusto, tempora! Atque ex debitis perferendis dolore repudiandae.'
-    },
-    {
-      question: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
-      answer:
-        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus ullam reprehenderit iusto neque sint ipsam, sed fuga doloribus voluptatum. Voluptate, unde voluptatum. Iusto, tempora! Atque ex debitis perferendis dolore repudiandae.'
-    },
-    {
-      question: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
-      answer:
-        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus ullam reprehenderit iusto neque sint ipsam, sed fuga doloribus voluptatum. Voluptate, unde voluptatum. Iusto, tempora! Atque ex debitis perferendis dolore repudiandae.'
+        'If you are not satisfied with your first consultation, please fill out the queries form on the Contact page or email us: info@expertgap.co.uk. We will promptly liaise with you to arrange a session with an alternative expert in the same field of your query, free of charge. If you were still not satisfied, we will investigate the matter and process a refund. '
     }
   ]
 }

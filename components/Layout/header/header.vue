@@ -25,11 +25,8 @@
   color: var(--v-primary-darken2);
   font-weight: 600;
   margin-top: 10px;
-  @include media(sm) {
-    font-size: 3rem;
-    img {
-      max-width: 90%;
-    }
+  img {
+    max-width: 100%;
   }
 }
 .nvicon {

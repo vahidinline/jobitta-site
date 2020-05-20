@@ -175,23 +175,25 @@
                   <span>{{$t('share')}}</span>
                 </v-btn>
               </template>
-              <v-list class="share-list">
-                <v-subheader>Share in</v-subheader>
-                <v-list-item
-                  :class="tile.title"
-                  v-for="tile in tiles"
-                  :key="tile.title"
-                  :href="tile.url"
-                  target="_blank"
-                >
-                  <v-list-item-avatar>
-                    <v-avatar size="32px" tile>
-                      <v-icon>{{tile.icon}}</v-icon>
-                    </v-avatar>
-                  </v-list-item-avatar>
-                  <v-list-item-title>{{ tile.title }}</v-list-item-title>
-                </v-list-item>
-              </v-list>
+              <v-sheet>
+                <v-list class="share-list">
+                  <v-subheader>Share in</v-subheader>
+                  <v-list-item
+                    :class="tile.title"
+                    v-for="tile in tiles"
+                    :key="tile.title"
+                    :href="tile.url"
+                    target="_blank"
+                  >
+                    <v-list-item-avatar>
+                      <v-avatar size="32px" tile>
+                        <v-icon>{{tile.icon}}</v-icon>
+                      </v-avatar>
+                    </v-list-item-avatar>
+                    <v-list-item-title>{{ tile.title }}</v-list-item-title>
+                  </v-list-item>
+                </v-list>
+              </v-sheet>
             </v-bottom-sheet>
           </div>
         </li>

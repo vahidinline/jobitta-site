@@ -14,7 +14,7 @@ export default {
   workExperience: 'Experience',
   scientificBackground: 'Profile',
   availabalityDesc:
-    'You can select your preferred time after submitting your request.',
+    'Below you will see available sessions in your own time zone',
   sa: 'Sa',
   su: 'Su',
   mo: 'Mo',
@@ -41,8 +41,9 @@ export default {
     },
     time: {
       title:
-        'To schedule your session, please Select on of following time slots.',
-      error: 'please select one time',
+        'To schedule your session, please select one of the following time slots and click the Book a Session button.',
+      error:
+        'To schedule your session, please select one of the following time slots',
       continue: 'Continue'
     },
     invoice: {
@@ -72,6 +73,7 @@ export default {
     }
   },
   errors: {
-    selectTime: 'Select a Time then Continue'
+    selectTime:
+      'To schedule your session, please select one of the following time slots'
   }
 }

@@ -25,7 +25,7 @@
             prepend-inner-icon="$file"
             name="title"
             label="Attachments"
-            placeholder="You can add attachment later if it takes time"
+            placeholder="Add files here"
             v-model="contactus.attachment"
           >
             <template v-slot:selection="{ index, text }">

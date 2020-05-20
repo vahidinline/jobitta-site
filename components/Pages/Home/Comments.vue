@@ -106,8 +106,8 @@ section#comments {
       <div class="swiper-holder">
         <div v-swiper:mySwiperdesktop="swiperOptionDoctors">
           <div class="swiper-wrapper">
-            <div class="swiper-slide" v-for="item in reviews" :key="item">
-              <div class="card">{{item.text}}</div>
+            <div class="swiper-slide" v-for="item in reviews" :key="item.id">
+              <div class="card">“{{item.text}}”</div>
               <div class="profile">
                 <div class="image-wrapper">
                   <v-avatar>
