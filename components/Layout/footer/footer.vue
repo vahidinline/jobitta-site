@@ -85,6 +85,11 @@
     <div class="copy-right">
       <p>&copy;ExpertGap {{year}}- All rights reserved</p>
     </div>
+    <p class="text-center">
+      ExpertGap, 8 Northumberland Avenue, London, WC2N 5BY, United Kingdom
+      <br />
+      <span class="caption">ExpertGap is a trading name of Synergen Ventures Ltd</span>
+    </p>
   </div>
 </template>
 

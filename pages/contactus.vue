@@ -17,10 +17,32 @@
         <div class="subtitle-1 mb-2">
           <p>Please complete the form below to get in touch with any queries, concerns or feedback. We will get back to you promptly.</p>
         </div>
-        <div class="form">
-          <v-text-field v-model="contactus.fullname" outlined name="name" label="Full name"></v-text-field>
-          <v-text-field v-model="contactus.email" outlined name="name" label="Your email address"></v-text-field>
-          <v-textarea v-model="contactus.feedback" outlined name="title" label="Query/Feedback"></v-textarea>
+        <div class="form" ref="wrapper">
+          <v-text-field
+            v-validate="'required'"
+            :error-messages="errors.collect('name')"
+            v-model="contactus.name"
+            outlined
+            name="name"
+            label="Full name"
+          ></v-text-field>
+          <v-text-field
+            v-validate="'required|email'"
+            :error-messages="errors.collect('email')"
+            v-model="contactus.email"
+            outlined
+            name="email"
+            label="Your email address"
+          ></v-text-field>
+          <v-textarea
+            v-validate="'required'"
+            :error-messages="errors.collect('feedback')"
+            v-model="contactus.feedback"
+            outlined
+            name="feedback"
+            label="Query/Feedback"
+          ></v-textarea>
+          {{contactus.attachment}}
           <v-file-input
             outlined
             :show-size="1000"
@@ -35,7 +57,7 @@
               <v-chip color="deep-purple accent-4" dark label small>{{ text }}</v-chip>
             </template>
           </v-file-input>
-          <v-btn class="text-none" color="primary" outlined large>Submit</v-btn>
+          <v-btn class="text-none" color="primary" outlined large @click="submit">Submit</v-btn>
         </div>
       </v-flex>
     </v-layout>
@@ -51,7 +73,29 @@ interface User {
   layout: 'insidepage'
 })
 export default class YourComponent extends Vue {
-  contactus = {}
+  contactus: any = {}
+  loader = false
+  async submit() {
+    let valid = await this.$validator.validateAll()
+    if (!valid) {
+      return
+    }
+    let loader = this.$loader.show(this.$refs.wrapper)
+    try {
+      var formData = new FormData()
+      formData.append('attachment', this.contactus.attachment)
+      formData.append('name', this.contactus.name)
+      formData.append('email', this.contactus.email)
+      formData.append('feedback', this.contactus.feedback)
+      await this.$service.contactus.sotre(formData)
+      this.$toast.success().showSimple('Your message Send Successfully')
+      this.contactus = {}
+    } catch (error) {
+      console.log(error)
+      this.$toast.error().showSimple("Your message Didn't Send Successfully")
+    }
+    loader.hide()
+  }
 }
 </script>
 

@@ -96,7 +96,7 @@ export default {
     // Doc: https://github.com/nuxt-community/robots-module#readme
     '@nuxtjs/robots',
     // Doc: https://pwa.nuxtjs.org/
-    // '@nuxtjs/pwa',
+    '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/style-resources-module
     '@nuxtjs/style-resources',
     // Doc: https://github.com/nuxt-community/dotenv-module

@@ -16,6 +16,7 @@
     box-shadow: 0 7px 20px 0 rgba(0, 0, 0, 0.05);
     display: flex;
     width: calc(100% - 32px);
+    max-width: calc(100% - 32px);
     flex: 0 0 calc(100% - 32px);
     flex-direction: row;
     height: auto;
@@ -206,7 +207,7 @@ export default class DoctorList extends Vue {
   doctors: any[] = []
   page = 1
   lastPage = 1
-  perPage = 5
+  perPage = this.$vuetify.breakpoint.lgAndUp ? 10 : 5
   total = 0
   offsetTop = 0
   timeout!: any
@@ -226,8 +227,25 @@ export default class DoctorList extends Vue {
     this.perPage = data.perPage
     this.total = data.total
   }
-  mounted() {
+  async mounted() {
     window.addEventListener('scroll', this.onScroll)
+    console.log(this.$vuetify.breakpoint.lgAndUp)
+    // let scrollHeight = Math.max(
+    //   document.body.scrollHeight,
+    //   document.documentElement.scrollHeight,
+    //   document.body.offsetHeight,
+    //   document.documentElement.offsetHeight,
+    //   document.body.clientHeight,
+    //   document.documentElement.clientHeight
+    // )
+    // let offsetTop = window.pageYOffset
+    // let windowHeight = window.innerHeight
+    // if (window.innerHeight == scrollHeight) {
+    //   this.loading = true
+    //   this.page++
+    //   await this.getDoctors()
+    //   this.loading = false
+    // }
   }
   onScroll(e: any) {
     if (this.page >= this.lastPage) {

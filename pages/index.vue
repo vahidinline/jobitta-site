@@ -152,6 +152,7 @@
     box-shadow: 0 7px 20px 0 rgba(0, 0, 0, 0.2);
     display: flex;
     width: calc(100% - 32px);
+    max-width: calc(100% - 32px);
     flex: 0 0 calc(100% - 32px);
     flex-direction: row;
     height: auto;
