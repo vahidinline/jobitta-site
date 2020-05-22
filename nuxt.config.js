@@ -71,7 +71,7 @@ export default {
       'vrwebdesign-nuxt/assets/style/tools/_responsive.scss'
     ]
   },
-  plugins: ['@/plugins/vue-awesome-swiper.js'],
+  // plugins: ['@/plugins/vue-awesome-swiper.js'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -237,6 +237,12 @@ export default {
     /*
      ** You can extend webpack config here
      */
+    analyze: true,
+    // or
+    analyze: {
+      analyzerMode: 'static'
+    },
+    transpile: ['vrwebdesign-nuxt/modules/nuxt-dialog'],
     watch: ['services', 'enums'],
     // extractCSS: true,
     plugins: [
@@ -245,20 +251,31 @@ export default {
       })
     ],
     extend(config, ctx) {
-      const svgRule = config.module.rules.find(rule => {
+      if (ctx.isDev) {
+        config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
+      }
+      const svgRules = config.module.rules.filter(rule => {
         return rule.test.test('.svg')
       })
-      svgRule.test = /\.(png|jpe?g|gif|webp)$/
+      for (const rule of svgRules) {
+        rule.test = /\.(png|jpe?g|gif|webp)$/
+      }
+      const vueSvgLoader = [
+        {
+          loader: 'vue-svg-loader'
+        }
+      ]
+      if (config.name !== 'server') {
+        const jsxRule = config.module.rules.find(r => r.test.test('.jsx'))
+        const babelLoader = jsxRule.use[jsxRule.use.length - 1]
+        vueSvgLoader.unshift(babelLoader)
+      }
       config.module.rules.push({
-        test: /\.svg$/,
+        test: /\.svg$/i,
         oneOf: [
           {
             resourceQuery: /inline/,
-            use: [
-              {
-                loader: 'vue-svg-loader'
-              }
-            ]
+            use: vueSvgLoader
           },
           {
             loader: 'file-loader',
