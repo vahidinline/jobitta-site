@@ -28,19 +28,23 @@
     @include media(sm) {
       flex-direction: column;
       width: calc(50% - 32px);
+      max-width: calc(50% - 32px);
       flex: 0 0 calc(50% - 32px);
       margin: 16px;
     }
     @include media(md) {
       width: calc(33.3333% - 32px);
+      max-width: calc(33.3333% - 32px);
       flex: 0 0 calc(33.3333% - 32px);
     }
     @include media(lg) {
       width: calc(25% - 32px);
+      max-width: calc(25% - 32px);
       flex: 0 0 calc(25% - 32px);
     }
     @include media(xl) {
       width: calc(20% - 32px);
+      max-width: calc(20% - 32px);
       flex: 0 0 calc(20% - 32px);
     }
     &--info {

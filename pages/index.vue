@@ -161,6 +161,7 @@
     @include media(sm) {
       flex-direction: column;
       width: 220px;
+      max-width: 220px;
       flex: 0 0 220px;
       margin: 16px;
     }
