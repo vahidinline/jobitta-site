@@ -237,11 +237,6 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    analyze: true,
-    // or
-    analyze: {
-      analyzerMode: 'static'
-    },
     transpile: ['vrwebdesign-nuxt/modules/nuxt-dialog'],
     watch: ['services', 'enums'],
     // extractCSS: true,
