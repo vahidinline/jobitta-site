@@ -131,7 +131,7 @@ nav {
       class="header-btn login-btn text-none title"
     >
       <v-icon class="mr-2" size="28">la-user</v-icon>
-      <span>Login</span>
+      <span>Login / Register</span>
     </v-btn>
   </div>
 </template>

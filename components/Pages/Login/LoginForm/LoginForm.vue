@@ -18,21 +18,23 @@
         <p class="title">Login</p>
         <v-text-field
           v-model="form.username"
-          label="username"
+          label="Username"
           name="username"
           v-validate="'required'"
           :error-messages="errors.collect('username')"
+          @keypress.enter="onSubmit"
           outlined
         />
         <v-text-field
           v-model="form.password"
           autocomplete="password"
           type="password"
-          label="password"
+          label="Password"
           name="password"
           placeholder=" "
           v-validate="'required'"
           :error-messages="errors.collect('password')"
+          @keypress.enter="onSubmit"
           outlined
         />
         <v-btn block large color="primary" outlined class="text-none title" @click="onSubmit">Login</v-btn>
@@ -40,7 +42,7 @@
           You haven't registered yet?
           <a
             @click="$router.push($route.path.replace('login','register'))"
-          >register now</a>
+          >Register Now</a>
         </div>
       </form>
     </v-card>

@@ -1,7 +1,7 @@
 {
-  "name": "resaa-new",
+  "name": "expertgap",
   "version": "1.0.0",
-  "description": "My super-duper Nuxt.js project",
+  "description": "Video consultation with experts in your native language Türkçe, فارسی, عربی, हिन्दी, اُردُو",
   "author": "armin",
   "private": true,
   "scripts": {
@@ -26,6 +26,7 @@
     "@nuxtjs/sitemap": "^2.2.1",
     "@nuxtjs/style-resources": "^1.0.0",
     "@nuxtjs/svg": "^0.1.11",
+    "@nuxtjs/universal-storage": "^0.5.5",
     "@types/moment-jalaali": "^0.7.4",
     "@types/swiper": "^5.3.0",
     "animate.css": "^3.7.2",

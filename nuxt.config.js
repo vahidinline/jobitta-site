@@ -105,6 +105,8 @@ export default {
     '@nuxtjs/device',
     // Doc: https://github.com/nuxt-community/auth-module
     '@nuxtjs/auth',
+    // Doc: https://github.com/nuxt-community/universal-storage-module
+    '@nuxtjs/universal-storage',
     // Doc: https://github.com/vrwebdesign/vrwebdesign-nuxt
     'vrwebdesign-nuxt/modules/nuxt-client-init',
     'vrwebdesign-nuxt/modules/nuxt-global',

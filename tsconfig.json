@@ -23,6 +23,7 @@
       "@nuxtjs/device",
       "@nuxtjs/vuetify",
       "@nuxtjs/recaptcha",
+      "@nuxtjs/universal-storage",
       "vee-validate",
       "vrwebdesign-nuxt/modules/nuxt-dialog",
       "vrwebdesign-nuxt/modules/nuxt-toast",

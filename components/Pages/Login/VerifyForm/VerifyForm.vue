@@ -14,7 +14,9 @@
         <Icon fileName="ic_password.svg" />
       </div>
       <form class="pa-6" @submit.prevent="onSubmit">
-        <p class="desc font-weight-medium">token send to your phone number.</p>
+        <p
+          class="desc font-weight-medium"
+        >A text message with a 6-digit verification code was just sent to</p>
         <div class="d-flex align-center">
           <a @click="editPhone">
             <v-icon color="primary" class="mr-1">la-edit</v-icon>
@@ -25,15 +27,16 @@
         <v-text-field
           v-model="token"
           class="ltr-input mt-4"
-          placeholder="token"
+          placeholder="Enter the code"
           name="token"
           type="token"
           v-validate="{required:true,min:6,max:6,numeric:true}"
           :error-messages="errors.collect('token')"
+          @keypress.enter="onSubmit"
           outlined
         />
         <div class="forgot-password font-weight-medium">
-          <span>You have not received an SMS؟</span>
+          <span>You have not received an SMS?</span>
           <a @click="resendSms">Send again</a>
         </div>
         <v-btn class="mt-8 text-none" color="primary" block outlined @click="onSubmit">Verify</v-btn>

@@ -3,6 +3,7 @@ import AuthService from '~/services/auth'
 import { User } from '~/models/User'
 import HomeService from '~/services/home'
 import ContactusService from '~/services/contactus'
+import FAQService from '~/services/faq'
 interface IEnum {
   toSelect: { text: string; value: number }[]
 }
@@ -49,6 +50,7 @@ declare module 'vue/types/vue' {
     auth: AuthService
     home: HomeService
     contactus: ContactusService
+    faq: FAQService
   }
   interface NuxtEnumInstance {
     role: IEnum

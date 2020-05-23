@@ -158,7 +158,7 @@ export default class HomeReviews extends Vue {
   }
 
   async fetch() {
-    this.reviews = await this.$service.home.reviews({ limit: 4 })
+    this.reviews = await this.$service.home.reviews({ limit: 10 })
   }
 }
 </script>

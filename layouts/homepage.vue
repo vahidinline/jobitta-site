@@ -24,6 +24,23 @@
     <div class="scrollTop" :class="{show:toTopButton}" @click="scrollToTop">
       <v-icon color="white" size="32">la-arrow-up</v-icon>
     </div>
+    <v-bottom-sheet v-model="sheet" persistent dark>
+      <v-sheet class="text-center pa-4" height="100px">
+        <div id="cookie-policy-info">
+          <div class="cookie-policy-wrap">
+            <div class="cookie-text-wrap">
+              <p>
+                We use cookies to ensure that you have the best experience on our website. If you continue to use this site we assume that you accept this.
+                <nuxt-link class="info--text" target="_blank" to="/privacy">learn more</nuxt-link>.
+              </p>
+            </div>
+            <div class="cookie-btn-box">
+              <v-btn color="info" outlined @click="acceptCookies">Accept Cookies</v-btn>
+            </div>
+          </div>
+        </div>
+      </v-sheet>
+    </v-bottom-sheet>
   </v-app>
 </template>
 <script lang="ts">
@@ -46,12 +63,16 @@ import { Vue, Component } from 'vue-property-decorator'
 export default class HomePage extends Vue {
   drawer = false
   toTopButton = false
+  sheet = false
   beforeCreate() {
     this.$i18n.setLocale('en')
     this.$vuetify.rtl = false
   }
   mounted() {
     window.addEventListener('scroll', this.onScroll)
+    if (!this.$storage.getCookie('accept_cookie')) {
+      this.sheet = true
+    }
   }
   destroyed() {
     window.removeEventListener('scroll', this.onScroll)
@@ -67,6 +88,10 @@ export default class HomePage extends Vue {
     this.$vuetify.goTo(0, {
       duration: 1000
     })
+  }
+  acceptCookies() {
+    this.sheet = false
+    this.$storage.setCookie('accept_cookie', 'true')
   }
 }
 </script>

@@ -17,11 +17,24 @@
       <form class="pa-6" @submit.prevent="onSubmit">
         <p class="title">Register</p>
         <v-text-field
-          v-model="user.username"
-          label="username"
-          name="new-username"
+          autocomplete="name"
+          v-model="user.name"
+          type="name"
+          label="Name"
+          name="name"
+          placeholder=" "
           v-validate="'required'"
-          :error-messages="errors.collect('new-username')"
+          :error-messages="errors.collect('name')"
+          @keypress.enter="onSubmit"
+          outlined
+        />
+        <v-text-field
+          v-model="user.username"
+          label="Username"
+          name="username"
+          v-validate="'required'"
+          :error-messages="errors.collect('username')"
+          @keypress.enter="onSubmit"
           outlined
         />
         <div cla>
@@ -29,39 +42,30 @@
             autocomplete="password"
             v-model="user.password"
             type="password"
-            label="password"
-            name="new-password"
+            label="Password"
+            name="password"
             placeholder=" "
-            v-validate="{required:true,regex:/^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{6,}$/}"
+            v-validate="{required:true,regex:/^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{6,}$/}"
             ref="password"
-            :error-messages="errors.collect('new-password')"
+            :error-messages="errors.collect('password')"
+            @keypress.enter="onSubmit"
             outlined
           />
           <span
             v-if="errors.collect('password')"
             class="caption mb-3 d-flex"
-          >password must include [!@#$&*] [a-z] [0-9] [A-Z] and at least 6 charachter</span>
+          >password must include [a-z] [0-9] [A-Z] and at least 6 charachter</span>
         </div>
         <v-text-field
           autocomplete="password"
           v-model="user.confirmpassword"
           type="password"
-          label="confirm password"
+          label="Confirm Password"
           name="confirm password"
           placeholder=" "
           v-validate="'required|confirmed:password'"
           :error-messages="errors.collect('confirm password')"
-          outlined
-        />
-        <v-text-field
-          autocomplete="name"
-          v-model="user.name"
-          type="name"
-          label="name"
-          name="name"
-          placeholder=" "
-          v-validate="'required'"
-          :error-messages="errors.collect('name')"
+          @keypress.enter="onSubmit"
           outlined
         />
 
@@ -71,11 +75,12 @@
               autocomplete="code"
               v-model="user.code"
               type="code"
-              label="code"
+              label="Code"
               name="code"
               placeholder="+44"
               v-validate="{required:true,regex:/^\+\d{0,3}$/}"
               :error-messages="errors.collect('code')"
+              @keypress.enter="onSubmit"
               outlined
             />
           </v-flex>
@@ -84,11 +89,12 @@
               autocomplete="mobile"
               v-model="user.mobile"
               type="mobile"
-              label="mobile"
+              label="Mobile"
               name="mobile"
               placeholder=" "
               v-validate="{required:true,regex:/^\d{10}$/}"
               :error-messages="errors.collect('mobile')"
+              @keypress.enter="onSubmit"
               outlined
             />
           </v-flex>
@@ -97,11 +103,12 @@
           autocomplete="email"
           v-model="user.email"
           type="email"
-          label="email"
+          label="Email"
           name="email"
           placeholder=" "
           v-validate="'required|email'"
           :error-messages="errors.collect('email')"
+          @keypress.enter="onSubmit"
           outlined
         />
         <v-btn
@@ -116,7 +123,7 @@
           Have you registered before?
           <a
             @click="$router.push($route.path.replace('register','login'))"
-          >login now</a>
+          >Login Now</a>
         </div>
       </form>
     </v-card>
@@ -146,7 +153,7 @@ export default class LoginForm extends Vue {
     let data = { ...this.user }
     try {
       const token = await this.$recaptcha.execute('login')
-      this.user.recaptcha = token
+      data.recaptcha = token
       data.mobile = data.code + data.mobile
       let user = await this.$service.auth.register(data)
       this.$auth.setUserToken(user.token)

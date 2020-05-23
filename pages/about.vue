@@ -3,10 +3,10 @@
 <template>
   <v-container grid-list-xs>
     <v-layout row wrap>
-      <v-flex pa-2 md5>
+      <v-flex pa-2 md5 order-md-1 order-sm-2>
         <v-img :src="require('@/assets/img/about.png')"></v-img>
       </v-flex>
-      <v-flex pa-2 md7>
+      <v-flex pa-2 md7 order-md-2 order-sm-1>
         <div class="subtitle-1">
           <p>The diverse and growing team of Experts on the ExpertGap platform share exceptional commitment to clients as a core value. They are driven by the desire to support people and especially ethnic minorities with their personal, developmental and professional challenges and milestones. ExpertGap strives in its mission to bridge the gap that is often presented by language and cultural barriers for achieving the heights of personal and professional development, while simultaneously nurturing the roots of rich native cultures in modern lifestyles.</p>
           <p>ExpertGap provides you with the opportunity to conveniently connect with Experts in a range of areas, in your native language. The background and credentials of Experts in the ExpertGap Network are vetted to ensure a high level of expertise. They are selected to match a range of ethnic and cultural backgrounds for a more personalised and empathetic consultation and extra peace of mind. We have matched these unique characteristics with affordable prices, in order to enhance access to expert support and mentoring for people from all walks of life.</p>
