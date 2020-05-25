@@ -1,4 +1,3 @@
-
 <style lang="scss">
 .homepage {
   background: #fff;
@@ -25,7 +24,7 @@
       <v-icon color="white" size="32">la-arrow-up</v-icon>
     </div>
     <v-bottom-sheet v-model="sheet" persistent dark>
-      <v-sheet class="text-center pa-4" height="100px">
+      <v-sheet class="text-center pa-4">
         <div id="cookie-policy-info">
           <div class="cookie-policy-wrap">
             <div class="cookie-text-wrap">
