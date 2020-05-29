@@ -7,8 +7,9 @@
         <v-img :src="require('@/assets/img/contactus.jpg')"></v-img>
         <div class="subtitle-1 mt-2">
           <p>
-            We look forward to hearing from you. You may like to check out our
-            <nuxt-link to="/faq">Frequently Asked Questions</nuxt-link>for some quick answers.
+            <span>We look forward to hearing from you. You may like to check out our</span>
+            <nuxt-link to="/faq">Frequently Asked Questions</nuxt-link>
+            <span>for some quick answers.</span>
           </p>
         </div>
       </v-flex>
