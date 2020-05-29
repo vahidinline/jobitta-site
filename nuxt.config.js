@@ -141,7 +141,7 @@ export default {
    ** See https://auth.nuxtjs.org/api/auth.html
    */
   auth: {
-    cookie: false,
+    // cookie: false,
     redirect: {
       login: '/login',
       home: false

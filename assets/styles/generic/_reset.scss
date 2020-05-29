@@ -10,3 +10,14 @@ input:-webkit-autofill:active {
         letter-spacing: normal;
     }
 }
+.vr-badge.badge-dot {
+    @include ltr() {
+        height: auto;
+        padding: 0;
+        justify-content: flex-start;
+        span.dot {
+            margin-right: 4px;
+            margin-left: auto;
+        }
+    }
+}

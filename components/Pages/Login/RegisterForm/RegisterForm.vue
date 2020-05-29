@@ -35,7 +35,7 @@
           @keypress.enter="onSubmit"
           outlined
         />
-        <div cla>
+        <div>
           <v-text-field
             autocomplete="new-password"
             v-model="user.password"
@@ -150,6 +150,7 @@ export default class LoginForm extends Vue {
   user: any = {
     code: ''
   }
+
   mounted() {
     if (this.$auth.user && this.$auth.user.mobile) {
       this.user = { ...this.$auth.user }
@@ -181,7 +182,7 @@ export default class LoginForm extends Vue {
     try {
       const token = await this.$recaptcha.execute('login')
       data.recaptcha = token
-      data.mobile = '+' + data.code + data.mobile
+      data.mobile = data.code + data.mobile
       let user = await this.$service.auth.register(data)
       this.$auth.setUserToken(user.token)
       this.$auth.setUser(data)

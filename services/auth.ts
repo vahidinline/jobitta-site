@@ -1,5 +1,6 @@
 import { ResultProfile } from '@/models/Auth'
 import { NuxtAxiosInstance } from 'vrwebdesign-nuxt/modules/nuxt-axios/types'
+import { User } from '~/models/User'
 interface IAuthParams {
   username: string
   password: string
@@ -12,8 +13,17 @@ export default class AuthService {
   login(params: IAuthParams): Promise<any> {
     return this.$axios.$post('auth/login', params)
   }
-  getProfile(userId: string): Promise<ResultProfile> {
-    return this.$axios.$get(`/Accounts/${userId}/Profile`)
+  getProfile(): Promise<{ user: User }> {
+    return this.$axios.$get(`/auth/user`)
+  }
+  updateProfile(data: User): Promise<{ user: User }> {
+    return this.$axios.$post(`/auth/user`, data)
+  }
+  reservations(): Promise<any[]> {
+    return this.$axios.$get(`/auth/reservations`)
+  }
+  waiting_calls(): Promise<Object> {
+    return this.$axios.$get(`/auth/waiting_calls`)
   }
   verify(token: string): Promise<ResultProfile> {
     return this.$axios.$post(`auth/verify`, { token })

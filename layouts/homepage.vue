@@ -40,6 +40,22 @@
         </div>
       </v-sheet>
     </v-bottom-sheet>
+    <v-bottom-sheet v-model="inprogress_call">
+      <v-sheet class="text-center pa-4">
+        <div id="cookie-policy-info">
+          <div class="cookie-policy-wrap">
+            <div class="cookie-text-wrap">
+              <p class="title">
+                <v-icon class="mr-2" size="32" color="secondary">las la-hourglass-half</v-icon>You have 1 or more inprogress order
+              </p>
+            </div>
+            <div class="cookie-btn-box">
+              <v-btn color="info" class="text-none" outlined to="/profile">See Detail</v-btn>
+            </div>
+          </div>
+        </div>
+      </v-sheet>
+    </v-bottom-sheet>
   </v-app>
 </template>
 <script lang="ts">
@@ -63,6 +79,7 @@ export default class HomePage extends Vue {
   drawer = false
   toTopButton = false
   sheet = false
+  inprogress_call: boolean | Object = false
   beforeCreate() {
     this.$i18n.setLocale('en')
     this.$vuetify.rtl = false
@@ -72,7 +89,13 @@ export default class HomePage extends Vue {
     if (!this.$storage.getCookie('accept_cookie')) {
       this.sheet = true
     }
+    this.waiting_calls()
   }
+  async waiting_calls() {
+    if (!this.$auth.loggedIn) return
+    this.inprogress_call = await this.$service.auth.waiting_calls()
+  }
+
   destroyed() {
     window.removeEventListener('scroll', this.onScroll)
   }
