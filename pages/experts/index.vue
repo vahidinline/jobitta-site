@@ -146,14 +146,12 @@
         @input="onSearch"
         v-model="search"
       ></v-text-field>
-      <!-- <v-select outlined :items="items" v-model="value" label="Speciality"></v-select>
-      <v-select outlined append-icon="la-sort" :items="items" v-model="value" label="Sort By"></v-select>-->
     </section>
     <section class="doctors">
       <template v-if="$fetchState.pending">
         <v-skeleton-loader
           :loading="true"
-          v-for="item in 5"
+          v-for="item in numOfItems"
           :key="'fetch'+item"
           class="doctors--item"
           type="image,list-item-two-line, actions"
@@ -189,7 +187,7 @@
       <template v-if="loading">
         <v-skeleton-loader
           :loading="true"
-          v-for="item in 5"
+          v-for="item in numOfItems"
           :key="'loading'+item"
           class="doctors--item"
           type="image,list-item-two-line, actions"
@@ -205,7 +203,6 @@ Component.registerHooks(['fetch'])
   layout: 'insidepage'
 })
 export default class DoctorList extends Vue {
-  items = [1, 2, 3, 4, 5, 6]
   value = 1
   search = ''
   doctors: any[] = []
@@ -216,6 +213,20 @@ export default class DoctorList extends Vue {
   offsetTop = 0
   timeout!: any
   loading = false
+
+  get numOfItems() {
+    let items = 5
+    if (this.$vuetify.breakpoint.lgAndDown) {
+      items = 4
+    }
+    if (this.$vuetify.breakpoint.mdAndDown) {
+      items = 3
+    }
+    if (this.$vuetify.breakpoint.smAndDown) {
+      items = 2
+    }
+    return items
+  }
   async fetch() {
     await this.getDoctors()
   }
