@@ -187,8 +187,8 @@ export default {
     treeShake: true,
     customVariables: ['~/assets/styles/setting/_variables.scss'],
     defaultAssets: {
-      icons: 'md',
-      font: undefined
+      icons: 'md'
+      // font: undefined
     },
     lang: {
       locales: { fa: require('vuetify/src/locale/fa').default },

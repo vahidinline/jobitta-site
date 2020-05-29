@@ -25,13 +25,13 @@
       <v-icon color="white" size="32">la-arrow-up</v-icon>
     </div>
     <v-bottom-sheet v-model="sheet" persistent dark>
-      <v-sheet class="text-center pa-4" height="100px">
+      <v-sheet class="text-center pa-4">
         <div id="cookie-policy-info">
           <div class="cookie-policy-wrap">
             <div class="cookie-text-wrap">
               <p>
                 We use cookies to ensure that you have the best experience on our website. If you continue to use this site we assume that you accept this.
-                <nuxt-link class="info--text" target="_blank" to="/privacy">learn more</nuxt-link>.
+                <nuxt-link class="info--text" target="_blank" to="/privacy">learn more</nuxt-link>
               </p>
             </div>
             <div class="cookie-btn-box">

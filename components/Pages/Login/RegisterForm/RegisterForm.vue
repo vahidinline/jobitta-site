@@ -17,12 +17,10 @@
       <form class="pa-6" @submit.prevent="onSubmit">
         <p class="title">Register</p>
         <v-text-field
-          autocomplete="name"
+          autocomplete="new-name"
           v-model="user.name"
-          type="name"
           label="Name"
           name="name"
-          placeholder=" "
           v-validate="'required'"
           :error-messages="errors.collect('name')"
           @keypress.enter="onSubmit"
@@ -39,12 +37,11 @@
         />
         <div cla>
           <v-text-field
-            autocomplete="password"
+            autocomplete="new-password"
             v-model="user.password"
             type="password"
             label="Password"
             name="password"
-            placeholder=" "
             v-validate="{required:true,regex:/^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{6,}$/}"
             ref="password"
             :error-messages="errors.collect('password')"
@@ -53,32 +50,49 @@
           />
           <span
             v-if="errors.collect('password')"
-            class="caption mb-3 d-flex"
-          >password must include [a-z] [0-9] [A-Z] and at least 6 charachter</span>
+            class="caption mb-3 d-flex ml-2"
+          >password must include [a-z] [0-9] [A-Z] and at least 6 character</span>
         </div>
         <v-text-field
-          autocomplete="password"
           v-model="user.confirmpassword"
           type="password"
           label="Confirm Password"
           name="confirm password"
-          placeholder=" "
           v-validate="'required|confirmed:password'"
           :error-messages="errors.collect('confirm password')"
           @keypress.enter="onSubmit"
           outlined
         />
-
+        <v-autocomplete
+          v-model="user.country"
+          outlined
+          :items="counteryCodes"
+          label="Country"
+          name="country"
+          v-validate="'required'"
+          item-value="dial_code"
+          item-text="name"
+          :error-messages="errors.collect('country')"
+          return-object
+          @change="onSelectCountery"
+        >
+          <template v-slot:item="{item}">
+            <template>
+              <v-list-item-content>
+                <v-list-item-title>{{item.dial_code}} {{item.code}}</v-list-item-title>
+                <v-list-item-subtitle v-html="item.name"></v-list-item-subtitle>
+              </v-list-item-content>
+            </template>
+          </template>
+        </v-autocomplete>
         <v-layout row wrap>
           <v-flex xs3 px-3>
             <v-text-field
-              autocomplete="code"
+              readonly
               v-model="user.code"
               type="code"
               label="Code"
               name="code"
-              placeholder="+44"
-              v-validate="{required:true,regex:/^\+\d{0,3}$/}"
               :error-messages="errors.collect('code')"
               @keypress.enter="onSubmit"
               outlined
@@ -91,7 +105,6 @@
               type="mobile"
               label="Mobile"
               name="mobile"
-              placeholder=" "
               v-validate="{required:true,regex:/^\d{10}$/}"
               :error-messages="errors.collect('mobile')"
               @keypress.enter="onSubmit"
@@ -105,7 +118,6 @@
           type="email"
           label="Email"
           name="email"
-          placeholder=" "
           v-validate="'required|email'"
           :error-messages="errors.collect('email')"
           @keypress.enter="onSubmit"
@@ -135,16 +147,31 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 
 @Component
 export default class LoginForm extends Vue {
-  get user(): any {
-    let user: any = { ...this.$auth.user }
-    if (user && user.mobile) {
+  user: any = {
+    code: ''
+  }
+  mounted() {
+    if (this.$auth.user && this.$auth.user.mobile) {
+      this.user = { ...this.$auth.user }
       let code, mobile
-      mobile = user.mobile.slice(user.mobile.length - 10, user.mobile.length)
-      code = user.mobile.slice(0, user.mobile.length - 10)
-      user.mobile = mobile
-      user.code = code
+      mobile = this.user.mobile.slice(
+        this.user.mobile.length - 10,
+        this.user.mobile.length
+      )
+      code = this.user.mobile.slice(0, this.user.mobile.length - 10)
+      this.user.mobile = mobile
+      this.user.code = code
     }
-    return user || {}
+  }
+  get counteryCodes() {
+    return this.$store.state.geo.countries
+  }
+  onSelectCountery() {
+    if (this.user.country) {
+      this.user.code = this.user.country.dial_code
+    } else {
+      this.user.code = null
+    }
   }
   async onSubmit() {
     let valid = await this.$validator.validate()
@@ -154,7 +181,7 @@ export default class LoginForm extends Vue {
     try {
       const token = await this.$recaptcha.execute('login')
       data.recaptcha = token
-      data.mobile = data.code + data.mobile
+      data.mobile = '+' + data.code + data.mobile
       let user = await this.$service.auth.register(data)
       this.$auth.setUserToken(user.token)
       this.$auth.setUser(data)

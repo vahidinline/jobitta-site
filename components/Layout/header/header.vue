@@ -119,7 +119,7 @@ nav {
       class="header-btn text-none title"
     >
       <v-icon class="mr-2" size="28">la-user</v-icon>
-      <span>Welcome {{$auth.user.name}}</span>
+      <span>{{$auth.user.name}}</span>
     </v-btn>
     <v-btn
       v-else

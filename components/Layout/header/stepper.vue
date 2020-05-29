@@ -10,9 +10,19 @@
     z-index: 99;
     display: flex;
     height: 100%;
+    width: 200px;
     align-items: center;
     font-size: 3rem;
     padding-left: 32px;
+    @include media(lg) {
+      width: auto;
+    }
+    a {
+      display: flex;
+    }
+    img {
+      max-width: 100%;
+    }
   }
 }
 </style>
@@ -20,7 +30,9 @@
   <div>
     <div class="step-wrapper">
       <div class="logo-wrapper">
-        <nuxt-link to="/">Expertgap</nuxt-link>
+        <nuxt-link to="/">
+          <img src="~assets/img/logo.png" alt />
+        </nuxt-link>
       </div>
       <v-stepper :value="current" alt-labels :class="'step-'+current">
         <v-stepper-header>

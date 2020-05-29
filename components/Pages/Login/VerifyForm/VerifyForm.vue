@@ -19,15 +19,15 @@
         >A text message with a 6-digit verification code was just sent to</p>
         <div class="d-flex align-center">
           <a @click="editPhone">
-            <v-icon color="primary" class="mr-1">la-edit</v-icon>
-            <span>edit phone number</span>
+            <!-- <v-icon color="primary" class="mr-1">la-edit</v-icon>
+            <span>edit phone number</span>-->
             <span>{{ user?user.mobile:'' }}</span>
           </a>
         </div>
         <v-text-field
           v-model="token"
           class="ltr-input mt-4"
-          placeholder="Enter the code"
+          placeholder="Enter code"
           name="token"
           type="token"
           v-validate="{required:true,min:6,max:6,numeric:true}"
@@ -35,11 +35,11 @@
           @keypress.enter="onSubmit"
           outlined
         />
+        <v-btn class="mb-4 text-none" color="primary" block outlined @click="onSubmit">Verify</v-btn>
         <div class="forgot-password font-weight-medium">
-          <span>You have not received an SMS?</span>
+          <span>Not received a text message?</span>
           <a @click="resendSms">Send again</a>
         </div>
-        <v-btn class="mt-8 text-none" color="primary" block outlined @click="onSubmit">Verify</v-btn>
       </form>
     </v-card>
   </div>

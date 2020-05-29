@@ -48,7 +48,7 @@
           text
         >
           <v-icon size="30" class="mr-2">la-user</v-icon>
-          <span>Welcome {{$auth.user.name}}</span>
+          <span>{{$auth.user.name}}</span>
         </v-btn>
         <v-btn v-else class="ma-4 text-none subtitle-1" to="/login" color="primary" large outlined>
           <v-icon size="30" class="mr-2">la-user</v-icon>
