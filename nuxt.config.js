@@ -141,7 +141,7 @@ export default {
    ** See https://auth.nuxtjs.org/api/auth.html
    */
   auth: {
-    // cookie: false,
+    cookie: false,
     redirect: {
       login: '/login',
       home: false
@@ -163,6 +163,15 @@ export default {
       }
     }
   },
+  serverMiddleware: [
+    {
+      path: '/profile',
+      handler: (req, res, next) => {
+        res.spa = true
+        next()
+      }
+    }
+  ],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options

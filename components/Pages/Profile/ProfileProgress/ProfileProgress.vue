@@ -1,7 +1,6 @@
 <style lang="scss" scoped>
 .profile-progress {
   flex-wrap: wrap;
-  .right,
   .left {
     min-width: 100%;
   }
@@ -10,9 +9,12 @@
     flex-wrap: wrap;
     text-align: center;
     justify-content: center;
-    .desc {
-      min-width: 100%;
-      margin-bottom: 15px;
+    .v-btn {
+      margin-top: 8px;
+      .desc {
+        min-width: 100%;
+        margin-bottom: 15px;
+      }
     }
     ::v-deep {
       button {
@@ -32,7 +34,7 @@
       <v-progress-linear background-color="13d1f3" height="8" :value="percentage" rounded />
     </div>-->
 
-    <div class="left d-flex align-center">
+    <div class="left">
       <div
         class="desc font-weight-medium"
       >Update your personal infromation then we can help you better.</div>
