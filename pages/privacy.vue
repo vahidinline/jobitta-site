@@ -23,10 +23,7 @@
   <v-container grid-list-xs>
     <v-layout row wrap>
       <v-flex pa-2 md5>
-        <v-img
-          class="sticky"
-          :src="require('@/assets/img/privacy.png')"
-        ></v-img>
+        <v-img class="sticky" :src="require('@/assets/img/privacy.png')"></v-img>
       </v-flex>
       <v-flex pa-2 md7>
         <div class="subtitle-1">
@@ -43,7 +40,9 @@
             in this privacy notice as "Services"). If you have any questions or
             concerns about this policy, or our practices with regards to your
             personal information, please contact us at info
-            <a href="mailto:info@expertgap.co.uk">info@expertgap.co.uk</a>.
+            <a
+              href="mailto:info@expertgap.co.uk"
+            >info@expertgap.co.uk</a>.
           </p>
           <p>
             When you use our website and use our services, you accept and agree
@@ -55,75 +54,53 @@
             acknowledge to all the terms contained in both of them.
           </p>
           <p>
-            <b
-              >Please read this privacy notice carefully as it will help you
+            <b>
+              Please read this privacy notice carefully as it will help you
               make informed decisions about sharing your personal information
-              with us.</b
-            >
+              with us.
+            </b>
           </p>
           <div class="questionNumbers">
             <h2>TABLE OF CONTENTS</h2>
             <p>
-              <a @click="scroll(1)">
-                1. WHAT INFORMATION DO WE COLLECT?
-              </a>
+              <a @click="scroll(1)">1. WHAT INFORMATION DO WE COLLECT?</a>
             </p>
             <p>
-              <a @click="scroll(2)">
-                2. HOW DO WE USE YOUR INFORMATION?
-              </a>
+              <a @click="scroll(2)">2. HOW DO WE USE YOUR INFORMATION?</a>
             </p>
             <p>
-              <a @click="scroll(3)">
-                3. WILL YOUR INFORMATION BE SHARED WITH ANYONE?
-              </a>
+              <a @click="scroll(3)">3. WILL YOUR INFORMATION BE SHARED WITH ANYONE?</a>
             </p>
             <p>
-              <a @click="scroll(4)">
-                4. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?
-              </a>
+              <a @click="scroll(4)">4. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?</a>
             </p>
             <p>
-              <a @click="scroll(5)">
-                5. HOW LONG DO WE KEEP YOUR INFORMATION?
-              </a>
+              <a @click="scroll(5)">5. HOW LONG DO WE KEEP YOUR INFORMATION?</a>
             </p>
             <p>
-              <a @click="scroll(6)">
-                6. HOW DO WE KEEP YOUR INFORMATION SAFE?
-              </a>
+              <a @click="scroll(6)">6. HOW DO WE KEEP YOUR INFORMATION SAFE?</a>
             </p>
             <p>
-              <a @click="scroll(7)">
-                7. DO WE COLLECT INFORMATION FROM MINORS?
-              </a>
+              <a @click="scroll(7)">7. DO WE COLLECT INFORMATION FROM MINORS?</a>
             </p>
             <p>
-              <a @click="scroll(8)"> 8. WHAT ARE YOUR PRIVACY RIGHTS?</a>
+              <a @click="scroll(8)">8. WHAT ARE YOUR PRIVACY RIGHTS?</a>
             </p>
             <p>
-              <a @click="scroll(9)">
-                9. CONTROLS FOR DO-NOT-TRACK FEATURES?
-              </a>
+              <a @click="scroll(9)">9. CONTROLS FOR DO-NOT-TRACK FEATURES?</a>
             </p>
             <p>
-              <a @click="scroll(10)">
-                10. DO WE MAKE UPDATES TO THIS POLICY?
-              </a>
+              <a @click="scroll(10)">10. DO WE MAKE UPDATES TO THIS POLICY?</a>
             </p>
             <P>
-              <a @click="scroll(11)">
-                11. HOW CAN YOU CONTACT US ABOUT THIS POLICY?
-              </a>
+              <a @click="scroll(11)">11. HOW CAN YOU CONTACT US ABOUT THIS POLICY?</a>
             </P>
           </div>
 
           <div class="item" id="one">
             <h2>1. WHAT INFORMATION DO WE COLLECT?</h2>
             <p>
-              <b>
-                Information collected through our Services
-              </b>
+              <b>Information collected through our Services</b>
             </p>
             <p>
               In order to allow you to use our services effectively, we may have
@@ -165,11 +142,9 @@
               contract with you, with your consent, and/or for compliance with
               our legal obligations
             </p>
+            <p>We use the information we collect or receive:</p>
             <p>
-              We use the information we collect or receive:
-            </p>
-            <p>
-              <b>■ To facilitate account creation and logon process. </b> If you
+              <b>■ To facilitate account creation and logon process.</b> If you
               choose to link your account with us to a third party account (such
               as your Google or Instagram account), we use the information you
               allowed us to collect from those third parties to facilitate
@@ -177,7 +152,7 @@
               contract.
             </p>
             <p>
-              <b> To send you marketing and promotional communications. </b>We
+              <b>To send you marketing and promotional communications.</b>We
               may use the personal information you send to us for our marketing
               purposes, if this is in accordance with your marketing
               preferences. You can opt-out of our marketing emails at any time
@@ -185,24 +160,18 @@
             </p>
 
             <p>
-              <b>
-                ■ To send administrative information to you.
-              </b>
+              <b>■ To send administrative information to you.</b>
               We may use your personal information to send you product, service
               and new feature information and/or information about changes to
               our terms, conditions, and policies.
             </p>
             <p>
-              <b>
-                ■ Fulfill and manage your orders.
-              </b>
+              <b>■ Fulfill and manage your orders.</b>
               We may use your information to fulfill and manage your orders,
               payments, returns, and exchanges made through the Services.
             </p>
             <p>
-              <b>
-                ■ To provide location-based services.
-              </b>
+              <b>■ To provide location-based services.</b>
               We may request access or permission to and track location-based
               information from your mobile device, either continuously or while
               you are using our mobile application, to provide location-based
@@ -211,29 +180,24 @@
               information.
             </p>
             <p>
-              <b>
-                ■ To post testimonials.
-              </b>
+              <b>■ To post testimonials.</b>
               We post testimonials on our services that may contain personal
               information. Prior to posting a testimonial, we will obtain your
               consent to use your name and testimonial. If you wish to update,
               or delete your testimonial, please contact us at
-              <a href="mailto:info@expertgap.co.uk"> info@expertgap.co.uk </a
-              >and be sure to include your name, testimonial location, and
+              <a
+                href="mailto:info@expertgap.co.uk"
+              >info@expertgap.co.uk</a>and be sure to include your name, testimonial location, and
               contact information.
             </p>
             <p>
-              <b>
-                ■ Deliver targeted advertising to you
-              </b>
+              <b>■ Deliver targeted advertising to you</b>
               We may use your information to develop and display content and
               advertising (and work with third parties who do so) tailored to
               your interests and/or location and to measure its effectiveness.
             </p>
             <p>
-              <b>
-                ■ Request Feedback.
-              </b>
+              <b>■ Request Feedback.</b>
               We may use your information to request feedback and to contact you
               about your use of our services.
             </p>
@@ -244,23 +208,17 @@
               </b>
             </p>
             <p>
-              <b>
-                ■ To respond to legal requests and prevent harm
-              </b>
+              <b>■ To respond to legal requests and prevent harm</b>
               . If we receive a subpoena or other legal request, we may need to
               inspect the data we hold to determine how to respond.
             </p>
             <p>
-              <b>
-                ■ To respond to user inquiries/offer support to users
-              </b>
+              <b>■ To respond to user inquiries/offer support to users</b>
               We may use your information to respond to your inquiries and solve
               any potential issues you might have with the use of our services
             </p>
             <p>
-              <b>
-                ■ For other Business Purposes.
-              </b>
+              <b>■ For other Business Purposes.</b>
               We may use your information for other Business Purposes, such as
               data analysis, identifying usage trends, determining the
               effectiveness of our promotional campaigns and to evaluate and
@@ -274,39 +232,29 @@
           <div class="item" id="three">
             <h2>3. WILL YOUR INFORMATION BE SHARED WITH ANYONE?</h2>
             <p>
-              <b>In Short: </b>
+              <b>In Short:</b>
               We only share information with your consent, to comply with laws,
               to provide you with services, to protect your rights, or to
               fulfill business obligations.
             </p>
+            <p>We may process or share data based on the following legal basis:</p>
             <p>
-              We may process or share data based on the following legal basis:
-            </p>
-            <p>
-              <b>
-                ■ Consent:
-              </b>
+              <b>■ Consent:</b>
               We may process your data if you have given us specific consent to
               use your personal information in a specific purpose.
             </p>
             <p>
-              <b>
-                ■ Legitimate Interests:
-              </b>
+              <b>■ Legitimate Interests:</b>
               We may process your data when it is reasonably necessary to
               achieve our legitimate business interests.
             </p>
             <p>
-              <b>
-                ■ Performance of a Contract:
-              </b>
+              <b>■ Performance of a Contract:</b>
               Where we have entered into a contract with you, we may process
               your personal information to fulfill the terms of our contract.
             </p>
             <p>
-              <b>
-                ■ Legal Obligations:
-              </b>
+              <b>■ Legal Obligations:</b>
               We may disclose your information where we are legally required to
               do so in order to comply with applicable law, governmental
               requests, a judicial proceeding, court order, or legal process,
@@ -315,9 +263,7 @@
               enforcement requirements).
             </p>
             <p>
-              <b>
-                ■ Vital Interests:
-              </b>
+              <b>■ Vital Interests:</b>
               We may disclose your information where we believe it is necessary
               to investigate, prevent, or take action regarding potential
               violations of our policies, suspected fraud, situations involving
@@ -327,9 +273,7 @@
               personal information in the following situations
             </p>
             <p>
-              <b>
-                ■ Vendors, Consultants and Other Third-Party Service Providers.
-              </b>
+              <b>■ Vendors, Consultants and Other Third-Party Service Providers.</b>
               We may share your data with third party vendors, service
               providers, contractors or agents who perform services for us or on
               our behalf and require access to such information to do that work.
@@ -345,18 +289,14 @@
               parties for their promotional purposes.
             </p>
             <p>
-              <b>
-                ■ Business Transfers.
-              </b>
+              <b>■ Business Transfers.</b>
               We may share or transfer your information in connection with, or
               during negotiations of, any merger, sale of company assets,
               financing, or acquisition of all or a portion of our business to
               another company.
             </p>
             <p>
-              <b>
-                ■ Third-Party Advertisers.
-              </b>
+              <b>■ Third-Party Advertisers.</b>
               We may use third-party advertising companies to serve ads when you
               visit the Services. These companies may use information about your
               visits to our Website(s) and other websites that are contained in
@@ -390,7 +330,7 @@
           <div class="item" id="five">
             <h2>5. HOW LONG DO WE KEEP YOUR INFORMATION?</h2>
             <p>
-              <b>In Short: </b> We keep your information for as long as
+              <b>In Short:</b> We keep your information for as long as
               necessary to fulfill the purposes outlined in this Privacy Policy
               unless otherwise required by law.
             </p>
@@ -415,7 +355,7 @@
           <div class="item" id="six">
             <h2>6. HOW DO WE KEEP YOUR INFORMATION SAFE?</h2>
             <p>
-              <b>In Short: </b>We aim to protect your personal information
+              <b>In Short:</b>We aim to protect your personal information
               through a system of organizational and technical security
               measures.
             </p>
@@ -446,7 +386,9 @@
               reasonable measures to promptly delete such data from our records.
               If you become aware of any data we have collected from children
               under age 18, please contact us at
-              <a href="mailto:info@expertgap.co.uk">info@expertgap.co.uk</a>.
+              <a
+                href="mailto:info@expertgap.co.uk"
+              >info@expertgap.co.uk</a>.
             </p>
           </div>
           <div class="item" id="eight">
@@ -480,27 +422,26 @@
               supervisory authority. You can find their contact details
               <a
                 href="http://ec.europa.eu/justice/data-protection/bodies/authorities/index_en.htm"
-                >here:
-                http://ec.europa.eu/justice/data-protection/bodies/authorities/index_en.htm.</a
               >
+                here:
+                http://ec.europa.eu/justice/data-protection/bodies/authorities/index_en.htm.
+              </a>
             </p>
             <p>
               If you have questions or comments about your privacy rights, you
               may email us at
-              <a href="mailto:info@expertgap.co.uk">info@expertgap.co.uk</a>.
+              <a
+                href="mailto:info@expertgap.co.uk"
+              >info@expertgap.co.uk</a>.
             </p>
             <p>
-              <b>
-                Account Information
-              </b>
+              <b>Account Information</b>
             </p>
             <p>
               If you would at any time like to review or change the information
               in your account or terminate your account, you can:
             </p>
-            <p>
-              ■ Log into your account settings and update your user account.
-            </p>
+            <p>■ Log into your account settings and update your user account.</p>
             <p>
               Upon your request to terminate your account, we will deactivate or
               delete your account and information from our active databases.
@@ -510,9 +451,7 @@
             </p>
             <p>
               <b>
-                <u>
-                  Cookies and similar technologies:
-                </u>
+                <u>Cookies and similar technologies:</u>
               </b>
               Most Web browsers are set to accept cookies by default. If you
               prefer, you can usually choose to set your browser to remove
@@ -522,9 +461,7 @@
             </p>
             <p>
               <b>
-                <u>
-                  Opting out of email marketing:
-                </u>
+                <u>Opting out of email marketing:</u>
               </b>
               You can unsubscribe from our marketing email list at any time by
               clicking on the unsubscribe link in the emails that we send or by
@@ -533,7 +470,9 @@
               need to send you service-related emails that are necessary for the
               administration and use of your account. To otherwise opt-out, you
               may contact us at
-              <a href="mailto:info@expertgap.co.uk">info@expertgap.co.uk</a>.
+              <a
+                href="mailto:info@expertgap.co.uk"
+              >info@expertgap.co.uk</a>.
             </p>
             <p>
               Based on the laws of some countries, you may have the right to
@@ -541,7 +480,9 @@
               change that information, or delete it in some circumstances. To
               request to review, update, or delete your personal information,
               please contact us at
-              <a href="mailto:info@expertgap.co.uk">info@expertgap.co.uk</a>. We
+              <a
+                href="mailto:info@expertgap.co.uk"
+              >info@expertgap.co.uk</a>. We
               will respond to your request within 30 days.
             </p>
           </div>
@@ -564,7 +505,7 @@
           <div class="item" id="ten">
             <h2>10. DO WE MAKE UPDATES TO THIS POLICY?</h2>
             <p>
-              <b>In Short: </b> Yes, we will update this policy as necessary to
+              <b>In Short:</b> Yes, we will update this policy as necessary to
               stay compliant with relevant laws.
             </p>
             <p>
@@ -583,7 +524,9 @@
             <p>
               If you have questions or comments about this policy, you may email
               us at
-              <a href="mailto:info@expertgap.co.uk">info@expertgap.co.uk</a>.
+              <a
+                href="mailto:info@expertgap.co.uk"
+              >info@expertgap.co.uk</a>.
             </p>
             <p>
               If you are a resident in the European Economic Area, the "data
@@ -591,13 +534,15 @@
               (GDPR) of your personal information is Synergen Ventures Ltd
               trading as ExpertGap. You can contact the data controller directly
               regarding the processing of your information, by email at
-              <a href="mailto:connect@synergenventures.co.uk"
-                >connect@synergenventures.co.uk</a
-              >, by phone at +44 (0)2081919088, or by post to:
+              <a
+                href="mailto:connect@synergenventures.co.uk"
+              >connect@synergenventures.co.uk</a>, by phone at +44 (0)2081919088, or by post to:
             </p>
             <p>
               Synergen Ventures Ltd trading as ExpertGap,
-              <br />8 Northumberland Avenue, <br />London, WC2N 5BY <br />United
+              <br />8 Northumberland Avenue,
+              <br />London, WC2N 5BY
+              <br />United
               Kingdom
             </p>
           </div>
@@ -615,37 +560,37 @@ export default class YourComponent extends Vue {
   scroll(questionsNumber: any) {
     switch (questionsNumber) {
       case 1:
-        this.$vuetify.goTo('#one')
+        this.$vuetify.goTo('#one', { offset: 20 })
         break
       case 2:
-        this.$vuetify.goTo('#two')
+        this.$vuetify.goTo('#two', { offset: 20 })
         break
       case 3:
-        this.$vuetify.goTo('#three')
+        this.$vuetify.goTo('#three', { offset: 20 })
         break
       case 4:
-        this.$vuetify.goTo('#four')
+        this.$vuetify.goTo('#four', { offset: 20 })
         break
       case 5:
-        this.$vuetify.goTo('#five')
+        this.$vuetify.goTo('#five', { offset: 20 })
         break
       case 6:
-        this.$vuetify.goTo('#six')
+        this.$vuetify.goTo('#six', { offset: 20 })
         break
       case 7:
-        this.$vuetify.goTo('#seven')
+        this.$vuetify.goTo('#seven', { offset: 20 })
         break
       case 8:
-        this.$vuetify.goTo('#eight')
+        this.$vuetify.goTo('#eight', { offset: 20 })
         break
       case 9:
-        this.$vuetify.goTo('#nine')
+        this.$vuetify.goTo('#nine', { offset: 20 })
         break
       case 10:
-        this.$vuetify.goTo('#ten')
+        this.$vuetify.goTo('#ten', { offset: 20 })
         break
       case 11:
-        this.$vuetify.goTo('#eleven')
+        this.$vuetify.goTo('#eleven', { offset: 20 })
         break
     }
   }
