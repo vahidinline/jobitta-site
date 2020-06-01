@@ -42,6 +42,7 @@ export default {
           'Video consultation with experts in your native language Türkçe, فارسی, عربی, हिन्दी, اُردُو'
       }
     ],
+
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
       // {

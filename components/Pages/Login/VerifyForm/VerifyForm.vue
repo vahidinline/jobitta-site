@@ -67,8 +67,21 @@ export default class LoginForm extends Vue {
   editPhone() {
     this.$router.push(this.$route.path.replace('verify', 'register'))
   }
-  resendSms() {
-    this.$service.auth.resendToken()
+  async resendSms() {
+    let loader = this.$loader.show(this.$refs.wrapper)
+    try {
+      await this.$service.auth.resendToken()
+      this.$toast
+        .success()
+        .timeout(1000)
+        .showSimple('SMS send successfully')
+    } catch (error) {
+      this.$toast
+        .error()
+        .timeout(1000)
+        .showSimple("can't send sms")
+    }
+    loader.hide()
   }
   async onSubmit() {
     let valid = await this.$validator.validateAll()

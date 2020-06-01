@@ -68,7 +68,7 @@ section {
         </p>
       </div>
       <ul>
-        <template v-if="doctor">
+        <template v-if="doctor.id">
           <li>
             <span>{{$t('stepper.invoice.price')}}</span>
             <span
@@ -130,13 +130,39 @@ section {
       <div class="mt-3">
         <v-textarea outlined v-model="description" name="descriptino" label="Extra Description"></v-textarea>
       </div>
+      <div class="sr-root">
+        <div class="sr-main" ref="wrapper">
+          <form id="payment-form" class="sr-payment-form">
+            <div class="sr-combo-inputs-row">
+              <div class="sr-input sr-card-element" id="card-element"></div>
+            </div>
+            <div
+              v-if="errorMessage"
+              class="sr-field-error"
+              id="card-errors"
+              role="alert"
+            >{{errorMessage}}</div>
+          </form>
+          <div class="sr-result hidden">
+            <p>
+              Payment completed
+              <br />
+            </p>
+            <pre>
+            <code></code>
+          </pre>
+          </div>
+          <v-btn v-if="finish" class="mt-3" color="success" @click="submit">next</v-btn>
+        </div>
+      </div>
       <v-btn
-        class="paypal-btn title"
+        class="mt-3"
         color="primary"
-        dark
+        :disabled="card && card._invalid"
+        :loading="loading"
+        @click.prevent="pay"
         block
-        large
-        @click="submit"
+        outlined
       >{{$t('stepper.invoice.continue')}}</v-btn>
     </v-card>
     <!-- <div class="notify-text">
@@ -149,16 +175,32 @@ section {
   </section>
 </template>
 <script lang="ts">
+declare const Stripe: any
+
 import moment from 'moment-jalaali'
 import { Vue, Component, Prop, Watch, Emit, Ref } from 'vue-property-decorator'
 import { getModule } from 'vuex-module-decorators'
 import reservationModule from '@/store/reservation'
 @Component({
-  layout: 'stepper'
+  layout: 'stepper',
+  head: {
+    script: [
+      {
+        src: 'https://js.stripe.com/v3/',
+        body: true
+      }
+    ]
+  }
 })
 export default class Invoice extends Vue {
-  doctor = null
+  doctor: any = {}
   description = ''
+  data: any = {}
+  card: any = {}
+  stripe: any
+  loading = false
+  errorMessage = false
+  finish = false
   get reservation() {
     return this.$store.state.reservation.info
   }
@@ -182,7 +224,63 @@ export default class Invoice extends Vue {
   async mounted() {
     let loader = this.$loader.show(this.$refs.wrapper)
     this.doctor = await this.$axios.$get(`doctors/${this.$route.params.id}`)
+    this.data = await this.$axios.$post('pay', {
+      amount: this.doctor.price
+    })
+    this.stripe = Stripe(this.data.publishableKey)
+    var elements = this.stripe.elements()
+    var style = {
+      base: {
+        color: '#32325d',
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontSmoothing: 'antialiased',
+        fontSize: '16px',
+        '::placeholder': {
+          color: '#aab7c4'
+        }
+      },
+      invalid: {
+        color: '#fa755a',
+        iconColor: '#fa755a'
+      }
+    }
+
+    this.card = elements.create('card', { style: style })
+    this.card.mount('#card-element')
     loader.hide()
+  }
+  async pay() {
+    let loader = this.$loader.show(this.$refs.wrapper)
+
+    this.loading = true
+    let result = await this.stripe.confirmCardPayment(this.data.clientSecret, {
+      payment_method: {
+        card: this.card
+      }
+    })
+    if (result.error) {
+      // Show error to your customer
+      this.errorMessage = result.error.message
+      this.loading = false
+    } else {
+      // The payment has been processed!
+      this.orderComplete()
+    }
+    loader.hide()
+  }
+  async orderComplete() {
+    let result = await this.stripe.retrievePaymentIntent(this.data.clientSecret)
+    var paymentIntent = result.paymentIntent
+    var paymentIntentJson = JSON.stringify(paymentIntent, null, 2)
+
+    document.querySelector('.sr-payment-form').classList.add('hidden')
+    document.querySelector('pre').textContent = paymentIntentJson
+    document.querySelector('.sr-result').classList.remove('hidden')
+    setTimeout(function() {
+      document.querySelector('.sr-result').classList.add('expand')
+    }, 200)
+    this.finish = true
+    this.loading = false
   }
   async submit() {
     let loader = this.$loader.show(this.$refs.wrapper)
