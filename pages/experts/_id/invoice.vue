@@ -1,12 +1,22 @@
 <style lang="scss" scoped>
 section {
   .invoice {
-    width: 600px;
+    width: 1200px;
     max-width: 90%;
+    position: relative;
+    &:before {
+      content: '';
+      box-shadow: 15px 0 30px 0 rgba(0, 0, 0, 0.18);
+      height: 100%;
+      width: 50%;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
   }
   .v-card {
     border-radius: 8px;
-    padding: 40px 30px 24px;
+    padding: 20px 30px 24px;
     margin-top: 60px;
     @include media(xs-only) {
       margin-top: 40px;
@@ -49,134 +59,121 @@ section {
       // background-image: linear-gradient(265deg, #13d1f3, #35d6c1);
     }
   }
+  .invoice-wrapper {
+    padding: 40px 60px;
+  }
 }
 </style>
 <template>
   <section ref="wrapper">
     <v-card class="invoice">
-      <div class="text-center">
-        <div class="icon-wrapper">
-          <img src="~assets/img/ic_payment.png" alt />
-        </div>
-      </div>
-      <div class="text-center subheading font-weight-bold mt-4">
+      <div class="text-center title font-weight-bold mt-4">
         <p>
-          {{$t('stepper.invoice.title')}}
-          <span
-            class="orange--text"
-          >{{$t('stepper.invoice.subtitle')}}</span>
+          <v-icon color="black" class="mr-2">la-lock</v-icon>Secure Checkout
         </p>
       </div>
-      <ul>
-        <template v-if="doctor.id">
-          <li>
-            <span>{{$t('stepper.invoice.price')}}</span>
-            <span
-              class="orange--text"
-              v-if="$i18n.locale == 'en'"
-            >{{doctor.price }} {{$t('currency')}}</span>
-            <span
-              class="orange--text"
-              v-if="$i18n.locale == 'fa'"
-            >{{doctor.price | persianDigit}} {{$t('currency')}}</span>
-          </li>
-          <li>
-            <span>{{$t('stepper.invoice.sessionDate')}}</span>
-            <span
-              v-if="$i18n.locale == 'en'"
-            >{{reservation.reserve_time | persianDate('dddd, MMMM DD','en') }}</span>
-            <span
-              v-if="$i18n.locale == 'fa'"
-            >{{reservation.reserve_time | persianDate('dddd Do jMMMM','fa') | persianDigit }}</span>
-          </li>
-          <li>
-            <span>{{$t('stepper.invoice.sessionTime')}}</span>
-            <span
-              v-if="$i18n.locale == 'en'"
-            >{{reservation.reserve_time | persianDate('hh:mm A','en') }}</span>
-            <span
-              v-if="$i18n.locale == 'fa'"
-            >{{reservation.reserve_time | persianDate('hh:mm A','fa') | persianDigit}}</span>
-          </li>
-          <li>
-            <span>{{$t('stepper.invoice.sessionDuration')}}</span>
-            <span v-if="$i18n.locale == 'en'">{{doctor.session_duration }} {{$t('minute')}}</span>
-            <span
-              v-if="$i18n.locale == 'fa'"
-            >{{doctor.session_duration | persianDigit}} {{$t('minute')}}</span>
-          </li>
-          <li>
-            <span>{{$t('stepper.invoice.name')}}</span>
-            <span>{{$auth.user.name}}</span>
-          </li>
-          <li>
-            <span>{{$t('stepper.invoice.mobile')}}</span>
-            <span>{{$auth.user.mobile }}</span>
-          </li>
-          <li>
-            <span>{{$t('stepper.invoice.email')}}</span>
-            <span>{{$auth.user.email}}</span>
-          </li>
-          <li>
-            <span>{{$t('stepper.invoice.orderDate')}}</span>
-            <span v-if="$i18n.locale == 'en'">{{now | persianDate('YYYY/MM/DD HH:mm') }}</span>
-            <span
-              dir="ltr"
-              v-if="$i18n.locale == 'fa'"
-            >{{now | persianDate('jYYYY/jMM/jDD HH:mm') | persianDigit}}</span>
-          </li>
-        </template>
-      </ul>
-      <div class="mt-3">
-        <v-textarea outlined v-model="description" name="descriptino" label="Extra Description"></v-textarea>
-      </div>
-      <div class="sr-root">
-        <div class="sr-main" ref="wrapper">
-          <form id="payment-form" class="sr-payment-form">
-            <div class="sr-combo-inputs-row">
-              <div class="sr-input sr-card-element" id="card-element"></div>
-            </div>
-            <div
-              v-if="errorMessage"
-              class="sr-field-error"
-              id="card-errors"
-              role="alert"
-            >{{errorMessage}}</div>
-          </form>
-          <div class="sr-result hidden">
-            <p>
-              Payment completed
-              <br />
-            </p>
-            <pre>
-            <code></code>
-          </pre>
+      <v-layout row wrap>
+        <v-flex lg6>
+          <div class="invoice-wrapper">
+            <ul>
+              <template v-if="doctor.id">
+                <li>
+                  <span>{{$t('stepper.finish.specialistName')}}</span>
+                  <span>{{doctor.title}} {{doctor.firstname}} {{doctor.lastname}}</span>
+                </li>
+                <li>
+                  <span>{{$t('stepper.invoice.sessionDate')}}</span>
+                  <span
+                    v-if="$i18n.locale == 'en'"
+                  >{{reservation.reserve_time | persianDate('dddd, MMMM DD','en') }}</span>
+                  <span
+                    v-if="$i18n.locale == 'fa'"
+                  >{{reservation.reserve_time | persianDate('dddd Do jMMMM','fa') | persianDigit }}</span>
+                </li>
+                <li>
+                  <span>{{$t('stepper.invoice.sessionTime')}}</span>
+                  <span
+                    v-if="$i18n.locale == 'en'"
+                  >{{reservation.reserve_time | persianDate('hh:mm A','en') }}</span>
+                  <span
+                    v-if="$i18n.locale == 'fa'"
+                  >{{reservation.reserve_time | persianDate('hh:mm A','fa') | persianDigit}}</span>
+                </li>
+                <li>
+                  <span>{{$t('stepper.invoice.sessionDuration')}}</span>
+                  <span v-if="$i18n.locale == 'en'">{{doctor.session_duration }} {{$t('minute')}}</span>
+                  <span
+                    v-if="$i18n.locale == 'fa'"
+                  >{{doctor.session_duration | persianDigit}} {{$t('minute')}}</span>
+                </li>
+                <li>
+                  <span>{{$t('stepper.invoice.price')}}</span>
+                  <span
+                    class="orange--text"
+                    v-if="$i18n.locale == 'en'"
+                  >{{doctor.price }} {{$t('currency')}}</span>
+                  <span
+                    class="orange--text"
+                    v-if="$i18n.locale == 'fa'"
+                  >{{doctor.price | persianDigit}} {{$t('currency')}}</span>
+                </li>
+                <!-- <li>
+                <span>{{$t('stepper.invoice.name')}}</span>
+                <span>{{$auth.user.name}}</span>
+              </li>
+              <li>
+                <span>{{$t('stepper.invoice.mobile')}}</span>
+                <span>{{$auth.user.mobile }}</span>
+              </li>
+              <li>
+                <span>{{$t('stepper.invoice.email')}}</span>
+                <span>{{$auth.user.email}}</span>
+              </li>
+              <li>
+                <span>{{$t('stepper.invoice.orderDate')}}</span>
+                <span v-if="$i18n.locale == 'en'">{{now | persianDate('YYYY/MM/DD HH:mm') }}</span>
+                <span
+                  dir="ltr"
+                  v-if="$i18n.locale == 'fa'"
+                >{{now | persianDate('jYYYY/jMM/jDD HH:mm') | persianDigit}}</span>
+                </li>-->
+              </template>
+            </ul>
           </div>
-          <v-btn v-if="finish" class="mt-3" color="success" @click="submit">next</v-btn>
-        </div>
-      </div>
-      <v-btn
-        class="mt-3"
-        color="primary"
-        :disabled="card && card._invalid"
-        :loading="loading"
-        @click.prevent="pay"
-        block
-        outlined
-      >{{$t('stepper.invoice.continue')}}</v-btn>
+        </v-flex>
+        <v-flex lg6>
+          <div class="strip-card-wrapper" ref="wrapper">
+            <form id="payment-form" class="sr-payment-form">
+              <div class="fieldset">
+                <v-text-field name="name" label="Email" id="id"></v-text-field>
+                <div id="stripe-card" class="input"></div>
+                <v-text-field name="name" label="Name on card" id="id"></v-text-field>
+              </div>
+              <div
+                v-if="errorMessage"
+                class="error--text"
+                id="card-errors"
+                role="alert"
+              >{{errorMessage}}</div>
+            </form>
+            <v-btn
+              class="mt-3"
+              color="primary"
+              :disabled="card && card._invalid"
+              :loading="loading"
+              @click.prevent="pay"
+              block
+              outlined
+            >pay {{doctor.price }} {{$t('currency')}}</v-btn>
+          </div>
+        </v-flex>
+      </v-layout>
     </v-card>
-    <!-- <div class="notify-text">
-      <img src="~assets/img/ic_info.png" alt />
-      <div>
-        <p>Your information is secured based on GDPR.</p>
-      </div>
-    </div>-->
     <div class="bottom-background"></div>
   </section>
 </template>
 <script lang="ts">
 declare const Stripe: any
-
 import moment from 'moment-jalaali'
 import { Vue, Component, Prop, Watch, Emit, Ref } from 'vue-property-decorator'
 import { getModule } from 'vuex-module-decorators'
@@ -200,7 +197,7 @@ export default class Invoice extends Vue {
   stripe: any
   loading = false
   errorMessage = false
-  finish = false
+  source = null
   get reservation() {
     return this.$store.state.reservation.info
   }
@@ -229,24 +226,31 @@ export default class Invoice extends Vue {
     })
     this.stripe = Stripe(this.data.publishableKey)
     var elements = this.stripe.elements()
-    var style = {
-      base: {
-        color: '#32325d',
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-        fontSmoothing: 'antialiased',
-        fontSize: '16px',
-        '::placeholder': {
-          color: '#aab7c4'
-        }
-      },
-      invalid: {
-        color: '#fa755a',
-        iconColor: '#fa755a'
-      }
-    }
+    this.card = elements.create('card', {
+      // iconStyle: 'solid',
+      style: {
+        base: {
+          iconColor: '#3f51b5',
+          color: '#3f51b5',
+          fontWeight: 400,
+          fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif',
+          fontSize: '16px',
+          fontSmoothing: 'antialiased',
 
-    this.card = elements.create('card', { style: style })
-    this.card.mount('#card-element')
+          '::placeholder': {
+            color: '#646c9a'
+          },
+          ':-webkit-autofill': {
+            color: '#646c9a'
+          }
+        },
+        invalid: {
+          iconColor: '#E53935',
+          color: '#E53935'
+        }
+      }
+    })
+    this.card.mount('#stripe-card')
     loader.hide()
   }
   async pay() {
@@ -271,18 +275,12 @@ export default class Invoice extends Vue {
   async orderComplete() {
     let result = await this.stripe.retrievePaymentIntent(this.data.clientSecret)
     var paymentIntent = result.paymentIntent
-    var paymentIntentJson = JSON.stringify(paymentIntent, null, 2)
-
-    document.querySelector('.sr-payment-form')?.classList.add('hidden')
-    let pre = document.querySelector('pre')
-    if (pre) {
-      pre.textContent = paymentIntentJson
+    if (paymentIntent.status == 'succeeded') {
+      return this.submit()
+    } else {
+      console.log(paymentIntent)
+      alert('Payment Error')
     }
-    document.querySelector('.sr-result')?.classList.remove('hidden')
-    setTimeout(function() {
-      document.querySelector('.sr-result')?.classList.add('expand')
-    }, 200)
-    this.finish = true
     this.loading = false
   }
   async submit() {
@@ -290,7 +288,7 @@ export default class Invoice extends Vue {
     let data = { ...this.reservation }
     let offset = new Date().getTimezoneOffset()
     data.doctor_id = this.$route.params.id
-    data.description = this.description
+    // data.description = this.description
     data.reserve_time = moment(
       data.reserve_time + ' +00:00',
       'YYYY-MM-DD HH:mm Z'

@@ -77,10 +77,6 @@ ul {
 </style>
 <template>
   <section ref="wrapper">
-    <!-- <div class="logo-wrapper">
-      <img src="~assets/img/logo.png" alt />
-      <h3>رسا - رسانه سلامت ایرانیان</h3>
-    </div>-->
     <v-card class="invoice">
       <div class="text-center">
         <div class="icon-wrapper">
@@ -92,6 +88,7 @@ ul {
         <p class="mt-3 font-weight-regular">
           {{$t('stepper.finish.subtitle')}}
           <span
+            v-if="$auth.user"
             class="accent--text d-block font-weight-thin mt-3"
           >{{$auth.user.email}}</span>
         </p>
@@ -110,13 +107,19 @@ ul {
       <span class="caption">{{$t('stepper.finish.caption')}}</span>
       <p class="mt-5">
         {{$t('stepper.finish.zoom')}}
-        <span class="accent--text">{{$auth.user.email}}</span>
+        <!-- <span
+          v-if="$auth.user"
+          class="accent--text"
+        >{{$auth.user.email}}</span>-->
       </p>
       <a
         class="secondary--text"
         href="https://google.com"
         target="_blank"
       >{{$t('stepper.finish.zoomLink')}}</a>
+      <div class="mt-2">
+        <a @click="upload">Upload Extra Information</a>
+      </div>
       <v-btn
         class="title mt-4 text-none"
         color="primary"
@@ -125,39 +128,14 @@ ul {
         large
         to="/"
       >{{$t('stepper.finish.back')}}</v-btn>
-      <!-- <div class="mt-4 body-1">
-        <div class="font-weight-medium mb-1">
-          <span>لطفا اپلیکیشن ZOOM را ننصل کنید.</span>
-          <a href>نصب اپلیکیشن</a>
-        </div>
-        <p>تماس تصویری شما از طریق این اپلیکیشن انجام خواهد شد.</p>
-      </div>
-      <div class="mt-4 body-1">
-        <p
-          class="orange--text"
-        >طی ۲ ساعت آینده، پشتیبانی ما برای هماهنگی بیشتر به شماره شما در واتس‌اپ (۰۹۱۲۱۴۵۷۵۸۶) پیام می‌دهد.</p>
-      </div>
-      <div class="mt-2 body-1">
-        <p>
-          اگر سوالی داشتید یا مشکلی برایتان پیش آمد، به پشتیبانی ما به شماره
-          <span
-            dir="ltr"
-          >+۹۸۲۳۴۵۸۴۷۲</span> پیام دهید.
-        </p>
-      </div>-->
     </v-card>
-    <!-- <div class="notify-text">
-      <img src="~assets/img/ic_info.png" alt />
-      <div>
-        <p>Your information is secured based on GDPR.</p>
-      </div>
-    </div>-->
     <div class="bottom-background"></div>
   </section>
 </template>
 <script lang="ts">
 import { Vue, Component, Prop, Watch, Emit, Ref } from 'vue-property-decorator'
 import moment from 'moment-jalaali'
+import Upload from '@/components/Pages/Experts/Reservation/upload.vue'
 @Component({
   layout: 'stepper'
 })
@@ -185,6 +163,8 @@ export default class Finish extends Vue {
         .format('HH:mm')}`
     }
   }
+  beforeCreate() {}
+
   async mounted() {
     let loader = this.$loader.show(this.$refs.wrapper)
     this.reservation_info = { ...this.$store.state.reservation.info }
@@ -193,7 +173,18 @@ export default class Finish extends Vue {
     }
     this.doctor = await this.$axios.$get(`doctors/${this.$route.params.id}`)
     loader.hide()
+  }
+  destroyed() {
     this.$store.commit('reservation/clear_reservation_info')
+  }
+  beforeRouteLeave() {
+    this.$store.commit('reservation/clear_reservation_info')
+  }
+  async upload() {
+    let result = await this.$dialog.show({
+      component: Upload
+    })
+    this.$toast.success().showSimple('Your Data save successfully')
   }
 }
 </script>

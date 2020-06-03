@@ -8,7 +8,7 @@ export default {
   workplace: 'workplace',
   reserve: 'Book a Session',
   share: 'share profile',
-  currency: '$',
+  currency: '€',
   successCall: 'success call',
   availabality: 'Availability this week',
   workExperience: 'Experience',
@@ -61,11 +61,11 @@ export default {
     },
     finish: {
       label: 'finish',
-      title: 'Successful Request',
-      subtitle: 'Your request verification was sent to your email at',
+      title: 'Payment successful',
+      subtitle:
+        'Your booking has been confirmed. Please check your email for details.',
       caption: 'Please be online 15 minutes before the session',
-      zoom:
-        'Your video session will happen through ZOOM application. Please login/signup with',
+      zoom: 'Your video session will happen through ZOOM application',
       zoomLink: 'You can install the ZOOM application here',
       specialistName: 'Specialist Name',
       sessionTime: 'Session Time',

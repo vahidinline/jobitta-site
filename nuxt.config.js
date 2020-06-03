@@ -123,7 +123,8 @@ export default {
     'vrwebdesign-nuxt/modules/nuxt-enums',
     'vrwebdesign-nuxt/modules/nuxt-navbar',
     'vrwebdesign-nuxt/modules/nuxt-form-generator',
-    'vrwebdesign-nuxt/modules/nuxt-data-grid'
+    'vrwebdesign-nuxt/modules/nuxt-data-grid',
+    'vrwebdesign-nuxt/modules/nuxt-file-upload'
   ],
   sentry: {},
   googleAnalytics: {
@@ -167,6 +168,13 @@ export default {
   serverMiddleware: [
     {
       path: '/profile',
+      handler: (req, res, next) => {
+        res.spa = true
+        next()
+      }
+    },
+    {
+      path: '/experts/*/*',
       handler: (req, res, next) => {
         res.spa = true
         next()
