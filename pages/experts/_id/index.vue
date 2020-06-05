@@ -262,6 +262,7 @@ export default class component_name extends Vue {
   reserveDoctor() {
     let Reservation = getModule(ReservationStore, this.$store)
     if (Reservation.info.reserve_time) {
+      Reservation.save_reservation_info({ price: this.doctor.price })
       if (this.$auth.loggedIn) {
         return this.$router.push(`/experts/${this.$route.params.id}/invoice`)
       } else {

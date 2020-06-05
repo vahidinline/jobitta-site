@@ -4,14 +4,18 @@ section {
     width: 1200px;
     max-width: 90%;
     position: relative;
+    z-index: 0;
     &:before {
-      content: '';
-      box-shadow: 15px 0 30px 0 rgba(0, 0, 0, 0.18);
-      height: 100%;
-      width: 50%;
-      position: absolute;
-      top: 0;
-      right: 0;
+      @include media(md) {
+        content: '';
+        box-shadow: 15px 0 30px 0 rgba(0, 0, 0, 0.18);
+        height: 100%;
+        width: 50%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: -1;
+      }
     }
   }
   .v-card {
@@ -59,22 +63,28 @@ section {
       // background-image: linear-gradient(265deg, #13d1f3, #35d6c1);
     }
   }
-  .invoice-wrapper {
-    padding: 40px 60px;
+  .invoice-wrapper,
+  .strip-card-wrapper {
+    padding: 10px 20px 40px;
+    @include media(sm) {
+      padding: 10px 60px 40px;
+    }
   }
+}
+::v-deep {
 }
 </style>
 <template>
   <section ref="wrapper">
     <v-card class="invoice">
-      <div class="text-center title font-weight-bold mt-4">
-        <p>
-          <v-icon color="black" class="mr-2">la-lock</v-icon>Secure Checkout
-        </p>
-      </div>
       <v-layout row wrap>
-        <v-flex lg6>
+        <v-flex md6 sm12>
           <div class="invoice-wrapper">
+            <div class="text-center title font-weight-bold mt-4 mb-9">
+              <p>
+                <v-icon color="black" class="mr-2">la-lock</v-icon>Secure Checkout
+              </p>
+            </div>
             <ul>
               <template v-if="doctor.id">
                 <li>
@@ -106,16 +116,25 @@ section {
                     v-if="$i18n.locale == 'fa'"
                   >{{doctor.session_duration | persianDigit}} {{$t('minute')}}</span>
                 </li>
+
                 <li>
                   <span>{{$t('stepper.invoice.price')}}</span>
                   <span
                     class="orange--text"
                     v-if="$i18n.locale == 'en'"
-                  >{{doctor.price }} {{$t('currency')}}</span>
+                  >{{reservation.price }} {{$t('currency')}}</span>
                   <span
                     class="orange--text"
                     v-if="$i18n.locale == 'fa'"
-                  >{{doctor.price | persianDigit}} {{$t('currency')}}</span>
+                  >{{reservation.price | persianDigit}} {{$t('currency')}}</span>
+                </li>
+                <li v-if="reservation.discount">
+                  <span>Discount</span>
+                  <span class="info--text">{{reservation.discount }} {{$t('currency')}}</span>
+                </li>
+                <li v-if="reservation.discount">
+                  <span>Final Price</span>
+                  <span class="success--text">{{reservation.newPrice }} {{$t('currency')}}</span>
                 </li>
                 <!-- <li>
                 <span>{{$t('stepper.invoice.name')}}</span>
@@ -141,13 +160,46 @@ section {
             </ul>
           </div>
         </v-flex>
-        <v-flex lg6>
+        <v-flex md6 sm12>
           <div class="strip-card-wrapper" ref="wrapper">
+            <div class="text-center title font-weight-bold mt-4 mb-9">
+              <p>Pay with card</p>
+            </div>
             <form id="payment-form" class="sr-payment-form">
               <div class="fieldset">
-                <v-text-field name="name" label="Email" id="id"></v-text-field>
+                <v-text-field name="name" label="Email"></v-text-field>
                 <div id="stripe-card" class="input"></div>
-                <v-text-field name="name" label="Name on card" id="id"></v-text-field>
+                <v-text-field name="name" label="Name on card"></v-text-field>
+                <client-only>
+                  <v-layout row wrap v-if="haveCopoun">
+                    <v-flex xs8 pr-4>
+                      <v-text-field
+                        v-model="copoun"
+                        :disabled="Boolean(reservation.copoun)"
+                        name="copoun"
+                        label="Copoun"
+                        hide-details
+                      ></v-text-field>
+                    </v-flex>
+                    <v-flex xs4 class="align-end justify-end d-flex">
+                      <v-btn
+                        v-if="reservation.copoun"
+                        class="text-none"
+                        color="error darken-2"
+                        outlined
+                        @click="removeCopoun"
+                      >Remove Copoun</v-btn>
+                      <v-btn
+                        v-else
+                        class="text-none"
+                        color="secondary"
+                        outlined
+                        :loading="copounChecking"
+                        @click="checkCopoun"
+                      >Check Copoun</v-btn>
+                    </v-flex>
+                  </v-layout>
+                </client-only>
               </div>
               <div
                 v-if="errorMessage"
@@ -164,7 +216,10 @@ section {
               @click.prevent="pay"
               block
               outlined
-            >pay {{doctor.price }} {{$t('currency')}}</v-btn>
+            >pay {{ reservation.newPrice || reservation.price }} {{$t('currency')}}</v-btn>
+            <div class="mt-2">
+              <a @click="haveCopoun = true">Do You Have Copoun Code?</a>
+            </div>
           </div>
         </v-flex>
       </v-layout>
@@ -198,7 +253,16 @@ export default class Invoice extends Vue {
   loading = false
   errorMessage = false
   source = null
+  copoun = null
+  copoun_append_icon = 'la-check'
+  copounChecking = false
+  haveCopoun = false
   get reservation() {
+    let coupon = this.$store.state.reservation.info.copoun
+    if (coupon) {
+      this.copoun = coupon.code
+      this.haveCopoun = true
+    }
     return this.$store.state.reservation.info
   }
   get now() {
@@ -219,10 +283,11 @@ export default class Invoice extends Vue {
     }
   }
   async mounted() {
+    let Reservation = getModule(reservationModule, this.$store)
     let loader = this.$loader.show(this.$refs.wrapper)
     this.doctor = await this.$axios.$get(`doctors/${this.$route.params.id}`)
     this.data = await this.$axios.$post('pay', {
-      amount: this.doctor.price
+      amount: Reservation.info.newPrice || Reservation.info.price
     })
     this.stripe = Stripe(this.data.publishableKey)
     var elements = this.stripe.elements()
@@ -253,9 +318,50 @@ export default class Invoice extends Vue {
     this.card.mount('#stripe-card')
     loader.hide()
   }
+
+  async checkCopoun() {
+    let Reservation = getModule(reservationModule, this.$store)
+    if (!this.copoun) {
+      return this.$toast.error().showSimple('Coupoun Code is Required')
+    }
+    this.copounChecking = true
+    try {
+      let result = await this.$service.reservation.checkCopoun({
+        code: this.copoun,
+        doctor_id: this.doctor.id
+      })
+      this.$toast.success().showSimple('Your Copoun Code Approved')
+      this.data.clientSecret = result.clientSecret
+      let { copoun } = result
+      let discount = ((this.reservation.price * copoun.off) / 100).toFixed(2)
+      let newPrice = (this.reservation.price - +discount).toFixed(2)
+      Reservation.save_reservation_info({ discount, newPrice, copoun })
+    } catch (error) {
+      let msg = error?.response?.data?.message || 'Copoun Not Found'
+      this.$toast.error().showSimple(msg)
+    }
+    this.copounChecking = false
+  }
+  async removeCopoun() {
+    let accept = await this.$dialog.confirm({
+      title: 'Remove Copoun',
+      message: 'Do you want to remove copoun code?',
+      cancel_txt: 'No',
+      ok_txt: 'Yes, Remove it'
+    })
+    if (!accept) return
+    let Reservation = getModule(reservationModule, this.$store)
+    this.haveCopoun = false
+    this.copoun = null
+    Reservation.save_reservation_info({
+      discount: null,
+      newPrice: null,
+      copoun: null
+    })
+  }
   async pay() {
     let loader = this.$loader.show(this.$refs.wrapper)
-
+    debugger
     this.loading = true
     let result = await this.stripe.confirmCardPayment(this.data.clientSecret, {
       payment_method: {
@@ -296,12 +402,15 @@ export default class Invoice extends Vue {
       .utcOffset(offset)
       .format('YYYY-MM-DD HH:mm')
     try {
-      let result = await this.$axios.$post('reservations', data)
+      let result = await this.$service.reservation.create(data)
       let Reservation = getModule(reservationModule, this.$store)
       Reservation.save_reservation_info({ track_id: result.track_id })
       this.$router.push(this.$route.fullPath.replace('invoice', 'finish'))
     } catch (error) {
-      this.$toast.error().showSimple('Somthing Went Wrong.')
+      let msg =
+        error?.response?.data?.message ||
+        'An Error Occured. Please Try Again Later'
+      this.$toast.error().showSimple(msg)
     }
     loader.hide()
   }

@@ -1,5 +1,4 @@
 .strip-card-wrapper {
-    padding: 40px 60px;
     #example5-paymentRequest {
         max-width: 500px;
         width: 100%;
@@ -9,7 +8,7 @@
         margin: 10px 0 20px;
     }
     fieldset {
-        border: 1px solid var(--v-primary-base);
+        // border: 1px solid var(--v-primary-base);
         padding: 15px;
         border-radius: 6px;
     }
@@ -21,7 +20,7 @@
         font-size: 14px;
         font-weight: 500;
         color: #cdd0f8;
-        background-color: var(--v-primary-base);
+        // background-color: var(--v-primary-base);
     }
 
     fieldset legend + * {
@@ -67,6 +66,27 @@
         padding: 5px 0 6px 0;
         border-bottom: 1px solid #0000006b;
         transition: border-color 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        input,
+        select {
+            -webkit-animation: 1ms void-animation-out;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            outline: none;
+            border-style: none;
+            border-radius: 0;
+        }
+
+        select.input,
+        select:-webkit-autofill {
+            background-image: url('data:image/svg+xml;utf8,<svg width="10px" height="5px" viewBox="0 0 10 5" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill="#fff" d="M5.35355339,4.64644661 L9.14644661,0.853553391 L9.14644661,0.853553391 C9.34170876,0.658291245 9.34170876,0.341708755 9.14644661,0.146446609 C9.05267842,0.0526784202 8.92550146,-2.43597394e-17 8.79289322,0 L1.20710678,0 L1.20710678,0 C0.930964406,5.07265313e-17 0.707106781,0.223857625 0.707106781,0.5 C0.707106781,0.632608245 0.759785201,0.759785201 0.853553391,0.853553391 L4.64644661,4.64644661 L4.64644661,4.64644661 C4.84170876,4.84170876 5.15829124,4.84170876 5.35355339,4.64644661 Z" id="shape"></path></svg>');
+            background-position: 100%;
+            background-size: 10px 5px;
+            background-repeat: no-repeat;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding-right: 20px;
+        }
     }
 
     .input::-webkit-input-placeholder {
@@ -91,28 +111,6 @@
 
     .StripeElement--webkit-autofill {
         background: transparent !important;
-    }
-
-    input,
-    select {
-        -webkit-animation: 1ms void-animation-out;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        outline: none;
-        border-style: none;
-        border-radius: 0;
-    }
-
-    select.input,
-    select:-webkit-autofill {
-        background-image: url('data:image/svg+xml;utf8,<svg width="10px" height="5px" viewBox="0 0 10 5" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill="#fff" d="M5.35355339,4.64644661 L9.14644661,0.853553391 L9.14644661,0.853553391 C9.34170876,0.658291245 9.34170876,0.341708755 9.14644661,0.146446609 C9.05267842,0.0526784202 8.92550146,-2.43597394e-17 8.79289322,0 L1.20710678,0 L1.20710678,0 C0.930964406,5.07265313e-17 0.707106781,0.223857625 0.707106781,0.5 C0.707106781,0.632608245 0.759785201,0.759785201 0.853553391,0.853553391 L4.64644661,4.64644661 L4.64644661,4.64644661 C4.84170876,4.84170876 5.15829124,4.84170876 5.35355339,4.64644661 Z" id="shape"></path></svg>');
-        background-position: 100%;
-        background-size: 10px 5px;
-        background-repeat: no-repeat;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        padding-right: 20px;
     }
 
     .error svg .base {

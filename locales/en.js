@@ -8,7 +8,7 @@ export default {
   workplace: 'workplace',
   reserve: 'Book a Session',
   share: 'share profile',
-  currency: '€',
+  currency: '£',
   successCall: 'success call',
   availabality: 'Availability this week',
   workExperience: 'Experience',
@@ -67,8 +67,8 @@ export default {
       caption: 'Please be online 15 minutes before the session',
       zoom: 'Your video session will happen through ZOOM application',
       zoomLink: 'You can install the ZOOM application here',
-      specialistName: 'Specialist Name',
-      sessionTime: 'Session Time',
+      specialistName: 'Expert',
+      sessionTime: 'Session Date & Time',
       back: 'Back To Home'
     }
   },

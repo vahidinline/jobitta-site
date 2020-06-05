@@ -1,6 +1,8 @@
 import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators'
 interface IReservation {
   doctor_id?: number | string
+  price?: string | number
+  newPrice?: string | number
   reserve_time?: String
 }
 

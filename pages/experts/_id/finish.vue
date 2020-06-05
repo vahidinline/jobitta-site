@@ -87,10 +87,10 @@ ul {
         <h3>{{$t('stepper.finish.title')}}</h3>
         <p class="mt-3 font-weight-regular">
           {{$t('stepper.finish.subtitle')}}
-          <span
+          <!-- <span
             v-if="$auth.user"
             class="accent--text d-block font-weight-thin mt-3"
-          >{{$auth.user.email}}</span>
+          >{{$auth.user.email}}</span>-->
         </p>
       </div>
       <ul>
@@ -104,30 +104,33 @@ ul {
           <span v-if="$i18n.locale == 'fa'">{{sessionTime | persianDigit}}</span>
         </li>
       </ul>
-      <span class="caption">{{$t('stepper.finish.caption')}}</span>
-      <p class="mt-5">
-        {{$t('stepper.finish.zoom')}}
-        <!-- <span
+      <!-- <span class="caption">{{$t('stepper.finish.caption')}}</span> -->
+      <!-- <p class="mt-5">
+         {{$t('stepper.finish.zoom')}} 
+         <span
           v-if="$auth.user"
           class="accent--text"
-        >{{$auth.user.email}}</span>-->
-      </p>
-      <a
+        >{{$auth.user.email}}</span>
+      </p>-->
+      <!-- <a
         class="secondary--text"
         href="https://google.com"
         target="_blank"
-      >{{$t('stepper.finish.zoomLink')}}</a>
-      <div class="mt-2">
-        <a @click="upload">Upload Extra Information</a>
-      </div>
+      >{{$t('stepper.finish.zoomLink')}}</a>-->
+      <!-- <div class="mt-2">
+        <a></a>
+      </div>-->
       <v-btn
         class="title mt-4 text-none"
         color="primary"
         outlined
         block
         large
-        to="/"
-      >{{$t('stepper.finish.back')}}</v-btn>
+        @click="upload"
+      >Upload</v-btn>
+      <div
+        class="caption mt-2"
+      >Please use this space to upload any additional information you would like your Expert to see prior to your session</div>
     </v-card>
     <div class="bottom-background"></div>
   </section>
@@ -175,16 +178,29 @@ export default class Finish extends Vue {
     loader.hide()
   }
   destroyed() {
-    this.$store.commit('reservation/clear_reservation_info')
+    // this.$store.commit('reservation/clear_reservation_info')
   }
   beforeRouteLeave() {
-    this.$store.commit('reservation/clear_reservation_info')
+    // this.$store.commit('reservation/clear_reservation_info')
   }
   async upload() {
     let result = await this.$dialog.show({
-      component: Upload
+      component: Upload,
+      scope: this.reservation_info
     })
-    this.$toast.success().showSimple('Your Data save successfully')
+    if (!result) {
+      return
+    }
+    let loader = this.$loader.show(this.$refs.wrapper)
+    this.reservation_info.description = result.description
+    this.reservation_info.attachments = result.images
+    try {
+      await this.$service.reservation.update(this.reservation_info)
+      this.$toast.success().showSimple('Your Data save successfully')
+    } catch (error) {
+      this.$toast.error().showSimple('Somthing Wrong')
+    }
+    loader.hide()
   }
 }
 </script>

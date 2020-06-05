@@ -260,6 +260,7 @@ export default class TimeSelect extends Vue {
       this.selected_day = day
       this.selected_time = time
     } else {
+      this.Reservation.clear_reservation_info()
       this.selected_day = this.days[0]
       this.Reservation.save_reservation_info({
         doctor_id: this.$route.params.id,
