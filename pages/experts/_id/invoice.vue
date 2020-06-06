@@ -71,8 +71,6 @@ section {
     }
   }
 }
-::v-deep {
-}
 </style>
 <template>
   <section ref="wrapper">
@@ -81,7 +79,7 @@ section {
         <v-flex md6 sm12>
           <div class="invoice-wrapper">
             <div class="font-weight-bold mt-4 mb-9">
-              <span class="headline">
+              <span class="headline font-weight-bold">
                 <v-icon color="black" size="30" class="mr-2">lock</v-icon>Secure Checkout
               </span>
             </div>
@@ -93,14 +91,9 @@ section {
                 </li>
                 <li>
                   <span>{{$t('stepper.invoice.sessionDate')}}</span>
-                  <span
-                    v-if="$i18n.locale == 'en'"
-                  >{{reservation.reserve_time | persianDate('dddd, MMMM DD','en') }}</span>
-                  <span
-                    v-if="$i18n.locale == 'fa'"
-                  >{{reservation.reserve_time | persianDate('dddd Do jMMMM','fa') | persianDigit }}</span>
+                  <span>{{reservation.reserve_time | persianDate('DD MMMM YYYY','en') }}, {{reservation.reserve_time | persianDate('HH:mm','en') }}</span>
                 </li>
-                <li>
+                <!-- <li>
                   <span>{{$t('stepper.invoice.sessionTime')}}</span>
                   <span
                     v-if="$i18n.locale == 'en'"
@@ -108,7 +101,7 @@ section {
                   <span
                     v-if="$i18n.locale == 'fa'"
                   >{{reservation.reserve_time | persianDate('HH:mm','fa') | persianDigit}}</span>
-                </li>
+                </li>-->
                 <li>
                   <span>{{$t('stepper.invoice.sessionDuration')}}</span>
                   <span v-if="$i18n.locale == 'en'">{{doctor.session_duration }} {{$t('minute')}}</span>
@@ -130,7 +123,9 @@ section {
                 </li>
                 <li v-if="reservation.discount">
                   <span>Discount</span>
-                  <span class="info--text">{{$t('currency')}} {{reservation.discount }}</span>
+                  <span
+                    class="info--text"
+                  >{{$t('currency')}} {{reservation.discount }} ({{reservation.copoun.off}}%)</span>
                 </li>
                 <li v-if="reservation.discount">
                   <span>Final Price</span>
@@ -169,11 +164,12 @@ section {
                     :disabled="Boolean(reservation.copoun)"
                     name="copoun"
                     label="Add a Discount Code"
+                    @keypress.enter="checkCopoun"
                     hide-details
                     outlined
                   ></v-text-field>
                 </v-flex>
-                <v-flex xs4 class="align-center justify-end d-flex">
+                <v-flex xs4 class="align-center d-flex">
                   <v-btn
                     v-if="reservation.copoun"
                     class="text-none"
@@ -199,10 +195,10 @@ section {
         </v-flex>
         <v-flex md6 sm12>
           <div class="strip-card-wrapper" ref="wrapper">
-            <div class="d-flex font-weight-bold mt-4 mb-9">
-              <span class="title mt-1">Pay with card</span>
-              <div class="d-inline-flex ml-2">
-                <div class="mx-1" v-for="(item, index) in brandIcons" :key="index">
+            <div class="mt-4 mb-9">
+              <div class="title mt-1">Pay with card</div>
+              <div class="d-inline-flex flex-wrap">
+                <div class="mr-1" v-for="(item, index) in brandIcons" :key="index">
                   <v-img width="44" height="28" :src="item" class="BrandIcon" />
                 </div>
               </div>
@@ -271,8 +267,8 @@ export default class Invoice extends Vue {
     require('@/assets/img/visa.svg'),
     require('@/assets/img/mastercard.svg'),
     require('@/assets/img/amex.svg'),
-    require('@/assets/img/apple-pay.png'),
     require('@/assets/img/Maestro.png'),
+    require('@/assets/img/apple-pay.png'),
     require('@/assets/img/google-pay.png')
   ]
   Reservation = getModule(reservationModule, this.$store)

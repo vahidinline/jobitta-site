@@ -82,14 +82,14 @@ export default class Upload extends Vue {
     if (!this.description && !this.images.length) {
       return (this.errorMessage = 'Description or Image is required ')
     }
-    let accept = await this.$dialog.confirm({
-      persistent: true,
-      title: 'Send Additional Information',
-      message: 'Do you want to send this data?',
-      ok_txt: 'Yes, Send it',
-      cancel_txt: 'No, Change Data'
-    })
-    if (!accept) return
+    // let accept = await this.$dialog.confirm({
+    //   persistent: true,
+    //   title: 'Send Additional Information',
+    //   message: 'Do you want to send this data?',
+    //   ok_txt: 'Yes, Send it',
+    //   cancel_txt: 'No, Change Data'
+    // })
+    // if (!accept) return
     this.$emit('hide', {
       description: this.description,
       images: this.images

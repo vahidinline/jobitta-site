@@ -24,3 +24,11 @@ input:-webkit-autofill:active {
 .dialog-wrapper .dialog-close {
     position: absolute !important;
 }
+
+[data-filepond-item-state='processing-complete'] {
+    animation-name: fadeOut;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    height: 0 !important;
+    transition: height 1s;
+}

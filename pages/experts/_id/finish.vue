@@ -113,7 +113,9 @@ ul {
         </li>
         <li v-if="reservation.discount">
           <span>Discount</span>
-          <span class="info--text">{{$t('currency')}} {{reservation.discount }}</span>
+          <span
+            class="info--text"
+          >{{$t('currency')}} {{reservation.discount }} ({{reservation.copoun.off}}%)</span>
         </li>
         <li v-if="reservation.discount">
           <span>Final Price</span>
@@ -197,10 +199,10 @@ export default class Finish extends Vue {
     loader.hide()
   }
   destroyed() {
-    // this.$store.commit('reservation/clear_reservation_info')
+    this.$store.commit('reservation/clear_reservation_info')
   }
   beforeRouteLeave() {
-    // this.$store.commit('reservation/clear_reservation_info')
+    this.$store.commit('reservation/clear_reservation_info')
   }
   async upload() {
     let result = await this.$dialog.show({
@@ -218,7 +220,7 @@ export default class Finish extends Vue {
       this.$toast
         .success()
         .timeout(5000)
-        .showSimple('Your Data Submitted Successfully')
+        .showSimple('Additional information submitted')
     } catch (error) {
       let msg =
         error?.response?.data?.message ||

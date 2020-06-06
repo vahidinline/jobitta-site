@@ -15,6 +15,7 @@ export default {
   scientificBackground: 'Profile',
   availabalityDesc:
     'Below you will see available sessions in your own time zone',
+  minute: 'minutes',
   sa: 'Sa',
   su: 'Su',
   mo: 'Mo',
@@ -50,7 +51,7 @@ export default {
       title: 'Invoice for',
       subtitle: '1 Session',
       price: 'Price',
-      sessionDate: 'Session Date',
+      sessionDate: 'Session Date & Time',
       sessionTime: 'Session Time',
       sessionDuration: 'Duration',
       name: 'your name',
