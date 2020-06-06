@@ -355,7 +355,7 @@ export default class Invoice extends Vue {
       let newPrice = (this.reservation.price - +discount).toFixed(2)
       Reservation.save_reservation_info({ discount, newPrice, copoun })
     } catch (error) {
-      let msg = error?.response?.data?.message || 'Copoun Not Found'
+      let msg = error?.response?.data?.message || 'Dicount Code dose not exist'
       this.$toast.error().showSimple(msg)
     }
     this.copounChecking = false
