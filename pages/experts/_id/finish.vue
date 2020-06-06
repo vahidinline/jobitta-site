@@ -104,6 +104,10 @@ ul {
           <span v-if="$i18n.locale == 'fa'">{{sessionTime | persianDigit}}</span>
         </li>
         <li>
+          <span>Transaction ID</span>
+          <span>{{reservation.payment_id }}</span>
+        </li>
+        <li>
           <span>{{$t('stepper.invoice.price')}}</span>
           <span class="orange--text">{{$t('currency')}} {{reservation.price }}</span>
         </li>

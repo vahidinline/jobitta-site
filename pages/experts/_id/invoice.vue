@@ -275,6 +275,7 @@ export default class Invoice extends Vue {
     require('@/assets/img/Maestro.png'),
     require('@/assets/img/google-pay.png')
   ]
+  Reservation = getModule(reservationModule, this.$store)
   get reservation() {
     let coupon = this.$store.state.reservation.info.copoun
     if (coupon) {
@@ -350,9 +351,7 @@ export default class Invoice extends Vue {
       })
       this.$toast.success().showSimple('Your Copoun Code Approved')
       this.data.clientSecret = result.clientSecret
-      let { copoun } = result
-      let discount = ((this.reservation.price * copoun.off) / 100).toFixed(2)
-      let newPrice = (this.reservation.price - +discount).toFixed(2)
+      let { copoun, discount, newPrice } = result
       Reservation.save_reservation_info({ discount, newPrice, copoun })
     } catch (error) {
       let msg = error?.response?.data?.message || 'Dicount Code dose not exist'
@@ -378,6 +377,9 @@ export default class Invoice extends Vue {
     })
   }
   async pay() {
+    if (this.Reservation.info.payment_id) {
+      return this.submit()
+    }
     let loader = this.$loader.show(this.$refs.wrapper)
     this.loading = true
     let result = await this.stripe.confirmCardPayment(this.data.clientSecret, {
@@ -396,15 +398,17 @@ export default class Invoice extends Vue {
     loader.hide()
   }
   async orderComplete() {
+    debugger
     let result = await this.stripe.retrievePaymentIntent(this.data.clientSecret)
     var paymentIntent = result.paymentIntent
+    this.loading = false
     if (paymentIntent.status == 'succeeded') {
+      this.Reservation.save_reservation_info({ payment_id: paymentIntent.id })
       return this.submit()
     } else {
       console.log(paymentIntent)
       alert('Payment Error')
     }
-    this.loading = false
   }
   async submit() {
     let loader = this.$loader.show(this.$refs.wrapper)

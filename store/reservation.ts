@@ -4,6 +4,7 @@ interface IReservation {
   price?: string | number
   newPrice?: string | number
   reserve_time?: String
+  payment_id?: String
 }
 
 @Module({
