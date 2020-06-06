@@ -80,10 +80,10 @@ section {
       <v-layout row wrap>
         <v-flex md6 sm12>
           <div class="invoice-wrapper">
-            <div class="text-center title font-weight-bold mt-4 mb-9">
-              <p>
-                <v-icon color="black" class="mr-2">la-lock</v-icon>Secure Checkout
-              </p>
+            <div class="font-weight-bold mt-4 mb-9">
+              <span class="headline">
+                <v-icon color="black" size="30" class="mr-2">lock</v-icon>Secure Checkout
+              </span>
             </div>
             <ul>
               <template v-if="doctor.id">
@@ -104,10 +104,10 @@ section {
                   <span>{{$t('stepper.invoice.sessionTime')}}</span>
                   <span
                     v-if="$i18n.locale == 'en'"
-                  >{{reservation.reserve_time | persianDate('hh:mm A','en') }}</span>
+                  >{{reservation.reserve_time | persianDate('HH:mm','en') }}</span>
                   <span
                     v-if="$i18n.locale == 'fa'"
-                  >{{reservation.reserve_time | persianDate('hh:mm A','fa') | persianDigit}}</span>
+                  >{{reservation.reserve_time | persianDate('HH:mm','fa') | persianDigit}}</span>
                 </li>
                 <li>
                   <span>{{$t('stepper.invoice.sessionDuration')}}</span>
@@ -122,20 +122,21 @@ section {
                   <span
                     class="orange--text"
                     v-if="$i18n.locale == 'en'"
-                  >{{reservation.price }} {{$t('currency')}}</span>
+                  >{{$t('currency')}} {{reservation.price }}</span>
                   <span
                     class="orange--text"
                     v-if="$i18n.locale == 'fa'"
-                  >{{reservation.price | persianDigit}} {{$t('currency')}}</span>
+                  >{{$t('currency')}} {{reservation.price | persianDigit}}</span>
                 </li>
                 <li v-if="reservation.discount">
                   <span>Discount</span>
-                  <span class="info--text">{{reservation.discount }} {{$t('currency')}}</span>
+                  <span class="info--text">{{$t('currency')}} {{reservation.discount }}</span>
                 </li>
                 <li v-if="reservation.discount">
                   <span>Final Price</span>
-                  <span class="success--text">{{reservation.newPrice }} {{$t('currency')}}</span>
+                  <span class="success--text">{{$t('currency')}} {{reservation.newPrice }}</span>
                 </li>
+
                 <!-- <li>
                 <span>{{$t('stepper.invoice.name')}}</span>
                 <span>{{$auth.user.name}}</span>
@@ -158,48 +159,59 @@ section {
                 </li>-->
               </template>
             </ul>
+            <v-divider class="my-3"></v-divider>
+            <client-only>
+              <div class="d-flex">
+                <v-flex xs8 pr-4>
+                  <v-text-field
+                    dense
+                    v-model="copoun"
+                    :disabled="Boolean(reservation.copoun)"
+                    name="copoun"
+                    label="Add a Discount Code"
+                    hide-details
+                    outlined
+                  ></v-text-field>
+                </v-flex>
+                <v-flex xs4 class="align-center justify-end d-flex">
+                  <v-btn
+                    v-if="reservation.copoun"
+                    class="text-none"
+                    color="error darken-2"
+                    outlined
+                    @click="removeCopoun"
+                  >Remove</v-btn>
+                  <v-btn
+                    v-else
+                    class="text-none"
+                    color="secondary"
+                    outlined
+                    :loading="copounChecking"
+                    @click="checkCopoun"
+                  >Apply</v-btn>
+                </v-flex>
+              </div>
+            </client-only>
+            <!-- <div class="mt-2">
+              <a @click="haveCopoun = true">Do You Have Copoun Code?</a>
+            </div>-->
           </div>
         </v-flex>
         <v-flex md6 sm12>
           <div class="strip-card-wrapper" ref="wrapper">
-            <div class="text-center title font-weight-bold mt-4 mb-9">
-              <p>Pay with card</p>
+            <div class="d-flex font-weight-bold mt-4 mb-9">
+              <span class="title mt-1">Pay with card</span>
+              <div class="d-inline-flex ml-2">
+                <div class="mx-1" v-for="(item, index) in brandIcons" :key="index">
+                  <v-img width="44" height="28" :src="item" class="BrandIcon" />
+                </div>
+              </div>
             </div>
             <form id="payment-form" class="sr-payment-form">
               <div class="fieldset">
                 <v-text-field name="name" label="Email"></v-text-field>
                 <div id="stripe-card" class="input"></div>
                 <v-text-field name="name" label="Name on card"></v-text-field>
-                <client-only>
-                  <v-layout row wrap v-if="haveCopoun">
-                    <v-flex xs8 pr-4>
-                      <v-text-field
-                        v-model="copoun"
-                        :disabled="Boolean(reservation.copoun)"
-                        name="copoun"
-                        label="Copoun"
-                        hide-details
-                      ></v-text-field>
-                    </v-flex>
-                    <v-flex xs4 class="align-end justify-end d-flex">
-                      <v-btn
-                        v-if="reservation.copoun"
-                        class="text-none"
-                        color="error darken-2"
-                        outlined
-                        @click="removeCopoun"
-                      >Remove Copoun</v-btn>
-                      <v-btn
-                        v-else
-                        class="text-none"
-                        color="secondary"
-                        outlined
-                        :loading="copounChecking"
-                        @click="checkCopoun"
-                      >Check Copoun</v-btn>
-                    </v-flex>
-                  </v-layout>
-                </client-only>
               </div>
               <div
                 v-if="errorMessage"
@@ -216,10 +228,7 @@ section {
               @click.prevent="pay"
               block
               outlined
-            >pay {{ reservation.newPrice || reservation.price }} {{$t('currency')}}</v-btn>
-            <div class="mt-2">
-              <a @click="haveCopoun = true">Do You Have Copoun Code?</a>
-            </div>
+            >pay {{$t('currency')}} {{ reservation.newPrice || reservation.price }}</v-btn>
           </div>
         </v-flex>
       </v-layout>
@@ -233,6 +242,7 @@ import moment from 'moment-jalaali'
 import { Vue, Component, Prop, Watch, Emit, Ref } from 'vue-property-decorator'
 import { getModule } from 'vuex-module-decorators'
 import reservationModule from '@/store/reservation'
+
 @Component({
   layout: 'stepper',
   head: {
@@ -257,6 +267,14 @@ export default class Invoice extends Vue {
   copoun_append_icon = 'la-check'
   copounChecking = false
   haveCopoun = false
+  brandIcons = [
+    require('@/assets/img/visa.svg'),
+    require('@/assets/img/mastercard.svg'),
+    require('@/assets/img/amex.svg'),
+    require('@/assets/img/apple-pay.png'),
+    require('@/assets/img/Maestro.png'),
+    require('@/assets/img/google-pay.png')
+  ]
   get reservation() {
     let coupon = this.$store.state.reservation.info.copoun
     if (coupon) {
@@ -344,8 +362,8 @@ export default class Invoice extends Vue {
   }
   async removeCopoun() {
     let accept = await this.$dialog.confirm({
-      title: 'Remove Copoun',
-      message: 'Do you want to remove copoun code?',
+      title: 'Remove Discount',
+      message: 'Do you want to remove discount code?',
       cancel_txt: 'No',
       ok_txt: 'Yes, Remove it'
     })

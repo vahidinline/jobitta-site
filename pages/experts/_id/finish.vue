@@ -103,6 +103,18 @@ ul {
           <span v-if="$i18n.locale == 'en'">{{sessionTime}}</span>
           <span v-if="$i18n.locale == 'fa'">{{sessionTime | persianDigit}}</span>
         </li>
+        <li>
+          <span>{{$t('stepper.invoice.price')}}</span>
+          <span class="orange--text">{{$t('currency')}} {{reservation.price }}</span>
+        </li>
+        <li v-if="reservation.discount">
+          <span>Discount</span>
+          <span class="info--text">{{$t('currency')}} {{reservation.discount }}</span>
+        </li>
+        <li v-if="reservation.discount">
+          <span>Final Price</span>
+          <span class="success--text">{{$t('currency')}} {{reservation.newPrice }}</span>
+        </li>
       </ul>
       <!-- <span class="caption">{{$t('stepper.finish.caption')}}</span> -->
       <!-- <p class="mt-5">
@@ -149,12 +161,12 @@ export default class Finish extends Vue {
     if (this.$i18n.locale == 'en') {
       return `${moment(this.reservation_info.reserve_time)
         .locale('en')
-        .format('MMMM Do')} ${moment(this.reservation_info.reserve_time)
+        .format('DD MMMM YYYY')}, ${moment(this.reservation_info.reserve_time)
         .locale('en')
-        .format('hh:mmA')} to ${moment(this.reservation_info.reserve_time)
+        .format('HH:mm')} to ${moment(this.reservation_info.reserve_time)
         .locale('en')
         .add(this.reservation_info.sessionTime || 30, 'minute')
-        .format('hh:mmA')}`
+        .format('HH:mm')}`
     } else {
       return `${moment(this.reservation_info.reserve_time)
         .locale('fa')
@@ -165,6 +177,9 @@ export default class Finish extends Vue {
         .add(this.reservation_info.sessionTime || 30, 'minute')
         .format('HH:mm')}`
     }
+  }
+  get reservation() {
+    return this.$store.state.reservation.info
   }
   beforeCreate() {}
 
@@ -196,9 +211,18 @@ export default class Finish extends Vue {
     this.reservation_info.attachments = result.images
     try {
       await this.$service.reservation.update(this.reservation_info)
-      this.$toast.success().showSimple('Your Data save successfully')
+      this.$toast
+        .success()
+        .timeout(5000)
+        .showSimple('Your Data Submitted Successfully')
     } catch (error) {
-      this.$toast.error().showSimple('Somthing Wrong')
+      let msg =
+        error?.response?.data?.message ||
+        'An Error Occured. Please Try Again Later'
+      this.$toast
+        .error()
+        .timeout(3000)
+        .showSimple(msg)
     }
     loader.hide()
   }

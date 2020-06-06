@@ -178,7 +178,7 @@
               block
               :to="`/experts/${doctor.id}`"
             >
-              <span>€ {{doctor.price}}</span>
+              <span>{{$t('currency')}} {{doctor.price}}</span>
               <span>Book Now</span>
             </v-btn>
           </div>
