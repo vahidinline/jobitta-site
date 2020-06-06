@@ -379,7 +379,6 @@ export default class Invoice extends Vue {
   }
   async pay() {
     let loader = this.$loader.show(this.$refs.wrapper)
-    debugger
     this.loading = true
     let result = await this.stripe.confirmCardPayment(this.data.clientSecret, {
       payment_method: {
