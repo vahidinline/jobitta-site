@@ -90,7 +90,6 @@ export default class Upload extends Vue {
       cancel_txt: 'No, Change Data'
     })
     if (!accept) return
-    debugger
     this.$emit('hide', {
       description: this.description,
       images: this.images
