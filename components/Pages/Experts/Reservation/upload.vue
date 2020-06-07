@@ -10,24 +10,7 @@
   }
   &::v-deep {
     .images {
-      justify-content: center;
-      > div {
-        flex: 0 0 150px !important;
-      }
-      .image-wrapper {
-        max-width: 150px;
-        max-height: 150px;
-        margin: 0;
-        .v-icon {
-          position: absolute;
-          background: #000;
-          border-radius: 100%;
-          padding: 4px;
-          font-size: 16px;
-          left: 4px;
-          top: 4px;
-        }
-      }
+      display: none !important;
     }
   }
 }

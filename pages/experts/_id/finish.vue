@@ -199,10 +199,10 @@ export default class Finish extends Vue {
     loader.hide()
   }
   destroyed() {
-    this.$store.commit('reservation/clear_reservation_info')
+    // this.$store.commit('reservation/clear_reservation_info')
   }
   beforeRouteLeave() {
-    this.$store.commit('reservation/clear_reservation_info')
+    // this.$store.commit('reservation/clear_reservation_info')
   }
   async upload() {
     let result = await this.$dialog.show({

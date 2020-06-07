@@ -42,7 +42,7 @@ section {
         font-size: 14px;
         align-items: center;
         justify-content: space-between;
-        height: 50px;
+        height: 54px;
         border-bottom: 1px solid #ddd;
         &:last-child {
           border: none;
@@ -154,7 +154,6 @@ section {
                 </li>-->
               </template>
             </ul>
-            <v-divider class="my-3"></v-divider>
             <client-only>
               <div class="d-flex">
                 <v-flex xs8 pr-4>
@@ -194,8 +193,8 @@ section {
           </div>
         </v-flex>
         <v-flex md6 sm12>
-          <div class="strip-card-wrapper" ref="wrapper">
-            <div class="mt-4 mb-9">
+          <div class="strip-card-wrapper d-flex flex-column fill-height" ref="wrapper">
+            <div class="mt-4 mb-1">
               <div class="title mt-1">Pay with card</div>
               <div class="d-inline-flex flex-wrap">
                 <div class="mr-1" v-for="(item, index) in brandIcons" :key="index">
@@ -216,6 +215,7 @@ section {
                 role="alert"
               >{{errorMessage}}</div>
             </form>
+            <v-spacer></v-spacer>
             <v-btn
               class="mt-3"
               color="primary"
@@ -337,7 +337,7 @@ export default class Invoice extends Vue {
   async checkCopoun() {
     let Reservation = getModule(reservationModule, this.$store)
     if (!this.copoun) {
-      return this.$toast.error().showSimple('Coupoun Code is Required')
+      return this.$toast.error().showSimple('Discount Code is Required')
     }
     this.copounChecking = true
     try {
@@ -345,12 +345,12 @@ export default class Invoice extends Vue {
         code: this.copoun,
         doctor_id: this.doctor.id
       })
-      this.$toast.success().showSimple('Your Copoun Code Approved')
+      this.$toast.success().showSimple('Discount code approved')
       this.data.clientSecret = result.clientSecret
       let { copoun, discount, newPrice } = result
       Reservation.save_reservation_info({ discount, newPrice, copoun })
     } catch (error) {
-      let msg = error?.response?.data?.message || 'Dicount Code dose not exist'
+      let msg = error?.response?.data?.message || 'Discount code not found!'
       this.$toast.error().showSimple(msg)
     }
     this.copounChecking = false

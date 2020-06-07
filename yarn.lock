@@ -4593,7 +4593,7 @@ filepond-plugin-image-edit@^1.5.0:
   resolved "https://registry.yarnpkg.com/filepond-plugin-image-edit/-/filepond-plugin-image-edit-1.6.1.tgz#05e0b713f0073b5d486e1aa8a33cd1b7289afd43"
   integrity sha512-JbvaPJUD3AHT5TehN/z7NGXPHw4PJfniij1ak68jtBOH0yk2TWzFfw90FRm4kJBS4pYdV4KbYzNkBkrpE7BYYA==
 
-filepond-plugin-image-preview@^4.5.0:
+filepond-plugin-image-preview@^4.6.4:
   version "4.6.4"
   resolved "https://registry.yarnpkg.com/filepond-plugin-image-preview/-/filepond-plugin-image-preview-4.6.4.tgz#19edade651559cf8c9fb97bcc8ce56af16ebae67"
   integrity sha512-grlFJv1LH4E7IzsKTIFI52LuyLQa+lXMqmUnSm0cufDblRXHxdraRkjj/88bd9pyVJm206dBXQnlIVVyEaE5xg==
@@ -9991,9 +9991,9 @@ vm-browserify@^1.0.1:
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
 vrwebdesign-nuxt@^2.x:
-  version "2.2.14"
-  resolved "https://registry.yarnpkg.com/vrwebdesign-nuxt/-/vrwebdesign-nuxt-2.2.14.tgz#c86741905ce85973f72d8d6672cf869c464ec8a2"
-  integrity sha512-wOK9sKkzfmh1xCnocfsm2ZMG5PJXlc3PdioEfHaXlOHKhGJ5m7QlLv262ODArzMIeGQJfTWXgASwHWMHX7irTQ==
+  version "2.2.15"
+  resolved "https://registry.yarnpkg.com/vrwebdesign-nuxt/-/vrwebdesign-nuxt-2.2.15.tgz#a5d806affaee7674ecf7e43866875caeabecdfe5"
+  integrity sha512-yeYchuMjslhbdB8wAoO9UtaNz377j1iVDjede+MqcxxkUpCP0N73x5MV7hDgx2QqcqbTBe5IYjr26ZTaxl1K3Q==
   dependencies:
     "@babel/parser" "^7.5.5"
     "@babel/traverse" "^7.5.5"
@@ -10005,7 +10005,7 @@ vrwebdesign-nuxt@^2.x:
     filepond "^4.7.4"
     filepond-plugin-image-crop "^2.0.3"
     filepond-plugin-image-edit "^1.5.0"
-    filepond-plugin-image-preview "^4.5.0"
+    filepond-plugin-image-preview "^4.6.4"
     filepond-plugin-image-resize "^2.0.4"
     highcharts "^7.2.1"
     is-https "^1.0.0"
