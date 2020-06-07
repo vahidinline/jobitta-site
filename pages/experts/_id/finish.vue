@@ -51,26 +51,26 @@ ul {
   }
   .icon-wrapper {
     text-align: center;
-    border: 3px solid #ff9800;
+    border: 2px solid #ff9800;
     border-radius: 100%;
     display: inline-flex;
     padding: 8px;
     position: relative;
     .v-icon {
-      font-size: 100px;
+      font-size: 50px;
       @include media(xs-only) {
-        font-size: 75px;
+        font-size: 40px;
       }
     }
     &::after {
       content: '';
-      top: -8%;
-      left: -8%;
-      border: 3px solid #000;
+      top: -9%;
+      left: -9%;
+      border: 2px solid #000;
       position: absolute;
       border-radius: 100%;
-      width: 116%;
-      height: 116%;
+      width: 118%;
+      height: 118%;
     }
   }
 }
@@ -78,6 +78,7 @@ ul {
 <template>
   <section ref="wrapper">
     <v-card class="invoice">
+      <v-img :src="require('@/assets/img/logo.png')"></v-img>
       <div class="text-center">
         <div class="icon-wrapper">
           <v-icon color="orange">la-check</v-icon>
@@ -106,6 +107,10 @@ ul {
         <li>
           <span>Transaction ID</span>
           <span>{{reservation.payment_id }}</span>
+        </li>
+        <li>
+          <span>Transaction Date</span>
+          <span>{{new Date() | persianDate('DD MMMM YYYY','en') }}</span>
         </li>
         <li>
           <span>{{$t('stepper.invoice.price')}}</span>
@@ -199,10 +204,10 @@ export default class Finish extends Vue {
     loader.hide()
   }
   destroyed() {
-    // this.$store.commit('reservation/clear_reservation_info')
+    this.$store.commit('reservation/clear_reservation_info')
   }
   beforeRouteLeave() {
-    // this.$store.commit('reservation/clear_reservation_info')
+    this.$store.commit('reservation/clear_reservation_info')
   }
   async upload() {
     let result = await this.$dialog.show({
