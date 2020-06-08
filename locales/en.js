@@ -51,7 +51,7 @@ export default {
       title: 'Invoice for',
       subtitle: '1 Session',
       price: 'Price',
-      sessionDate: 'Session Date & Time',
+      sessionDate: 'Session Date',
       sessionTime: 'Session Time',
       sessionDuration: 'Duration',
       name: 'your name',

@@ -174,9 +174,6 @@ export default class Finish extends Vue {
         .locale('en')
         .format('DD MMMM YYYY')}, ${moment(this.reservation_info.reserve_time)
         .locale('en')
-        .format('HH:mm')} to ${moment(this.reservation_info.reserve_time)
-        .locale('en')
-        .add(this.reservation_info.sessionTime || 30, 'minute')
         .format('HH:mm')}`
     } else {
       return `${moment(this.reservation_info.reserve_time)

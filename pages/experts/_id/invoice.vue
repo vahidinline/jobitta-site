@@ -91,24 +91,21 @@ section {
                 </li>
                 <li>
                   <span>{{$t('stepper.invoice.sessionDate')}}</span>
-                  <span>{{reservation.reserve_time | persianDate('DD MMMM YYYY','en') }}, {{reservation.reserve_time | persianDate('HH:mm','en') }}</span>
+                  <span>{{reservation.reserve_time | persianDate('DD MMMM YYYY','en') }}</span>
+                </li>
+                <li>
+                  <span>{{$t('stepper.invoice.sessionTime')}}</span>
+                  <span>{{reservation.reserve_time | persianDate('HH:mm','en') }}</span>
                 </li>
                 <!-- <li>
-                  <span>{{$t('stepper.invoice.sessionTime')}}</span>
+                  <span>{{$t('stepper.invoice.sessionDuration')}}</span>
                   <span
                     v-if="$i18n.locale == 'en'"
-                  >{{reservation.reserve_time | persianDate('HH:mm','en') }}</span>
+                  >{{doctor.session_duration_hint || doctor.session_duration }} {{$t('minute')}}</span>
                   <span
                     v-if="$i18n.locale == 'fa'"
-                  >{{reservation.reserve_time | persianDate('HH:mm','fa') | persianDigit}}</span>
+                  >{{doctor.session_duration_hint || doctor.session_duration | persianDigit}} {{$t('minute')}}</span>
                 </li>-->
-                <li>
-                  <span>{{$t('stepper.invoice.sessionDuration')}}</span>
-                  <span v-if="$i18n.locale == 'en'">{{doctor.session_duration }} {{$t('minute')}}</span>
-                  <span
-                    v-if="$i18n.locale == 'fa'"
-                  >{{doctor.session_duration | persianDigit}} {{$t('minute')}}</span>
-                </li>
 
                 <li>
                   <span>{{$t('stepper.invoice.price')}}</span>
@@ -217,12 +214,11 @@ section {
             </form>
             <v-spacer></v-spacer>
             <v-btn
-              class="mt-3"
+              class="mt-3 full-width"
               color="primary"
               :disabled="card && card._invalid"
               :loading="loading"
               @click.prevent="pay"
-              block
               outlined
             >pay {{$t('currency')}} {{ reservation.newPrice || reservation.price }}</v-btn>
           </div>

@@ -65,7 +65,9 @@
 
       <div class="call-item--wrapper--duration">
         <div class="label">Duration</div>
-        <div class="value">{{ call.doctor.session_duration }} Minute</div>
+        <div
+          class="value"
+        >{{ call.doctor.session_duration_hint || call.doctor.session_duration }} Minute</div>
       </div>
 
       <div class="call-item--wrapper--status">

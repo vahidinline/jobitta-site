@@ -118,7 +118,7 @@
         </li>
         <li>
           <span>{{$t('sessionDuration')}}</span>
-          <span>{{doctor.session_duration }} {{$t('minute')}}</span>
+          <span>{{doctor.session_duration_hint || doctor.session_duration }} {{$t('minute')}}</span>
         </li>
         <li v-for="(workplace,index) in doctor.workplaces" :key="index">
           <span>{{$t('workplace')}}</span>
