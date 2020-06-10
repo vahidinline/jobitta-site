@@ -16,6 +16,16 @@
       </div>
       <form class="pa-6" @submit.prevent="onSubmit">
         <p class="title">Register</p>
+        <v-select
+          v-model="user.title"
+          label="Title"
+          name="title"
+          v-validate="'required'"
+          :error-messages="errors.collect('title')"
+          @keypress.enter="onSubmit"
+          :items="titleItems"
+          outlined
+        ></v-select>
         <v-text-field
           autocomplete="new-name"
           v-model="user.name"
@@ -27,6 +37,23 @@
           outlined
         />
         <v-text-field
+          v-model="user.family"
+          label="Surname"
+          name="family"
+          v-validate="'required'"
+          :error-messages="errors.collect('family')"
+          @keypress.enter="onSubmit"
+          outlined
+        />
+        <vr-date-picker
+          v-model="user.birthday"
+          label="Date of birth"
+          outlined
+          locale="en"
+          :showOnFocus="true"
+          format="YYYY/MM/DD"
+        ></vr-date-picker>
+        <v-text-field
           v-model="user.username"
           label="Username"
           name="username"
@@ -35,6 +62,7 @@
           @keypress.enter="onSubmit"
           outlined
         />
+
         <div>
           <v-text-field
             autocomplete="new-password"
@@ -150,7 +178,7 @@ export default class LoginForm extends Vue {
   user: any = {
     code: ''
   }
-
+  titleItems = ['Mr', 'Mrs', 'Ms', 'Miss', 'Dr', 'Other']
   mounted() {
     if (this.$auth.user && this.$auth.user.mobile) {
       this.user = { ...this.$auth.user }

@@ -106,7 +106,7 @@ ul {
         </li>
         <li>
           <span>Transaction ID</span>
-          <span>{{reservation.payment_id }}</span>
+          <span>{{reservation_info.track_id }}</span>
         </li>
         <li>
           <span>Transaction Date</span>

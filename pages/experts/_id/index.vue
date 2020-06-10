@@ -188,7 +188,7 @@
       </div>
       <div class="timetable">
         <v-skeleton-loader v-if="$fetchState.pending"></v-skeleton-loader>
-        <timeTable v-else v-model="doctor.timetable"></timeTable>
+        <timeTable v-else :doctor="doctor"></timeTable>
       </div>
       <!-- <div class="comments" v-if="doctor.reviews && doctor.reviews.length">
         <v-skeleton-loader v-if="$fetchState.pending"></v-skeleton-loader>

@@ -224,6 +224,9 @@ export default class TimeSelect extends Vue {
   data: { [key: string]: any } = {}
   Reservation = getModule(ReservationModule, this.$store)
 
+  @Prop()
+  doctor!: any
+
   get times() {
     return this.selected_day && this.data[this.selected_day]
   }
@@ -253,7 +256,7 @@ export default class TimeSelect extends Vue {
     this.reservation = { ...this.Reservation.info }
 
     if (
-      this.reservation.doctor_id == this.$route.params.id &&
+      this.reservation.doctor_id == this.doctor.id &&
       this.reservation.reserve_time
     ) {
       let [day, time] = (<string>this.reservation.reserve_time).split(' ')
@@ -263,7 +266,7 @@ export default class TimeSelect extends Vue {
       this.Reservation.clear_reservation_info()
       this.selected_day = this.days[0]
       this.Reservation.save_reservation_info({
-        doctor_id: this.$route.params.id,
+        doctor_id: this.doctor.id,
         reserve_time: null
       })
     }

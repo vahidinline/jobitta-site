@@ -415,15 +415,15 @@ p {
           type="image,list-item-two-line, actions"
         ></v-skeleton-loader>
       </template>
-      <div v-else class="doctor-item" v-for="doctor in doctors" :key="doctor.subscriberNumber">
+      <div v-else class="doctor-item" v-for="doctor in doctors" :key="doctor.slug">
         <div class="doctor-image">
-          <nuxt-link :to="`/experts/${doctor.id}`">
+          <nuxt-link :to="`/experts/${doctor.slug}`">
             <v-img :src="doctor.image"></v-img>
           </nuxt-link>
         </div>
         <div class="doctor-info">
           <div class="doctor-title">
-            <nuxt-link :to="`/experts/${doctor.id}`">{{doctor.firstname}} {{doctor.lastname}}</nuxt-link>
+            <nuxt-link :to="`/experts/${doctor.slug}`">{{doctor.firstname}} {{doctor.lastname}}</nuxt-link>
             <v-icon color="primary">la-video</v-icon>
           </div>
           <div class="custom-devider"></div>
@@ -433,7 +433,7 @@ p {
             class="text-none subtitle-1 justify-space-around"
             outlined
             block
-            :to="`/experts/${doctor.id}`"
+            :to="`/experts/${doctor.slug}`"
           >
             <span>{{$t('currency')}} {{doctor.price}}</span>
             <span>Book Now</span>

@@ -86,7 +86,7 @@ export default class HomePage extends Vue {
   }
   mounted() {
     window.addEventListener('scroll', this.onScroll)
-    if (!this.$storage.getCookie('accept_cookie')) {
+    if (!this.$storage.getLocalStorage('accept_cookie')) {
       this.sheet = true
     }
     this.waiting_calls()
@@ -113,7 +113,7 @@ export default class HomePage extends Vue {
   }
   acceptCookies() {
     this.sheet = false
-    this.$storage.setCookie('accept_cookie', 'true')
+    this.$storage.setLocalStorage('accept_cookie', 'true')
   }
 }
 </script>

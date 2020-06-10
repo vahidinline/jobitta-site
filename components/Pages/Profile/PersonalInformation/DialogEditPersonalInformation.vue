@@ -15,6 +15,17 @@
     </v-card-title>
 
     <form class="pa-6" @submit.prevent="onSubmit" ref="wrapper">
+      <v-select
+        v-model="user.title"
+        label="Title"
+        name="title"
+        v-validate="'required'"
+        :error-messages="errors.collect('title')"
+        @keypress.enter="onSubmit"
+        :items="titleItems"
+        outlined
+      ></v-select>
+
       <v-text-field
         autocomplete="new-name"
         v-model="user.name"
@@ -25,7 +36,23 @@
         @keypress.enter="onSubmit"
         outlined
       />
-
+      <v-text-field
+        v-model="user.family"
+        label="Surname"
+        name="family"
+        v-validate="'required'"
+        :error-messages="errors.collect('family')"
+        @keypress.enter="onSubmit"
+        outlined
+      />
+      <vr-date-picker
+        v-model="user.birthday"
+        label="Date of birth"
+        outlined
+        locale="en"
+        :showOnFocus="true"
+        format="YYYY/MM/DD"
+      ></vr-date-picker>
       <v-autocomplete
         v-model="user.country"
         outlined
@@ -99,6 +126,7 @@ export default class DialogEditPersonalInformation extends Vue {
   user: any = {
     code: ''
   }
+  titleItems = ['Mr', 'Mrs', 'Ms', 'Miss', 'Dr', 'Other']
 
   mounted() {
     if (this.$auth.user && this.$auth.user.mobile) {

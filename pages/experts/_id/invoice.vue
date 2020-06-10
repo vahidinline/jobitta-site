@@ -406,7 +406,7 @@ export default class Invoice extends Vue {
     let loader = this.$loader.show(this.$refs.wrapper)
     let data = { ...this.reservation }
     let offset = new Date().getTimezoneOffset()
-    data.doctor_id = this.$route.params.id
+    // data.doctor_id = this.doctor.id
     // data.description = this.description
     data.reserve_time = moment(
       data.reserve_time + ' +00:00',

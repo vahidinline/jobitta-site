@@ -135,10 +135,10 @@
             block
           >{{$t('reserve')}}</v-btn>
         </li>
-        <v-divider class="my-2"></v-divider>
-        <li>
-          <!-- v-if="$vuetify.breakpoint.smAndUp"  -->
-          <div>
+        <!-- <v-divider class="my-2"></v-divider> -->
+        <!-- <li> -->
+        <!-- v-if="$vuetify.breakpoint.smAndUp"  -->
+        <!-- <div>
             <v-speed-dial
               bottom
               top
@@ -167,8 +167,8 @@
                 <v-icon size="22">{{tile.icon}}</v-icon>
               </v-btn>
             </v-speed-dial>
-          </div>
-          <!-- <div v-else>
+        </div>-->
+        <!-- <div v-else>
             <v-bottom-sheet v-model="share">
               <template v-slot:activator="{ on }">
                 <v-btn text color="primary" v-on="on" class="text-capitalize">
@@ -196,8 +196,8 @@
                 </v-list>
               </v-sheet>
             </v-bottom-sheet>
-          </div>-->
-        </li>
+        </div>-->
+        <!-- </li> -->
       </ul>
     </div>
   </div>
