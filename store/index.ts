@@ -25,13 +25,15 @@ export default class Index extends VuexModule {
     // Germany 85.214.132.117
     // France 57.178.5.201
     // USA 161.185.160.93
+    // canada 192.206.151.131
+    // Australia 110.33.122.75
     if (process.server) {
       let ip =
         req.connection.remoteAddress ||
         req.socket.remoteAddress || // socket is an alias to connection, just delete this line
         req.connection.socket.remoteAddress
       if (process.env.NODE_ENV == 'development' && ip == '127.0.0.1') {
-        ip = '85.214.132.117'
+        ip = '110.33.122.75'
       }
       return $axios
         .$get(
