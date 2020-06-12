@@ -1,5 +1,5 @@
 import { NuxtAxiosInstance } from 'vrwebdesign-nuxt/modules/nuxt-axios/types'
-import { Module, VuexModule, Action } from 'vuex-module-decorators'
+import { Module, VuexModule, Action, Mutation } from 'vuex-module-decorators'
 import { NuxtStorage } from '@nuxtjs/universal-storage'
 @Module
 export default class Index extends VuexModule {
@@ -7,7 +7,10 @@ export default class Index extends VuexModule {
 
   @Action
   nuxtClientInit() {}
-
+  @Mutation
+  setLocation(val: any) {
+    this.location = val
+  }
   @Action({ rawError: true, commit: 'setLocation' })
   nuxtServerInit({
     req,

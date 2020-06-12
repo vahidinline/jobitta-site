@@ -94,7 +94,7 @@ ul {
           >{{$auth.user.email}}</span>-->
         </p>
       </div>
-      <ul>
+      <ul v-if="reservation.currency">
         <li>
           <span>{{$t('stepper.finish.specialistName')}}</span>
           <span>{{doctor.title}} {{doctor.firstname}} {{doctor.lastname}}</span>
@@ -114,19 +114,20 @@ ul {
         </li>
         <li>
           <span>{{$t('stepper.invoice.price')}}</span>
-          <span class="orange--text">{{$t('currency')}} {{reservation.price }}</span>
+          <span class="orange--text">{{reservation.currency.symbol}} {{reservation.price }}</span>
         </li>
         <li v-if="reservation.discount">
           <span>Discount</span>
           <span
             class="info--text"
-          >{{$t('currency')}} {{reservation.discount }} ({{reservation.copoun.off}}%)</span>
+          >{{reservation.currency.symbol}} {{reservation.discount }} ({{reservation.copoun.off}}%)</span>
         </li>
         <li v-if="reservation.discount">
           <span>Final Price</span>
-          <span class="success--text">{{$t('currency')}} {{reservation.newPrice }}</span>
+          <span class="success--text">{{reservation.currency.symbol}} {{reservation.newPrice }}</span>
         </li>
       </ul>
+
       <!-- <span class="caption">{{$t('stepper.finish.caption')}}</span> -->
       <!-- <p class="mt-5">
          {{$t('stepper.finish.zoom')}} 
@@ -201,10 +202,10 @@ export default class Finish extends Vue {
     loader.hide()
   }
   destroyed() {
-    this.$store.commit('reservation/clear_reservation_info')
+    // this.$store.commit('reservation/clear_reservation_info')
   }
   beforeRouteLeave() {
-    this.$store.commit('reservation/clear_reservation_info')
+    // this.$store.commit('reservation/clear_reservation_info')
   }
   async upload() {
     let result = await this.$dialog.show({

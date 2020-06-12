@@ -115,11 +115,11 @@ section {
                   <span>Discount</span>
                   <span
                     class="info--text"
-                  >{{$t('currency')}} {{reservation.discount }} ({{reservation.copoun.off}}%)</span>
+                  >{{currency}} {{reservation.discount }} ({{reservation.copoun.off}}%)</span>
                 </li>
                 <li v-if="reservation.discount">
                   <span>Final Price</span>
-                  <span class="success--text">{{$t('currency')}} {{reservation.newPrice }}</span>
+                  <span class="success--text">{{currency}} {{reservation.newPrice }}</span>
                 </li>
 
                 <!-- <li>
@@ -213,7 +213,7 @@ section {
               :loading="loading"
               @click.prevent="pay"
               outlined
-            >pay {{$t('currency')}} {{ reservation.newPrice || reservation.price }}</v-btn>
+            >pay {{currency}} {{ reservation.newPrice || reservation.price }}</v-btn>
           </div>
         </v-flex>
       </v-layout>
@@ -261,6 +261,7 @@ export default class Invoice extends Vue {
     require('@/assets/img/google-pay.png')
   ]
   Reservation = getModule(reservationModule, this.$store)
+  currency: any = null
   get reservation() {
     let coupon = this.$store.state.reservation.info.copoun
     if (coupon) {
@@ -273,6 +274,7 @@ export default class Invoice extends Vue {
     return moment()
   }
   async mounted() {
+    this.currency = this.reservation.currency.symbol
     if (!this.Reservation.info.reserve_time) {
       return this.$router.push(this.$route.fullPath.replace('invoice', 'time'))
     }
@@ -287,8 +289,16 @@ export default class Invoice extends Vue {
     let loader = this.$loader.show(this.$refs.wrapper)
     this.doctor = await this.$axios.$get(`doctors/${this.$route.params.id}`)
     if (!this.reservation.id) {
+      let data = { ...this.reservation }
+      let offset = new Date().getTimezoneOffset()
+      data.reserve_time = moment(
+        data.reserve_time + ' +00:00',
+        'YYYY-MM-DD HH:mm Z'
+      )
+        .utcOffset(offset)
+        .format('YYYY-MM-DD HH:mm')
       let result = await this.$service.reservation.create({
-        ...this.reservation
+        data
       })
       this.Reservation.save_reservation_info({ ...result })
     }
@@ -330,7 +340,7 @@ export default class Invoice extends Vue {
     try {
       let result = await this.$service.reservation.checkCopoun({
         code: this.copoun,
-        doctor_id: this.doctor.id
+        reservation_id: this.reservation.id
       })
       this.$toast.success().showSimple('Discount code approved')
       this.data.clientSecret = result.clientSecret
@@ -393,21 +403,13 @@ export default class Invoice extends Vue {
     }
   }
   async submit() {
+    debugger
     let loader = this.$loader.show(this.$refs.wrapper)
-    let data = { ...this.reservation }
-    let offset = new Date().getTimezoneOffset()
-    // data.doctor_id = this.doctor.id
-    // data.description = this.description
-    data.reserve_time = moment(
-      data.reserve_time + ' +00:00',
-      'YYYY-MM-DD HH:mm Z'
-    )
-      .utcOffset(offset)
-      .format('YYYY-MM-DD HH:mm')
     try {
-      let result = await this.$service.reservation.create(data)
-      let Reservation = getModule(reservationModule, this.$store)
-      Reservation.save_reservation_info({ track_id: result.track_id })
+      await this.$service.reservation.approve({
+        id: this.reservation.id,
+        payment_id: this.reservation.payment_id
+      })
       this.$router.push(this.$route.fullPath.replace('invoice', 'finish'))
     } catch (error) {
       let msg =

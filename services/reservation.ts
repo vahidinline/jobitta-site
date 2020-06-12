@@ -8,7 +8,19 @@ export default class ReservationService {
   update(data: any) {
     return this.$axios.$put(`reservations/${data.track_id}`, data)
   }
-  checkCopoun({ code, doctor_id }: { code: any; doctor_id: string | number }) {
-    return this.$axios.$post(`reservations/checkCopoun`, { code, doctor_id })
+  approve({ id, payment_id }: any) {
+    return this.$axios.$post(`reservations/${id}/approve`, { payment_id })
+  }
+  checkCopoun({
+    code,
+    reservation_id
+  }: {
+    code: any
+    reservation_id: string | number
+  }) {
+    return this.$axios.$post(`reservations/checkCopoun`, {
+      code,
+      reservation_id
+    })
   }
 }
