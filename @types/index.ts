@@ -8,7 +8,7 @@ import ReservationService from '~/services/reservation'
 interface IEnum {
   toSelect: { text: string; value: number }[]
 }
-interface Storage {
+interface NuxtStorage {
   setState(key: string, val: any): void
   getState(key: string): any
   watchState(key: string, callback: (newValue: any) => any): void
@@ -20,7 +20,7 @@ interface Storage {
 interface Auth {
   user?: User
   loggedIn: boolean
-  $storage: Storage
+  $storage: NuxtStorage
   loginWith(strategy: string, date: any): Promise<any>
   login(params: { data: any }): Promise<any>
   setUser(user: any): void
