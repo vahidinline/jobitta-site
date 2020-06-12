@@ -28,6 +28,9 @@ export default class Index extends VuexModule {
     // canada 192.206.151.131
     // Australia 110.33.122.75
     if (process.server) {
+      console.log(req.connection.remoteAddress)
+      console.log(req.socket.remoteAddress)
+      console.log(req.connection.socket.remoteAddress)
       let ip =
         req.connection.remoteAddress ||
         req.socket.remoteAddress || // socket is an alias to connection, just delete this line
