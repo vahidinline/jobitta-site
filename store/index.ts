@@ -36,10 +36,9 @@ export default class Index extends VuexModule {
         ip = '110.33.122.75'
       }
       try {
-        let data = await $axios.$get(
-          `https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.IPGEOLOCATION_APIKEY}&ip=` +
-            ip
-        )
+        let url = `https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.IPGEOLOCATION_APIKEY}&ip=${ip}`
+        console.log(url)
+        let data = await $axios.$get(url)
         $storage.setCookie('location', data)
         return data
       } catch (error) {
