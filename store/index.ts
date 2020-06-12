@@ -12,7 +12,7 @@ export default class Index extends VuexModule {
     this.location = val
   }
   @Action({ rawError: true, commit: 'setLocation' })
-  nuxtServerInit({
+  async nuxtServerInit({
     req,
     $axios,
     $storage
@@ -35,18 +35,16 @@ export default class Index extends VuexModule {
       if (process.env.NODE_ENV == 'development' && ip == '127.0.0.1') {
         ip = '110.33.122.75'
       }
-      return $axios
-        .$get(
+      try {
+        let data = await $axios.$get(
           `https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.IPGEOLOCATION_APIKEY}&ip=` +
             ip
         )
-        .then((data: any) => {
-          $storage.setCookie('location', data)
-          return data
-        })
-        .catch(err => {
-          console.log(err)
-        })
+        $storage.setCookie('location', data)
+        return data
+      } catch (error) {
+        return null
+      }
     }
   }
 }
