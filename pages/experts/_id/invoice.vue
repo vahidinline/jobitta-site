@@ -109,14 +109,7 @@ section {
 
                 <li>
                   <span>{{$t('stepper.invoice.price')}}</span>
-                  <span
-                    class="orange--text"
-                    v-if="$i18n.locale == 'en'"
-                  >{{$t('currency')}} {{reservation.price }}</span>
-                  <span
-                    class="orange--text"
-                    v-if="$i18n.locale == 'fa'"
-                  >{{$t('currency')}} {{reservation.price | persianDigit}}</span>
+                  <span class="orange--text">{{reservation.humanPrice }}</span>
                 </li>
                 <li v-if="reservation.discount">
                   <span>Discount</span>
@@ -236,15 +229,15 @@ import { getModule } from 'vuex-module-decorators'
 import reservationModule from '@/store/reservation'
 
 @Component({
-  layout: 'stepper',
-  head: {
-    script: [
-      {
-        src: 'https://js.stripe.com/v3/',
-        body: true
-      }
-    ]
-  }
+  layout: 'stepper'
+  // head: {
+  //   script: [
+  //     {
+  //       src: 'https://js.stripe.com/v3/',
+  //       body: true
+  //     }
+  //   ]
+  // }
 })
 export default class Invoice extends Vue {
   doctor: any = {}
@@ -279,9 +272,8 @@ export default class Invoice extends Vue {
   get now() {
     return moment()
   }
-  beforeCreate() {
-    let Reservation = getModule(reservationModule, this.$store)
-    if (!Reservation.info.reserve_time) {
+  async mounted() {
+    if (!this.Reservation.info.reserve_time) {
       return this.$router.push(this.$route.fullPath.replace('invoice', 'time'))
     }
     if (!this.$auth.loggedIn) {
@@ -292,15 +284,15 @@ export default class Invoice extends Vue {
         this.$route.fullPath.replace('invoice', 'verify')
       )
     }
-  }
-  async mounted() {
-    let Reservation = getModule(reservationModule, this.$store)
     let loader = this.$loader.show(this.$refs.wrapper)
     this.doctor = await this.$axios.$get(`doctors/${this.$route.params.id}`)
-    this.data = await this.$axios.$post('pay', {
-      amount: Reservation.info.newPrice || Reservation.info.price
-    })
-    this.stripe = Stripe(this.data.publishableKey)
+    if (!this.reservation.id) {
+      let result = await this.$service.reservation.create({
+        ...this.reservation
+      })
+      this.Reservation.save_reservation_info({ ...result })
+    }
+    this.stripe = Stripe(process.env.STRIPE_PUBLISHABLE_KEY)
     var elements = this.stripe.elements()
     this.card = elements.create('card', {
       // iconStyle: 'solid',
@@ -331,7 +323,6 @@ export default class Invoice extends Vue {
   }
 
   async checkCopoun() {
-    let Reservation = getModule(reservationModule, this.$store)
     if (!this.copoun) {
       return this.$toast.error().showSimple('Discount Code is Required')
     }
@@ -344,7 +335,7 @@ export default class Invoice extends Vue {
       this.$toast.success().showSimple('Discount code approved')
       this.data.clientSecret = result.clientSecret
       let { copoun, discount, newPrice } = result
-      Reservation.save_reservation_info({ discount, newPrice, copoun })
+      this.Reservation.save_reservation_info({ discount, newPrice, copoun })
     } catch (error) {
       let msg = error?.response?.data?.message || 'Discount code not found!'
       this.$toast.error().showSimple(msg)
@@ -390,7 +381,6 @@ export default class Invoice extends Vue {
     loader.hide()
   }
   async orderComplete() {
-    debugger
     let result = await this.stripe.retrievePaymentIntent(this.data.clientSecret)
     var paymentIntent = result.paymentIntent
     this.loading = false

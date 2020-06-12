@@ -24,8 +24,8 @@
 </style>
 <template>
   <section>
-    <div class="wrapper">
-      <TimeTable>
+    <div class="wrapper" v-if="doctor.id">
+      <TimeTable :doctor="doctor">
         <template #bottom>
           <v-btn
             class="paypal-btn text-none title"
@@ -51,6 +51,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, Watch, Emit, Ref } from 'vue-property-decorator'
+Component.registerHooks(['fetch'])
 import TimeTable from '@/components/Pages/Experts/ExpertDetail/TimeTable.vue'
 import { getModule } from 'vuex-module-decorators'
 import ReservationStore from '@/store/reservation'
@@ -62,6 +63,17 @@ import ReservationStore from '@/store/reservation'
 })
 export default class TimeSelect extends Vue {
   hasError = false
+  doctor: any = {}
+  async fetch() {
+    this.doctor = await this.$axios.$get(`doctors/${this.$route.params.id}`)
+    if (this.doctor.lang == 'fa') {
+      this.$i18n.setLocale('fa')
+      this.$vuetify.rtl = true
+    } else {
+      this.$i18n.setLocale('en')
+      this.$vuetify.rtl = false
+    }
+  }
   submit() {
     let Reservation = getModule(ReservationStore, this.$store)
     if (Reservation.info.reserve_time && Reservation.info.doctor_id) {
