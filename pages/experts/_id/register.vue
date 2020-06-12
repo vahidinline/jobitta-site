@@ -48,7 +48,6 @@ export default class Register extends Vue {
   }
   mounted() {
     this.reservation = { ...this.$store.state.reservation.info }
-    console.log(this.$route)
   }
   async onRegister() {
     this.$router.push(this.$route.fullPath.replace('register', 'verify'))
