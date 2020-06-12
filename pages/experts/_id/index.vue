@@ -199,7 +199,7 @@
       <div>
         <li>
           <span>{{$t('pricing')}}:</span>
-          <span class="orange--text">{{$t('currency')}} {{doctor.price}}</span>
+          <span class="orange--text">{{doctor.humanPrice}}</span>
         </li>
       </div>
       <v-btn class="subtitle-1" color="secondary" @click="reserveDoctor">{{$t('reserve')}}</v-btn>
@@ -262,7 +262,11 @@ export default class component_name extends Vue {
   reserveDoctor() {
     let Reservation = getModule(ReservationStore, this.$store)
     if (Reservation.info.reserve_time) {
-      Reservation.save_reservation_info({ price: this.doctor.price })
+      Reservation.save_reservation_info({
+        price: this.doctor.price,
+        humanPrice: this.doctor.humanPrice,
+        currency: this.doctor.currency
+      })
       if (this.$auth.loggedIn) {
         return this.$router.push(`/experts/${this.$route.params.id}/invoice`)
       } else {

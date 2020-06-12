@@ -435,7 +435,8 @@ p {
             block
             :to="`/experts/${doctor.slug}`"
           >
-            <span>{{$t('currency')}} {{doctor.price}}</span>
+            <span>{{doctor.humanPrice}}</span>
+            <!-- <span>{{(73.57).toLocaleString($store.state.location.languages.split(',')[0],{style:'currency',currency:$store.state.location.currency.code})}}</span> -->
             <span>Book Now</span>
           </v-btn>
         </div>
