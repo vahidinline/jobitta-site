@@ -43,6 +43,7 @@ export default class Index extends VuexModule {
         $storage.setCookie('location', data)
         return data
       } catch (error) {
+        console.log(error)
         return null
       }
     }
