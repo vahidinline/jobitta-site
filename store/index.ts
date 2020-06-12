@@ -28,18 +28,7 @@ export default class Index extends VuexModule {
     // canada 192.206.151.131
     // Australia 110.33.122.75
     if (process.server) {
-      let test = req.headers['x-forwarded-for'] || req.connection.remoteAddress
-      console.log(req.ip)
-      console.log(req.headers)
-      console.log(req.connection)
-      console.log(test)
-      console.log(req.connection.remoteAddress)
-      console.log(req.socket.remoteAddress)
-      console.log(req.connection.socket.remoteAddress)
-      let ip =
-        req.connection.remoteAddress ||
-        req.socket.remoteAddress || // socket is an alias to connection, just delete this line
-        req.connection.socket.remoteAddress
+      let ip = req.headers['x-forwarded-for'].split(',')[0]
       if (process.env.NODE_ENV == 'development' && ip == '127.0.0.1') {
         ip = '110.33.122.75'
       }
