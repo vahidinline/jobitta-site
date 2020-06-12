@@ -297,9 +297,7 @@ export default class Invoice extends Vue {
       )
         .utcOffset(offset)
         .format('YYYY-MM-DD HH:mm')
-      let result = await this.$service.reservation.create({
-        data
-      })
+      let result = await this.$service.reservation.create(data)
       this.Reservation.save_reservation_info({ ...result })
     }
     this.stripe = Stripe(process.env.STRIPE_PUBLISHABLE_KEY)
@@ -360,10 +358,11 @@ export default class Invoice extends Vue {
       ok_txt: 'Yes, Remove it'
     })
     if (!accept) return
-    let Reservation = getModule(reservationModule, this.$store)
+
     this.haveCopoun = false
     this.copoun = null
-    Reservation.save_reservation_info({
+    await this.$service.reservation.removeCopoun(this.reservation.id)
+    this.Reservation.save_reservation_info({
       discount: null,
       newPrice: null,
       copoun: null
@@ -403,7 +402,6 @@ export default class Invoice extends Vue {
     }
   }
   async submit() {
-    debugger
     let loader = this.$loader.show(this.$refs.wrapper)
     try {
       await this.$service.reservation.approve({

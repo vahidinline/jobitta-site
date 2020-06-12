@@ -11,6 +11,7 @@ export default class ReservationService {
   approve({ id, payment_id }: any) {
     return this.$axios.$post(`reservations/${id}/approve`, { payment_id })
   }
+
   checkCopoun({
     code,
     reservation_id
@@ -22,5 +23,8 @@ export default class ReservationService {
       code,
       reservation_id
     })
+  }
+  removeCopoun(id: any) {
+    return this.$axios.$post(`reservations/${id}/removeCopoun`)
   }
 }

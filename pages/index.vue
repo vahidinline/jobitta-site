@@ -409,7 +409,7 @@ p {
       <template v-if="$fetchState.pending">
         <v-skeleton-loader
           :loading="true"
-          v-for="item in 5"
+          v-for="item in 4"
           :key="item"
           class="doctor-item"
           type="image,list-item-two-line, actions"
