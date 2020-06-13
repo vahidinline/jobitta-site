@@ -28,7 +28,7 @@ export default class Index extends VuexModule {
     // canada 192.206.151.131
     // Australia 110.33.122.75
     if (process.server) {
-      let ip = req.headers['x-forwarded-for'].split(',')[0]
+      let ip = req.headers['x-forwarded-for']?.split(',')[0]
       if (process.env.NODE_ENV == 'development' && ip == '127.0.0.1') {
         ip = '110.33.122.75'
       }

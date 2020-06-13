@@ -374,11 +374,14 @@ export default class Invoice extends Vue {
     }
     let loader = this.$loader.show(this.$refs.wrapper)
     this.loading = true
-    let result = await this.stripe.confirmCardPayment(this.data.clientSecret, {
-      payment_method: {
-        card: this.card
+    let result = await this.stripe.confirmCardPayment(
+      this.reservation.clientSecret,
+      {
+        payment_method: {
+          card: this.card
+        }
       }
-    })
+    )
     if (result.error) {
       // Show error to your customer
       this.errorMessage = result.error.message
