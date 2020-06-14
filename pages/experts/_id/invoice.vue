@@ -393,7 +393,9 @@ export default class Invoice extends Vue {
     loader.hide()
   }
   async orderComplete() {
-    let result = await this.stripe.retrievePaymentIntent(this.data.clientSecret)
+    let result = await this.stripe.retrievePaymentIntent(
+      this.reservation.clientSecret
+    )
     var paymentIntent = result.paymentIntent
     this.loading = false
     if (paymentIntent.status == 'succeeded') {
