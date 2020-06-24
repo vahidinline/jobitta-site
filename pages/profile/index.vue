@@ -2,6 +2,12 @@
 
 <template>
   <v-container class="mt-5">
+    <v-alert type="error" :value="!$auth.user.is_email_verified">
+      <div class="d-flex justify-space-between align-center">
+        <span>Your Email is not verified yet.</span>
+        <a class="caption white--text" @click="resendVerifyEmail">Resend Email</a>
+      </div>
+    </v-alert>
     <v-row>
       <v-col cols="12" sm="12" xs="12">
         <ProfileProgress :percentage="'25'" class="pa-5" @editProfile="onDialogEditProfile" />
@@ -44,7 +50,18 @@ export default class profile extends Vue {
       }
     }
   }
-
+  async resendVerifyEmail() {
+    try {
+      await this.$service.auth.resendVerifyEmail()
+      this.$toast.success().showSimple('Email send successfully')
+    } catch (error) {
+      this.$toast
+        .error()
+        .showSimple(
+          "Can't send vrrification email to you. please call our support"
+        )
+    }
+  }
   async onDialogEditProfile() {
     const { user } = await this.$service.auth.getProfile()
     this.$auth.setUser(user)

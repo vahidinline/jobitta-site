@@ -28,7 +28,13 @@ export default class AuthService {
   verify(token: string): Promise<ResultProfile> {
     return this.$axios.$post(`auth/verify`, { token })
   }
+  verifyEmail(token: string): Promise<boolean> {
+    return this.$axios.$post(`auth/verifyEmail`, { token })
+  }
   resendToken(): Promise<string> {
     return this.$axios.$post(`auth/resendToken`)
+  }
+  resendVerifyEmail(): Promise<string> {
+    return this.$axios.$post(`auth/resendVerifyEmail`)
   }
 }

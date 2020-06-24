@@ -21,7 +21,7 @@
           <a @click="editPhone">
             <!-- <v-icon color="primary" class="mr-1">la-edit</v-icon>
             <span>edit phone number</span>-->
-            <span>{{ user?user.email:'' }}</span>
+            <span>{{ user?user.mobile:'' }}</span>
           </a>
         </div>
         <v-text-field
