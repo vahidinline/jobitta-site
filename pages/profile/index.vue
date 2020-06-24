@@ -1,10 +1,18 @@
-<style lang="scss" scoped></style>
-
+<style lang="scss" scoped>
+.error-wrapper {
+  flex-direction: column;
+  justify-content: space-between;
+  display: flex;
+  @include media(md) {
+    flex-direction: row;
+  }
+}
+</style>
 <template>
   <v-container class="mt-5">
     <v-alert type="error" :value="!$auth.user.is_email_verified">
-      <div class="d-flex justify-space-between align-center">
-        <span>Your Email is not verified yet.</span>
+      <div class="error-wrapper">
+        <span>Your Email ({{$auth.user.email}}) is not verified yet.</span>
         <a class="caption white--text" @click="resendVerifyEmail">Resend Email</a>
       </div>
     </v-alert>
