@@ -1,6 +1,7 @@
-<style lang="scss" scoped>
-.dialog-edit {
-  overflow: hidden;
+<style lang="scss" >
+.editProfileDialog {
+  overflow: auto;
+  max-height: 90%;
 }
 </style>
 

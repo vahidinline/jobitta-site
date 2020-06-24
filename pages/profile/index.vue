@@ -66,7 +66,8 @@ export default class profile extends Vue {
     const { user } = await this.$service.auth.getProfile()
     this.$auth.setUser(user)
     const dialogProfile = await this.$dialog.show({
-      component: DialogEditPersonalInformation
+      component: DialogEditPersonalInformation,
+      dialog_wrapper_custom_class: 'editProfileDialog'
     })
   }
 }
