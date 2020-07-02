@@ -4,7 +4,7 @@ require('dotenv').config({})
 import { version } from './package.json'
 import 'vrwebdesign-nuxt/modules/nuxt-i18n'
 export default {
-  mode: 'universal',
+  mode: 'spa',
   server: {
     port: process.env.PORT || 3000,
     host: process.env.HOST || '0.0.0.0' // default: localhost
@@ -184,6 +184,13 @@ export default {
         res.spa = true
         next()
       }
+    },
+    {
+      path: '/opentok',
+      handler: (req, res, next) => {
+        res.spa = true
+        next()
+      }
     }
   ],
   /*
@@ -262,6 +269,7 @@ export default {
     /*
      ** You can extend webpack config here
      */
+    vendor: ['@opentok/client'],
     transpile: ['vrwebdesign-nuxt/modules/nuxt-dialog'],
     watch: ['services', 'enums'],
     // extractCSS: true,
