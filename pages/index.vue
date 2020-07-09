@@ -113,7 +113,7 @@
       background-image: url(~assets/img/img_header@2x.png);
       height: 730px;
       width: calc(100% - 560px);
-      background-position: -8px 145px;
+      background-position: -8px 75px;
     }
     @include media(lg) {
       background-position: -10px 10px;
