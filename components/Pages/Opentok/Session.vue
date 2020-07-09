@@ -1,17 +1,25 @@
 <style>
 .OT_subscriber {
-  float: left;
 }
 .OT_publisher {
-  float: left;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 2;
+  border: 2px solid #fff;
 }
 </style>
 <template>
   <client-only>
     <div id="session" @error="errorHandler">
-      <publisher :session="session" @error="errorHandler"></publisher>
+      <publisher :opts="{width:'180px',height:'180px'}" :session="session" @error="errorHandler"></publisher>
       <div id="subscribers" v-for="stream in streams" :key="stream.streamId">
-        <subscriber @error="errorHandler" :stream="stream" :session="session"></subscriber>
+        <subscriber
+          :opts="{width:'100%',height:'100vh'}"
+          @error="errorHandler"
+          :stream="stream"
+          :session="session"
+        ></subscriber>
       </div>
     </div>
   </client-only>
