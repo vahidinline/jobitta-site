@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import OT from '@opentok/client';
+import OT from '@opentok/client'
 export default {
   name: 'subscriber',
   props: {
@@ -20,20 +20,34 @@ export default {
       required: false
     }
   },
+  data() {
+    return {
+      subscriber: null
+    }
+  },
   mounted: function() {
-    const subscriber = this.session.subscribe(
+    this.subscriber = this.session.subscribe(
       this.stream,
       this.$el,
       this.opts,
       err => {
         if (err) {
-          this.$emit('error', err);
+          this.$emit('error', err)
         } else {
-          this.$emit('subscriberConnected', subscriber);
+          this.$emit('subscriberConnected', this.subscriber)
+        }
+        if (this.subscriber.stream.hasVideo) {
+          var imgData = this.subscriber.getImgData()
+          this.subscriber.setStyle('backgroundImageURI', imgData)
+        } else {
+          this.subscriber.setStyle(
+            'backgroundImageURI',
+            process.env.BASE_URL + '/img/doctor.png'
+          )
         }
       }
-    );
-    this.$emit('subscriberCreated', subscriber);
+    )
+    this.$emit('subscriberCreated', this.subscriber)
   }
-};
+}
 </script>

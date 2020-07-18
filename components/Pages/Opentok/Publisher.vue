@@ -3,9 +3,17 @@
 </template>
 
 <script>
-import OT from '@opentok/client';
+import OT from '@opentok/client'
 export default {
   name: 'publisher',
+  watch: {
+    audio: function(value) {
+      this.publisher.publishAudio(value)
+    },
+    video: function(value) {
+      this.publisher.publishVideo(value)
+    }
+  },
   props: {
     session: {
       type: OT.Session,
@@ -14,32 +22,43 @@ export default {
     opts: {
       type: Object,
       required: false
+    },
+    audio: {
+      default: true
+    },
+    video: {
+      default: true
+    }
+  },
+  data() {
+    return {
+      publisher: null
     }
   },
   mounted: function() {
-    const publisher = OT.initPublisher(this.$el, this.opts, err => {
+    this.publisher = OT.initPublisher(this.$el, this.opts, err => {
       if (err) {
-        this.$emit('error', err);
+        this.$emit('error', err)
       } else {
-        this.$emit('publisherCompleted');
+        this.$emit('publisherCompleted')
       }
-    });
-    this.$emit('publisherCreated', publisher);
+    })
+    this.$emit('publisherCreated', this.publisher)
     const publish = () => {
-      this.session.publish(publisher, err => {
+      this.session.publish(this.publisher, err => {
         if (err) {
-          this.$emit('error', err);
+          this.$emit('error', err)
         } else {
-          this.$emit('publisherConnected', publisher);
+          this.$emit('publisherConnected', this.publisher)
         }
-      });
-    };
+      })
+    }
     if (this.session && this.session.isConnected()) {
-      publish();
+      publish()
     }
     if (this.session) {
-      this.session.on('sessionConnected', publish);
+      this.session.on('sessionConnected', publish)
     }
   }
-};
+}
 </script>

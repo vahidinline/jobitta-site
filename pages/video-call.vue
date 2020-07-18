@@ -1,9 +1,11 @@
 <style lang="scss" scoped>
 </style>
 <template>
-  <client-only>
-    <openTok :apiKey="apiKey" :sessionId="sessionId" :token="token" />
-  </client-only>
+  <v-app>
+    <client-only>
+      <openTok :apiKey="apiKey" :sessionId="sessionId" :token="token" />
+    </client-only>
+  </v-app>
 </template>
 <script lang="ts">
 import { Vue, Component, Prop, Watch, Emit, Ref } from 'vue-property-decorator'

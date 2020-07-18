@@ -16,6 +16,11 @@
         <a class="caption white--text" @click="resendVerifyEmail">Resend Email</a>
       </div>
     </v-alert>
+    <v-row class="justify-center">
+      <div>
+        <v-btn @click="joinConversation" :loading="loading" color="primary">Join Conversation</v-btn>
+      </div>
+    </v-row>
     <v-row>
       <v-col cols="12" sm="12" xs="12">
         <ProfileProgress :percentage="'25'" class="pa-5" @editProfile="onDialogEditProfile" />
@@ -35,6 +40,7 @@ import DialogEditPersonalInformation from '@/components/Pages/Profile/PersonalIn
 import ProfileProgress from '@/components/Pages/Profile/ProfileProgress/ProfileProgress.vue'
 import CallHistory from '@/components/Pages/Profile/CallHistory/CallHistory.vue'
 import { Profile } from '@/models/Auth'
+import fa from '../../locales/fa'
 
 Component.registerHooks(['fetch', 'head'])
 
@@ -49,7 +55,7 @@ Component.registerHooks(['fetch', 'head'])
 })
 export default class profile extends Vue {
   dialogEditPersonalInformation = false
-
+  loading = false
   public head() {
     return {
       title: 'User Profile',
@@ -77,6 +83,13 @@ export default class profile extends Vue {
       component: DialogEditPersonalInformation,
       dialog_wrapper_custom_class: 'editProfileDialog'
     })
+  }
+  async joinConversation() {
+    this.loading = true
+    let data = await this.$axios.$get('opentok')
+    let url = `${window.location.origin}/video-call?sessionId=${data.sessionId}&token=${data.publisherToken}`
+    window.open(url, '_blank')
+    this.loading = false
   }
 }
 </script>
