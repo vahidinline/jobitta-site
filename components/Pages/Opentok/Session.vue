@@ -27,6 +27,7 @@
   }
 }
 #subscribers {
+  height: calc(var(--vh, 1vh) * 100);
   .bg {
     position: absolute;
     z-index: 4;
@@ -145,7 +146,7 @@ export default class SessionComponent extends Vue {
   }
   subscriberOption = {
     width: '100%',
-    height: '100vh',
+    height: '100%',
     style: { buttonDisplayMode: 'off', audioBlockedDisplayMode: 'off' }
   }
   handleId = 'handle-id'
@@ -165,6 +166,8 @@ export default class SessionComponent extends Vue {
   })
   token: any
   mounted() {
+    this.calcVh()
+    window.addEventListener('resize', this.calcVh)
     this.draggableValue.handle = this.$refs[this.handleId]
     let connectionsBeforeUs = 0
     this.session = OT.initSession(this.apiKey, this.sessionId)
@@ -193,6 +196,14 @@ export default class SessionComponent extends Vue {
     this.session.on('streamDestroyed', (event: any) => {
       this.subscriber = null
     })
+  }
+  destroyed() {
+    window.removeEventListener('resize', this.calcVh)
+  }
+  calcVh() {
+    // We execute the same script as before
+    let vh = window.innerHeight * 0.01
+    document.documentElement.style.setProperty('--vh', `${vh}px`)
   }
   errorHandler() {
     errorHandler
