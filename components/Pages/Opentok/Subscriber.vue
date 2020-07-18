@@ -42,7 +42,7 @@ export default {
         } else {
           this.subscriber.setStyle(
             'backgroundImageURI',
-            process.env.BASE_URL + '/img/doctor.png'
+            process.env.BASE_URL + '/img/logo.jpeg'
           )
         }
       }

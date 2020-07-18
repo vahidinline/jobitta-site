@@ -27,7 +27,10 @@
   }
 }
 #subscribers {
+  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
   height: calc(var(--vh, 1vh) * 100);
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
   .bg {
     position: absolute;
     z-index: 4;
@@ -56,6 +59,9 @@
     .OT_audio-level-meter__audio-only-img {
       display: none;
     }
+    .OT_video-poster {
+      background-position: center;
+    }
   }
 }
 .icon-wrapper {
@@ -71,11 +77,20 @@
     margin: 0 8px;
   }
 }
+.session-end {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
 </style>
 
 <template>
   <client-only>
-    <div id="session" @error="errorHandler">
+    <div v-if="sessionEnd" class="session-end">This Session Ended</div>
+    <div id="session" @error="errorHandler" v-else>
       <div id="publisher" v-draggable="draggableValue">
         <!-- <v-icon :ref="handleId" color="white">la-arrows-alt</v-icon> -->
         <publisher
@@ -137,6 +152,7 @@ const errorHandler = (err: any) => {
 export default class SessionComponent extends Vue {
   subscriber: any = null
   session: any = null
+  sessionEnd: any = false
   publisherOption = {
     width: '100%',
     height: '100%',
@@ -216,6 +232,7 @@ export default class SessionComponent extends Vue {
   }
   onEndCall() {
     this.session.destroy()
+    this.sessionEnd = true
   }
 }
 </script>
