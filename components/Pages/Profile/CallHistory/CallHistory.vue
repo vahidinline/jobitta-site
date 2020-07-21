@@ -9,7 +9,7 @@
 </style>
 
 <template>
-  <v-card class="calls" outlined :loading="loading">
+  <v-card class="calls pa-3" flat :loading="loading">
     <v-card-title primary-title>
       <div class="full-width d-flex justify-space-between">
         <div class="title">Reservation History</div>

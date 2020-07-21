@@ -14,8 +14,8 @@
     align-items: center;
     font-size: 3rem;
     padding-left: 32px;
-    @include media(lg) {
-      width: auto;
+    @include media(xl) {
+      // width: auto;
     }
     a {
       display: flex;

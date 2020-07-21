@@ -27,4 +27,10 @@ export default class ReservationService {
   removeCopoun(id: any) {
     return this.$axios.$post(`reservations/${id}/removeCopoun`)
   }
+  createSession(data: { track_id: any; user_id?: any; doctor_id?: any }) {
+    return this.$axios.$post(`reservations/createSession`, data)
+  }
+  feedback(data: { track_id: any; rate: number; text: string }) {
+    return this.$axios.$post(`reservations/feedback`, data)
+  }
 }

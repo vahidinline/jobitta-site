@@ -6,12 +6,12 @@
 </style>
 
 <template>
-  <v-card class="pa-3" min-width="280">
+  <v-card flat class="pa-3" min-width="280">
     <v-card-title>
       <div class="flex-fill d-flex justify-space-between">
-        <div class="title">Update Information</div>
+        <div class="title">Personal Information</div>
         <v-spacer></v-spacer>
-        <v-icon @click="$emit('close')">la-times</v-icon>
+        <!-- <v-icon @click="$emit('close')">la-times</v-icon> -->
       </div>
     </v-card-title>
 

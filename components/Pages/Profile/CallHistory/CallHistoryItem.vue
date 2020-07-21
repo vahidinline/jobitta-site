@@ -40,6 +40,12 @@
         flex: 0 0 150px;
       }
     }
+    & &--link {
+      @include media(md) {
+        width: 30px;
+        flex: 0 0 30px;
+      }
+    }
   }
 
   .label,
@@ -69,10 +75,25 @@
           class="value"
         >{{ call.doctor.session_duration_hint || call.doctor.session_duration }} Minute</div>
       </div>
-
       <div class="call-item--wrapper--status">
         <div class="label">Status</div>
-        <vr-badge :color="colors[call.status]" type="dot">{{ call.status | enum('call_state') }}</vr-badge>
+        <vr-badge :color="colors[call.status]" type="dot">{{ call.status | enums('call_state') }}</vr-badge>
+      </div>
+      <div class="call-item--wrapper--link">
+        <template v-if="call.status == 'wait_for_call'">
+          <v-tooltip top v-if="$device.isDesktop">
+            <template v-slot:activator="{ on }">
+              <v-btn v-on="on" color="primary" icon :href="link" target="_blank">
+                <v-icon>la-video</v-icon>
+              </v-btn>
+            </template>
+            <span>Go to Conversation</span>
+          </v-tooltip>
+          <v-btn v-else block outlined class="mt-2" color="primary" :href="link" target="_blank">
+            <span>Go to Conversation</span>
+            <v-icon size="24" class="ml-3">la-video</v-icon>
+          </v-btn>
+        </template>
       </div>
     </div>
   </v-card>
@@ -94,5 +115,9 @@ export default class CallHistoryItem extends Vue {
     required: true
   })
   readonly call!: any
+
+  get link() {
+    return `${window.location.origin}/video-call?track_id=${this.call.track_id}&user_id=${this.$auth.user?.id}`
+  }
 }
 </script>

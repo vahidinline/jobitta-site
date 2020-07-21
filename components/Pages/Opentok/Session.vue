@@ -85,12 +85,23 @@
   justify-content: center;
   font-size: 30px;
 }
+.expertgap-logo {
+  position: fixed;
+  left: 20px;
+  top: 20px;
+  opacity: 0.3;
+  width: 200px;
+  z-index: 10;
+}
 </style>
 
 <template>
   <client-only>
     <div v-if="sessionEnd" class="session-end">This Session Ended</div>
     <div id="session" @error="errorHandler" v-else>
+      <div class="expertgap-logo">
+        <v-img src="/img/logo.png"></v-img>
+      </div>
       <div id="publisher" v-draggable="draggableValue">
         <!-- <v-icon :ref="handleId" color="white">la-arrows-alt</v-icon> -->
         <publisher
@@ -111,7 +122,7 @@
         ></subscriber>
         <div class="bg"></div>
         <div class="name">
-          Armin Kheirkhahan
+          {{subscriberName}}
           <v-icon color="#fff">{{subscriber.hasAudio?'mic':'mic_off'}}</v-icon>
         </div>
       </div>
@@ -181,6 +192,8 @@ export default class SessionComponent extends Vue {
     default: process.env.VUE_APP_TOKEN
   })
   token: any
+  @Prop()
+  subscriberName: any
   mounted() {
     this.calcVh()
     window.addEventListener('resize', this.calcVh)
@@ -233,6 +246,7 @@ export default class SessionComponent extends Vue {
   onEndCall() {
     this.session.destroy()
     this.sessionEnd = true
+    this.$emit('onEnd')
   }
 }
 </script>

@@ -18,6 +18,9 @@
   width: 600px;
   margin-top: 40px;
   max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 ul {
   margin: 0;
@@ -78,7 +81,9 @@ ul {
 <template>
   <section ref="wrapper">
     <v-card class="invoice">
-      <v-img :src="require('@/assets/img/logo.png')"></v-img>
+      <div class="logo-wrapper">
+        <img src="~assets/img/logo.png" />
+      </div>
       <div class="text-center">
         <div class="icon-wrapper">
           <v-icon color="orange">la-check</v-icon>
@@ -127,15 +132,14 @@ ul {
           <span class="success--text">{{reservation.currency.symbol}} {{reservation.newPrice }}</span>
         </li>
       </ul>
-
-      <!-- <span class="caption">{{$t('stepper.finish.caption')}}</span> -->
-      <!-- <p class="mt-5">
-         {{$t('stepper.finish.zoom')}} 
-         <span
-          v-if="$auth.user"
+      <p class="mt-5">
+        Your video session will happen via the link below
+        <a
+          target="_blank"
+          :href="link"
           class="accent--text"
-        >{{$auth.user.email}}</span>
-      </p>-->
+        >{{link}}</a>
+      </p>
       <!-- <a
         class="secondary--text"
         href="https://google.com"
@@ -169,6 +173,9 @@ import Upload from '@/components/Pages/Experts/Reservation/upload.vue'
 export default class Finish extends Vue {
   reservation_info: any = {}
   doctor: any = {}
+  get link() {
+    return `${window.location.origin}/video-call?track_id=${this.reservation.track_id}&user_id=${this.$auth.user?.id}`
+  }
   get sessionTime() {
     if (this.$i18n.locale == 'en') {
       return `${moment(this.reservation_info.reserve_time)
@@ -202,10 +209,10 @@ export default class Finish extends Vue {
     loader.hide()
   }
   destroyed() {
-    this.$store.commit('reservation/clear_reservation_info')
+    // this.$store.commit('reservation/clear_reservation_info')
   }
   beforeRouteLeave() {
-    this.$store.commit('reservation/clear_reservation_info')
+    // this.$store.commit('reservation/clear_reservation_info')
   }
   async upload() {
     let result = await this.$dialog.show({

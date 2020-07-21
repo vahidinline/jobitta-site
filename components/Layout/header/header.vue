@@ -111,7 +111,7 @@ nav {
     <v-spacer></v-spacer>
     <v-btn
       v-if="$auth.loggedIn"
-      to="/profile"
+      to="/profile/info"
       large
       depressed
       :raised="false"
