@@ -18,10 +18,8 @@ h1 {
 <template>
   <div class="container">
     <div class="wrapper" ref="wrapper">
-      <h1>send your feedback about this session</h1>
-      <div
-        class="subtitle mb-3"
-      >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis vero ullam provident aliquid. Quos est quae culpa vero odit a officia cupiditate quod, mollitia ad? Quas deleniti debitis laboriosam natus?</div>
+      <h1>We would like your feedback to improve our service</h1>
+      <div class="subtitle mb-3">Please rate your session and leave feedback below</div>
       <div class="form-wraaper">
         <v-rating v-model="feedback.rate" color="accent" class="mb-3"></v-rating>
         <v-textarea
@@ -33,7 +31,7 @@ h1 {
           @keypress.enter="onSubmit"
           outlined
         />
-        <v-btn color="success" @click="onSubmit" outlined>Send Your Feedback</v-btn>
+        <v-btn color="success" @click="onSubmit" outlined class="text-none">Submit</v-btn>
       </div>
     </div>
   </div>
@@ -62,7 +60,7 @@ export default class FeedBackPage extends Vue {
         ...this.feedback
       }
       await this.$service.reservation.feedback(data)
-      this.$toast.success().showSimple('Thanks, Your feedback deliver to us')
+      this.$toast.success().showSimple('Thanks, we have received your feedback')
     } catch (error) {
       console.error(error)
       this.$toast.error().showSimple('Somthing wrong')

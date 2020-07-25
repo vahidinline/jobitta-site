@@ -6,7 +6,7 @@
   height: 180px;
   overflow: hidden;
   position: fixed;
-  top: 20px;
+  top: 40px;
   right: 20px;
   z-index: 99;
   border-radius: 16px;
@@ -40,9 +40,23 @@
     left: 0;
     background-image: linear-gradient(
       to bottom,
+      rgba(0, 0, 0, 0.4) 0px,
+      rgba(0, 0, 0, 0) 40px,
       rgba(0, 0, 0, 0) 60%,
       rgba(0, 0, 0, 1) 100%
     );
+  }
+  .encrypt-icon {
+    position: absolute;
+    top: 0px;
+    z-index: 4;
+    left: 0px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 100%;
   }
   .name {
     position: absolute;
@@ -88,9 +102,9 @@
 .expertgap-logo {
   position: fixed;
   left: 20px;
-  top: 20px;
+  top: 40px;
   opacity: 0.3;
-  width: 200px;
+  width: 100px;
   z-index: 10;
 }
 </style>
@@ -121,10 +135,14 @@
           :session="session"
         ></subscriber>
         <div class="bg"></div>
-        <div class="name">
+        <div class="encrypt-icon">
+          <v-icon size="16" color="white" class="mr-1 mb-1">lock</v-icon>
+          <span>End-to-end encrypted</span>
+        </div>
+        <!-- <div class="name">
           {{subscriberName}}
           <v-icon color="#fff">{{subscriber.hasAudio?'mic':'mic_off'}}</v-icon>
-        </div>
+        </div>-->
       </div>
 
       <div class="icon-wrapper">
