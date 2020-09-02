@@ -5,6 +5,7 @@ import HomeService from '~/services/home'
 import ContactusService from '~/services/contactus'
 import FAQService from '~/services/faq'
 import ReservationService from '~/services/reservation'
+import CategoryService from '~/services/categories'
 interface IEnum {
   toSelect: { text: string; value: number }[]
 }
@@ -53,6 +54,7 @@ declare module 'vue/types/vue' {
     contactus: ContactusService
     faq: FAQService
     reservation: ReservationService
+    categories: CategoryService
   }
   interface NuxtEnumInstance {
     role: IEnum

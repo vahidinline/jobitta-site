@@ -341,7 +341,7 @@ export default class Invoice extends Vue {
         reservation_id: this.reservation.id
       })
       this.$toast.success().showSimple('Discount code approved')
-      this.data.clientSecret = result.clientSecret
+      // this.data.clientSecret = result.clientSecret
       let { copoun, discount, newPrice } = result
       this.Reservation.save_reservation_info({ discount, newPrice, copoun })
     } catch (error) {
@@ -374,6 +374,10 @@ export default class Invoice extends Vue {
     }
     let loader = this.$loader.show(this.$refs.wrapper)
     this.loading = true
+    let { clientSecretKey } = await this.$service.reservation.getSecretKey(
+      this.reservation.id
+    )
+    this.Reservation.save_reservation_info({ clientSecret: clientSecretKey })
     let result = await this.stripe.confirmCardPayment(
       this.reservation.clientSecret,
       {

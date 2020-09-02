@@ -24,7 +24,7 @@ section {
   @include media(lg) {
     width: 120px;
     height: 90px;
-    font-size: 16px;
+    font-size: 14px;
   }
   &:first-child {
     margin-left: 0;
@@ -64,7 +64,7 @@ section {
   @include media(lg) {
     width: 120px;
     flex: 0 0 120px;
-    font-size: 16px;
+    font-size: 14px;
   }
   @include ltr() {
     &:first-child {

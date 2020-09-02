@@ -77,7 +77,7 @@
       </div>
       <div class="call-item--wrapper--status">
         <div class="label">Status</div>
-        <vr-badge :color="colors[call.status]" type="dot">{{ call.status | enums('call_state') }}</vr-badge>
+        <vr-badge :color="colors[call.status]" type="dot">{{ call.status | enum('call_state') }}</vr-badge>
       </div>
       <div class="call-item--wrapper--link">
         <template v-if="call.status == 'wait_for_call'">

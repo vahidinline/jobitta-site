@@ -64,6 +64,11 @@ export default class profile extends Vue {
       icon: 'la-bell',
       to: '/notification',
       base: '/profile'
+    },
+    {
+      title: 'Logout',
+      icon: 'la-sign-out-alt',
+      onClick: this.logout
     }
   ]
   public head() {
@@ -74,7 +79,9 @@ export default class profile extends Vue {
       }
     }
   }
-
+  logout() {
+    this.$auth.logout()
+  }
   async joinConversation() {
     this.loading = true
     let data = await this.$axios.$get('opentok')

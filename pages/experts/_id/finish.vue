@@ -133,7 +133,7 @@ ul {
         </li>
       </ul>
       <p class="mt-5">
-        Your video session will happen via the link below
+        Please find below a link to your video consultation session
         <a
           target="_blank"
           :href="link"
@@ -159,6 +159,9 @@ ul {
       <div
         class="caption mt-2"
       >Please use this space to upload any additional information you would like your Expert to see prior to your session</div>
+      <div class="d-flex justify-center">
+        <v-btn to="/" color="secondary" class="title mt-4 text-none">Back To Home</v-btn>
+      </div>
     </v-card>
     <div class="bottom-background"></div>
   </section>
@@ -209,10 +212,10 @@ export default class Finish extends Vue {
     loader.hide()
   }
   destroyed() {
-    // this.$store.commit('reservation/clear_reservation_info')
+    this.$store.commit('reservation/clear_reservation_info')
   }
   beforeRouteLeave() {
-    // this.$store.commit('reservation/clear_reservation_info')
+    this.$store.commit('reservation/clear_reservation_info')
   }
   async upload() {
     let result = await this.$dialog.show({

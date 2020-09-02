@@ -14,5 +14,9 @@ import CallHistory from '@/components/Pages/Profile/CallHistory/CallHistory.vue'
     CallHistory
   }
 })
-export default class component_name extends Vue {}
+export default class UserHistoryComponent extends Vue {
+  mounted() {
+    console.log(this.$enum)
+  }
+}
 </script>

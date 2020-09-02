@@ -4,6 +4,7 @@ export interface User {
   lastName?: string
   username?: string
   password?: string
+  email?: string
   is_verified?: number
   mobile?: string
 }

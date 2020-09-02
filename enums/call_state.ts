@@ -1,8 +1,8 @@
-const reservationStatus = {
-  cancelled: 'cancelled',
-  payment_pending: 'payment pending',
-  approved: 'approved',
-  wait_for_call: 'wait for call',
-  called: 'called'
+export enum EReservation {
+  cancelled = 'Cancelled',
+  payment_pending = 'Payment Pending',
+  approved = 'Approved',
+  wait_for_call = 'Wait For Call',
+  called = 'Called'
 }
-export default reservationStatus
+export default EReservation

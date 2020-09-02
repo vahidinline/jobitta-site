@@ -33,4 +33,8 @@ export default class ReservationService {
   feedback(data: { track_id: any; rate: number; text: string }) {
     return this.$axios.$post(`reservations/feedback`, data)
   }
+
+  getSecretKey(id: string | number) {
+    return this.$axios.$get(`reservations/${id}/getSecretKey`)
+  }
 }

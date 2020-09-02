@@ -1,8 +1,20 @@
 <style lang="scss" scoped>
 .filters {
+  display: flex;
+  flex-direction: column;
   padding: 0 16px;
+  @include media(md) {
+    flex-direction: row;
+  }
   .v-input {
     max-width: 350px;
+    + .v-input {
+      margin-top: 16px;
+      @include media(md) {
+        margin-top: 0px;
+        margin-left: 16px;
+      }
+    }
   }
 }
 .doctors {
@@ -146,6 +158,18 @@
         @input="onSearch"
         v-model="search"
       ></v-text-field>
+      <v-select
+        outlined
+        hide-details
+        name="search"
+        label="Select Category"
+        clearable
+        item-value="id"
+        item-text="name"
+        :items="categories"
+        @input="onSearch"
+        v-model="category"
+      ></v-select>
     </section>
     <section class="doctors">
       <template v-if="$fetchState.pending">
@@ -205,6 +229,7 @@ Component.registerHooks(['fetch'])
 export default class DoctorList extends Vue {
   value = 1
   search = ''
+  category = null
   doctors: any[] = []
   page = 1
   lastPage = 1
@@ -213,6 +238,7 @@ export default class DoctorList extends Vue {
   offsetTop = 0
   timeout!: any
   loading = false
+  categories: any[] = []
 
   get numOfItems() {
     let items = 5
@@ -234,7 +260,8 @@ export default class DoctorList extends Vue {
     let data = await this.$service.doctors.query({
       page: this.page,
       perPage: this.perPage,
-      search: this.search
+      search: this.search,
+      category: this.category
     })
     this.doctors.push(...data.data)
     this.page = data.page
@@ -244,23 +271,7 @@ export default class DoctorList extends Vue {
   }
   async mounted() {
     window.addEventListener('scroll', this.onScroll)
-    console.log(this.$vuetify.breakpoint.lgAndUp)
-    // let scrollHeight = Math.max(
-    //   document.body.scrollHeight,
-    //   document.documentElement.scrollHeight,
-    //   document.body.offsetHeight,
-    //   document.documentElement.offsetHeight,
-    //   document.body.clientHeight,
-    //   document.documentElement.clientHeight
-    // )
-    // let offsetTop = window.pageYOffset
-    // let windowHeight = window.innerHeight
-    // if (window.innerHeight == scrollHeight) {
-    //   this.loading = true
-    //   this.page++
-    //   await this.getDoctors()
-    //   this.loading = false
-    // }
+    this.categories = await this.$service.categories.query()
   }
   onScroll(e: any) {
     if (this.page >= this.lastPage) {

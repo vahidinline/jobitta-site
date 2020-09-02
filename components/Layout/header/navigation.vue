@@ -42,7 +42,7 @@
         <v-btn
           v-if="$auth.loggedIn"
           class="ma-4 text-none subtitle-1"
-          to="/profile"
+          to="/profile/info"
           color="primary"
           large
           text
