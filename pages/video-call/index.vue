@@ -47,7 +47,15 @@ export default class OpentokPage extends Vue {
   }
   async mounted() {
     if (this.$route.query.track_id) {
-      let { track_id, user_id, doctor_id } = this.$route.query
+      let token = this.$route.query.token as string
+      if (!token) {
+        return this.$dialog.error().alert({
+          title: 'Your Link Not Valid',
+          ok_txt: 'Ok',
+          message: 'Please Check Your Link'
+        })
+      }
+      let { track_id, user_id, doctor_id } = this.parseToken(token)
       try {
         let data = await this.$service.reservation.createSession({
           track_id,
@@ -67,6 +75,17 @@ export default class OpentokPage extends Vue {
       }
     }
   }
+  parseToken(token: string) {
+    let user_id, doctor_id
+    let [type, id, track_id] = token.split('_')
+    if (type == 'user') {
+      user_id = id
+    } else if (type == 'doctor') {
+      doctor_id = id
+    }
+    return { doctor_id, user_id, track_id }
+  }
+
   onEnd() {
     if (this.is_user) {
       this.$router.push(
