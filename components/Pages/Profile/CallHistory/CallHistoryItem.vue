@@ -117,7 +117,7 @@ export default class CallHistoryItem extends Vue {
   readonly call!: any
 
   get link() {
-    return `${window.location.origin}/video-call?track_id=${this.call.track_id}&user_id=${this.$auth.user?.id}`
+    return `${window.location.origin}/video-call?token=user_${this.$auth.user?.id}_${this.call.track_id}`
   }
 }
 </script>
