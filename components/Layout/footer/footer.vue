@@ -86,9 +86,9 @@
       <p>&copy;ExpertGap {{year}}- All rights reserved</p>
     </div>
     <p class="text-center">
-      ExpertGap, 8 Northumberland Avenue, London, WC2N 5BY, United Kingdom
+      Viru Square 2 Tallinn Harju County 10111
       <br />
-      <span class="caption">ExpertGap is a trading name of Synergen Ventures Ltd</span>
+      <span class="caption">GoDiet is a trading name of GODIET OÜ</span>
     </p>
   </div>
 </template>
