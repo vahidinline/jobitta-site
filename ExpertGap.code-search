@@ -1,0 +1,150 @@
+# Query: ExpertGap
+# ContextLines: 1
+
+49 results - 11 files
+
+nuxt.config.js:
+  33      titleTemplate: '%s',
+  34:     title: 'Expertgap',
+  35      meta: [
+
+package.json:
+  1  {
+  2:   "name": "expertgap",
+  3    "version": "1.0.0",
+
+components/Layout/footer/footer.vue:
+  85      <div class="copy-right">
+  86:       <p>&copy;ExpertGap {{year}}- All rights reserved</p>
+  87      </div>
+
+components/Layout/header/navigation.vue:
+  73        <div class="logo-wrapper">
+  74:         <nuxt-link to="/">Expertgap</nuxt-link>
+  75        </div>
+
+components/Pages/Experts/ExpertDetail/Info.vue:
+  231          icon: 'socicon-linkedin',
+  232:         url: `https://www.linkedin.com/shareArticle?mini=true&url=${location}&title=Expertgap&summary=${this.doctor.firstname}%20${this.doctor.lastname}&source=LinkedIn`
+  233        },
+
+  236          icon: 'socicon-twitter',
+  237:         url: `https://twitter.com/intent/tweet?hashtags=EXPERTGAP&original_referer=${location}&ref_src=twsrc%5Etfw&text=${this.doctor.firstname}%20${this.doctor.lastname}&tw_p=tweetbutton&url=${location}`
+  238        }
+
+components/Pages/Experts/Reservation/upload.vue:
+  28          If there is any information you would like to share with your Expert prior to your booked session, please write in the box below and/or click the browse button to upload any attachments. You will be able to add information and upload files any time up to your timetabled session, by logging into your profile page at
+  29:         <nuxt-link to="/">GoDiet.eu</nuxt-link>
+  30        </p>
+
+components/Pages/Opentok/Session.vue:
+  101  }
+  102: .expertgap-logo {
+  103    position: fixed;
+
+  115      <div id="session" @error="errorHandler" v-else>
+  116:       <div class="expertgap-logo">
+  117          <v-img src="/img/logo.png"></v-img>
+
+pages/about.vue:
+  10          <div class="subtitle-1">
+  11:           <p>The diverse and growing team of Experts on the ExpertGap platform share exceptional commitment to clients as a core value. They are driven by the desire to support people and especially ethnic minorities with their personal, developmental and professional challenges and milestones. ExpertGap strives in its mission to bridge the gap that is often presented by language and cultural barriers for achieving the heights of personal and professional development, while simultaneously nurturing the roots of rich native cultures in modern lifestyles.</p>
+  12:           <p>ExpertGap provides you with the opportunity to conveniently connect with Experts in a range of areas, in your native language. The background and credentials of Experts in the ExpertGap Network are vetted to ensure a high level of expertise. They are selected to match a range of ethnic and cultural backgrounds for a more personalised and empathetic consultation and extra peace of mind. We have matched these unique characteristics with affordable prices, in order to enhance access to expert support and mentoring for people from all walks of life.</p>
+  13:           <p>You can select an Expert, book a session at a time that suits you, and have a video consultation for the specified duration. You will received email confirmations and SMS reminders to ensure your session runs in a timely manner. Many ExpertGap users continue to book follow-up sessions to enjoy continued support, mentoring and advice of their chosen Expert.</p>
+  14:           <p>The ExpertGap platform is straightforward and easy to use, and ensures maximum privacy and confidentiality. Your personal data are encrypted and stored on private servers based in the UK, adhering to European GDPR regulation. Payments are processed securely via a payment gateway from our financial services partner, regulated by the Financial Services Authority (FCA).</p>
+  15          </div>
+
+pages/index.vue:
+  474              Once you have made the booking, you will receive an email confirmation with a link to your online video consultation. You will also receive a reminder text message 2 hours before your timetabled consultation.
+  475:             You will have a secure personal dashboard on the Expertgap platform, where you can update your details, complete relevant questionnaires if recommended prior to the consultation, and upload documents for the attention of your expert.
+  476              Leave feedback after your session.
+
+  481      <div class="our-experience">
+  482:       <h3>Why choose Expertgap</h3>
+  483        <div class="wrapper">
+
+pages/privacy.vue:
+   31              Thank you for choosing to be part of our community at Synergen
+   32:             Ventures Ltd, trading as ExpertGap. The terms in the Privacy Policy
+   33              ( such as
+   34:             <b>“ExpertGap”, “we”, “us”, “our” or “website”</b>) have the same
+   35              meaning as in our Terms and Conditions document. We take your
+
+   43              <a
+   44:               href="mailto:info@expertgap.co.uk"
+   45:             >info@expertgap.co.uk</a>.
+   46            </p>
+
+  188                <a
+  189:                 href="mailto:info@expertgap.co.uk"
+  190:               >info@expertgap.co.uk</a>and be sure to include your name, testimonial location, and
+  191                contact information.
+
+  389                <a
+  390:                 href="mailto:info@expertgap.co.uk"
+  391:               >info@expertgap.co.uk</a>.
+  392              </p>
+
+  433                <a
+  434:                 href="mailto:info@expertgap.co.uk"
+  435:               >info@expertgap.co.uk</a>.
+  436              </p>
+
+  473                <a
+  474:                 href="mailto:info@expertgap.co.uk"
+  475:               >info@expertgap.co.uk</a>.
+  476              </p>
+
+  483                <a
+  484:                 href="mailto:info@expertgap.co.uk"
+  485:               >info@expertgap.co.uk</a>. We
+  486                will respond to your request within 30 days.
+
+  527                <a
+  528:                 href="mailto:info@expertgap.co.uk"
+  529:               >info@expertgap.co.uk</a>.
+  530              </p>
+
+  534                (GDPR) of your personal information is Synergen Ventures Ltd
+  535:               trading as ExpertGap. You can contact the data controller directly
+  536                regarding the processing of your information, by email at
+
+  541              <p>
+  542:               Synergen Ventures Ltd trading as ExpertGap,
+  543                <br />8 Northumberland Avenue,
+
+pages/terms.vue:
+   26                entity, and
+   27:               <b>Synergen Ventures Ltd trading as ExpertGap</b>, concerning your
+   28:               access to and use of the <b>expertgap.co.uk</b> website as well as
+   29                any related applications.
+
+   31                  >If you do not agree with these Terms and Conditions, then you
+   32:                 are prohibited from using the ExpertGap platform services and
+   33                  you must discontinue use immediately.</b
+   34                >
+   35:               The terms in the Privacy Policy (such as “ExpertGap”, “we”, “us”,
+   36                “our”, or “website”) have the same meaning.
+
+   89              password you must promptly notify us at
+   90:             <a href="mailto:info@expertgap.co.uk">info@expertgap.co.uk</a>.
+   91            </p>
+
+  143              users please contact us at
+  144:             <a href="mailto:info@expertgap.co.uk">info@expertgap.co.uk</a>
+  145              .
+
+  262              website, please contact us at
+  263:             <a href="mailto:info@expertgap.co.uk">info@expertgap.co.uk</a>
+  264            </p>
+
+  381              if available, or by contacting us at
+  382:             <a href="mailto:info@expertgap.co.uk">info@expertgap.co.uk</a>.
+  383            </p>
+
+  463              receive further information regarding use of the Services, please
+  464:             contact us by email at info@expertgap.co.uk or by post to:
+  465            </p>
+  466            <p>
+  467:             Synergen Ventures Ltd trading as ExpertGap,<br />
+  468              8 Northumberland Avenue,<br />

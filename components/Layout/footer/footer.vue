@@ -83,7 +83,7 @@
       </ul>
     </div>
     <div class="copy-right">
-      <p>&copy;ExpertGap {{year}}- All rights reserved</p>
+      <p>&copy;GoDiet {{year}}- All rights reserved</p>
     </div>
     <p class="text-center">
       Viru Square 2 Tallinn Harju County 10111

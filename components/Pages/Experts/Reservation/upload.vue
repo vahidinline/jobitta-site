@@ -26,7 +26,7 @@
     <div class="subtitle-1">
       <p>
         If there is any information you would like to share with your Expert prior to your booked session, please write in the box below and/or click the browse button to upload any attachments. You will be able to add information and upload files any time up to your timetabled session, by logging into your profile page at
-        <nuxt-link to="/">expertgap.co.uk</nuxt-link>
+        <nuxt-link to="/">GoDiet.eu</nuxt-link>
       </p>
     </div>
     <v-textarea

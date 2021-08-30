@@ -234,7 +234,7 @@ export default class component_name extends Vue {
       {
         title: 'twitter',
         icon: 'socicon-twitter',
-        url: `https://twitter.com/intent/tweet?hashtags=EXPERTGAP&original_referer=${location}&ref_src=twsrc%5Etfw&text=${this.doctor.firstname}%20${this.doctor.lastname}&tw_p=tweetbutton&url=${location}`
+        url: ``
       }
     ]
   }
