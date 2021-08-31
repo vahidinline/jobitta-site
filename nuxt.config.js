@@ -31,7 +31,7 @@ export default {
    */
   head: {
     titleTemplate: '%s',
-    title: 'Expertgap',
+    title: 'GoDiet - find your nutritionist',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
