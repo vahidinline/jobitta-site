@@ -24,15 +24,15 @@ p {
               1.1 These Terms and Conditions constitute a legally binding
               agreement made between you, whether personally or on behalf of an
               entity, and
-              <b>Synergen Ventures Ltd trading as ExpertGap</b>, concerning your
-              access to and use of the <b>expertgap.co.uk</b> website as well as
+              <b>Synergen Ventures Ltd trading as GoDiet</b>, concerning your
+              access to and use of the <b>eGoDiet.eu</b> website as well as
               any related applications.
               <b
                 >If you do not agree with these Terms and Conditions, then you
-                are prohibited from using the ExpertGap platform services and
+                are prohibited from using the GoDiet platform services and
                 you must discontinue use immediately.</b
               >
-              The terms in the Privacy Policy (such as “ExpertGap”, “we”, “us”,
+              The terms in the Privacy Policy (such as GoDiet, “we”, “us”,
               “our”, or “website”) have the same meaning.
             </p>
             <p>
@@ -87,7 +87,7 @@ p {
             If you know or suspect that anyone other than you knows your user
             information (such as an identification code or user name) and/or
             password you must promptly notify us at
-            <a href="mailto:info@expertgap.co.uk">info@expertgap.co.uk</a>.
+            <a href="mailto:info@GoDiet.eu">info@GoDiet.eu</a>.
           </p>
           <p>
             3.2 If you provide any information that is untrue, inaccurate, not
@@ -141,7 +141,7 @@ p {
           <p>
             4.6 If you wish to complain about User Content uploaded by other
             users please contact us at
-            <a href="mailto:info@expertgap.co.uk">info@expertgap.co.uk</a>
+            <a href="mailto:info@GoDiet.eu">info@GoDiet.eu</a>
             .
           </p>
         </div>
@@ -260,7 +260,7 @@ p {
           <p>
             7.5 If you have any concerns about any of the Experts on our
             website, please contact us at
-            <a href="mailto:info@expertgap.co.uk">info@expertgap.co.uk</a>
+            <a href="mailto:info@GoDiet.eu">info@GoDiet.eu</a>
           </p>
         </div>
         <div>
@@ -379,7 +379,7 @@ p {
             participation at any time, for any reason, by following the
             instructions for terminating user accounts in your account settings,
             if available, or by contacting us at
-            <a href="mailto:info@expertgap.co.uk">info@expertgap.co.uk</a>.
+            <a href="mailto:info@GoDiet.eu">info@GoDiet.eu</a>.
           </p>
           <p>
             11.2 Without limiting any other provision of these Terms and
@@ -461,10 +461,10 @@ p {
           <p>
             12.9 In order to resolve a complaint regarding the Services or to
             receive further information regarding use of the Services, please
-            contact us by email at info@expertgap.co.uk or by post to:
+            contact us by email at info@GoDiet.eu or by post to:
           </p>
           <p>
-            Synergen Ventures Ltd trading as ExpertGap,<br />
+            Synergen Ventures Ltd trading as GoDiet,<br />
             8 Northumberland Avenue,<br />
             London, WC2N 5BY<br />
             United Kingdom

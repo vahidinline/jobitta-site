@@ -71,7 +71,7 @@
       </v-list>
       <v-spacer></v-spacer>
       <div class="logo-wrapper">
-        <nuxt-link to="/">Expertgap</nuxt-link>
+        <nuxt-link to="/">GoDiet</nuxt-link>
       </div>
     </div>
   </v-navigation-drawer>

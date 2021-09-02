@@ -383,20 +383,17 @@ p {
         <h1>
           Video Consultation with Experts,
           <br />in your native language:
-          <span>Türkçe, فارسی, عربی, हिन्दी, اُردُو</span>
+          <span>English, Estonian, Finnish,...</span>
         </h1>
         <ul class="hide-md">
           <li>
-            <v-icon>la-dot-circle</v-icon>Psychotherapy counselling: stress, anxiety, family, parenting, marriage, divorce
+            <v-icon>la-dot-circle</v-icon>Find your Nutritionist globaly
           </li>
           <li>
             <v-icon>la-dot-circle</v-icon>Health and wellbeing consultations
           </li>
           <li>
             <v-icon>la-dot-circle</v-icon>Weight loss, diet and nutrition therapists
-          </li>
-          <li>
-            <v-icon>la-dot-circle</v-icon>Ancient arts, literature, poetry and traditional music tutoring
           </li>
           <li>
             <v-icon>la-dot-circle</v-icon>Personal and professional development coaching
@@ -452,7 +449,7 @@ p {
           <img :src="require('@/assets/img/img_search.png')" alt />
           <h4>Browse Experts</h4>
           <p>
-            Search our range of high quality vetted experts. Choose an expert who is right for the issue you have at hand.
+            Search our range of high quality Nutritionist experts. Choose an expert who is right for the issue you have at hand.
             Make your selection based on expertise, years of experience, background information, native language, price, and duration of video consultation.
           </p>
         </div>
@@ -472,14 +469,14 @@ p {
           <h4>Connect with Expert</h4>
           <p>
             Once you have made the booking, you will receive an email confirmation with a link to your online video consultation. You will also receive a reminder text message 2 hours before your timetabled consultation.
-            You will have a secure personal dashboard on the Expertgap platform, where you can update your details, complete relevant questionnaires if recommended prior to the consultation, and upload documents for the attention of your expert.
+            You will have a secure personal dashboard on the GoDiet platform, where you can update your details, complete relevant questionnaires if recommended prior to the consultation, and upload documents for the attention of your expert.
             Leave feedback after your session.
           </p>
         </div>
       </div>
     </div>
     <div class="our-experience">
-      <h3>Why choose Expertgap</h3>
+      <h3>Why choose GoDiet</h3>
       <div class="wrapper">
         <div class="item">
           <img src="~assets/img/ic_cost_effective.png" alt />

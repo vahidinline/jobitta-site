@@ -28,10 +28,9 @@
       <v-flex pa-2 md7>
         <div class="subtitle-1">
           <p>
-            Thank you for choosing to be part of our community at Synergen
-            Ventures Ltd, trading as ExpertGap. The terms in the Privacy Policy
+            Thank you for choosing to be part of our community at GoDiet. The terms in the Privacy Policy
             ( such as
-            <b>“ExpertGap”, “we”, “us”, “our” or “website”</b>) have the same
+            <b>GoDiet, “we”, “us”, “our” or “website”</b>) have the same
             meaning as in our Terms and Conditions document. We take your
             privacy seriously and we are committed to protecting and
             safeguarding your personal information. This Privacy Policy applies
@@ -41,8 +40,8 @@
             concerns about this policy, or our practices with regards to your
             personal information, please contact us at info
             <a
-              href="mailto:info@expertgap.co.uk"
-            >info@expertgap.co.uk</a>.
+              href="mailto:info@GoDiet.eu"
+            >info@GoDiet.eu</a>.
           </p>
           <p>
             When you use our website and use our services, you accept and agree
@@ -186,8 +185,8 @@
               consent to use your name and testimonial. If you wish to update,
               or delete your testimonial, please contact us at
               <a
-                href="mailto:info@expertgap.co.uk"
-              >info@expertgap.co.uk</a>and be sure to include your name, testimonial location, and
+                href="mailto:info@GoDiet.eu"
+              >info@GoDiet.eu</a>and be sure to include your name, testimonial location, and
               contact information.
             </p>
             <p>
@@ -387,8 +386,8 @@
               If you become aware of any data we have collected from children
               under age 18, please contact us at
               <a
-                href="mailto:info@expertgap.co.uk"
-              >info@expertgap.co.uk</a>.
+                href="mailto:info@eGoDiet.eu"
+              >info@GoDiet.eu</a>.
             </p>
           </div>
           <div class="item" id="eight">
@@ -431,8 +430,8 @@
               If you have questions or comments about your privacy rights, you
               may email us at
               <a
-                href="mailto:info@expertgap.co.uk"
-              >info@expertgap.co.uk</a>.
+                href="mailto:info@GoDiet.eu"
+              >info@GoDiet</a>.
             </p>
             <p>
               <b>Account Information</b>
@@ -471,8 +470,8 @@
               administration and use of your account. To otherwise opt-out, you
               may contact us at
               <a
-                href="mailto:info@expertgap.co.uk"
-              >info@expertgap.co.uk</a>.
+                href="mailto:info@eGoDiet"
+              >info@GoDiet</a>.
             </p>
             <p>
               Based on the laws of some countries, you may have the right to
@@ -481,8 +480,8 @@
               request to review, update, or delete your personal information,
               please contact us at
               <a
-                href="mailto:info@expertgap.co.uk"
-              >info@expertgap.co.uk</a>. We
+                href="mailto:info@GoDiet.eu"
+              >info@GoDiet.eu</a>. We
               will respond to your request within 30 days.
             </p>
           </div>
@@ -525,25 +524,24 @@
               If you have questions or comments about this policy, you may email
               us at
               <a
-                href="mailto:info@expertgap.co.uk"
-              >info@expertgap.co.uk</a>.
+                href="mailto:info@GoDiet.eu"
+              >info@eGoDiet.eu</a>.
             </p>
             <p>
               If you are a resident in the European Economic Area, the "data
               controller" as defined in the General Data Protection Regulation
               (GDPR) of your personal information is Synergen Ventures Ltd
-              trading as ExpertGap. You can contact the data controller directly
+              trading as GoDiet. You can contact the data controller directly
               regarding the processing of your information, by email at
               <a
                 href="mailto:connect@synergenventures.co.uk"
               >connect@synergenventures.co.uk</a>, by phone at +44 (0)2081919088, or by post to:
             </p>
             <p>
-              Synergen Ventures Ltd trading as ExpertGap,
-              <br />8 Northumberland Avenue,
-              <br />London, WC2N 5BY
-              <br />United
-              Kingdom
+              GoDiet,
+              <br />Viru Square 2 10111
+              <br />Tallinn Harju County
+              <br />Estonia
             </p>
           </div>
         </div>
