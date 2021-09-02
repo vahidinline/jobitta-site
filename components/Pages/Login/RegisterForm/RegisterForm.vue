@@ -133,7 +133,7 @@
               type="mobile"
               label="Mobile"
               name="mobile"
-              v-validate="{required:true,regex:/^\d{10}$/}"
+              v-validate="{required:true,regex:/^\d{8,12}$/}"
               :error-messages="errors.collect('mobile')"
               @keypress.enter="onSubmit"
               outlined
