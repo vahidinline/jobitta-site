@@ -80,22 +80,30 @@ section {
           <div class="invoice-wrapper">
             <div class="font-weight-bold mt-4 mb-9">
               <span class="headline font-weight-bold">
-                <v-icon color="black" size="30" class="mr-2">lock</v-icon>Secure Checkout
+                <v-icon color="black" size="30" class="mr-2">lock</v-icon>Secure
+                Checkout
               </span>
             </div>
             <ul>
               <template v-if="doctor.id">
                 <li>
-                  <span>{{$t('stepper.finish.specialistName')}}</span>
-                  <span>{{doctor.title}} {{doctor.firstname}} {{doctor.lastname}}</span>
+                  <span>{{ $t('stepper.finish.specialistName') }}</span>
+                  <span
+                    >{{ doctor.title }} {{ doctor.firstname }}
+                    {{ doctor.lastname }}</span
+                  >
                 </li>
                 <li>
-                  <span>{{$t('stepper.invoice.sessionDate')}}</span>
-                  <span>{{reservation.reserve_time | persianDate('DD MMMM YYYY','en') }}</span>
+                  <span>{{ $t('stepper.invoice.sessionDate') }}</span>
+                  <span>{{
+                    reservation.reserve_time | persianDate('DD MMMM YYYY', 'en')
+                  }}</span>
                 </li>
                 <li>
-                  <span>{{$t('stepper.invoice.sessionTime')}}</span>
-                  <span>{{reservation.reserve_time | persianDate('HH:mm','en') }}</span>
+                  <span>{{ $t('stepper.invoice.sessionTime') }}</span>
+                  <span>{{
+                    reservation.reserve_time | persianDate('HH:mm', 'en')
+                  }}</span>
                 </li>
                 <!-- <li>
                   <span>{{$t('stepper.invoice.sessionDuration')}}</span>
@@ -108,18 +116,22 @@ section {
                 </li>-->
 
                 <li>
-                  <span>{{$t('stepper.invoice.price')}}</span>
-                  <span class="orange--text">{{reservation.humanPrice }}</span>
+                  <span>{{ $t('stepper.invoice.price') }}</span>
+                  <span class="orange--text">{{ reservation.humanPrice }}</span>
                 </li>
                 <li v-if="reservation.discount">
                   <span>Discount</span>
-                  <span
-                    class="info--text"
-                  >{{currency}} {{reservation.discount }} ({{reservation.copoun.off}}%)</span>
+                  <span class="info--text"
+                    >{{ currency }} {{ reservation.discount }} ({{
+                      reservation.copoun.off
+                    }}%)</span
+                  >
                 </li>
                 <li v-if="reservation.discount">
                   <span>Final Price</span>
-                  <span class="success--text">{{currency}} {{reservation.newPrice }}</span>
+                  <span class="success--text"
+                    >{{ currency }} {{ reservation.newPrice }}</span
+                  >
                 </li>
 
                 <!-- <li>
@@ -165,7 +177,8 @@ section {
                     color="error darken-2"
                     outlined
                     @click="removeCopoun"
-                  >Remove</v-btn>
+                    >Remove</v-btn
+                  >
                   <v-btn
                     v-else
                     class="text-none"
@@ -173,7 +186,8 @@ section {
                     outlined
                     :loading="copounChecking"
                     @click="checkCopoun"
-                  >Apply</v-btn>
+                    >Apply</v-btn
+                  >
                 </v-flex>
               </div>
             </client-only>
@@ -183,11 +197,18 @@ section {
           </div>
         </v-flex>
         <v-flex md6 sm12>
-          <div class="strip-card-wrapper d-flex flex-column fill-height" ref="wrapper">
+          <div
+            class="strip-card-wrapper d-flex flex-column fill-height"
+            ref="wrapper"
+          >
             <div class="mt-4 mb-1">
               <div class="title mt-1">Pay with card</div>
               <div class="d-inline-flex flex-wrap">
-                <div class="mr-1" v-for="(item, index) in brandIcons" :key="index">
+                <div
+                  class="mr-1"
+                  v-for="(item, index) in brandIcons"
+                  :key="index"
+                >
                   <v-img width="44" height="28" :src="item" class="BrandIcon" />
                 </div>
               </div>
@@ -203,7 +224,9 @@ section {
                 class="error--text"
                 id="card-errors"
                 role="alert"
-              >{{errorMessage}}</div>
+              >
+                {{ errorMessage }}
+              </div>
             </form>
             <v-spacer></v-spacer>
             <v-btn
@@ -213,7 +236,9 @@ section {
               :loading="loading"
               @click.prevent="pay"
               outlined
-            >pay {{currency}} {{ reservation.newPrice || reservation.price }}</v-btn>
+              >pay {{ currency }}
+              {{ reservation.newPrice || reservation.price }}</v-btn
+            >
           </div>
         </v-flex>
       </v-layout>
@@ -229,7 +254,7 @@ import { getModule } from 'vuex-module-decorators'
 import reservationModule from '@/store/reservation'
 
 @Component({
-  layout: 'stepper'
+  layout: 'stepper',
   // head: {
   //   script: [
   //     {
@@ -258,7 +283,7 @@ export default class Invoice extends Vue {
     require('@/assets/img/amex.svg'),
     require('@/assets/img/Maestro.png'),
     require('@/assets/img/apple-pay.png'),
-    require('@/assets/img/google-pay.png')
+    require('@/assets/img/google-pay.png'),
   ]
   Reservation = getModule(reservationModule, this.$store)
   currency: any = null
@@ -300,9 +325,40 @@ export default class Invoice extends Vue {
       let result = await this.$service.reservation.create(data)
       this.Reservation.save_reservation_info({ ...result })
     }
-    this.stripe = Stripe(process.env.STRIPE_PUBLISHABLE_KEY)
-    var elements = this.stripe.elements()
-    this.card = elements.create('card', {
+    // this.stripe = Stripe(process.env.STRIPE_PUBLISHABLE_KEY)
+    // var elements = this.$stripe.elements()
+    // this.card = elements.create('card', {
+    //   // iconStyle: 'solid',
+    //   style: {
+    //     base: {
+    //       iconColor: '#3f51b5',
+    //       color: '#3f51b5',
+    //       fontWeight: 400,
+    //       fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif',
+    //       fontSize: '16px',
+    //       fontSmoothing: 'antialiased',
+
+    //       '::placeholder': {
+    //         color: '#646c9a',
+    //       },
+    //       ':-webkit-autofill': {
+    //         color: '#646c9a',
+    //       },
+    //     },
+    //     invalid: {
+    //       iconColor: '#E53935',
+    //       color: '#E53935',
+    //     },
+    //   },
+    // })
+    // this.card.mount('#stripe-card')
+    this.makeStripe()
+    loader.hide()
+  }
+  makeStripe() {
+    console.log('object')
+    var elements = this.$stripe.elements()
+    let card = elements.create('card', {
       // iconStyle: 'solid',
       style: {
         base: {
@@ -314,22 +370,21 @@ export default class Invoice extends Vue {
           fontSmoothing: 'antialiased',
 
           '::placeholder': {
-            color: '#646c9a'
+            color: '#646c9a',
           },
           ':-webkit-autofill': {
-            color: '#646c9a'
-          }
+            color: '#646c9a',
+          },
         },
         invalid: {
           iconColor: '#E53935',
-          color: '#E53935'
-        }
-      }
+          color: '#E53935',
+        },
+      },
     })
-    this.card.mount('#stripe-card')
-    loader.hide()
+    let a = card.mount('#stripe-card')
+    this.card = Object.assign({}, card)
   }
-
   async checkCopoun() {
     if (!this.copoun) {
       return this.$toast.error().showSimple('Discount Code is Required')
@@ -338,7 +393,7 @@ export default class Invoice extends Vue {
     try {
       let result = await this.$service.reservation.checkCopoun({
         code: this.copoun,
-        reservation_id: this.reservation.id
+        reservation_id: this.reservation.id,
       })
       this.$toast.success().showSimple('Discount code approved')
       // this.data.clientSecret = result.clientSecret
@@ -355,7 +410,7 @@ export default class Invoice extends Vue {
       title: 'Remove Discount',
       message: 'Do you want to remove discount code?',
       cancel_txt: 'No',
-      ok_txt: 'Yes, Remove it'
+      ok_txt: 'Yes, Remove it',
     })
     if (!accept) return
 
@@ -365,7 +420,7 @@ export default class Invoice extends Vue {
     this.Reservation.save_reservation_info({
       discount: null,
       newPrice: null,
-      copoun: null
+      copoun: null,
     })
   }
   async pay() {
@@ -378,12 +433,12 @@ export default class Invoice extends Vue {
       this.reservation.id
     )
     this.Reservation.save_reservation_info({ clientSecret: clientSecretKey })
-    let result = await this.stripe.confirmCardPayment(
+    let result = await this.$stripe.confirmCardPayment(
       this.reservation.clientSecret,
       {
         payment_method: {
-          card: this.card
-        }
+          card: this.card,
+        },
       }
     )
     if (result.error) {
@@ -397,7 +452,7 @@ export default class Invoice extends Vue {
     loader.hide()
   }
   async orderComplete() {
-    let result = await this.stripe.retrievePaymentIntent(
+    let result = await this.$stripe.retrievePaymentIntent(
       this.reservation.clientSecret
     )
     var paymentIntent = result.paymentIntent
@@ -415,7 +470,7 @@ export default class Invoice extends Vue {
     try {
       await this.$service.reservation.approve({
         id: this.reservation.id,
-        payment_id: this.reservation.payment_id
+        payment_id: this.reservation.payment_id,
       })
       this.$router.push(this.$route.fullPath.replace('invoice', 'finish'))
     } catch (error) {

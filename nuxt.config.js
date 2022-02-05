@@ -44,8 +44,7 @@ export default {
     ],
     script: [
       {
-        src: 'https://js.stripe.com/v3/',
-        body: true
+        src: 'https://js.stripe.com/v3'
       }
     ],
     link: [
@@ -77,7 +76,7 @@ export default {
       'vrwebdesign-nuxt/assets/style/tools/_responsive.scss'
     ]
   },
-  plugins: ['@/plugins/vue-awesome-swiper.js'],
+  plugins: ['@/plugins/vue-awesome-swiper.js', '@/plugins/stripe.js'],
   /*
    ** Nuxt.js dev-modules
    */

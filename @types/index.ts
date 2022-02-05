@@ -37,12 +37,15 @@ interface Auth {
 declare module 'vue/types/vue' {
   interface Vue {
     $auth: Auth
+    $stripe: any
   }
   interface Context {
     $auth: Auth
+    $stripe: any
   }
   interface NuxtAppOptions {
     $auth: Auth
+    $stripe: any
   }
 }
 
