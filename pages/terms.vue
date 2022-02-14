@@ -465,10 +465,9 @@ p {
           </p>
           <p>
             Synergen Ventures Ltd trading as GoDiet,<br />
-            8 Northumberland Avenue,<br />
-            London, WC2N 5BY<br />
-            United Kingdom
-          </p>
+           Viru Square 2 ,10111<br />
+            Tallinn<br />
+Estonia          </p>
         </div>
       </v-flex>
     </v-layout>
